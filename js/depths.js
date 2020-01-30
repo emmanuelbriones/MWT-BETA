@@ -1,0 +1,1 @@
+var depthQueries = ["(hzdept_r < 30 OR hzdepb_r < 30)", "((hzdept_r >= 30 AND hzdept_r < 60) OR (hzdepb_r >= 30 AND hzdepb_r < 60))", "((hzdept_r >= 60 AND hzdept_r < 90) OR (hzdepb_r >= 60 AND hzdepb_r < 90))", "((hzdept_r >= 90) OR (hzdepb_r >= 90))"];

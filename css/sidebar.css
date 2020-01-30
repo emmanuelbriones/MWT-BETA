@@ -1,0 +1,149 @@
+/** SideBar Styles
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav */
+
+body { font-family: "Lato", sans-serif; }
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+
+  right: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 80px;
+}
+
+
+/*mtp projects*/
+ #mtp {
+  padding: 1% 0% 2% 0%;
+  overflow-y: hidden;
+  height: 40vh;
+  width: 100vw;
+  margin-top: unset;
+  top: 30vh;
+  z-index: 1;
+}
+
+ #mtp a {
+   padding: 0px, 20px, 0px, 0px;
+   z-index: 2;
+}
+
+ #mtp .closebtn {
+}
+
+/*benchmarking modules*/
+
+/*Data Repositiory*/
+
+
+
+/**Phones
+@media (max-width: 767.98px) {
+  .sidenav {
+    height: 40%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+
+}*/
+
+/**Phones Small */
+
+@media (max-width: 767.98px){/*(min-width: 320px) and (max-width: 425px) {*/
+  .sidenav {
+    height: 40%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    position: relative;
+    width: 100%;
+    min-height: 0px;
+    padding-left: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+
+
+
+
+
+
+
+}
+/**Phones Medium */
+@media (min-width: 375px){
+
+}
+
+/**Phones Large */
+@media (min-width: 425px){
+
+}
+
+
+/**Tablets*/
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sidenav {
+    height: 40%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+}
+
+/**Desktop*/
+@media (min-width: 1024px) {
+  .sidenav {
+    top:0;
+  }
+}
+
+/*TV 4k**/
+@media (min-width: 2560px) {
+  .sidenav {
+    top:0;
+  }
+}

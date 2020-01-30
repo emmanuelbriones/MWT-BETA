@@ -1,0 +1,145 @@
+<html class="no-js" lang="en">
+
+<head>
+    <title>Benchmark layout</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg fixed-bottom navbar-light bg-light"">
+                    <a class=" navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link disabled active" href="#" tabindex="-1" aria-disabled="true">Year:</a>
+                    <a class="nav-item nav-link" href="#">2017<span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">2018</a>
+                    <a class="nav-item nav-link" href="#">2019</a>
+                    <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row mt-sm-4 mt-md-0">
+            <div class="col-sm-6 col-md-8">
+                <h3>Important heading</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <nav class="navbar navbar-expand-md mb-4 navbar-dark bg-dark">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-nav"></a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <u1 class="navbar-nav m1-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown toggle" href="#" id="navbarDropdown"
+                                    data-toggle="dropdown">Choose area</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Polynomial 1</a>
+                                    <a class="dropdown-item" href="#">Polynomial 2</a>
+                                    <a class="dropdown-item" href="#">Polynomial 3</a>
+                                </div>
+
+                            </li>
+                        </u1>
+
+                    </div>
+                </nav>
+                <img src="https://canvasjs.com/wp-content/uploads/images/gallery/jsp-charts/overview/jsp-charts-graphs-index-data-label.png"
+                    class="img-fluid" alt="Responsive image">
+            </div>
+
+            <div class="col">
+                <nav class="navbar navbar-expand-md mb-4 navbar-dark bg-dark">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-nav"></a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <u1 class="navbar-nav m1-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown toggle" href="#" id="navbarDropdown"
+                                    data-toggle="dropdown">Choose area</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Polynomial 1</a>
+                                    <a class="dropdown-item" href="#">Polynomial 2</a>
+                                    <a class="dropdown-item" href="#">Polynomial 3</a>
+                                </div>
+                            </li>
+                        </u1>
+                    </div>
+                </nav>
+
+                <div class= "card">
+                    <div class ="card-body">
+                        <button class="btn btn-success" onclick ="updateChart()">Update</button>
+                    </div>
+                </div>
+                <canvas id="myChart"></canvas>
+                <!-- <img src="https://canvasjs.com/wp-content/uploads/images/gallery/jsp-charts/overview/jsp-charts-graphs-index-data-label.png"
+                    class="img-fluid" alt="Responsive image"> -->
+
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr size="10" width="100%" length=100% color="black">
+
+                <h4>Important heading</h4>
+                <p>Here it is, my philosophy is basically this, and this is something that I live by, and I always have,
+                    and I always will: Don't ever, for any reason, do anything, to anyone, for any reason, ever, no
+                    matter what, no matter where, or who, or who you are with, or where you are going, or where you've
+                    been, ever, for any reason whatsoever."</p>
+            </div>
+        </div>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                    datasets: [{
+                        label: 'My First dataset',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: [0, 10, 5, 2, 20, 30, 45]
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+            function updateChart(){
+                chart.data.datasets[0].data = ;
+                chart.update();
+            };
+        </script>
+    </div>
+</body>
+
+</html>

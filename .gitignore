@@ -1,0 +1,20 @@
+node_modules/
+documents/
+flip/
+.vs/
+.vscode/
+random/
+config.php
+conn_mwt.php
+database_calculations.php
+mwtB_handler.php
+*.json
+polygonHandler.php
+New*
+*.pdf
+pm graphs/
+video_tutorials/
+
+
+
+

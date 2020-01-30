@@ -1,0 +1,13 @@
+#benchmark .modal-dialog{
+  max-width: 90vw;
+}
+#benchmark li{
+  float: unset;
+}
+#benchmark li:hover{
+    color: white;
+    background-color: #007bff;
+  }
+#benchmark li.btn-link{
+  margin-top: 0%;
+}

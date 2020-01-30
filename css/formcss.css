@@ -1,0 +1,526 @@
+    .SI_i{
+        position: relative;
+        left: 3px;
+        top: 65px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .LN_i{
+        position: relative;
+        left: -141px;
+        top: 82px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .ST_i{
+        position: relative;
+        left: -285px;
+        top: 99px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .CTY_i{
+        position: relative;
+        left: -429px;
+        top: 116px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SB_i{
+        position: relative;
+        left: -573px;
+        top: 133px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SL_i{
+        font-size: 90%;
+        position: relative;
+        left: -717px;
+        top: 148px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .MC_i{
+        position: relative;
+        left: -861px;
+        top: 167px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .MN_i{
+        position: relative;
+        left: -1005px;
+        top: 184px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .Pr_i{
+        position: relative;
+        left: -1149px;
+        top: 201px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .AE_i{
+        position: relative;
+        left: 3px;
+        top: 190px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .CL_i{
+        position: relative;
+        left: -141px;
+        top: 210px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .AS_i{
+        position: relative;
+        left: -285px;
+        top: 275px;
+        cursor: pointer;
+        width: 103px;
+        height: 28px;
+        line-height: 90%;
+    }
+    .AP_i{
+        position: relative;
+        left: -392px;
+        top: 307px;
+        cursor: pointer;
+        width: 103px;
+        height: 28px;
+        line-height: 90%;
+    }
+    .AN_i{
+        font-size: 70%;
+        position: relative;
+        left: -499px;
+        top: 326px;
+        cursor: pointer;
+        width: 103px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SII_i{
+        position: relative;
+        left: -606px;
+        top: 353px;
+        cursor: pointer;
+        width: 103px;
+        height: 35px;
+        line-height: 90%;
+    }
+    .HT_i{
+        font-size: 80%;
+        position: relative;
+        left: -713px;
+        top: 413px;
+        cursor: pointer;
+        width: 103px;
+        height: 21px;
+        line-height: 90%;
+    }
+    .IB_i{
+        font-size: 80%;
+        position: relative;
+        left: -820px;
+        top: 433px;
+        cursor: pointer;
+        width: 103px;
+        height: 21px;
+        line-height: 90%;
+    }
+    .B1_i{
+        font-size: 80%;
+        position: relative;
+        left: -825px;
+        top: 256px;
+        cursor: pointer;
+        width: 74px;
+        height: 20px;
+        line-height: 90%;
+    }
+    .B2_i{
+        font-size: 80%;
+        position: relative;
+        left: -830px;
+        top: 256px;
+        cursor: pointer;
+        width: 74px;
+        height: 20px;
+        line-height: 90%;
+    }
+    .B3_i{
+        font-size: 80%;
+        position: relative;
+        left: -834px;
+        top: 256px;
+        cursor: pointer;
+        width: 74px;
+        height: 20px;
+        line-height: 90%;
+    }
+    .B4_i{
+        font-size: 80%;
+        position: relative;
+        left: -838px;
+        top: 256px;
+        cursor: pointer;
+        width: 74px;
+        height: 20px;
+        line-height: 90%;
+    }
+    .B5_i{
+        font-size: 80%;
+        position: relative;
+        left: 399px;
+        top: 227px;
+        cursor: pointer;
+        width: 74px;
+        height: 20px;
+        line-height: 90%;
+    }
+    .B6_i{
+        font-size: 80%;
+        position: relative;
+        left: 394px;
+        top: 227px;
+        cursor: pointer;
+        width: 74px;
+        height: 20px;
+        line-height: 90%;
+    }
+    .B7_i{
+        font-size: 80%;
+        position: relative;
+        left: 390px;
+        top: 227px;
+        cursor: pointer;
+        width: 73px;
+        height: 20px;
+        line-height: 90%;
+    }
+    .B8_i{
+        font-size: 80%;
+        position: relative;
+        left: 386px;
+        top: 227px;
+        cursor: pointer;
+        width: 79px;
+        height: 20px;
+        line-height: 90%;
+    }
+    .B9_i{
+        font-size: 80%;
+        position: relative;
+        left: 382px;
+        top: 227px;
+        cursor: pointer;
+        width: 76px;
+        height: 20px;
+        line-height: 90%;
+    }
+    .B10_i{
+        font-size: 80%;
+        position: relative;
+        left: 377px;
+        top: 227px;
+        cursor: pointer;
+        width: 74px;
+        height: 20px;
+        line-height: 90%;
+    }
+    /***********************/
+    .SD_i{
+        position: relative;
+        left: -185px;
+        top: 8px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .LD_i{
+        position: relative;
+        left: -337px;
+        top: 25px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .CC_i{
+        position: relative;
+        left: -489px;
+        top: 42px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SY_i{
+        position: relative;
+        left: -641px;
+        top: 59px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SIt_i{
+        position: relative;
+        left: -793px;
+        top: 76px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SP_i{
+        font-size: 90%;
+        position: relative;
+        left: 289px;
+        top: 70px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .MIX_i{
+        position: relative;
+        left: 137px;
+        top: 90px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    /*******************/
+    .WA_i{
+        position: relative;
+        left: 280px;
+        top: 87px;
+        cursor: pointer;
+        width: 154px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 90%;
+    }
+    .TD_i{
+        position: relative;
+        left: 122px;
+        top: 105px;
+        cursor: pointer;
+        width: 154px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .WT_i{
+        position: relative;
+        left: -36px;
+        top: 121px;
+        cursor: pointer;
+        width: 154px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 90%;
+    }
+    .WR_i{
+        position: relative;
+        left: -194px;
+        top: 138px;
+        cursor: pointer;
+        width: 79px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 90%;
+    }
+    .WU_i{
+       position: relative;
+        left: -120px;
+        top: 117px;
+        cursor: pointer;
+        width: 40px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 90%;
+    }
+    .LT_i{
+        position: relative;
+        left: -858px;
+        top: 621px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 90%;
+    }
+    .ASrc_i{
+        position: relative;
+        left: -1002px;
+        top: 640px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 90%;
+    }
+    .AA_i{
+        position: relative;
+        left: -1146px;
+        top: 659px;
+        cursor: pointer;
+        width: 140px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 90%;
+    }
+    .BS_i{
+        position: relative;
+        left: 252px;
+        top: 601px;
+        cursor: pointer;
+        width: 111px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .BO_i{
+        position: relative;
+        left: 284px;
+        top: 601px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .BP_i{
+        position: relative;
+        left: 95px;
+        top: 619px;
+        cursor: pointer;
+        width: 111px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .Perc_i{
+        position: relative;
+        left: -20px;
+        top: 639px;
+        cursor: pointer;
+        width: 111px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .Ratio_i{
+        position: relative;
+        left: 444px;
+        top: 256px;
+        cursor: pointer;
+        width: 94px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .MT_i{
+        position: relative;
+        left: 251px;
+        top: 202px;
+        cursor: pointer;
+        width: 55px;
+        height: 29px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .SBi_i{
+        position: relative;
+        left: -3px;
+        top: 601px;
+        cursor: pointer;
+        width: 160px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    /*********************/
+    /*********************/
+    .TarDen_i{
+        position: relative;
+        left: 10px;
+        top: 257px;
+        cursor: pointer;
+        width: 149px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .NoG_i{
+        position: relative;
+        left: -143px;
+        top: 274px;
+        cursor: pointer;
+        width: 149px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .OAC_i{
+        position: relative;
+        left: -295px;
+        top: 543px;
+        cursor: pointer;
+        width: 196px;
+        height: 18px;
+        line-height: 90%;
+        font-size: 90%;
+    }
+    .ITS_i{
+        position: relative;
+        left: 191px;
+        top: 338px;
+        cursor: pointer;
+        width: 93px;
+        height: 68px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+    .HNC_i{
+        position: relative;
+        left: 186px;
+        top: 346px;
+        cursor: pointer;
+        width: 91px;
+        height: 51px;
+        line-height: 90%;
+        font-size: 80%;
+    }
+

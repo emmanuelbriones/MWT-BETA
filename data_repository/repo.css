@@ -1,0 +1,9 @@
+#data-repo {
+    top:5%;
+    left:50%;
+    outline: none;
+}
+
+#data-repo .modal-dialog{
+   max-width: 35vw;
+}

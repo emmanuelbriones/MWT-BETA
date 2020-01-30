@@ -1,0 +1,73 @@
+function disablePermitCriteria(area){
+        // To disable:    
+        document.getElementById("dCh_1").disabled=true;
+        document.getElementById("dCh_2").disabled=true;
+        document.getElementById("dCh_3").disabled=true;
+        document.getElementById("dCh_4").disabled=true;
+        document.getElementById("dCh_5").disabled=true;
+        document.getElementById("dCh_6").disabled=true;
+        document.getElementById("dCh_7").disabled=true;
+        document.getElementById("dCh_8").disabled=true;
+        document.getElementById("dCh_9").disabled=true;
+        document.getElementById("dCh_10").disabled=true;
+        document.getElementById("dCh_11").disabled=true;
+        document.getElementById("dCh_12").disabled=true;
+        document.getElementById("dCh_13").disabled=true;
+        document.getElementById("dCh_14").disabled=true;
+        document.getElementById("dCh_15").disabled=true;
+        document.getElementById("dCh_16").disabled=true;
+        document.getElementById("dCh_17").disabled=true;
+        document.getElementById("dCh_18").disabled=true;
+        document.getElementById("dCh_19").disabled=true;
+        document.getElementById("dCh_20").disabled=true;
+        document.getElementById("dCh_21").disabled=true;
+        document.getElementById("dCh_22").disabled=true;
+        document.getElementById("dCh_23").disabled=true;
+        // document.getElementById("dCh_24").disabled=true;
+        // document.getElementById("dCh_25").disabled=true;
+        // document.getElementById("dCh_26").disabled=true;
+        // document.getElementById("dCh_27").disabled=true;
+        // document.getElementById("dCh_28").disabled=true;
+        // document.getElementById("dCh_29").disabled=true;
+        // document.getElementById("dCh_30").disabled=true;
+        document.getElementById(area + "_mix").disabled=true;
+        document.getElementById(area + "_mix2").disabled=true;
+        document.getElementById("mixtype_panel").className = "changeCursor";
+        alert('Heads up! \n--------------------------------------------------------\nBoth District(s) and Mix type criteria are not applicable for the \"Site Manager\" database. \n--------------------------------------------------------\nSelect \"SiMa + PERMIT\" database to enable those options.');
+    }
+    function enablePermitCriteria(area){
+        // To re-enable:
+        document.getElementById("dCh_1").disabled=false;
+        document.getElementById("dCh_2").disabled=false;
+        document.getElementById("dCh_3").disabled=false;
+        document.getElementById("dCh_4").disabled=false;
+        document.getElementById("dCh_5").disabled=false;
+        document.getElementById("dCh_6").disabled=false;
+        document.getElementById("dCh_7").disabled=false;
+        document.getElementById("dCh_8").disabled=false;
+        document.getElementById("dCh_9").disabled=false;
+        document.getElementById("dCh_10").disabled=false;
+        document.getElementById("dCh_11").disabled=false;
+        document.getElementById("dCh_12").disabled=false;
+        document.getElementById("dCh_13").disabled=false;
+        document.getElementById("dCh_14").disabled=false;
+        document.getElementById("dCh_15").disabled=false;
+        document.getElementById("dCh_16").disabled=false;
+        document.getElementById("dCh_17").disabled=false;
+        document.getElementById("dCh_18").disabled=false;
+        document.getElementById("dCh_19").disabled=false;
+        document.getElementById("dCh_20").disabled=false;
+        document.getElementById("dCh_21").disabled=false;
+        document.getElementById("dCh_22").disabled=false;
+        document.getElementById("dCh_23").disabled=false;
+        // document.getElementById("dCh_24").disabled=false;
+        // document.getElementById("dCh_25").disabled=false;
+        // document.getElementById("dCh_26").disabled=false;
+        // document.getElementById("dCh_27").disabled=false;
+        // document.getElementById("dCh_28").disabled=false;
+        // document.getElementById("dCh_29").disabled=false;
+        // document.getElementById("dCh_30").disabled=false;
+        document.getElementById(area + "_mix").disabled=false;
+        document.getElementById(area + "_mix2").disabled=false;
+        document.getElementById("mixtype_panel").className = "autoCursor";
+    }

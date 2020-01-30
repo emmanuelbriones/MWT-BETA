@@ -1,0 +1,127 @@
+.SI{
+        position: relative;
+        left: 142px;
+        top: 150px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .LN{
+        position: relative;
+        left: -10px;
+        top: 82px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .ST{
+        position: relative;
+        left: -162px;
+        top: 99px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .CTY{
+        position: relative;
+        left: -314px;
+        top: 116px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SB{
+        position: relative;
+        left: -466px;
+        top: 133px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SL{
+        position: relative;
+        left: -618px;
+        top: 150px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .MC{
+        position: relative;
+        left: -770px;
+        top: 167px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    /***********************/
+    .SD{
+        position: relative;
+        left: -628px;
+        top: 65px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .LD{
+        position: relative;
+        left: 436px;
+        top: 62px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .CC{
+        position: relative;
+        left: 284px;
+        top: 79px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SY{
+        position: relative;
+        left: 132px;
+        top: 96px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SIt{
+        position: relative;
+        left: -466px;
+        top: 133px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .SP{
+        position: relative;
+        left: -618px;
+        top: 150px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }
+    .MIX{
+        position: relative;
+        left: -770px;
+        top: 167px;
+        cursor: pointer;
+        width: 148px;
+        height: 18px;
+        line-height: 90%;
+    }

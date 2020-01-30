@@ -1,0 +1,7 @@
+#tut-video iframe{
+    border: 0px;
+}
+#tutorial .modal-dialog{
+    max-width: 75vw;
+    max-height: 35vh;
+}
