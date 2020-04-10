@@ -1,6 +1,11 @@
 function polygonHandler(found) {
     clean();
-    displaySpinner();
+
+    toggleSpinner('on');
+    toggleRadio('off');
+    toggleHolderSwitch('off');
+    toggleVisibilityCorr('off');
+    toggleNav('off');
 
     if (found == "PM1") {
         currentType = "driving";

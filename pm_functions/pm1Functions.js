@@ -132,7 +132,7 @@ function pm1chart(g2, data) {
 }
 function pieChartpm1(ctx,data){
  //   console.log("inside PM1 graph");
-    console.log(data);
+   // console.log(data);
     colors = [];
     colors = [
         'rgba(33,150,243,1)',
@@ -217,7 +217,7 @@ function pm1Data(mode, data_to_plot) {
     $.get(file,key).done(function(data) {//succesful
        //acknowledge fetch
 	   if(mode != 0){
-		alert('Retrieving Data, this might take a minute to load');
+	//	alert('Retrieving Data, this might take a minute to load');
        }
 
        let nonsove = [];
@@ -236,14 +236,14 @@ function pm1Data(mode, data_to_plot) {
        for_pm1.SOV = 100 - (nonsov_avg * 100);
    
         if(mode != 0){
-			alert('Data ready'); // after operations
+		//	alert('Data ready'); // after operations
 		}
         //Display shapes
         plotPM1(mode, data_to_plot);
     
 
         if (mode == 0) {
-			document.getElementById("pm1-sov").innerHTML = for_pm1.SOV.toFixed(2) + " %";
+			document.getElementById("pm1-sov").innerHTML = for_pm1.SOV.toFixed(2) +  "%";
         } else if (mode == 1) {
             regionalText(for_pm1);
         } else if (mode == 2) {

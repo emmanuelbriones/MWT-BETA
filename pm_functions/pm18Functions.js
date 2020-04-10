@@ -35,9 +35,7 @@ function pm18Data(mode, ex) {
         crashCountDK: 0, crashCountWK: 0, crashCountFK: 0, crashCountBK: 0,
         // Deaths Total  per category
         dtot: 0, ftot: 0, wtot: 0, btot: 0,
-
         currentCorridor: 'Entire Region',
- 
         dtextPercent: 0,
         dtextFatality: 0,
         latestYear:0
@@ -90,7 +88,7 @@ function pm18Data(mode, ex) {
         for (index in data.shape_arr) {
             let holder = [];
             let type = data.shape_arr[index]['type'];
-            let location = data.shape_arr[index]['location'];
+            let location = data.shape_arr[index]['statefp'];
             let crash_year = parseInt(data.shape_arr[index]['crash_year']);
 
             let killed = parseInt(data.shape_arr[index]['killed']);
@@ -103,12 +101,7 @@ function pm18Data(mode, ex) {
     
       
             let ogrID = parseInt(data.shape_arr[index]['OGR_FID']);
-
-            if (location == "tx") { //class O or nonInjury = addition of nonInjury and Unknown
-                classO += non_injuri;
-                classO += unknown_injuri;
-            }
-
+     
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
@@ -379,9 +372,6 @@ function pm18Data(mode, ex) {
             document.getElementById("pm18BikeText").innerHTML = pm18data.btot;
         }
          
-
-        console.log(crashCountF);
-        console.log(pm18data.crashCountFK);
         //calculations for static text
 		  if(currentType == 'driving') {
               pm18data.dtextPercent = (pm18data.crashCountDK / crashCountD) * 100; 
@@ -407,7 +397,10 @@ function pm18Data(mode, ex) {
 
         }
 
-    }); 
+    }).fail(function (error) {
+        console.log(error);
+        alert("Error Fetching Data. Please Contact MPO.");
+    });;
 }
 
 function pm18chartLine(ctx, data) {
@@ -514,7 +507,7 @@ function pm18StackedChart(ctx, data) {
 				data: data.killed
 			}, {
 				label: 'Serious Injuries',
-				backgroundColor: 'rgba(92,187,3,0.5)',
+				backgroundColor: 'rgba(92,187,3,0.5)rgba(92,187,3,0.5)',
 				data: data.classA
 			}, {
 				label: 'Non-Incapacitating Injuries',

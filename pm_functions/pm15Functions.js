@@ -35,84 +35,84 @@ function pm15Data(mode) {
         for (index in data.shape_arr) {
             stationName = data.shape_arr[index]['Station'];
             category = data.shape_arr[index]['Pollutant'];
-            g2014 = data.shape_arr[index].g2014;
-            g2015 = data.shape_arr[index].g2015;
-            g2016 = data.shape_arr[index].g2016;
-            g2017 = data.shape_arr[index].g2017;
-            g2018 = data.shape_arr[index].g2018;
+            gfirst = data.shape_arr[index].year1;
+            year2 = data.shape_arr[index].year2;
+            year3 = data.shape_arr[index].year3;
+            year4 = data.shape_arr[index].year4;
+            year5 = data.shape_arr[index].year5;
 
             if (category == "Ozone 1 hr" || category == "Ozone 8 hr") {
-                if (g2014 == '0') {
-                    g2014 = null;
+                if (gfirst == '0') {
+                    gfirst = null;
                 }
-                if (g2015 == '0') {
-                    g2015 = null;
+                if (year2 == '0') {
+                    year2 = null;
                 }
-                if (g2016 == '0') {
-                    g2016 = null;
+                if (year3 == '0') {
+                    year3 = null;
                 }
-                if (g2017 == '0') {
-                    g2017 = null;
+                if (year4 == '0') {
+                    year4 = null;
                 }
-                if (g2018 == '0') {
-                    g2018 = null;
+                if (year5 == '0') {
+                    year5 = null;
                 }
 
                 pm15Data[index] = {
                     name: stationName,
                     category: category,
-                    graphData: [g2014, g2015, g2016, g2017, g2018]
+                    graphData: [gfirst, year2, year3, year4, year5]
                 };
 
                 if (category == "Ozone 1 hr") {
-                    if (greathestNum1 < g2014) {
-                        greathestNum1 = g2014;
+                    if (greathestNum1 < gfirst) {
+                        greathestNum1 = gfirst;
                         year1 = 2014;
                         greathestStat1 = stationName;
                     }
-                    if (greathestNum1 < g2015) {
-                        greathestNum1 = g2015;
+                    if (greathestNum1 < year2) {
+                        greathestNum1 = year2;
                         year1 = 2015;
                         greathestStat1 = stationName;
                     }
-                    if (greathestNum1 < g2016) {
-                        greathestNum1 = g2016;
+                    if (greathestNum1 < year3) {
+                        greathestNum1 = year3;
                         year1 = 2016;
                         greathestStat1 = stationName;
                     }
-                    if (greathestNum1 < g2017) {
-                        greathestNum1 = g2017;
+                    if (greathestNum1 < year4) {
+                        greathestNum1 = year4;
                         year1 = 2017;
                         greathestStat1 = stationName;
                     }
-                    if (greathestNum1 < g2018) {
-                        greathestNum1 = g2018;
+                    if (greathestNum1 < year5) {
+                        greathestNum1 = year5;
                         year1 = 2018;
                         greathestStat1 = stationName;
                     }
                 } else if (category == "Ozone 8 hr") {
-                    if (greathestNum8 < g2014) {
-                        greathestNum8 = g2014;
+                    if (greathestNum8 < gfirst) {
+                        greathestNum8 = gfirst;
                         year8 = 2014;
                         greathestStat8 = stationName;
                     }
-                    if (greathestNum8 < g2015) {
-                        greathestNum8 = g2015;
+                    if (greathestNum8 < year2) {
+                        greathestNum8 = year2;
                         year8 = 2015;
                         greathestStat8 = stationName;
                     }
-                    if (greathestNum8 < g2016) {
-                        greathestNum8 = g2016;
+                    if (greathestNum8 < year3) {
+                        greathestNum8 = year3;
                         year8 = 2016;
                         greathestStat8 = stationName;
                     }
-                    if (greathestNum8 < g2017) {
-                        greathestNum8 = g2017;
+                    if (greathestNum8 < year4) {
+                        greathestNum8 = year4;
                         year8 = 2017;
                         greathestStat8 = stationName;
                     }
-                    if (greathestNum8 < g2018) {
-                        greathestNum8 = g2018;
+                    if (greathestNum8 < year5) {
+                        greathestNum8 = year5;
                         year8 = 2018;
                         greathestStat8 = stationName;
                     }

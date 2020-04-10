@@ -24,12 +24,34 @@
       <link rel="stylesheet" type="text/css" href="data_repository/repo.css"/>
       <link rel="stylesheet" type="text/css" href="tutorial/tutorial.css"/>
       <link rel="stylesheet" type="text/css" href="studies/studies.css"/>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158199877-1"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'UA-158199877-1');
+      </script>
 
 
       <style>
       </style>
+	  <!-- Global site tag (gtag.js) - Google Analytics 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158227326-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-158227326-1');
+</script> -->
+
    </head>
    <body>
+   <!-- spinner  -B -->
+      <div>
+         <?php include("inject-spinner.php");?>
+      </div>
       <!-- Sidenavbar -->
       <div>
          <?php include("inject-sidenavbar_PMs.php");?>
@@ -100,8 +122,8 @@
                               <h5>Research Team</h5><br>
                            </li>
                            <div class="row">
+							  <li>Sara Rivera </li>
                               <li>Adolfo Cordova</li>
-                              <li>Sara Rivera </li>
                               <li>Marketa Vavrova</li>
                               <li>Imad Abdallah</li>
                            </div>   
@@ -165,6 +187,15 @@
                      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"                                                   ><i class=""></i><span class="d-none d-md-inline"></span></a>
                      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" onclick="clearMetadata(); closeNav();   switch_AOI('off');  removeAllElementsLegend();  toggleNav('off');deleteUserShapes();removeNonPMContent();"><i class="fa fa-trash-o"></i> <span class="d-none d-md-inline">Clear</span></a>
                      <a onclick="pdf()" href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-print"></i> <span class="d-none d-md-inline">Print</span></a>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+
+					<a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"                                                   ><i class=""></i><span class="d-none d-md-inline">Version: 1.0.0</span></a>
                   </div>
                </div>
                <!-- Main Banner/Google Map -->

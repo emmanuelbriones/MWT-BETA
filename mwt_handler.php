@@ -32,7 +32,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm4"){
 	$query = "select type,tactcnt, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm5"){ // Pm5 and PM9 share table both have all_pm9
-	$query = "select type,ratio_prim, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select prcnt_prim,type,ratio_prim, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm5K"){ // Pm5 and PM9 share table both have all_pm9
 	$query = "select primjobsc0 from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm6"){ 
@@ -61,8 +61,10 @@ if($key == "all_pm1" || $key == "all_pm2"){
 	$query = "select Sidewalk_4, Roads_LA_3, Roads_LA_6, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm12"){
 	$query = "select status, bikepath, mile, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+}else if($key == "all_pm13_14"){
+	$query = "select port_of_en as title, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm18_19"){
-	$query = "select OGR_FID,crash_year,type,killed,classA,classB,classC,classO,non_injuri,unknown_in,location, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
+	$query = "select OGR_FID,crash_year,type,killed,classA,classB,classC,classO,non_injuri,unknown_in,statefp, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
 }else if($key == "all_pm21_h"){ //
 	$query = "select pattern, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm21_lines"){
@@ -71,99 +73,49 @@ if($key == "all_pm1" || $key == "all_pm2"){
 	$query = "select hotspot_ty,project_id, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";// ! repetition
 }
 else if($key == "all_pm22"){ 
-  //constraints:
+	$query = "select crash_year, killed, classa, classb,classc, classo,total,crash_type,statefp, astext(SHAPE) as shape from pm22 where corridor_key = '$key'";
+	/*
+   //constraints:
     //1. Shape data has to be from the last 5 years stored in database
     //2. Crash data has be from the last 5 years stored in database
     //3. TX and NM data can't be merged in the same array
 
-    $pm22_data = Array();
-
-    // get TX points & append to array
+    $pm22_data = Array();// return this will all points
     $toReturn = []; // clear return array
     //Setup year range
-    $query = "SET @year_ = (SELECT Max(crash_year) FROM mpo_test_jhuerta.pm22txpoints);";
+    $query = "SET @year_ = (SELECT Max(crash_year) FROM pm22_allpoints_final);";
     $result = mysqli_query($conn, $query); // do the query, store in result
     $query = "SET @year_ = @year_ - 4;";
     $result = mysqli_query($conn, $query); // do the query, store in result
-
     // Given the year range, fetch the data
-    $query = "SELECT astext(SHAPE) AS shape, 
-    crash_year, 
-    fatalities as fatal, 
-    suspected_ as suspected_inj, 
-    non_incapa as non_incap_inj,
-    possible_i as possible_inj,
-    non_injuri as non_inj,
-    unknown_in as unknown_inj,
-    total as total_fatalities_injuries,
-    type_involved,
-    legend
-    FROM mpo_test_jhuerta.pm22txpoints WHERE crash_year >= @year_ ORDER BY crash_year ASC;";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    while($row = mysqli_fetch_assoc($result)){
-        array_push($toReturn,$row);
-    }
-    $pm22_data['TX_DATA'] = $toReturn;
+    $query = "SELECT st_astext(SHAPE) AS shape, 
+	crash_year, 
+	killed,
+	classa, 
+	classb,
+	classc,
+	classo,
+	total,
+	crash_type,
+	statefp
+	FROM pm22"; // WHERE crash_year >= @year_ ORDER BY crash_year ASC;";
+*/
+}
+else if($key == "pm22_lines"){
+    $toReturn = []; // clear return array
+    $query = "SELECT st_astext(SHAPE) AS shape FROM pm22_cmp_lines;";
 
-    // get NM points & append to array
-    $toReturn = [];
-    //Setup year range
-    $query = "SET @year_ = (SELECT Max(crash_year) FROM mpo_test_jhuerta.pm22nmpoints);";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    $query = "SET @year_ = @year_ - 4;";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-
-    // Given the year range, fetch the data
-    $query = "SELECT astext(SHAPE) AS shape, 
-    crash_year, 
-    killed as fatal, 
-    classa as suspected_inj, 
-    classb as non_incap_inj,
-    classc as possible_inj,
-    classo as non_inj,
-    total as total_fatalities_injuries,
-    type_involved,
-    legend
-    FROM mpo_test_jhuerta.pm22nmpoints WHERE crash_year >= @year_ ORDER BY crash_year ASC;";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    while($row = mysqli_fetch_assoc($result)){
-        array_push($toReturn,$row);
-    }
-    $pm22_data['NM_DATA'] = $toReturn;
-
-    // get CMP lines & append to array
-    $toReturn = [];
-    $query = "SELECT astext(SHAPE) AS shape FROM pm22_cmp_2019;";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    while($row = mysqli_fetch_assoc($result)){
-        array_push($toReturn,$row);
-    }
-    $pm22_data['CMP_LINES'] = $toReturn;
-
-    $toReturn = [];
-    $toReturn['PM22'] = $pm22_data;
-    
-    header('Content-Type: application/json'); //specifies how the data will return 
-    echo json_encode($toReturn); //encodes our array to json, which lets us manipulate in front-end
-    mysqli_close($conn);
-    exit(0);
-
-
-}else if($key == "all_pm24"){ 
+}
+else if($key == "all_pm24"){ 
 	$query = "select leng_cal,miles,tti,trktti,astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm25"){
-	$query = "select state_code,year_recor,iri, miles, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
-}else if($key == "all_pm13"){ // here we need 2 tables, one for data, one for the ports of entry geo-objects
-	$query = "SET @year_ = (SELECT Max(Period) FROM mpo_test_jhuerta.pm13_all);";
+	$query = "select type,state_code,year_recor,iri, miles, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
+}else if($key == "all_pm13"){ 
+	$query = "SET @year_ = (SELECT Max(Period) FROM mpo_test_jhuerta.pm13);";
 	$result = mysqli_query($conn, $query); 
 	$query = "SET @year_ = @year_ - 4; ";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT * FROM mpo_test_jhuerta.pm13_all WHERE Period >= @year_;";
-	$result = mysqli_query($conn, $query); 
-	while($temporal = mysqli_fetch_assoc($result)){ 
-		array_push($shape, $temporal);
-	}
-	$query = "select port_of_en, latitude,longitude from pm14points"; 
+	$query = "SELECT * FROM mpo_test_jhuerta.pm13 WHERE Period >= @year_;";
 
 }else if($key == "all_pm14"){
 	$query = "SET @year_pm14 = (SELECT Max(period) FROM mpo_test_jhuerta.pm14);";
@@ -182,16 +134,13 @@ else if($key == "all_pm22"){
     Santa_Teresa,
     Tornillo,
     MODE FROM mpo_test_jhuerta.pm14 WHERE Period >= @year_pm14;";
-	$result = mysqli_query($conn, $query); 
-	while($temporal = mysqli_fetch_assoc($result)){ 
-		array_push($shape, $temporal);
-	}
-	$query = "select port_of_en, latitude,longitude from pm14points"; 
-
-}else if($key == "all_pm15_16_17"){
+}/*else if($key == "pm13_14_points"){
+	$query = "SELECT st_astext(SHAPE) as shape,port_of_en as title FROM mpo_test_jhuerta.pm14points;";
+}*/
+else if($key == "all_pm15_16_17"){
 	$query = "select station_na, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
 }else if($key == "all_pm15_16_17g"){
-	$query = "select Station, g2014,g2015,g2016,g2017,g2018,Pollutant from $pm_table where corridor_key = '$key'"; 
+	$query = "select Station, year1,year2,year3,year4,year5,Pollutant from $pm_table where corridor_key = '$key'"; 
 }else if($key == "all_pm20B"){
 	$query = "select count_bike,count_ped,address,on_st,at_strt, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
 }else if($key == "all_pm20P"){

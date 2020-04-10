@@ -8,8 +8,13 @@
 
 function pointHandler(found) {
     clean(); 
-    displaySpinner();
-    console.log(found);
+
+    toggleSpinner('on');
+    toggleRadio('off');
+    toggleHolderSwitch('off');
+    toggleVisibilityCorr('off');
+    toggleNav('off');
+
     if (found == "PM13D") {
         currentType = "driving";
         currentPM = 13;
@@ -38,18 +43,15 @@ function pointHandler(found) {
     else if (found == "pm15Driving") {
         currentType = "driving";
         currentPM = 15;
-     //   active_pm_for_AOI = "all_pm15_16_17";
         pm15Data(1);
     } else if (found == "pm16Driving") {
         currentType = "driving";
         currentPM = 16;
-      //  active_pm_for_AOI = "all_pm15_16_17";
         pm16Data(1);
     }
     else if (found == "pm17Driving") {
         currentType = "driving";
         currentPM = 17;
-       // active_pm_for_AOI = "all_pm15_16_17";
         pm17Data(1);
     }
     else if (found == "pm18Driving") {
@@ -117,7 +119,7 @@ function pointHandler(found) {
         currentPM = 22;
         active_pm_for_AOI = "all_pm22";
         currentType = "driving";
-        pm22Data(1, 0);
+        pm22Data(1, "a");
     }
     else if (found == "pm26") {
         currentPM = 26;

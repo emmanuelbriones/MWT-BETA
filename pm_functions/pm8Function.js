@@ -1,6 +1,6 @@
 function pm8Data(mode, status) {
     pm8DataBuffer(mode, status);
-    console.log("Update 8");
+
 }
 
 

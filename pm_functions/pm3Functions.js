@@ -97,7 +97,11 @@ function pm3Data(mode, ex) {
                 pm3TextData.lowRoute = route;
             }
         }
-      
+        //fix values for text
+        pm3TextData.highAvg = parseInt(pm3TextData.highAvg);
+        pm3TextData.lowAvg = parseInt(pm3TextData.lowAvg);
+        pm3TextData.tot = parseInt(pm3TextData.tot);
+         
         let corr = translateCorridor(ex);// what corridor are we on?
         if (mode == 0) {
             let stpm3 = "";

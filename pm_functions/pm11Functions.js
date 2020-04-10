@@ -86,7 +86,7 @@ function pm11Data(mode, ex) {
         pm11data.missing = parseInt((pm11data.roadways * 2) - pm11data.sideWalks);
 
         if (mode == 0) {
-            document.getElementById("pm11WText").innerHTML = parseInt(pm11data.sideWalks);
+            document.getElementById("pm11WText").innerHTML = commafy(pm11data.sideWalks);
         } else if (mode == 1) {
             regionalText(pm11data);
         } else if (mode == 2) {

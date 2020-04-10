@@ -5,12 +5,7 @@ as the corridor changes the text inside changes.
 
 function dynamicCorridorText(currentCorridor, data) {
     removeAllElementsLegend();
-	//  console.log("Current PM");
-    // console.log(currentPM);
-    // console.log("graph values for corridors");
-    // console.log(data);
-    // console.log("Current corridor");
-    // console.log(currentCorridor);
+
     if (currentCorridor != "Artcraft/Domenici" && currentCorridor != "AOI" ) {
         currentCorridor = wordFix(currentCorridor);
     }
@@ -20,9 +15,11 @@ function dynamicCorridorText(currentCorridor, data) {
    
 
     try {
-        turnOffSpinner();
-        removeAllElementsBar(); 
-      
+        removeAllElementsBar();
+        toggleSpinner('off');
+        toggleNav('off');
+        toggleRadio("off");
+
         if (currentPM == 18) {
             pm18DynamicText(currentCorridor, data);
         } else if (currentPM == 19) {
@@ -51,70 +48,26 @@ function dynamicCorridorText(currentCorridor, data) {
             pm1DynamicText(currentCorridor, data);
         }
     } catch (err) {
-        console.log("Skip a turn");
+        toggleSpinner('off');
     }
 
 }
-
-function pm2DynamicText(currentCorridor,data) {
-    canvasMaker('chart1', 'myChart');
-    var ctx2pm1 = document.getElementById('myChart').getContext('2d');
-    piechartpm2(ctx2pm1, data);
-    if (currentType == "transit") {
-        headerAdder("Commuteby transit", "title");
-    } else if (currentType == "walking") {
-        headerAdder("Commute by walking", "title");
-    } else if (currentType == "biking") {
-        headerAdder("Commute by biking", "title");
-    }
-
-
-
-    paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder(" During 2012-2016 __% of workers living in the El Paso MPO area reported to walk to work, __% of workers bike, and __% of workers reported to commute by public transit.", "paragraph", "summary-info");
-    paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2012-2016 ACS 5-Year Estimates", "paragraph", "analysis-info");
-    paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
-    anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
-    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("PM1 is calculated as:", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
-        //Legend elements
-        let names = ['No Data', 'Below mean', 'Above Mean'];
-        let colors = ['background:#C0C0C0;', 'background:#00CCFF;', 'background:#0066CC;'];
-
-        legendMaker("Legend", names, colors);
-        openNav();
-
-       
-
-}
-
 
 function pm1DynamicText(corridor, data) {
-	canvasMaker('chart1', 'myChart');
-    var ctx2pm1 = document.getElementById('myChart').getContext('2d');
-    pieChartpm1(ctx2pm1,data);
-    headerAdder("Drive alone", "title");
-    paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder(data.SOV.toFixed(2) + "% of workers living within the " + corridor + "  corridor reported to drive alone during their commute to work,"
+    let pm1RText = data.SOV.toFixed(2) + "% of workers living within the " + corridor + "  corridor reported to drive alone during their commute to work,"
         + "therefore only " + data.NonSOV.toFixed(2) + "% of workers commute via non-SOV modes, which includes carpooled via car, truck, or van. Workers"
         + "used Public Transport means such as bus or trolley bus, streetcar or trolley car, subway or elevated railroad, railroad,"
         + " and ferryboat. Some workers also used a taxicab, motorcycle, bicycle, walking, and other means to go to work or they worked"
-        + " at home.", "paragraph", "summary-info");
-    paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2012-2016 5-year average estimates", "paragraph", "analysis-info");
-    paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
-    anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files ", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
-    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("PM1 is calculated as:", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
-    openNav();
+        + " at home.";
+    pm1Text(pm1RText, data);
 }
+
+function pm2DynamicText(corridor, data) {
+    let text = "During 2012-2016 " + data.Walking.toFixed(2)+ "% of workers living in the El Paso MPO area reported to walk to work, "+data.Biking.toFixed(2)+"% of workers bike, and "+data.Transit.toFixed(2)+"% of workers reported to commute by public transit.";
+    pm2Text(text, data);
+}
+
+
 function pm24DynamicText(corridor, data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -140,12 +93,9 @@ function pm24DynamicText(corridor, data) {
     openNav();
 }
 function pm3DynamicText(corridor, data) {
-    console.log("earth");
-    console.log(data.highRoute);
-    console.log(corridor);
     headerAdder("Transit ridership", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within " + corridor + " corridor, the total ridership is " + commafy(data.tot) +". The route " + data.highRoute + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. The route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + "  (5 years average).", "paragraph", "summary-info");
+    paragraphAdder("Within " + corridor + " corridor, the total ridership is " + commafy(data.tot) + ". The route " + data.highRoute + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. The route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + "  (5 years average).", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2014-2018", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -156,6 +106,7 @@ function pm3DynamicText(corridor, data) {
     names = ['2,777 - 107,272', '107,273 - 388,321', '388,321 - 1,144,232'];
     colors = ['background:#8BC34A;', 'background:#FFCA28;', 'background:#f44336', 'background:#e53935;'];
     legendMaker("Passengers", names, colors);
+    openNav();
 }
 function pm4DynamicText(corridor, data) {
     let names = "";
@@ -185,6 +136,7 @@ function pm4DynamicText(corridor, data) {
 
     let colors = ['background:#f44336;', 'background:#64DD17;', 'background:#9C27B0', 'background:#e53935;'];
     legendMaker("Trips", names, colors);
+    openNav();
 
 }
 function pm5DynamicText(corridor) {
@@ -201,9 +153,10 @@ function pm5DynamicText(corridor) {
     paragraphAdder("The layer of the high-quality transit stations was provided by Sun Metro.  ", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("LEHD workplace area characteristics (WAC) data was analysed on a census block group-level in order to estimate the population within ½ mile of high-quality rapid transit, assuming a homogenous distribution of population each the block group.", "paragraph", "calc-info");
+    openNav();
 }
 
-function pm11DynamicText(corridor,data) {
+function pm11DynamicText(corridor, data) {
     headerAdder("Length of Sidewalks per Mile", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     if(corridor == "AOI"){
@@ -219,8 +172,9 @@ function pm11DynamicText(corridor,data) {
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Mileage of roadway network (stcent, without limited access roadways such as the Interstate 10, US 54, Loop 375, Cesar Chavez Memorial Highway, Spur 601) was compared with mileage of sidewalks. Only sidewalks with status ‘complete’, ‘pre-existing’, ‘private’ or ‘scheduled’ were included in the analysis. Sidewalks with no information about status, or status ‘removed’, ‘unfeasible’, or ‘awaiting assessment’ were not included in this performance measure. ", "paragraph", "calc-info");
     paragraphAdder("Note: A GIS sidewalk layer was at the time of analysis available only from the City of El Paso. GIS data from other municipalities will be added as it becomes available.", "paragraph", "calc-info");
+    openNav();
 }
-function pm12DynamicText(corridor,data) {
+function pm12DynamicText(corridor, data) {
     headerAdder("Miles of bikeway network buildout", "title");
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -238,8 +192,9 @@ function pm12DynamicText(corridor,data) {
     paragraphAdder("Bikeway data was provided by the municipalities: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario and the City of El Paso. ", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("The data inside the layer package had contained columns that have its status, proposed or existing, which were filtered to make a distinction between the two. The files containing existing bikeways were placed into a new, individual layer. The miles were then calculated for both existing and all bikeways.", "paragraph", "calc-info");
+    openNav();
 }
-function pm18DynamicText(corridor,data) {
+function pm18DynamicText(corridor, data) {
     canvasMaker('chart1/2', 'myChart');
     canvasMaker('chart2/2', 'myChart2');
 
@@ -253,25 +208,25 @@ function pm18DynamicText(corridor,data) {
     if (currentType == 'driving') {
 
         headerAdder("Number of Fatalities - Driving", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.dtot18 + " people were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.dtot + " people were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'freight') {
 
         headerAdder("Number of Fatalities - Freight", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a commercial motor vehicle (CMV) occurred in the " + corridor + " corridor and " + data.crashCountFK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.ftot18 +" people were killed in CMV-related crashes. ", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a commercial motor vehicle (CMV) occurred in the " + corridor + " corridor and " + data.crashCountFK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.ftot +" people were killed in CMV-related crashes. ", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'walking') {
 
         headerAdder("Number of Fatalities - Walking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a pedestrian occurred in the " + corridor + " corridor and " + data.crashCountWK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.wtot18 + " pedestrians were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a pedestrian occurred in the " + corridor + " corridor and " + data.crashCountWK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.wtot + " pedestrians were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'biking') {
 
         headerAdder("Number of Fatalities - Biking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a bicyclist occurred in the " + corridor + " corridor and " + data.crashCountBK + " (" + data.dtextPercent.toFixed(2) + "%)of those crashes resulted in fatalities. " + data.btot18 + " bicyclists were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a bicyclist occurred in the " + corridor + " corridor and " + data.crashCountBK + " (" + data.dtextPercent.toFixed(2) + "%)of those crashes resulted in fatalities. " + data.btot + " bicyclists were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
 
@@ -285,8 +240,6 @@ function pm18DynamicText(corridor,data) {
     openNav();
 }
 function pm19DynamicText(corridor, data) {
-    //clean();
-
     canvasMaker('chart1/2', 'myChart');
     canvasMaker('chart2/2', 'myChart2');
 
@@ -297,22 +250,22 @@ function pm19DynamicText(corridor, data) {
 
     if (currentType == "driving") {
         headerAdder("Number serious injuries - Driving", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountDK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.dtot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.dtot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "freight") {
         headerAdder("Number serious injuries - Freight", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountFK + " (" + data.dtsextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.ftot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.ftot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "walking") {
         headerAdder("Number serious injuries - Walking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountWK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.wtot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountWK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.wtot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "biking") {
         headerAdder("Number serious injuries - Biking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountBK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.btot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.btot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
 
@@ -405,6 +358,7 @@ function pm25DynamicText(corridor, data) {
     names = ['Good Condition', 'Fair Condition', 'Poor Condition'];
     colors = ['background:#8BC34A;', 'background:#F57C00;', 'background:#d50000'];
     legendMaker("Legend", names, colors);
+    openNav();
 }
 function pm26DynamicText(corridor, data) {
     canvasMaker('chart1/2', 'myChart');

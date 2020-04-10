@@ -77,7 +77,7 @@ function pm24Data(mode, ex) {
                 pm24data.graphVals[3] += miles;
             }  else if (tti >= 1.51) {
                 color = '#d50000';
-                pm24data.graphVals[5] += miles;
+                pm24data.graphVals[4] += miles;
             }
 
             if (mode == 1 || mode == 2 || mode == 4) {
@@ -92,6 +92,11 @@ function pm24Data(mode, ex) {
                     strokeWeight: 4,
                     zIndex: 99 // on top of every other shape
                 });
+                 // Hover Effect for Google API Polygon
+                google.maps.event.addListener(line, 'mouseover', function (event) { injectTooltip(event,tti); });
+                google.maps.event.addListener(line, 'mousemove', function (event) { moveTooltip(event); });
+                google.maps.event.addListener(line, 'mouseout', function (event) { deleteTooltip(event); });
+                      
 
                 line.setMap(map);
                 polylines.push(line);
@@ -141,6 +146,7 @@ function pm24BarGraph(ctx,data) {
     let label4 ="1.31-1.5";
     let label5 ="1.51 >";
     let title = '';
+    console.log(data);
     if (currentType == 'driving') {
         title = 'TTI(driving)';
     } else if (currentType == 'freight') {

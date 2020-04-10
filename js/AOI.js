@@ -91,7 +91,7 @@ function AOI(AOI_STRING) {
         'all_pm15_16_17': 'pm15_16_17p',
         'all_pm7PK': 'pm7_plannedkey', //pending dynamic data
         'all_pm20PC': 'pm20_crashp',
-        'all_pm22': 'pm22',
+        'all_pm22': 'pm22_allpoints_final',
         'all_pm18_19': 'pm18_19',
         'all_pm_19': 'pm18_19',
         'pm20W': 'pm20_crashes',
@@ -158,7 +158,7 @@ function AOI(AOI_STRING) {
     else if (table_wanted == 'pm20_crashes' || table_wanted == 'pm20_buffer') {
         pm20Data(4, to_php);
     }
-    else if (table_wanted == 'pm22') {
+    else if (table_wanted == 'pm22_allpoints_final') {
         pm22Data(4, to_php);
     }
     else if (table_wanted == 'pm24') {

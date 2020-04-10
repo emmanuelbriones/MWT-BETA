@@ -36,59 +36,59 @@ function pm17Data(mode) {
         for (index in data.shape_arr) {
             stationName = data.shape_arr[index]['Station'];
             category = data.shape_arr[index]['Pollutant'];
-            g2014 = data.shape_arr[index].g2014;
-            g2015 = data.shape_arr[index].g2015;
-            g2016 = data.shape_arr[index].g2016;
-            g2017 = data.shape_arr[index].g2017;
-            g2018 = data.shape_arr[index].g2018;
+            year1 = data.shape_arr[index].year1;
+            year2 = data.shape_arr[index].year2;
+            year3 = data.shape_arr[index].year3;
+            year4 = data.shape_arr[index].year4;
+            year5 = data.shape_arr[index].year5;
 
-            if (g2014 == '0') {
-                g2014 = null;
+            if (year1 == '0') {
+                year1 = null;
             }
-            if (g2015 == '0') {
-                g2015 = null;
+            if (year2 == '0') {
+                year2 = null;
             }
-            if (g2016 == '0') {
-                g2016 = null;
+            if (year3 == '0') {
+                year3 = null;
             }
-            if (g2017 == '0') {
-                g2017 = null;
+            if (year4 == '0') {
+                year4 = null;
             }
-            if (g2018 == '0') {
-                g2018 = null;
+            if (year5 == '0') {
+                year5 = null;
             }
 
             if (category == "PM 10 ") {
 
                 pm17Data[i] = {
                     name: stationName,
-                    graphData: [g2014, g2015, g2016, g2017, g2018]
+                    graphData: [year1, year2, year3, year4, year5]
                 };
                
                 i++;
             
-                if (greathestNum < g2014) {
-                    greathestNum = g2014;
+                if (greathestNum < year1) {
+                    greathestNum = year1;
                     year = 2014;
                     greathestStat = stationName;
                 }
-                if (greathestNum < g2015) {
-                    greathestNum = g2015;
+                if (greathestNum < year2) {
+                    greathestNum = year2;
                     year = 2015;
                     greathestStat = stationName;
                 }
-                if (greathestNum < g2016) {
-                    greathestNum = g2016;
+                if (greathestNum < year3) {
+                    greathestNum = year3;
                     year = 2016;
                     greathestStat = stationName;
                 }
-                if (greathestNum < g2017) {
-                    greathestNum = g2017;
+                if (greathestNum < year4) {
+                    greathestNum = year4;
                     year = 2017;
                     greathestStat = stationName;
                 }
-                if (greathestNum < g2018) {
-                    greathestNum = g2018;
+                if (greathestNum < year5) {
+                    greathestNum = year5;
                     year = 2018;
                     greathestStat = stationName;
                 }

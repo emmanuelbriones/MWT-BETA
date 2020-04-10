@@ -21,6 +21,7 @@ function pm5Data(mode, status) {
             let to_visualize = [];
             let type = data.shape_arr[index].type;
             let ratio_prim = parseFloat(data.shape_arr[index].ratio_prim);  //filter values on polygons
+            let prcnt_Prim = parseFloat(data.shape_arr[index].prcnt_prim);  //filter values on polygons
 
             //update Dynamic Data
             if (type == "existing") {
@@ -53,7 +54,7 @@ function pm5Data(mode, status) {
                     fillColor: color,
                     fillOpacity: 0.60,
                     zIndex: -1,
-                    title: ratio_prim.toFixed(2) + "%",
+                    title: prcnt_Prim.toFixed(2) + "%",
                 });
                 if (status == "e") polyToErase.exist.push(polygon);
                 if (status == "p") polyToErase.plan.push(polygon);

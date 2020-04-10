@@ -40,7 +40,7 @@ else if($active_pm =="pm15_16_17p"){
 
 }
 else if($active_pm =="pm18_19"){ 
-	$query = "SELECT OGR_FID,crash_year,type,killed,classA,classB,classC,classO,non_injuri,unknown_in,location, astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );";
+	$query = "SELECT OGR_FID,crash_year,type,killed,classA,classB,classC,classO,non_injuri,unknown_in,statefp, astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );";
 
 }
 else if($active_pm =="pm20_buffer"){ 
@@ -52,90 +52,42 @@ else if($active_pm =="pm20_crashes"){
 else if($active_pm =="pm20_stationsbus"){ 
 	$query = "SELECT ST_AsText(SHAPE)  FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
 }
-else if($active_pm == "pm22"){
-	
-	//constraints:
-    //1. Shape data has to be from the last 5 years stored in database
-    //2. Crash data has be from the last 5 years stored in database
-    //3. TX and NM data can't be merged in the same array
-
-    $pm22_data = Array();
-
-    // get TX points & append to array
+else if($active_pm == "pm22_allpoints_final"){
+    $pm22_data = Array();// return this will all points
     $toReturn = []; // clear return array
     //Setup year range
-    $query = "SET @year_ = (SELECT Max(crash_year) FROM mpo_test_jhuerta.pm22txpoints);";
+    $query = "SET @year_ = (SELECT Max(crash_year) FROM $active_pm );";
     $result = mysqli_query($conn, $query); // do the query, store in result
     $query = "SET @year_ = @year_ - 4;";
     $result = mysqli_query($conn, $query); // do the query, store in result
-
-	// Given the year range, fetch the data
-    $query = "SELECT astext(SHAPE) AS shape, 
-    crash_year, 
-    fatalities as fatal, 
-    suspected_ as suspected_inj, 
-    non_incapa as non_incap_inj,
-    possible_i as possible_inj,
-    non_injuri as non_inj,
-    unknown_in as unknown_inj,
-    total as total_fatalities_injuries,
-    type_involved,
-    legend
-    FROM mpo_test_jhuerta.pm22txpoints WHERE crash_year >= @year_ AND  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), shape) ORDER BY crash_year ASC;";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    while($row = mysqli_fetch_assoc($result)){
-        array_push($toReturn,$row);
-    }
-    $pm22_data['TX_DATA'] = $toReturn;
-
-    // get NM points & append to array
-    $toReturn = [];
-    //Setup year range
-    $query = "SET @year_ = (SELECT Max(crash_year) FROM mpo_test_jhuerta.pm22nmpoints);";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    $query = "SET @year_ = @year_ - 4;";
-	$result = mysqli_query($conn, $query); // do the query, store in result
-
     // Given the year range, fetch the data
-    $query = "SELECT astext(SHAPE) AS shape, 
-    crash_year, 
-    killed as fatal, 
-    classa as suspected_inj, 
-    classb as non_incap_inj,
-    classc as possible_inj,
-    classo as non_inj,
-    total as total_fatalities_injuries,
-    type_involved,
-    legend
-    FROM mpo_test_jhuerta.pm22nmpoints WHERE crash_year >= @year_ AND   ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), shape) ORDER BY crash_year ASC;";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    while($row = mysqli_fetch_assoc($result)){
-        array_push($toReturn,$row);
+    $query = "SELECT ST_AsText(SHAPE), 
+	crash_year, 
+	fatalities,
+	susp_serious_inj, 
+	non_inc_inj,
+	possible_inj,
+	unknown_inj,
+	total,
+	crash_type,
+	state_name
+	FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );";
+    $result = mysqli_query($conn, $query); 
+    while($temporal = mysqli_fetch_assoc($result)){ 
+        array_push($shape, $temporal);
     }
-    $pm22_data['NM_DATA'] = $toReturn;
+    $toReturn['shape_arr'] = $shape; 					// store it in an index on our array, by name == more significant
+    header('Content-Type: application/json'); 			//specifies how the data will return 
+    echo json_encode($toReturn); 						//encodes our array to json, which lets us manipulate in front-end
+    $conn->close();
+    exit();
 
-    // get CMP lines & append to array
-	$toReturn = [];
-
-    $query = "SELECT astext(SHAPE) AS shape FROM pm22_cmp_2019 WHERE   ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), shape) ;";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    while($row = mysqli_fetch_assoc($result)){
-        array_push($toReturn,$row);
-    }
-    $pm22_data['CMP_LINES'] = $toReturn;
-    $toReturn = [];
-    $toReturn['PM22'] = $pm22_data;
-    
-    header('Content-Type: application/json'); //specifies how the data will return 
-    echo json_encode($toReturn); //encodes our array to json, which lets us manipulate in front-end
-    mysqli_close($conn);
-    exit(0);
 }
 else if($active_pm =="pm24"){ 
 	$query = "SELECT leng_cal,miles,tti,trktti, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
 }
 else if($active_pm =="pm25"){ 
-	$query = "SELECT state_code,year_recor,iri, miles, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
+	$query = "SELECT type,state_code,year_recor,iri, miles, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
 }
 
 else if($active_pm =="pm26"){ 
@@ -172,11 +124,10 @@ else{
 	$query = "SELECT ST_AsText(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 6), p.SHAPE );";
 }
 
-
-		/**
-	 *Run selected query
-	 */
-	$result = mysqli_query($conn, $query); 
+/**
+ *Run selected query
+*/
+$result = mysqli_query($conn, $query); 
 
 /**
  *Save results into indexed Array
@@ -184,9 +135,6 @@ else{
 while($temporal = mysqli_fetch_assoc($result)){ 
 	array_push($shape, $temporal);
 }
-
-
-
 
 /**
  *Respond request to Front-end with JSON

@@ -17,9 +17,11 @@ function closeLegend() {
 // it appears to do nothing. the solution is to make one of them to be used with double click and the othe with single click.
 function openNav() {
     toggleNav('on');
+    toggleSpinner('off');
     document.getElementById("mySidenav").style.overflow = "scroll";
     document.getElementById("mySidenav").className = "sidenav rounded-left mb-2 bg-light text-dark";
     $('#mySidenav').tooltip('disable');
+
     if (detectmob() == true) {
         document.getElementById("mySidenav").style.width = "100%";
         document.getElementById("mySidenav").style.height = "40%";
@@ -27,6 +29,13 @@ function openNav() {
         document.getElementById("mySidenav").style.width = "53%";
         document.getElementById("mySidenav").style.height = "71%";
         document.getElementById("mySidenav").style.marginTop = "8.5%";
+    }
+
+    // toggle on radio buttons for corridor mode, regional, and AOI
+    if (currentPM == 5 || currentPM == 6 || currentPM == 7 || currentPM == 8 || currentPM == 9 || currentPM == 10  ||currentPM == 13 || currentPM ==14 ||currentPM == 22 || currentPM == 22) {
+        toggleRadio("off");
+    } else {
+        toggleRadio("on");
     }
 }
 
@@ -54,16 +63,20 @@ function closeNav() {
     }
     $('#mySidenav').tooltip('enable');
 
-
-    //removeAllElementsBar(); // destroy everything when closing bar
 }
 function toggleNav(state) {
     if (state == "on") {
         document.getElementById("mySidenav").style.visibility = "visible";
-        //document.getElementById("radioH").style.visibility = "visible";
     } else if (state == "off") {
         document.getElementById("mySidenav").style.visibility = "hidden";
-       // document.getElementById("radioH").style.visibility = "hidden";
+    }
+}
+
+function toggleSpinner(state) {
+    if (state == "on") {
+        document.getElementById("spinner").style.visibility = "visible";
+    } else if (state == "off") {
+        document.getElementById("spinner").style.visibility = "hidden";
     }
 }
 
@@ -73,11 +86,13 @@ function clean() {
     clearMetadata();
     markerClusterSafeDelete();
     toggleSafeRemove();
+    toggleRadio("off");
     turnoff_Corridors();
     removeNonPMContent();
     resetRadioBtn("optradio");
     switch_AOI("off");
     deleteUserShapes();
+    console.log("!!!CLEANIng");
     
 }
 function toggleSafeRemove() {
@@ -285,7 +300,7 @@ function toggleNameChanger() {
         document.getElementById("toggleName2").innerHTML = "All bikeways";
     }
 }
-
+//good
 function toggleRadio(state) {
     if (state == "on") {
         document.getElementById("radioH").style.visibility = "visible";
@@ -327,18 +342,17 @@ function headerAdder(text, holderTitle) {
     universal++;
 }
 
+function toggleHolderSwitch(state) {
+    if (state == "on") {
+        document.getElementById("ToggleHolder").style.display  = "block";
+        toggleElements("off", "dropdownMenuButton"); 
 
-function toggleHide() {
-    document.getElementById("ToggleHolder").style.display = "none";
-    // toggleIdRestore();
-    toggleOn = false;
+    } else if (state == "off") {
+        document.getElementById("ToggleHolder").style.display = "none";
+
+    }
 }
 
-function togglevisible() {
-    document.getElementById("ToggleHolder").style.display = "inline";
-    toggleNameChanger();
-    toggleOn = true;
-}
 
 // detects if user is on mobile
 function detectmob() {
@@ -361,7 +375,6 @@ function wordFix(string) {
 }
 function toggleVisibilityCorr(mode) {
     var x = document.getElementById("dropdownMenuButton");
-
     if (mode == "on") {
         x.style.display = "block";
     } else {
@@ -398,7 +411,7 @@ function resetRadioBtn(GroupName) {
 			ele[i].checked = false;
 	}  
 }
-
+/*
 // displays loading animation
 function displaySpinner() {
     toggleElements("on", "spinner");
@@ -424,18 +437,22 @@ function turnOffSpinner() {
     document.getElementById("data-title").className = "border-top border-dark";
     document.getElementById("calc-title").className = "border-top border-dark";
 }
+*/
+
+/*
 //aids in stopping possible bugs due to messing with the visibility of borders and other elements
 function resetViewsBeforeSpinner() {
     turnOffSpinner();
     toggleElements("off", "dropdownMenuButton"); //this stops a bug of making button appear
 }
+*/
 
 //turns on and off any element. In order to work you must go to index and on desired element add style="display: block;"
 function toggleElements(mode, element) {
     var x = document.getElementById(element);
 
     if (mode == "on") {
-        x.style.display = "block";
+        x.style.display = "visible";
     } else {
         x.style.display = "none";
     }

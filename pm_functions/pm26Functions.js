@@ -237,7 +237,8 @@ function pm26Data(mode, ex) {
         }
 
     }).fail(function(error){
-        pm_error_handler(mode,ex);
+        pm_error_handler(mode, ex);
+        toggleSpinner('off');
     }); 
 }
 

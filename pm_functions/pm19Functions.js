@@ -11,38 +11,38 @@
  * Mode 3: Corridor Data only, data for benchmark
  *  * Mode 4: AOI
  */
-var pm19data = {
-    //barGraph
-    classA: [0, 0, 0, 0, 0],
-    classB: [0, 0, 0, 0, 0],
-    classC: [0, 0, 0, 0, 0],
-    classO: [0, 0, 0, 0, 0],
-    non_injuri: [0, 0, 0, 0, 0],
-    unknown_injuri: [0, 0, 0, 0, 0],
-    //line graph
-    injured: [0, 0, 0, 0, 0],
-    injured_driving: [0, 0, 0, 0, 0],
-    injured_walking: [0, 0, 0, 0, 0],
-    injured_freight: [0, 0, 0, 0, 0],
-    injured_biking: [0, 0, 0, 0, 0],
-    //Dynamic Variables
-    crashCount: 0,
-    crashCountDK: 0, crashCountWK: 0, crashCountFK: 0, crashCountBK: 0,
-    // Deaths Total  per category
-    dtot: 0, ftot: 0, wtot: 0, btot: 0,
 
-    currentCorridor: 'Entire Region',
-
-    dtextPercent: 0,
-    dtextFatality: 0,
-    latestYear: 0
-}
 function pm19Data(mode, ex) {
 
     let data_for_php;
 
     //stores graph values
+    var pm19data = {
+        //barGraph
+        classA: [0, 0, 0, 0, 0],
+        classB: [0, 0, 0, 0, 0],
+        classC: [0, 0, 0, 0, 0],
+        classO: [0, 0, 0, 0, 0],
+        non_injuri: [0, 0, 0, 0, 0],
+        unknown_injuri: [0, 0, 0, 0, 0],
+        //line graph
+        injured: [0, 0, 0, 0, 0],
+        injured_driving: [0, 0, 0, 0, 0],
+        injured_walking: [0, 0, 0, 0, 0],
+        injured_freight: [0, 0, 0, 0, 0],
+        injured_biking: [0, 0, 0, 0, 0],
+        //Dynamic Variables
+        crashCount: 0,
+        crashCountDK: 0, crashCountWK: 0, crashCountFK: 0, crashCountBK: 0,
+        // Deaths Total  per category
+        dtot: 0, ftot: 0, wtot: 0, btot: 0,
 
+        currentCorridor: 'Entire Region',
+
+        dtextPercent: 0,
+        dtextFatality: 0,
+        latestYear: 0
+    }
 
     //let data_for_php = 0;
     let shape = "shape";
@@ -104,11 +104,6 @@ function pm19Data(mode, ex) {
 
 
             let ogrID = parseInt(data.shape_arr[index]['OGR_FID']);
-
-            if (location == "tx") { //class O or nonInjury = addition of nonInjury and Unknown
-                classO += non_injuri;
-                classO += unknown_injuri;
-            }
 
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
@@ -380,9 +375,6 @@ function pm19Data(mode, ex) {
             document.getElementById("pm19BikeText").innerHTML = pm19data.btot;
         }
 
-
-        //console.log(crashCountD);
-       // console.log(pm19data.crashCountDK);
         //calculations for static text
         if (currentType == 'driving') {
             pm19data.dtextPercent = (pm19data.crashCountDK / crashCountD) * 100;

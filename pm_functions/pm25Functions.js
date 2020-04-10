@@ -61,6 +61,17 @@ function pm25Data(mode, ex) {
 
         pm25Data.latestYear = latestYear;
 
+        if (mode == 0) {
+            console.log(ex);
+            if (ex == 'd') {
+                ex = 'driving';
+            } else if (ex == 't') {
+                ex = 'transit';
+            } else if (ex == 'f') {
+                ex = 'freight';
+            }
+        }
+   
         for (index in data.shape_arr) { // iterates through every index in the returned element (data['shape_arr'])
             let shp = data.shape_arr[index][shape]; // shape is LINESTRING or MULTILINESTRING
             let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
@@ -74,107 +85,114 @@ function pm25Data(mode, ex) {
             let year = parseInt(data.shape_arr[index].year_recor);
             let miles = parseFloat(data.shape_arr[index].miles);
             let state = data.shape_arr[index].state_code;
+            let type = data.shape_arr[index].type;
 
-    
-
-            //filter graph Data by Year, add counts on 3 conditions
-            if (year == latestYear - 4) {
-                if (iri >0 && iri < 95) { // good condition
-                    pm25Data.good[0] += miles;
-                } else if (iri > 94 && iri < 171) { // Fair condition
-                    pm25Data.fair[0] += miles;
-                } else if (iri > 170) { // Poor condition
-                    pm25Data.poor[0] += miles;
-                }
-            } else if (year == latestYear - 3) {
-                if (iri > 0 && iri < 95) {
-                    pm25Data.good[1] += miles;
-                } else if (iri > 94 && iri < 171) {
-                    pm25Data.fair[1] += miles;
-                } else if (iri > 170) {
-                    pm25Data.poor[1] += miles;
-                }
-            } else if (year == latestYear - 2) {
-                if (iri > 0 && iri < 95) {
-                    pm25Data.good[2] += miles;
-                } else if (iri > 94 && iri < 171) {
-                    pm25Data.fair[2] += miles;
-                } else if (iri > 170) {
-                    pm25Data.poor[2] += miles;
-                }
-            } else if (year == latestYear - 1) {
-                if (iri > 0 && iri < 95) {
-                    pm25Data.good[3] += miles;
-                } else if (iri > 94 && iri < 171) {
-                    pm25Data.fair[3] += miles;
-                } else if (iri > 170) {
-                    pm25Data.poor[3] += miles;
-                }
-            } else if (year == latestYear) {
-                if (iri > 0 && iri < 95) {
-                    pm25Data.good[4] += miles;
-                } else if (iri > 94 && iri < 171) {
-                    pm25Data.fair[4] += miles;
-                } else if (iri > 170) {
-                    pm25Data.poor[4] += miles;
-                }
-            }
-
-            if (year == latestYear) {
-                if (iri > 170) {      // total poor condition miles
-                    poorconditionMiles += miles;
-                }
-                //Texas 
-                if (state == 48 || state == "Texas") {
-                    //total in tx
-                    if (iri !=0) {
-                        pm25Data.tx_miles += miles;
+            // makes sure to only calculate the current mode
+            if (type == currentType || ex == type) {
+                //filter graph Data by Year, add counts on 3 conditions
+                if (year == latestYear - 4) {
+                    if (iri > 0 && iri < 95) { // good condition
+                        pm25Data.good[0] += miles;
+                    } else if (iri > 94 && iri < 171) { // Fair condition
+                        pm25Data.fair[0] += miles;
+                    } else if (iri > 170) { // Poor condition
+                        pm25Data.poor[0] += miles;
                     }
-                
-                    //poor in tx
-                    if (iri > 170) {
-                        pm25Data.tx_poor_mi += miles;
-                    }
-
-                } else if (state == 35 || state == "New Mexico") {
-                    if (iri != 0) {
-                        pm25Data.nm_miles += miles;
-                    }
-
-                    if (iri > 170) {
-                        pm25Data.nm_poor_mi += miles;
-                    }
-                }
-            }
-
-            //Draw latest year
-            if (year == latestYear) {
-                if (mode == 1 || mode == 2 || mode == 4) {
-                    for (let i = 0; i < ln.length; i++) {
-                        coord = { lat: ln[i]['y'], lng: ln[i]['x'] }; // this is how lat & lng is interpreted by the tool
-                        to_visualize.push(coord); // pushing the interpretation to our to_visualize array
-                    }
-                    // filter colors 
+                } else if (year == latestYear - 3) {
                     if (iri > 0 && iri < 95) {
-                        color = '#8BC34A'; //green
+                        pm25Data.good[1] += miles;
                     } else if (iri > 94 && iri < 171) {
-                        color = '#F57C00'; //orange
+                        pm25Data.fair[1] += miles;
                     } else if (iri > 170) {
-                        color = '#d50000'; //red
-                    } else if (iri == 0) { // No data
-                        color = '#9E9E9E';
+                        pm25Data.poor[1] += miles;
                     }
-                    let line = new google.maps.Polyline({ // it is a POLYLINE
-                        path: to_visualize, // polyline has a path, defined by lat & lng 
-                        strokeColor: color,
-                        strokeOpacity: .50,
-                        strokeWeight: 4,
-                        zIndex: 99 // on top of every other shape
-                    });
-                    line.setMap(map);
-                    polylines.push(line);
+                } else if (year == latestYear - 2) {
+                    if (iri > 0 && iri < 95) {
+                        pm25Data.good[2] += miles;
+                    } else if (iri > 94 && iri < 171) {
+                        pm25Data.fair[2] += miles;
+                    } else if (iri > 170) {
+                        pm25Data.poor[2] += miles;
+                    }
+                } else if (year == latestYear - 1) {
+                    if (iri > 0 && iri < 95) {
+                        pm25Data.good[3] += miles;
+                    } else if (iri > 94 && iri < 171) {
+                        pm25Data.fair[3] += miles;
+                    } else if (iri > 170) {
+                        pm25Data.poor[3] += miles;
+                    }
+                } else if (year == latestYear) {
+                    if (iri > 0 && iri < 95) {
+                        pm25Data.good[4] += miles;
+                    } else if (iri > 94 && iri < 171) {
+                        pm25Data.fair[4] += miles;
+                    } else if (iri > 170) {
+                        pm25Data.poor[4] += miles;
+                    }
                 }
-            }
+
+                if (year == latestYear) {
+                    if (iri > 170) {      // total poor condition miles
+                        poorconditionMiles += miles;
+                    }
+                    //Texas 
+                    if (state == 48 || state == "Texas") {
+                        //total in tx
+                        if (iri != 0) {
+                            pm25Data.tx_miles += miles;
+                        }
+
+                        //poor in tx
+                        if (iri > 170) {
+                            pm25Data.tx_poor_mi += miles;
+                        }
+
+                    } else if (state == 35 || state == "New Mexico") {
+                        if (iri != 0) {
+                            pm25Data.nm_miles += miles;
+                        }
+
+                        if (iri > 170) {
+                            pm25Data.nm_poor_mi += miles;
+                        }
+                    }
+                }
+                //Draw latest year
+                if (year == latestYear) {
+                    if (mode == 1 || mode == 2 || mode == 4) {
+                        for (let i = 0; i < ln.length; i++) {
+                            coord = { lat: ln[i]['y'], lng: ln[i]['x'] }; // this is how lat & lng is interpreted by the tool
+                            to_visualize.push(coord); // pushing the interpretation to our to_visualize array
+                        }
+                        // filter colors 
+                        if (iri > 0 && iri < 95) {
+                            color = '#8BC34A'; //green
+                        } else if (iri > 94 && iri < 171) {
+                            color = '#F57C00'; //orange
+                        } else if (iri > 170) {
+                            color = '#d50000'; //red
+                        } else if (iri == 0) { // No data
+                            color = '#9E9E9E';
+                        }
+                        let line = new google.maps.Polyline({ // it is a POLYLINE
+                            path: to_visualize, // polyline has a path, defined by lat & lng 
+                            strokeColor: color,
+                            strokeOpacity: .50,
+                            strokeWeight: 4,
+                            zIndex: 99 // on top of every other shape
+                        });
+                        // Hover Effect for Google API Polygons
+                        google.maps.event.addListener(line, 'mouseover', function (event) { injectTooltip(event,commafy(parseInt(iri))); }); 
+                        google.maps.event.addListener(line, 'mousemove', function (event) { moveTooltip(event); });
+                        google.maps.event.addListener(line, 'mouseout', function (event) { deleteTooltip(event); });
+                              
+                        
+                        line.setMap(map);
+                        polylines.push(line);
+                    }
+                }
+            }   
         }
  
         //totals
@@ -208,11 +226,11 @@ function pm25Data(mode, ex) {
         let corr = translateCorridor(ex); // what corridor are we on?
 
         if (mode == 0) {
-            if (ex == 'd') {
+            if (ex == 'driving') {
                 document.getElementById("pm25DText").innerHTML = pm25Data.poor_mi_perc + "%";
-            } else if (ex == 't') {
+            } else if (ex == 'transit') {
                 document.getElementById("pm25T_Text").innerHTML = pm25Data.poor_mi_perc + "%";
-            } else if (ex == 'f') {
+            } else if (ex == 'freight') {
                 document.getElementById("pm25FText").innerHTML = pm25Data.poor_mi_perc + "%";
             }
             

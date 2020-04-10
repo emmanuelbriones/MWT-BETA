@@ -5,9 +5,10 @@
  * */
 
 $(document).ready(function () { // when the document loads
+    //toggleSpinner('on');
     performanceDataLoader();
 });
-alert("Loading Data... A confirmation window will pop up once all data is ready. Click OK to continue. ");
+//alert("Loading Data... A confirmation window will pop up once all data is ready. Click OK to continue. ");
 
 // * GLOBALS
 let map; // global variable for map
@@ -175,7 +176,7 @@ function turnoff_Corridors() {
 //  Handles Corridors on drop down button. Populates map based on what user selected.
 //  Index calls this method. Sends the selected corridor i.e. 'MESA'
 function turnOn_Switch(selected) {
-    console.log(selected);
+  //  console.log(selected);
 
     //clear previous data, regional data
     clearMetadata();
@@ -188,7 +189,7 @@ function turnOn_Switch(selected) {
     } else {
         removeAllElementsBar();
         get_corridors_buffer(); //draws corridor buffer
-        console.log("buffer called");
+      //  console.log("buffer called");
         if (selected == "ALAMEDA") {
             corridors_selected.ALAMEDA = true;
             corridors_T.ALAMEDA = true;
@@ -320,7 +321,9 @@ function regionalCaller() {
 // mode 2 on PMS, sends the corridor that is ON
 function sendCurrentCorridor(corr) {
     removeAllElementsBar();
-    displaySpinner();
+    toggleNav('off');
+    toggleRadio('off');
+    toggleSpinner('on');
 
     if (currentPM == 18) {
         pm18Data(2, corr);
@@ -632,37 +635,9 @@ let corridorPointsT = [];
 
 // Loads graph Data, fetches go here
 function performanceDataLoader() {
-    // pm1Data(0, '');
-    // //pm2Data();
-    // pm3Data(0, '');
-    // pm4Data(0, 'b');
-    // pm4Data(0, 'w');
-    // pm5Data(0, '');
-    // pm6Data(0, '');
-    // pm7Data(0, '');
-    // pm8Data(0, '');
-    // pm9Data(0, '');
-    // pm10Data(0, '');
-    // pm11Data(0, '');
-    // pm12Data(0, '');
-    // pm13Data(0);
-    // //pm13_14Data();
-    // //pm15Data();
-    // pm15Data(0);
-    // pm16Data(0);
-    // pm17Data(0);
-
-    // pm18Data(0, '');
-    // pm19Data(0, '');
-    // pm20Data(0, '');
-    // pm21Data(0, '');
-    // //pm20DataT();
-    // pm22Data();
-    // pm24Data(0, 'f');
-    // pm24Data(0, 'd');
-  
+    toggleSpinner('on');
     $.when(
-       $.ajax(pm1Data(0, '')),
+        $.ajax(pm1Data(0, '')),
         $.ajax(pm2Data(0, '')),
         $.ajax(pm3Data(0, '')),
         $.ajax(pm4Data(0, '')),
@@ -674,8 +649,8 @@ function performanceDataLoader() {
         $.ajax(pm10Data(0, '')),
         $.ajax(pm11Data(0, '')),
         $.ajax(pm12Data(0, '')),
-     //   $.ajax(pm13Data(0)),
-      //  $.ajax(pm14Data(0)),
+        $.ajax(pm13Data(0)),
+        $.ajax(pm14Data(0)),
         $.ajax(pm15Data(0)),
         $.ajax(pm16Data(0)),
         $.ajax(pm17Data(0)),
@@ -691,25 +666,16 @@ function performanceDataLoader() {
         $.ajax(pm25Data(0, 'f')),
         $.ajax(pm26Data(0, 'd')),
         $.ajax(pm26Data(0, 't')),
-        $.ajax(pm26Data(0, 'f')),
+        $.ajax(pm26Data(0, 'f'))
         )
         .done(function(){
-            alert("Data loaded successfully.");
+            toggleSpinner('off');
         })
         .fail(function(error){
             alert("Error loading data. \nCheck your internet connection or\ncontact Sonia Perez at:\nsperez@epmpo.org")
             console.log(error)
-            //handle errors
         });
-  //  pm25Data(0, 'd');
-  //  pm25Data(0, 't');
-  //  pm25Data(0, 'f');
-    // pm26Data(0, 'd');
-    // pm26Data(0, 't');
-    // pm26Data(0, 'f');
-  
-    toggleHide();
-
+        
 }
 
 function initMap() {
@@ -771,7 +737,7 @@ function initMap() {
 
 
         //clearMetadata();
-        console.log(AOI_STRING);
+      //  console.log(AOI_STRING);
         AOI(AOI_STRING); // send AOI string
     });
 
@@ -998,7 +964,7 @@ function clearMetadata() {
     }
     for (var i = 0; i < points.length; i++) {
         points[i].setMap(null);
-        console.log('points off');
+       // console.log('points off');
     }
     for (var i = 0; i < polygons.length; i++) {
         polygons[i].setMap(null);

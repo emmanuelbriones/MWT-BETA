@@ -4,10 +4,10 @@
  */
 
 function regionalText(data) {
-    console.log(3);
-    resetViewsBeforeSpinner(); 
-    toggleRadio("on");
-    console.log(data);
+    toggleHolderSwitch('off');
+    toggleRadio('off');
+    toggleVisibilityCorr('off');
+    toggleNav('off');
 
     if (currentPM == 1) {
         pm1R(data);
@@ -85,7 +85,19 @@ function regionalText(data) {
         pm26R(data);
     }
 }
+function pm1R(data) {
+    let pm1RText = data.SOV.toFixed(2) + "% of workers living in the El Paso MPO area reported to drive alone during their commute to work,"
+        + "therefore only " + data.NonSOV.toFixed(2) + "% of workers commute via non-SOV modes, which includes carpooled via car, truck, or van. Workers"
+        + "used Public Transport means such as bus or trolley bus, streetcar or trolley car, subway or elevated railroad, railroad,"
+        + " and ferryboat. Some workers also used a taxicab, motorcycle, bicycle, walking, and other means to go to work or they worked"
+        + " at home.";
+    pm1Text(pm1RText, data)
+}
+function pm2R(data) {
+    let text = " During 2012-2016 " + data.Walking.toFixed(2)+ "% of workers living in the El Paso MPO area reported to walk to work, "+data.Biking.toFixed(2)+"% of workers bike, and "+data.Transit.toFixed(2)+"% of workers reported to commute by public transit.";
+    pm2Text(text,data);
 
+}
 function pm24R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -109,130 +121,9 @@ function pm24R(data) {
     }
     openNav();
 }
-function pm21R(data) {
-    toggleRadio("off");
-    headerAdder("Safety projects near crash hotspots", "title");
-    paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("The Metropolitan Transportation Plan Destino 2045 identifies "+data+" safety projects:", "paragraph", "summary-info");
-
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project C035X. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P402X-05A. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P464X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F057X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F405X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project A136X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F059X-CAP-1. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F058X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F407A-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F407B-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F058X-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F407C. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I061X-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P002X-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P533X. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P333X. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project T069X. Hot-spot type: Consecutive, New, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P428X-MOD. Hot-spot type: Consecutive, New, Oscillating. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P428X-CAP-2. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M087B. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project R307D. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I063X-CAP. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P530X-MOD. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M025B. Hot-spot type: Consecutive, Intensifying, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M087A. Hot-spot type: Consecutive, Intensifying, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M090X. Hot-spot type: Consecutive, Intensifying, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F056X-CAP. Hot-spot type: Consecutive, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I406X-CAP. Hot-spot type: Consecutive, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P410X-15A. Hot-spot type: Consecutive, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project E304X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project E303X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M089A. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project B300X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project B301X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project E302X-1. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project E302X-2. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F060X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P334X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I006X-15A. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project A434X-CAP. Hot-spot type: Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I405X-CAP. Hot-spot type: Oscillating.", "paragraph", "summary-info");
 
 
-    paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("Crash data from 2013-2017, safety projects identified from the Metropolitan Transportation Plan Destino 2045", "paragraph", "analysis-info");
 
-    paragraphAdder("Data Source:", "subtitle", "data-title");
-    paragraphAdder("Crash data provided by TxDOT and NMDOT. Destino 2045 projects identified by El Paso MPO.", "paragraph", "data-info");
-
-    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("Most of the projects in the map were obtained from Alliance. ", "paragraph", "calc-info");
-    paragraphAdder("Projects S301D, S301E, S301F, S301G and S301H, were not include in the map because the description was not precise and we did not know exactly where were located. ", "paragraph", "calc-info");
-    paragraphAdder("Most of the projects are represented as lanes in the maps, and three of them are represented as a point, those are: C035X, P333X and P334X.", "paragraph", "calc-info");
-    paragraphAdder("There is no layer for safety projects in Dona Ana and Otero counties, just the crash hotspots was calculated. ", "paragraph", "calc-info");
-    paragraphAdder("Space-Time Analysis was made to identify the crash hot spots which classified as follows:", "paragraph", "calc-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span><b> Consecutive:</b> “A location that has been a statistically significant hot spot for ninety percent of the time-step intervals with no discernible trend indicating an increase or decrease in the intensity of clustering over time” (ArcGIS). ", "paragraph", "calc-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span><b> New:</b> “A location that is a statistically significant hot spot for the final time step and has never been a statistically significant hot spot before” (ArcGIS). ", "paragraph", "calc-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span><b> Intensifying:</b> “A location that has been a statistically significant hot spot for ninety percent of the time-step intervals, including the final time step. In addition, the intensity of clustering of high counts in each time step is increasing overall and that increase is statistically significant” (ArcGIS).", "paragraph", "calc-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span><b> Oscillating:</b> “A statistically significant hot spot for the final time-step interval that has a history of also being a statistically significant cold spot during a prior time step. Less than ninety percent of the time-step intervals have been statistically significant hot spots” (ArcGIS). ", "paragraph", "calc-info");
-    openNav(); 
-}
-function pm1R(data) {
-    canvasMaker('chart1', 'myChart');
-    var ctx2pm1 = document.getElementById('myChart').getContext('2d');
-    pieChartpm1(ctx2pm1,data);
-    headerAdder("Drive alone", "title");
-    paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder(data.SOV.toFixed(2) + "% of workers living in the El Paso MPO area reported to drive alone during their commute to work,"
-        + "therefore only " + data.NonSOV.toFixed(2) + "% of workers commute via non-SOV modes, which includes carpooled via car, truck, or van. Workers"
-        + "used Public Transport means such as bus or trolley bus, streetcar or trolley car, subway or elevated railroad, railroad,"
-        + " and ferryboat. Some workers also used a taxicab, motorcycle, bicycle, walking, and other means to go to work or they worked"
-        + " at home.", "paragraph", "summary-info");
-    paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2012-2016 ACS 5-Year Estimates", "paragraph", "analysis-info");
-    paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
-    anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files. ", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2016.html");
-    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("Percent of non-single occupancy vehicle (SOV) commute is calculated as:", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
-    openNav();
-}
-function pm2R(data) {
-    canvasMaker('chart1', 'myChart');
-    var ctx2pm1 = document.getElementById('myChart').getContext('2d');
-    piechartpm2(ctx2pm1, data);
-    if (currentType == "transit") {
-        headerAdder("Commuteby transit", "title");
-    } else if (currentType == "walking") {
-        headerAdder("Commute by walking", "title");
-    } else if (currentType == "biking") {
-        headerAdder("Commute by biking", "title");
-    }
-
-    
-    
-    paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder(" During 2012-2016 __% of workers living in the El Paso MPO area reported to walk to work, __% of workers bike, and __% of workers reported to commute by public transit.", "paragraph", "summary-info");
-    paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2012-2016 ACS 5-Year Estimates", "paragraph", "analysis-info");
-    paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
-    anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
-    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("PM1 is calculated as:", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
-    //legend elements
-    if (detectmob() != true) {
-        let names = ['No Data', 'Below mean', 'Above Mean'];
-        let colors = ['background:#C0C0C0;', 'background:#00CCFF;', 'background:#0066CC;'];
-
-        legendMaker("Legend", names, colors);
-    }
-    openNav();
-
-}
 function pm18R(data) {
     canvasMaker('chart1/2', 'myChart');
     canvasMaker('chart2/2', 'myChart2');
@@ -340,7 +231,7 @@ function pm25R(data) {
 function pm3R(data) {
     headerAdder("Transit ridership", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within El Paso region, the total ridership is " + commafy(parseInt(data.tot)) + ". The route " + commafy(parseInt(data.highRoute)) + " has the highest ridership with an average of " + commafy(parseInt(data.highAvg)) + ". The route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(parseInt(data.lowAvg)) + " (5 years average).", "paragraph", "summary-info");
+    paragraphAdder("Within El Paso region, the total ridership is " + commafy(data.tot) + ". The route " + commafy(parseInt(data.highRoute)) + " has the highest ridership with an average of " + commafy(data.highAvg) + ". The route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + " (5 years average).", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2014-2018", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -418,27 +309,25 @@ function pm12R(data) {
     openNav();
 }
 function pm13R(data) {
-    toggleRadio("off");
     headerAdder("Northbound border crossings", "title");
     canvasMaker('chart1/2', 'myChart');
     canvasMaker('chart2/2', 'myChart2');
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
-    pm13ModeGraph(ctx);
-
-    if (currentType == "driving") {
-        pm13DrivingChart(ctx2);
-        paragraphAdder("During a 5-year period (2014-2018), on average ___ personal vehicles crossed northbound at the ports of entry. The port of entry with highest personal vehicle traffic is __. ", "paragraph", "summary-info");
-    } else if (currentType == "freight") {
-        pm13FreightChart(ctx2);
-        paragraphAdder("During a 5-year period (2014-2018), on average ___ commercial vehicles crossed northbound at the ports of entry. The port of entry with highest commercial vehicle traffic is __. ", "paragraph", "summary-info");
+    pm13ModeGraph(ctx,data);
+    pm13Chart(ctx2, data);
+    let yearRange = (data.driving.period).reduce((a, b) => Math.min(a, b)); // get smalleest year
+    paragraphAdder("Summary:", "subtitle", "summary-title");
+    if (currentType == "driving") {  
+        paragraphAdder("During a 5-year period (" + yearRange + "-" + (yearRange + 4) + "), on average " + commafy(data.text.averageD)+" personal vehicles crossed northbound at the ports of entry. The port of entry with highest personal vehicle traffic is " +data.text.greatestStation+".", "paragraph", "summary-info");
+    } else if (currentType == "freight") {     
+        paragraphAdder("During a 5-year period (" + yearRange + "-" + (yearRange + 4) +"), on average " + commafy(data.text.averageF)+" commercial vehicles crossed northbound at the ports of entry. The port of entry with highest commercial vehicle traffic is " +data.text.greatestStation+".", "paragraph", "summary-info");
     } else if (currentType == "walking") {
-        pm13WalkingChart(ctx2);
-        paragraphAdder("During a 5-year period (2014-2018), on average ___ pedestrians crossed northbound at the ports of entry. The port of entry with highest pedestrian traffic is __. ", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (" + yearRange + "-" + (yearRange + 4) +"), on average " + commafy(data.text.averageW)+" pedestrians crossed northbound at the ports of entry. The port of entry with highest pedestrian traffic is " +data.text.greatestStation+".", "paragraph", "summary-info");
     }
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2014-2018", "paragraph", "analysis-info");
+    paragraphAdder(yearRange + "-" + (yearRange + 4), "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Customs and Border Protection, compiled by the City of El Paso International Bridges Department.", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
@@ -447,31 +336,28 @@ function pm13R(data) {
 }
 
 function pm14R(data) {
-    toggleRadio("off");
     headerAdder("Northbound border wait times", "title");
-    canvasMaker('chart1/2', 'myChart');
-    canvasMaker('chart2/2', 'myChart2');
+    canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
-    var ctx2 = document.getElementById('myChart2').getContext('2d');
-    pm13ModeGraph(ctx);
-
+    let latestYear = data.text.latestYear;
     if (currentType == "driving") {
-      //  pm13DrivingChart(ctx2);
-        paragraphAdder("In 2018 _____ the average wait time for personal vehicles crossing northbound at the ports of entry was __ minutes. The port of entry with highest wait time for personal vehicles in 2018 was __. ", "paragraph", "summary-info");
+        paragraphAdder("In "+latestYear+" the average wait time for personal vehicles crossing northbound at the ports of entry was "+data.text.drivingTime+" minutes. The port of entry with highest wait time for personal vehicles in  "+latestYear+" was "+data.text.driving_highest_wait_time+". ", "paragraph", "summary-info");
+        pm14DrivingChart(ctx,data);
     } else if (currentType == "freight") {
-      //  pm13FreightChart(ctx2);
-        paragraphAdder("In 2018 _____ the average wait time for commercial vehicles crossing northbound at the ports of entry was __ minutes. The port of entry with highest wait time for commercial vehicles in 2018 was __. ", "paragraph", "summary-info");
+        paragraphAdder("In "+latestYear+" the average wait time for commercial vehicles crossing northbound at the ports of entry was "+data.text.freightTime+" minutes. The port of entry with highest wait time for commercial vehicles in  "+latestYear+" was "+data.text.freight_highest_wait_time+". ", "paragraph", "summary-info");
+        pm14FreightChart(ctx,data);
     } else if (currentType == "walking") {
-        //pm13WalkingChart(ctx2);
-        paragraphAdder("In 2018 _____ the average wait time for pedestrians crossing northbound at the ports of entry was __ minutes. The port of entry with highest wait time for pedestrians in 2018 was __.. ", "paragraph", "summary-info");
+        paragraphAdder("In "+latestYear+" the average wait time for pedestrians crossing northbound at the ports of entry was "+data.text.walkingTime+" minutes. The port of entry with highest average wait time for pedestrians in  "+latestYear+" was "+data.text.walking_highest_wait_time+". ", "paragraph", "summary-info");
+        pm14WalkingChart(ctx,data);
     }
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2014-2018", "paragraph", "analysis-info");
+    paragraphAdder((latestYear-4) + "-" + latestYear, "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Customs and Border Protection, compiled by the City of El Paso International Bridges Department. ", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("These statistics were obtained from the City of El Paso International Bridges Department. In this context, pedestrians include people walking or bicycling. Wait times for Santa Teresa and Tornillo were not available at the time of analysis.  Wait times estimates are determined using either a manual, line-of-sight methodology via predetermined benchmarks or an automated system. For more info related with wait times refer to:", "paragraph", "calc-info");
+    anchorAdder("https://bwt.cbp.gov/","https://bwt.cbp.gov/");
     openNav();
 }
 function pm26R(data) {
@@ -484,7 +370,7 @@ function pm26R(data) {
     chart_pm26(ctx, data);
     chart_pm26_2(ctx2, data);
 
-    headerAdder("Bridges in poor condition", "title");
+    headerAdder("Bridge & Culvert Condition", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("Within the Texas portion of the El Paso MPO area, there are " + data.tx_good_count + " bridges(" + data.goodTX + "%) in Good condition, " + data.tx_fair_count + " bridges(" + data.fairTX + "%) in Fair condition, " + data.tx_poor_count + " bridges(" + data.poorTX + "%) in Poor condition.", "paragraph", "summary-info");
     paragraphAdder("Within the New Mexico portion of the El Paso MPO area, there are " + data.nm_good_count + " bridges(" + data.goodNM + "%) in Good conditions, " + data.nm_fair_count + " bridges(" + data.fairNM + "%) in Fair condition, " + data.nm_poor_count + " bridge(" + data.poorNM + "%) in Poor condition.", "paragraph", "summary-info");
@@ -510,7 +396,7 @@ function pm22R(data) {
 
     headerAdder("Number of crashes on the CMP network", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("During a 5-year period (2013-2017), a total of " + data.dynamic_txt_val  + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
+    paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.dynamic_txt_val)  + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2013 – 2017", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -520,7 +406,6 @@ function pm22R(data) {
     openNav();
 }
 function pm5R(data) {
-	toggleRadio("off");
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm5chart(ctx,data);
@@ -536,12 +421,11 @@ function pm5R(data) {
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("LEHD worskplace area characteristics (WAC) data was analysed on a census block group-level in order to estimate the population within ½  mile of high-quality rapid transit, assuming a homogenous distribution of population each the block group.", "paragraph", "calc-info");
     //adds toggle function
-    togglevisible();
+    toggleHolderSwitch('on');
     openNav();
 
 }
 function pm9R(data) {
-	toggleRadio("off");
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm9chart(ctx,data);
@@ -556,11 +440,10 @@ function pm9R(data) {
    
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("American Community Survey data was analysed on a census block group-level in order to estimate the population within ½ mile of high-quality rapid transit, assuming a homogenous distribution of population each the block group.", "paragraph", "calc-info");
-    togglevisible();
+    toggleHolderSwitch('on');
     openNav();
 }
 function pm6R(data) {
-	toggleRadio("off");
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm6chart(ctx, data);
@@ -575,11 +458,10 @@ function pm6R(data) {
     paragraphAdder("Bikeway data was provided by the following entities in January 2019: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario, and the City of El Paso.   ", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("LEHD workplace area characteristics (WAC) data was analysed on a census block group-level in order to estimate the number of jobs within a ½ mile from a bikeway, assuming a homogenous distribution of jobs each the block group.", "paragraph", "calc-info");
-    togglevisible();
+    toggleHolderSwitch('on');
     openNav();
 }
 function pm10R(data) {
-	toggleRadio("off");
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm10chart(ctx, data);
@@ -594,12 +476,11 @@ function pm10R(data) {
     paragraphAdder("Bikeway data was provided by the municipalities: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario, and the City of El Paso.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("American Community Survey data was analysed on a census block group-level in order to estimate the number of jobs within a ½ mile from a bikeway, assuming a homogenous distribution of jobs for each block group. ", "paragraph", "calc-info");
-    togglevisible();
+    toggleHolderSwitch('on');
     openNav();
 }
 
 function pm7R(data) {
-    toggleRadio("off");
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm7HorizontalBar(ctx,data);
@@ -614,12 +495,11 @@ function pm7R(data) {
     paragraphAdder("The layer of the high-quality transit stations was provided by Sun Metro. Key destinations were identified from the EPMPO 2040 Horizon Model – Model Development Report and leisure time activity locations were identified from Visit El Paso website.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("A ½ mile buffer was drawn around existing high-quality rapid transit and the number of key destinations within the buffer was calculated. This analysis was also done for proposed high-quality rapid transit, to indicate the potential result if all high-quality rapid transit in existing plans were completed.", "paragraph", "calc-info");
-    togglevisible();
+    toggleHolderSwitch('on');
     openNav();
 }
 
 function pm8R(data) {
-    toggleRadio("off");
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm8HorizontalBar(ctx,data);
@@ -632,12 +512,11 @@ function pm8R(data) {
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("A ½ mile buffer was drawn around existing bikeways and the number of key destinations within the buffer was calculated. This analysis was also done for proposed bikeways, to indicate the potential result if all bikeways in existing plans were completed.", "paragraph", "calc-info");
-    togglevisible();
+    toggleHolderSwitch('on');
     openNav();
 }
 
 function pm15R(data) {
-	toggleRadio("off");
     canvasMaker('chart1', 'myChart');
     canvasMaker('chart2', 'myChart2');
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -650,8 +529,6 @@ function pm15R(data) {
     paragraphAdder("Stations with the highest annual readings for each pollutant are:", "paragraph", "summary-info");
     paragraphAdder("Ozone 8hr - " + data[data.length-1].station8+" in "+data[data.length-1].year_8+".", "paragraph", "summary-info");
     paragraphAdder("Ozone 1hr - " + data[data.length-1].station1 + " in " + data[data.length-1].year_1 +".", "paragraph", "summary-info");
-    //paragraphAdder("Particulate Matter - Desert View in 2016", "paragraph", "summary-info");
-    //paragraphAdder("Carbon Monoxide - El Paso UTEP in 2018.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2014-2018", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -665,7 +542,6 @@ function pm15R(data) {
 }
 
 function pm16R(data) {
-	toggleRadio("off");
     canvasMaker('chart1', 'myChart');
 
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -689,14 +565,13 @@ function pm16R(data) {
 }
 
 function pm17R(data) {
-	toggleRadio("off");
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm17chartLine(ctx, data);
     headerAdder("Particulate matter emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("According to the data available, Particulate Matter pollution has been increasing and decreasing depending of the station in the last 5 years.", "paragraph", "summary-info");
-    paragraphAdder("Stations with the highest annual readings for Carbon Monoxide are:  ", "paragraph", "summary-info");
+    paragraphAdder("Stations with the highest annual readings for Particulate Matte are:  ", "paragraph", "summary-info");
     paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year +".", "paragraph", "summary-info");
     paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 +".", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
@@ -757,4 +632,125 @@ function pm20R(data) {
         }
     }
     openNav();
+}
+function pm21R(data) {
+    headerAdder("Safety projects near crash hotspots", "title");
+    paragraphAdder("Summary:", "subtitle", "summary-title");
+    paragraphAdder("The Metropolitan Transportation Plan Destino 2045 identifies " + data + " safety projects:", "paragraph", "summary-info");
+
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project C035X. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P402X-05A. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P464X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F057X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F405X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project A136X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F059X-CAP-1. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F058X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F407A-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F407B-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F058X-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F407C. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project I061X-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P002X-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P533X. Hot-spot type: Consecutive.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P333X. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project T069X. Hot-spot type: Consecutive, New, Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P428X-MOD. Hot-spot type: Consecutive, New, Oscillating. ", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P428X-CAP-2. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project M087B. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project R307D. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project I063X-CAP. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P530X-MOD. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project M025B. Hot-spot type: Consecutive, Intensifying, Oscillating.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project M087A. Hot-spot type: Consecutive, Intensifying, Oscillating.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project M090X. Hot-spot type: Consecutive, Intensifying, Oscillating.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F056X-CAP. Hot-spot type: Consecutive, Oscillating.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project I406X-CAP. Hot-spot type: Consecutive, Oscillating.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P410X-15A. Hot-spot type: Consecutive, Oscillating.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project E304X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project E303X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project M089A. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project B300X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project B301X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project E302X-1. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project E302X-2. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project F060X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project P334X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project I006X-15A. Hot-spot type: Intensifying.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project A434X-CAP. Hot-spot type: Oscillating.", "paragraph", "summary-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span> Project I405X-CAP. Hot-spot type: Oscillating.", "paragraph", "summary-info");
+
+
+    paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
+    paragraphAdder("Crash data from 2013-2017, safety projects identified from the Metropolitan Transportation Plan Destino 2045", "paragraph", "analysis-info");
+
+    paragraphAdder("Data Source:", "subtitle", "data-title");
+    paragraphAdder("Crash data provided by TxDOT and NMDOT. Destino 2045 projects identified by El Paso MPO.", "paragraph", "data-info");
+
+    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
+    paragraphAdder("Most of the projects in the map were obtained from Alliance. ", "paragraph", "calc-info");
+    paragraphAdder("Projects S301D, S301E, S301F, S301G and S301H, were not include in the map because the description was not precise and we did not know exactly where were located. ", "paragraph", "calc-info");
+    paragraphAdder("Most of the projects are represented as lanes in the maps, and three of them are represented as a point, those are: C035X, P333X and P334X.", "paragraph", "calc-info");
+    paragraphAdder("There is no layer for safety projects in Dona Ana and Otero counties, just the crash hotspots was calculated. ", "paragraph", "calc-info");
+    paragraphAdder("Space-Time Analysis was made to identify the crash hot spots which classified as follows:", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Consecutive:</b> “A location that has been a statistically significant hot spot for ninety percent of the time-step intervals with no discernible trend indicating an increase or decrease in the intensity of clustering over time” (ArcGIS). ", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> New:</b> “A location that is a statistically significant hot spot for the final time step and has never been a statistically significant hot spot before” (ArcGIS). ", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Intensifying:</b> “A location that has been a statistically significant hot spot for ninety percent of the time-step intervals, including the final time step. In addition, the intensity of clustering of high counts in each time step is increasing overall and that increase is statistically significant” (ArcGIS).", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Oscillating:</b> “A statistically significant hot spot for the final time-step interval that has a history of also being a statistically significant cold spot during a prior time step. Less than ninety percent of the time-step intervals have been statistically significant hot spots” (ArcGIS). ", "paragraph", "calc-info");
+    openNav();
+}
+
+function pm1Text(text, data) {
+    canvasMaker('chart1', 'myChart');
+    var ctx2pm1 = document.getElementById('myChart').getContext('2d');
+    pieChartpm1(ctx2pm1, data);
+    headerAdder("Drive alone", "title");
+    paragraphAdder("Summary:", "subtitle", "summary-title");
+    paragraphAdder(text, "paragraph", "summary-info");
+    paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
+    paragraphAdder("2012-2016 ACS 5-Year Estimates", "paragraph", "analysis-info");
+    paragraphAdder("Data Source:", "subtitle", "data-title");
+    anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
+    anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files. ", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2016.html");
+    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
+    paragraphAdder("Percent of non-single occupancy vehicle (SOV) commute is calculated as:", "paragraph", "calc-info");
+    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
+    openNav();
+}
+function pm2Text(text, data) {
+    canvasMaker('chart1', 'myChart');
+    var ctx2pm1 = document.getElementById('myChart').getContext('2d');
+    piechartpm2(ctx2pm1, data);
+    if (currentType == "transit") {
+        headerAdder("Commute by transit", "title");
+    } else if (currentType == "walking") {
+        headerAdder("Commute by walking", "title");
+    } else if (currentType == "biking") {
+        headerAdder("Commute by biking", "title");
+    }
+    paragraphAdder("Summary:", "subtitle", "summary-title");
+    paragraphAdder(text, "paragraph", "summary-info");
+    paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
+    paragraphAdder("2012-2016 ACS 5-Year Estimates", "paragraph", "analysis-info");
+    paragraphAdder("Data Source:", "subtitle", "data-title");
+    anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
+    anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
+    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
+    paragraphAdder("PM1 is calculated as:", "paragraph", "calc-info");
+    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
+    paragraphAdder("", "paragraph", "calc-info");
+    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
+    paragraphAdder("", "paragraph", "calc-info");
+    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
+    //legend elements
+    if (detectmob() != true) {
+        let names = ['No Data', 'Below mean', 'Above Mean'];
+        let colors = ['background:#C0C0C0;', 'background:#00CCFF;', 'background:#0066CC;'];
+
+        legendMaker("Legend", names, colors);
+    }
+    openNav();
+}
+function pm3Text() {
+
 }

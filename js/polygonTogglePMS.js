@@ -53,7 +53,11 @@ $("#toggle1").on('change', function () {
 
     if ($(this).is(':checked')) { //when TRUE
         removeAllElementsBar();
-        displaySpinner();
+        toggleSpinner('on');
+        toggleRadio('off');
+        toggleHolderSwitch('off');
+        toggleVisibilityCorr('off');
+        toggleNav('off');
         if (currentPM == 5) {
             PM_existing_selected.PM5 = true;
             pm5Data(1,"e"); // 5 & 9 share table
@@ -101,7 +105,11 @@ $("#toggle1").on('change', function () {
 $("#toggle2").on('change', function () {
     if ($(this).is(':checked')) { //when TRUE
         removeAllElementsBar();
-        displaySpinner();
+        toggleSpinner('on');
+        toggleRadio('off');
+        toggleHolderSwitch('off');
+        toggleVisibilityCorr('off');
+        toggleNav('off');
         if (currentPM == 5) {
             PM_planned_selected.PM5 = true;
             pm5Data(1, "p"); // 5 & 9 share table
