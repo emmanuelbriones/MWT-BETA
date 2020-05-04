@@ -199,13 +199,13 @@
                   </div>
                </div>
                <!-- Main Banner/Google Map -->
-               <main class="col-md-10 float-left">
+               <div id="map_holder" class="col-md-10 float-left">
                   <nav class="navbar navbar-dark bg-dark">
-                     <a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-2x py-2 p-1"></i></a>
+                     <a id="sidebarCollapser"onclick="toggleMap('click')" href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-2x py-2 p-1"></i></a>
                      <a class="navbar-brand" href="#">Multimodal Web Tool</a>
                   </nav>
                   <div id="map"></div>
-               </main>
+               </div>
             </div>
          </div>
       </div>

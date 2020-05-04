@@ -6,6 +6,7 @@ function polygonHandler(found) {
     toggleHolderSwitch('off');
     toggleVisibilityCorr('off');
     toggleNav('off');
+    toggleMap('on');
 
     if (found == "PM1") {
         currentType = "driving";
@@ -42,7 +43,7 @@ function polygonHandler(found) {
         pm7Data(1, '');
     }
     else if (found == "PM8") {
-        console.log('2019');
+       // console.log('2019');
         currentType = "biking";
         currentPM = 8;
         pm8Data(1, '');

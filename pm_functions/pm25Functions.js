@@ -62,7 +62,7 @@ function pm25Data(mode, ex) {
         pm25Data.latestYear = latestYear;
 
         if (mode == 0) {
-            console.log(ex);
+      //   console.log(ex);
             if (ex == 'd') {
                 ex = 'driving';
             } else if (ex == 't') {

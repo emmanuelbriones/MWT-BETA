@@ -26,17 +26,17 @@ function createGeoJSON(poly_type, coords) {
 }
 // turns on/off AOI controls
 function switch_AOI(status) {
-    console.log("switch AOI");
+    //console.log("switch AOI");
     if (status == "off") {
         drawingManager.drawingControl = false;
         drawingManager.setMap(map);
         drawingManager.setDrawingMode(null); //
-        console.log("switch AOI OFF");
+        //console.log("switch AOI OFF");
     }
     else if (status == "on") {
         drawingManager.drawingControl = true;
         drawingManager.setMap(map);
-        console.log("switch AOI ON");
+        //console.log("switch AOI ON");
     }
 
 }
@@ -109,7 +109,7 @@ function AOI(AOI_STRING) {
         'all_pm2': 'pm_1_2',
     }
     let table_wanted = tables_reference[active_pm_for_AOI];
-    console.log(table_wanted);
+    //console.log(table_wanted);
     let to_php = {
         "AOI": AOI_STRING,
         "PM_SOURCE": table_wanted

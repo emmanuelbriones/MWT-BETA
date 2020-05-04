@@ -14,7 +14,8 @@ function pointHandler(found) {
     toggleHolderSwitch('off');
     toggleVisibilityCorr('off');
     toggleNav('off');
-
+    toggleMap('on');
+    
     if (found == "PM13D") {
         currentType = "driving";
         currentPM = 13;

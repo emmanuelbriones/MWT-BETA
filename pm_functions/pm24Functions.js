@@ -146,7 +146,7 @@ function pm24BarGraph(ctx,data) {
     let label4 ="1.31-1.5";
     let label5 ="1.51 >";
     let title = '';
-    console.log(data);
+   // console.log(data);
     if (currentType == 'driving') {
         title = 'TTI(driving)';
     } else if (currentType == 'freight') {

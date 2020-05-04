@@ -58,7 +58,7 @@ function pm22Data(mode, ex) {
         pm22_data.currentCorridor = ex;
     }
 
-    console.log("here2");
+   // console.log("here2");
     //print lines when called from PM button menu
     if (mode > 0) {
         let source_file = "backend/cmp_lines_handler.php";
@@ -94,8 +94,8 @@ function pm22Data(mode, ex) {
 
         });
     }
-    console.log(php_handler);
-    console.log(data_for_php);
+    //console.log(php_handler);
+    //console.log(data_for_php);
     
     $.get(php_handler, data_for_php, function (data) {
         let latestYear = 0;

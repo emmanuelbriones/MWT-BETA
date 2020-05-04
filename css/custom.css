@@ -11,8 +11,8 @@
 }*/
 
  #map {
-	height: 560px;
-	width: 100%;
+	height: 90vh !important;
+	width: 99% !important;
 }
 
 #print{

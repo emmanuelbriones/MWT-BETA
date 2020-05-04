@@ -637,6 +637,7 @@ let corridorPointsT = [];
 function performanceDataLoader() {
     toggleSpinner('on');
     $.when(
+        
         $.ajax(pm1Data(0, '')),
         $.ajax(pm2Data(0, '')),
         $.ajax(pm3Data(0, '')),
@@ -667,6 +668,7 @@ function performanceDataLoader() {
         $.ajax(pm26Data(0, 'd')),
         $.ajax(pm26Data(0, 't')),
         $.ajax(pm26Data(0, 'f'))
+        
         )
         .done(function(){
             toggleSpinner('off');

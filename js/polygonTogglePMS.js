@@ -58,6 +58,7 @@ $("#toggle1").on('change', function () {
         toggleHolderSwitch('off');
         toggleVisibilityCorr('off');
         toggleNav('off');
+        toggleMap('on');
         if (currentPM == 5) {
             PM_existing_selected.PM5 = true;
             pm5Data(1,"e"); // 5 & 9 share table
@@ -66,7 +67,7 @@ $("#toggle1").on('change', function () {
             pm9Data(1, "e"); // 5 & 9 share table
         } else if (currentPM == 6) {
             PM_existing_selected.PM6 = true;
-            console.log('line handleling');
+            //console.log('line handleling');
             pm6Data(1, "e");
         } else if (currentPM == 7) {
             PM_existing_selected.PM7 = true;

@@ -13,6 +13,7 @@ function lineHandler(found) {
     toggleHolderSwitch('off');
     toggleVisibilityCorr('off');
     toggleNav('off');
+    toggleMap('on');
 
     if (found == "PM3") {
         currentType = "transit";

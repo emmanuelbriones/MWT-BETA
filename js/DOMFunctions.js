@@ -1,3 +1,24 @@
+/**
+ * 4/16/2020 
+ * @author Brian C
+ * Temp solutution.
+ * This method fixes bug on map not displaying copyright.
+ * This method is called when the sidenav is clicked.
+ * Also called on point/line/polygontoggle/polygon shape handler.
+ */
+function toggleMap(toggle){
+  let sidebarElement = document.getElementById("sidebarCollapser").className;
+  if(toggle == "on"){
+    document.getElementById("map_holder").className  = "col-md-12 float-left"
+  }else{
+    if(sidebarElement == "collapsed"){
+        document.getElementById("map_holder").className  = "col-md-10 float-left"
+      }else{
+        document.getElementById("map_holder").className  = "col-md-12 float-left"
+      }
+  }
+}
+
 function openLegend() {
     if (detectmob() == true) {
         document.getElementById("legendHolder").style.width = "60%";
@@ -12,9 +33,14 @@ function closeLegend() {
     document.getElementById("legendHolder").style.width = "0";
 }
 
-/* This functions are for sidebar */
-//* when the sidenav is getting closed the fact that both closing and opening use single clicks triggers both, that's why
-// it appears to do nothing. the solution is to make one of them to be used with double click and the othe with single click.
+/**
+ * This functions are for sidebar
+ *  
+ * When the sidenav is getting closed the fact that both closing and opening use single clicks triggers both, that's why
+ * it appears to do nothing. the solution is to make one of them to be used with double click and the othe with single click.
+ * 
+ * */ 
+
 function openNav() {
     toggleNav('on');
     toggleSpinner('off');
@@ -53,12 +79,11 @@ function closeNav() {
         document.getElementById("mySidenav").style.overflow = "hidden";
         document.getElementById("mySidenav").className = "sidenav rounded-left mb-2 bg-info text-dark";
     }
-    //alert(currentPM);
-    if (currentPM === 0) {
-      //  document.getElementById("mySidenav").style.overflow = "none";
 
+    if (currentPM === 0) {
+      
     } else {
-        //document.getElementById("mySidenav").style.display = "block";
+    
 
     }
     $('#mySidenav').tooltip('enable');
@@ -91,10 +116,9 @@ function clean() {
     removeNonPMContent();
     resetRadioBtn("optradio");
     switch_AOI("off");
-    deleteUserShapes();
-    console.log("!!!CLEANIng");
-    
+    deleteUserShapes();    
 }
+
 function toggleSafeRemove() {
     if (toggleOn == true) {
         toggleHide();
