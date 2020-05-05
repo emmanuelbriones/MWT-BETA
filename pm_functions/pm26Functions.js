@@ -153,6 +153,7 @@ function pm26Data(mode, ex) {
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
                 let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                console.log(to_visualize);
                 let titleH = condition + ": " + lowestRating;
                 if (lowestRating == 999) {
                     titleH = condition;

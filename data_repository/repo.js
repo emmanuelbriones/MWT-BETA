@@ -1,3 +1,11 @@
+// Code by Sergio
+
+/**
+ * 5/5/2020 Update
+ * Clients want to change lines to points so code was modified to read points
+ * - B
+ */
+
 /*jshint
     esversion: 6,
     quotmark: single,
@@ -9,12 +17,11 @@
 
 */ //contains all the data about the repositories and the gui assets.
 let repos;
+
 function data_repo() {
-    //
     load_repo_modal();
     //get the buttons JSON file
     $.getJSON('data_repository/repo.json', data => {
-        ////console.log(data);
         repos = data;
     });
 
@@ -23,7 +30,6 @@ function data_repo() {
     let legend = document.getElementById('repo-legend');
     let disclaimer = document.getElementById('repo-disclaimer');
     let description = document.getElementById('repo-description');
-    ////console.log(repos);
 
     if (list.innerHTML === '') {
         //prevent duplicate loading.
@@ -40,11 +46,10 @@ function data_repo() {
 }
 
 function change_repo_info(btn_name) {
-    ////console.log(btn_name);
     //delete description & legend
     let description = document.getElementById('repo-description');
     description.innerHTML = '';
-    //let new_description = document.createElement('P').outerHTML =`<p class="col-lg-12">${repos.buttons[btn_name].description}</p>`;
+
     let new_description = document.createElement('P');
     new_description.className = 'col-lg-12 text-secondary';
     new_description.innerHTML = repos.buttons[btn_name].description;
@@ -52,15 +57,12 @@ function change_repo_info(btn_name) {
 
     let legend = document.getElementById('repo-legend');
     legend.innerHTML = '';
-    //load_legend(legend, description, btn_name);
 }
 
 function load_legend(location, description, btn_name) {
     let legend = repos.buttons[btn_name].legend;
-    ////console.log(legend)
     // load the legend keys
     for (let i in legend) {
-        //// console.log(legend[i]);
         //let l = document.createElement('P').outerHTML = `<p class="col-lg-4"> <span style="color: ${legend[i].color};font-size: 3em;">■</span>${legend[i].name}</p>`;
         let l = document.createElement('P');
         l.className = 'col-lg-4 text-secondary font-weight-bold';
@@ -106,8 +108,8 @@ function load_disclaimer(location) {
 
 }
 
+// get db data
 $.get('./data_repository/repo_handler.php', function(data) {
-    //console.log('this is running');
     //// mtp_project_data.innerHTML = data;
 });
 
@@ -140,11 +142,12 @@ function load_repo_modal() {
 
     document.getElementById('non-pm-content').appendChild(base_content);
 }
+
+// Draw Shapes
 function get_repo_data(btn_name) {
     currentPM = 0;
     currentType = "repo"; // used on legendOpen()
     regionalDataRepoLegend();
-
     $.get(
         './data_repository/repo_handler.php',
         function(data) {
@@ -152,20 +155,42 @@ function get_repo_data(btn_name) {
 
             let ranges = []; 
             let colors = [];
+
             repos.buttons[btn_name].legend.forEach(cat =>{
                 ranges.push(cat.value);
                 colors.push(cat.color);
             });
-            // //console.log(colors); 
-            //*  ['gray', 'green', 'blue', 'orange', 'red']
-           // // console.log(ranges); 
-           //*  [ "0", "4270", "13160", "24550", "53680" ] 
 
+            let holder = [];
+            let to_visualize;
+            let image = "./img/markers/red.png";
+            let x =0;
+            let y =0; 
             for (let item in data) {
-                //console.log(data[item].shape);
                 let shape = reader.read(data[item].shape);
+                x=shape.coordinates.coordinates[0].x;
+                y=shape.coordinates.coordinates[0].y;
+   
+                to_visualize = { lat: parseFloat(y), lng: parseFloat(x) };
 
-                let color = '0x000000'; //black
+                let point = new google.maps.Marker({
+                    position: to_visualize,
+                    title: "",
+                   // value: '',
+                    icon: image
+                });
+                
+                // draw by 1 type at a time
+                point.setMap(map);
+                points.push(point);
+                
+                /*
+                5/15/2020
+                This is the Original code
+                I commented this because know we need to display points 
+                - B 
+
+
                 let cur = parseInt(data[item].factored_c,10);
 
                 if (cur == ranges[0]) { //*logic for setting the color
@@ -223,7 +248,7 @@ function get_repo_data(btn_name) {
                     }
                 } else {
                     console.log('no location');
-                }
+                }*/
             }
         },
         'json',

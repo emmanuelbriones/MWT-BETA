@@ -636,8 +636,8 @@ let corridorPointsT = [];
 // Loads graph Data, fetches go here
 function performanceDataLoader() {
     toggleSpinner('on');
+  
     $.when(
-        
         $.ajax(pm1Data(0, '')),
         $.ajax(pm2Data(0, '')),
         $.ajax(pm3Data(0, '')),

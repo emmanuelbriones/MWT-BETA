@@ -15,20 +15,23 @@ $conn-> close();
 echo json_encode($data);
 //print_r($data);
 
-
+//
 function get_map_shapes($conn)
 {
     $data = array();
 
-    $tables = array('data_repository');
+    $tables = array('data_repository2');
 
-    $table_columns = array('factored_c', 'SHAPE');
+  //  $table_columns = array('factored_c', 'SHAPE'); // original code for lines
+  $table_columns = array('SHAPE');
     $columns = array($table_columns);
 
     for ($i=0; $i < sizeof($tables) ; $i++) {
-        $query = "SELECT
+      /*  Original code for lines
+       $query = "SELECT
                   {$columns[$i][0]} AS 'factored_c'";
-        $query .= ", astext({$columns[$i][1]}) AS 'shape' ";
+        $query .= ", astext({$columns[$i][1]}) AS 'shape' ";*/
+        $query = "select astext(SHAPE) as shape ";
         $query .= "FROM {$tables[$i]}";
         
         $result = $conn->query($query);
