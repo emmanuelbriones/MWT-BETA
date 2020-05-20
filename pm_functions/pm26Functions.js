@@ -13,6 +13,7 @@
  */
 
 function pm26Data(mode, ex) {
+    console.log("PM26 5/19/2020 Update by B");
     let pm26Data = {
         goodTX: 0,
         fairTX: 0,
@@ -79,7 +80,7 @@ function pm26Data(mode, ex) {
             let superstruc = parseInt(data.shape_arr[index]['superstruc']);
             let substruc_c = parseInt(data.shape_arr[index]['substruc_c']);
             let region = data.shape_arr[index]['region'];
-            let type = data.shape_arr[index]['mode'];
+            let type = (data.shape_arr[index]['mode']).toLowerCase();
             let typeHolder = currentType;
             lowestRating = Math.min(deck_cond_, superstruc, substruc_c);
 
@@ -120,7 +121,7 @@ function pm26Data(mode, ex) {
                     } else {
                         pm26Data.nm_fair_count++;
                     }
-                } else if (lowestRating >= 0 && lowestRating <= 4) {
+                } else if (lowestRating >= 1 && lowestRating <= 4) { //old was >=0  && <= 4
                     condition = 'Poor Condition';
                     image = "./img/markers/red.png";
                     if (region == 'TX' || region == "Texas") {
@@ -128,7 +129,7 @@ function pm26Data(mode, ex) {
                     } else {
                         pm26Data.nm_poor_count++;
                     }
-                } else if (lowestRating == 999) {
+                } else if (lowestRating == 0) { // old was 999
                     condition = 'No data';
                     image = "./img/markers/grey.png";
                     if (region == 'TX' || region == "Texas") {
@@ -153,7 +154,7 @@ function pm26Data(mode, ex) {
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
                 let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
-                console.log(to_visualize);
+              
                 let titleH = condition + ": " + lowestRating;
                 if (lowestRating == 999) {
                     titleH = condition;
