@@ -13,7 +13,6 @@
  */
 
 function pm26Data(mode, ex) {
-    console.log("PM26 5/19/2020 Update by B");
     let pm26Data = {
         goodTX: 0,
         fairTX: 0,
