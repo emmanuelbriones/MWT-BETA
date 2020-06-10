@@ -31,7 +31,7 @@ function get_map_shapes($conn)
        $query = "SELECT
                   {$columns[$i][0]} AS 'factored_c'";
         $query .= ", astext({$columns[$i][1]}) AS 'shape' ";*/
-        $query = "select astext(SHAPE) as shape ";
+        $query = "select astext(SHAPE) as shape,f2017_adt ";
         $query .= "FROM {$tables[$i]}";
         
         $result = $conn->query($query);

@@ -172,10 +172,23 @@ function get_repo_data(btn_name) {
                 y=shape.coordinates.coordinates[0].y;
    
                 to_visualize = { lat: parseFloat(y), lng: parseFloat(x) };
-
+                f2017_adt = parseInt(data[item].f2017_adt);
+                console.log(f2017_adt);
+                //filter color
+                if(f2017_adt == 0){
+                    image = "./img/markers/grey.png";
+                }else if(f2017_adt > 0 && f2017_adt <= 4270){
+                    image = "./icons/small_green_pin.png";
+                }else if(f2017_adt > 4270 && f2017_adt <= 13160){
+                    image = "./icons/small_blue_pin.png";
+                }else if(f2017_adt > 13160 && f2017_adt <= 24550){
+                    image = "./icons/small_orange_pin.png";
+                }else if(f2017_adt > 24550 && f2017_adt <= 53680){
+                    image = "./img/markers/red.png";
+                }
                 let point = new google.maps.Marker({
                     position: to_visualize,
-                    title: "",
+                    title: f2017_adt.toString(),
                    // value: '',
                     icon: image
                 });
