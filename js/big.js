@@ -636,9 +636,10 @@ let corridorPointsT = [];
 // Loads graph Data, fetches go here
 function performanceDataLoader() {
     toggleSpinner('on');
-  
+    var values;
     $.when(
-        $.ajax(pm1Data(0, '')),
+       readJSON()
+       /* $.ajax(pm1Data(0, '')),
         $.ajax(pm2Data(0, '')),
         $.ajax(pm3Data(0, '')),
         $.ajax(pm4Data(0, '')),
@@ -668,9 +669,11 @@ function performanceDataLoader() {
         $.ajax(pm26Data(0, 'd')),
         $.ajax(pm26Data(0, 't')),
         $.ajax(pm26Data(0, 'f'))
-        
+        */
         )
         .done(function(){
+            console.log("values read");
+            console.log(values);
             toggleSpinner('off');
         })
         .fail(function(error){
