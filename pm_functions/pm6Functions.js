@@ -12,7 +12,9 @@ function pm6Data(mode, condition) {
     };
 
     let key = 'all_pm6';
-    let example = { key: key };
+    let example = {
+        key: key
+    };
     let color = "#039BE5";
 
     $.get('mwt_handler.php', example, function (data) {
@@ -20,7 +22,7 @@ function pm6Data(mode, condition) {
             let temp = wktFormatter(data.shape_arr[index]['shape']);
             let to_visualize = [];
             let type = data.shape_arr[index].type;
-            let ratio_prim = parseFloat(data.shape_arr[index].ratio_prim); 
+            let ratio_prim = parseFloat(data.shape_arr[index].ratio_prim);
 
             //update Dynamic Data
             if (type == "existing") {
@@ -33,7 +35,7 @@ function pm6Data(mode, condition) {
                 // if the status of a shape exists, push to visualize
                 for (let i = 0; i < temp.length; i++) {
                     if (type == "existing" && condition == "e") {
-                        color = "#039BE5";//blue
+                        color = "#039BE5"; //blue
                         to_visualize.push(temp[i]);
                         polyToErase.exist.push();
                     } else if (type == "all" && condition == "p") {
@@ -60,9 +62,15 @@ function pm6Data(mode, condition) {
                 if (condition == "p") polyToErase.plan.push(polygon);
 
                 // Hover Effect for Google API Polygons
-                google.maps.event.addListener(polygon, 'mouseover', function (event) { injectTooltip(event, polygon.title); });
-                google.maps.event.addListener(polygon, 'mousemove', function (event) { moveTooltip(event); });
-                google.maps.event.addListener(polygon, 'mouseout', function (event) { deleteTooltip(event); });
+                google.maps.event.addListener(polygon, 'mouseover', function (event) {
+                    injectTooltip(event, polygon.title);
+                });
+                google.maps.event.addListener(polygon, 'mousemove', function (event) {
+                    moveTooltip(event);
+                });
+                google.maps.event.addListener(polygon, 'mouseout', function (event) {
+                    deleteTooltip(event);
+                });
 
                 polygon.setMap(map);
                 polygons.push(polygon);
@@ -71,9 +79,12 @@ function pm6Data(mode, condition) {
         pm6Calculations(pm6Data, mode);
     });
 }
+
 function pm6Calculations(pm6Data, mode) {
     let key = 'all_pm5_6';
-    let example = { key: key };
+    let example = {
+        key: key
+    };
     $.get('mwt_handler.php', example, function (data) {
         let totJobs = 0;
         for (index in data.shape_arr) {
@@ -85,12 +96,18 @@ function pm6Calculations(pm6Data, mode) {
         pm6Data.totalJobsPercent = ((pm6Data.all_ratio_sum / pm6Data.totJobs) * 100);
 
         if (mode == 0) {
-            document.getElementById("pm6Text").innerHTML = String(pm6Data.jobsPercent.toFixed(2)) + "%"; // menu text
+            let value = {
+                name: "pm6Text",
+                value: String(pm6Data.jobsPercent.toFixed(2)) + "%"
+            };
+
+            menu.push(drivingValue);
         } else if (mode == 1) {
             regionalText(pm6Data);
         }
     });
 }
+
 function pm6chart(g2, data) {
     let tot = 100 - (Math.round(data.jobsPercent));
     colors = [];
@@ -135,4 +152,3 @@ function pm6chart(g2, data) {
 
     });
 }
-

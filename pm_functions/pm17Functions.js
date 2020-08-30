@@ -1,7 +1,6 @@
-﻿
-function pm17Data(mode) {
+﻿function pm17Data(mode) {
     var pm17Data = [];
-	var greatest = [];
+    var greatest = [];
     let images = [];
 
     //store all colors for points
@@ -20,13 +19,15 @@ function pm17Data(mode) {
 
 
     let key = 'all_pm15_16_17g';
-    let example = { key: key };
+    let example = {
+        key: key
+    };
 
     //for calculations
     let greathestNum = 0;
     let greathestStat = '';
     let year = 0;
-	
+
     let i = 0; //helps on index of PM 10 
 
 
@@ -64,9 +65,9 @@ function pm17Data(mode) {
                     name: stationName,
                     graphData: [year1, year2, year3, year4, year5]
                 };
-               
+
                 i++;
-            
+
                 if (greathestNum < year1) {
                     greathestNum = year1;
                     year = 2014;
@@ -92,42 +93,44 @@ function pm17Data(mode) {
                     year = 2018;
                     greathestStat = stationName;
                 }
-				//store greatest on current station
-				greatest[i] = {
-					name: greathestStat,
-					year: year,
-					greathestNum: greathestNum
-				};
-				// reset
-				greathestNum = 0;
-				greathestStat = '';
-				year = 0;
+                //store greatest on current station
+                greatest[i] = {
+                    name: greathestStat,
+                    year: year,
+                    greathestNum: greathestNum
+                };
+                // reset
+                greathestNum = 0;
+                greathestStat = '';
+                year = 0;
 
             }
         }
-		
-		// sort all the greathest stations from highest to lowest 
-		greatest.sort(function(a, b){
-			return b.greathestNum-a.greathestNum
-		})
-		
-	
+
+        // sort all the greathest stations from highest to lowest 
+        greatest.sort(function (a, b) {
+            return b.greathestNum - a.greathestNum
+        })
+
+
         //adding dynamic info aka top 2 greathest stations
         pm17Data[pm17Data.length] = {
             num: greatest[0].greathestNum,
             station: greatest[0].name,
             year: greatest[0].year,
-			
-			num2: greatest[1].greathestNum,
-			station2:  greatest[1].name,
-			year2:  greatest[1].year
+
+            num2: greatest[1].greathestNum,
+            station2: greatest[1].name,
+            year2: greatest[1].year
         };
 
-      
+
         //print points 
         if (mode == 1) {
             key = 'all_pm15_16_17';
-            example = { key: key };
+            example = {
+                key: key
+            };
             $.get('mwt_handler.php', example, function (data) {
                 for (index in data.shape_arr) {
                     let holder = [];
@@ -137,7 +140,10 @@ function pm17Data(mode) {
                     holder = holder[0][0]; // Fixes BLOB
                     stationName = data.shape_arr[index]['station_na'];
 
-                    let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                    let to_visualize = {
+                        lat: parseFloat(holder[0].lat),
+                        lng: parseFloat(holder[0].lng)
+                    };
 
                     let point = new google.maps.Marker({
                         position: to_visualize,
@@ -158,7 +164,12 @@ function pm17Data(mode) {
 
         //menu text
         if (mode == 0) {
-            document.getElementById("pm17Text").innerHTML = pm17Data[pm17Data.length - 1].num + " μg/m³";
+            let val = {
+                name: "pm17Text",
+                value: pm17Data[pm17Data.length - 1].num + " μg/m³"
+            };
+
+            menu.push(val);
         } else if (mode == 1) {
             regionalText(pm17Data);
         }
@@ -169,11 +180,10 @@ function pm17chartLine(ctx, data) {
     //modify values
 
     var data = {
-       labels: ['2014', '2015', '2016', '2017', '2018'],
-       datasets: [
-            {
-               label: data[0].name,
-               data: data[0].graphData,
+        labels: ['2014', '2015', '2016', '2017', '2018'],
+        datasets: [{
+                label: data[0].name,
+                data: data[0].graphData,
                 backgroundColor: "orange",
                 borderColor: "orange",
                 fill: false,
@@ -216,39 +226,38 @@ function pm17chartLine(ctx, data) {
                 lineTension: 0,
                 radius: 5
             }
-       ]
-   };
+        ]
+    };
 
     //options
-   var options = {
-    scales: {
-        yAxes: [{
-          scaleLabel: {
+    var options = {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Micrograms per Cubic Meter (ug/cu meter)'
+                }
+            }]
+        },
+        responsive: true,
+        title: {
+
+        },
+        legend: {
             display: true,
-            labelString: 'Micrograms per Cubic Meter (ug/cu meter)'
-          }
-        }]
-      },
-       responsive: true,
-       title: {
-       
-       },
-       legend: {
-       display: true,
-       position: "bottom",
-       labels: {
-           fontColor: "#333",
-           fontSize: 12,
-           boxWidth:10
-       }
-       }
-   };
+            position: "bottom",
+            labels: {
+                fontColor: "#333",
+                fontSize: 12,
+                boxWidth: 10
+            }
+        }
+    };
 
-   //create Chart class object
-   var chart = new Chart(ctx, {
-       type: "line",
-       data: data,
-       options: options
-   });
+    //create Chart class object
+    var chart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: options
+    });
 }
-

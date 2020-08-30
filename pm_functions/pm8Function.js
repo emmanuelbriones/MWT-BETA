@@ -11,12 +11,14 @@ function pm8DataBuffer(mode, stat) {
 
     if (mode == 0 || mode == 1) { // if we want regional (default) data
         let key = 'all_pm8B';
-        data_for_php = { key: key };
-    } 
+        data_for_php = {
+            key: key
+        };
+    }
 
     $.get(php_handler, data_for_php, function (data) {
 
-        let color = "#039BE5";//blue
+        let color = "#039BE5"; //blue
         if (mode == 1) {
             for (index in data.shape_arr) {
                 let temp = wktFormatter(data.shape_arr[index][shape]);
@@ -26,13 +28,13 @@ function pm8DataBuffer(mode, stat) {
                 // if the status of a shape exists, push to visualize
                 for (let i = 0; i < temp.length; i++) {
                     if (type == "existing" && stat == "e") {
-                        color = "#039BE5";//blue
+                        color = "#039BE5"; //blue
                         to_visualize.push(temp[i]);
-                      
+
                     } else if (type == "plan_ex" && stat == "p") {
                         color = "#9E9E9E"; //gray
                         to_visualize.push(temp[i]);
-                      
+
                     }
                 }
 
@@ -56,13 +58,16 @@ function pm8DataBuffer(mode, stat) {
                 polygons.push(polygon);
             }
         }
-       
+
         pm8DataP(mode, stat);
     });
 }
+
 function pm8DataP(mode, stat) {
     let key = 'all_pm8K';
-    let example = { key: key };
+    let example = {
+        key: key
+    };
     let color = "#039BE5";
 
     let pm8Data = {
@@ -78,7 +83,7 @@ function pm8DataP(mode, stat) {
 
         let image = "./img/markers/red.png";
 
-        pm8Data.totKeyDest = data.shape_arr.length+1; // we are adding 1 since we are also counting the null value on this table
+        pm8Data.totKeyDest = data.shape_arr.length + 1; // we are adding 1 since we are also counting the null value on this table
         let existingCount = 0;
         let proposedCount = 0;
         for (index in data.shape_arr) { // Organize information into dictionaries
@@ -93,7 +98,10 @@ function pm8DataP(mode, stat) {
                 holder.push(wktFormatterPoint(data.shape_arr[index]['shape']));
                 holder = holder[0][0]; // Fixes BLOBs
 
-                let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                let to_visualize = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
 
                 let point = new google.maps.Marker({
                     position: to_visualize,
@@ -189,120 +197,122 @@ function pm8DataP(mode, stat) {
             }
 
         }
-        console.log(existingCount);
-        console.log(proposedCount);
         //calculations
         pm8Data.percentKeyD1 = (existingCount / pm8Data.totKeyDest) * 100;
         pm8Data.percentKeyD2 = (proposedCount / pm8Data.totKeyDest) * 100;
 
         if (mode == 0) {
             document.getElementById("pm8Text").innerHTML = pm8Data.percentKeyD1.toFixed(2) + "%";
-        }
-        else if (mode == 1) {
+            let value = {
+                name: "pm8Text",
+                value: pm8Data.percentKeyD1.toFixed(2) + "%"
+            };
+
+            menu.push(value);
+        } else if (mode == 1) {
             regionalText(pm8Data);
         }
     });
 }
-function pm8HorizontalBar(ctx,data){
+
+function pm8HorizontalBar(ctx, data) {
     var myBarChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-            labels:["Millitary Base","Airport","University/College", "Transit Center", "Shelter", "Prison/jail", "Nursing Home", "Natural and heritage", "Mall", "Leisure Time Activity", "Hospital"],
-            datasets:[
-                {
+            labels: ["Millitary Base", "Airport", "University/College", "Transit Center", "Shelter", "Prison/jail", "Nursing Home", "Natural and heritage", "Mall", "Leisure Time Activity", "Hospital"],
+            datasets: [{
                     label: "Number of Key Destinations in El Paso MPO Region",
                     data: data.existing,
                     fill: false,
-                    backgroundColor:['rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)' ],
-                    borderColor:['rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)'],
-                    borderWidth:1
+                    backgroundColor: ['rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)'],
+                    borderColor: ['rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)'],
+                    borderWidth: 1
                 },
                 {
-                    label:"Number of Key Destinations in 0.5 mi of high-quality rapid transit",
-                    data:data.planned,
+                    label: "Number of Key Destinations in 0.5 mi of high-quality rapid transit",
+                    data: data.planned,
                     fill: false,
-                    backgroundColor:['rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)'],
-                    borderColor:['rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)'],
-                    borderWidth:1
+                    backgroundColor: ['rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)'],
+                    borderColor: ['rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)'],
+                    borderWidth: 1
                 },
 
             ]
         },
-                
-        options:{
+
+        options: {
             legend: {
                 position: 'bottom',
                 labels: {
                     fontSize: 11, //changes the two little boxes' text on the bottom of the graph
-                    boxWidth:15
+                    boxWidth: 15
                 }
             },
-             title: {
+            title: {
                 display: true,
                 text: 'Key Destinations in the El Paso MPO region in 0.5 mi of existing high-quality rapid transit'
             },
-            scales:{
-                xAxes:[{
-                    ticks:{
-                        beginAtZero:true
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
                     }
-                }
-            ]}
+                }]
+            }
         }
-                       
-    
-        
+
+
+
     });
 }
 
-function pm8HorizontalBar2(ctx){
+function pm8HorizontalBar2(ctx) {
     var myBarChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-            labels:["Millitary Base","Airport","University/College", "Transit Center", "Shelter", "Prison/jail", "Nursing Home", "Natural and heritage", "Mall", "Leisure Time Activity", "Hospital"],
-            datasets:[
-                {
-                    label:"Number of Key Destinations in El Paso MPO Region",
-                    data:[1,5,8,5,6,7,8,9,4,6,11],
+            labels: ["Millitary Base", "Airport", "University/College", "Transit Center", "Shelter", "Prison/jail", "Nursing Home", "Natural and heritage", "Mall", "Leisure Time Activity", "Hospital"],
+            datasets: [{
+                    label: "Number of Key Destinations in El Paso MPO Region",
+                    data: [1, 5, 8, 5, 6, 7, 8, 9, 4, 6, 11],
                     fill: false,
-                    backgroundColor:['rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)','rgb(255,112,67)' ],
-                    borderColor:['rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)','rgb(255,87,34)'],
-                    borderWidth:1
+                    backgroundColor: ['rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)', 'rgb(255,112,67)'],
+                    borderColor: ['rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)', 'rgb(255,87,34)'],
+                    borderWidth: 1
                 },
                 {
-                    label:"Number of Key Destinations in 0.5 mi of high-quality rapid transit",
-                    data:[1,5,8,4,8,9,6,3,4,7,8],
+                    label: "Number of Key Destinations in 0.5 mi of high-quality rapid transit",
+                    data: [1, 5, 8, 4, 8, 9, 6, 3, 4, 7, 8],
                     fill: false,
-                    backgroundColor:['rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)','rgba(33,150,243 ,1)'],
-                    borderColor:['rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)','rgb(33,150,243)'],
-                    borderWidth:1
+                    backgroundColor: ['rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)', 'rgba(33,150,243 ,1)'],
+                    borderColor: ['rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)'],
+                    borderWidth: 1
                 },
 
             ]
         },
-                
-        options:{
+
+        options: {
             legend: {
                 position: 'bottom',
                 labels: {
                     fontSize: 11, //changes the two little boxes' text on the bottom of the graph
-                    boxWidth:15
+                    boxWidth: 15
                 }
             },
-             title: {
+            title: {
                 display: true,
                 text: 'Key Destinations in the El Paso MPO region'
             },
-            scales:{
-                xAxes:[{
-                    ticks:{
-                        beginAtZero:true
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
                     }
-                }
-            ]}
+                }]
+            }
         }
-                       
-    
-        
+
+
+
     });
 }

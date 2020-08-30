@@ -1,39 +1,38 @@
-
 function pm25Data(mode, ex) {
-    console.log("PM25 6/01/2020 Update by B");
     let pm25Data = {
         good: [0, 0, 0, 0, 0],
         fair: [0, 0, 0, 0, 0],
         poor: [0, 0, 0, 0, 0],
 
         tot_miles: 0,
-        poor_mi_perc: 0, 
+        poor_mi_perc: 0,
         tot_poor_mi: 0,
 
         tx_miles: 0,
-        tx_poor_mi: 0, 
-        tx_poor_mi_perc: 0, 
+        tx_poor_mi: 0,
+        tx_poor_mi_perc: 0,
 
         nm_miles: 0,
-        nm_poor_mi: 0, 
-        nm_poor_mi_perc: 0, 
+        nm_poor_mi: 0,
+        nm_poor_mi_perc: 0,
 
         latestYear: 0
     }
 
-    let color = '#03A9F4';  // default
+    let color = '#03A9F4'; // default
     let php_handler = "mwt_handler.php";
     let shape = "shape";
     let data_for_php = 0;
 
     if (mode == 0 || mode == 1) {
         let key = 'all_pm25';
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 4) {
         php_handler = "./backend/AOI.php";
         data_for_php = ex;
-    }
-    else if (mode == 2) {
+    } else if (mode == 2) {
         php_handler = "corridor_handlerB.php";
         shape = 'ST_AsText(SHAPE)';
         let tableName = "pm25";
@@ -63,7 +62,7 @@ function pm25Data(mode, ex) {
         pm25Data.latestYear = latestYear;
 
         if (mode == 0) {
-      //   console.log(ex);
+            //   console.log(ex);
             if (ex == 'd') {
                 ex = 'driving';
             } else if (ex == 't') {
@@ -72,7 +71,7 @@ function pm25Data(mode, ex) {
                 ex = 'freight';
             }
         }
-   
+
         for (index in data.shape_arr) { // iterates through every index in the returned element (data['shape_arr'])
             let shp = data.shape_arr[index][shape]; // shape is LINESTRING or MULTILINESTRING
             let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
@@ -134,7 +133,7 @@ function pm25Data(mode, ex) {
                 }
 
                 if (year == latestYear) {
-                    if (iri > 170) {      // total poor condition miles
+                    if (iri > 170) { // total poor condition miles
                         poorconditionMiles += miles;
                     }
                     //Texas 
@@ -163,7 +162,10 @@ function pm25Data(mode, ex) {
                 if (year == latestYear) {
                     if (mode == 1 || mode == 2 || mode == 4) {
                         for (let i = 0; i < ln.length; i++) {
-                            coord = { lat: ln[i]['y'], lng: ln[i]['x'] }; // this is how lat & lng is interpreted by the tool
+                            coord = {
+                                lat: ln[i]['y'],
+                                lng: ln[i]['x']
+                            }; // this is how lat & lng is interpreted by the tool
                             to_visualize.push(coord); // pushing the interpretation to our to_visualize array
                         }
                         // filter colors 
@@ -184,18 +186,24 @@ function pm25Data(mode, ex) {
                             zIndex: 99 // on top of every other shape
                         });
                         // Hover Effect for Google API Polygons
-                        google.maps.event.addListener(line, 'mouseover', function (event) { injectTooltip(event,commafy(parseInt(iri))); }); 
-                        google.maps.event.addListener(line, 'mousemove', function (event) { moveTooltip(event); });
-                        google.maps.event.addListener(line, 'mouseout', function (event) { deleteTooltip(event); });
-                              
-                        
+                        google.maps.event.addListener(line, 'mouseover', function (event) {
+                            injectTooltip(event, commafy(parseInt(iri)));
+                        });
+                        google.maps.event.addListener(line, 'mousemove', function (event) {
+                            moveTooltip(event);
+                        });
+                        google.maps.event.addListener(line, 'mouseout', function (event) {
+                            deleteTooltip(event);
+                        });
+
+
                         line.setMap(map);
                         polylines.push(line);
                     }
                 }
-            }   
+            }
         }
- 
+
         //totals
         pm25Data.tot_poor_mi = (pm25Data.nm_poor_mi + pm25Data.tx_poor_mi).toFixed(2);
         pm25Data.tot_miles = pm25Data.tx_miles + pm25Data.nm_miles;
@@ -223,29 +231,33 @@ function pm25Data(mode, ex) {
         pm25Data.poor[2] = (pm25Data.poor[2]).toFixed(2);
         pm25Data.poor[3] = (pm25Data.poor[3]).toFixed(2);
         pm25Data.poor[4] = (pm25Data.poor[4]).toFixed(2);
- 
+
         let corr = translateCorridor(ex); // what corridor are we on?
 
         if (mode == 0) {
+            let name = "";
             if (ex == 'driving') {
-                document.getElementById("pm25DText").innerHTML = pm25Data.poor_mi_perc + "%";
+                name = "pm25DText";
             } else if (ex == 'transit') {
-                document.getElementById("pm25T_Text").innerHTML = pm25Data.poor_mi_perc + "%";
+                name = "pm25T_Text";
             } else if (ex == 'freight') {
-                document.getElementById("pm25FText").innerHTML = pm25Data.poor_mi_perc + "%";
+                name = "pm25FText";
             }
-            
-        }
-        else if (mode == 1) {
+            let val = {
+                name: name,
+                value: pm25Data.poor_mi_perc + "%"
+            };
+            menu.push(val);
+
+        } else if (mode == 1) {
             regionalText(pm25Data);
         } else if (mode == 2) {
             dynamicCorridorText(corr, pm25Data);
-        }
-        else if(mode == 4){
+        } else if (mode == 4) {
             dynamicCorridorText("AOI", pm25Data);
         }
     });
-    
+
 }
 
 function pm25StackedChart(ctx, data) {
@@ -305,20 +317,19 @@ function pm25StackedChart(ctx, data) {
     });
 
 }
+
 function pm25chartLine(ctx, data) {
     var data = {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
-        datasets: [
-            {
-                label: "Poor Condition",
-                data: data.poor,
-                backgroundColor: "blue",
-                borderColor: "lightblue",
-                fill: false,
-                lineTension: 0,
-                radius: 5
-            },
-        ]
+        datasets: [{
+            label: "Poor Condition",
+            data: data.poor,
+            backgroundColor: "blue",
+            borderColor: "lightblue",
+            fill: false,
+            lineTension: 0,
+            radius: 5
+        }, ]
     };
 
     //options

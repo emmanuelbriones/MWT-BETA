@@ -2,7 +2,7 @@
  * Creates 2 graphs for PM26
  * Calculates percentage of Bridge Conditions
  *  
-*/
+ */
 /**
  * There are 4 types of mode
  * Mode 0: This is used when the page loads for the 1st time. Calculates Menu Text Only
@@ -24,24 +24,24 @@ function pm26Data(mode, ex) {
         poorNM: 0,
         noDataNM: 0,
 
-        tx_good_count:0,
-        tx_fair_count:0,
-        tx_poor_count:0,
-        tx_no_data_count:0,
+        tx_good_count: 0,
+        tx_fair_count: 0,
+        tx_poor_count: 0,
+        tx_no_data_count: 0,
 
-        nm_good_count:0,
-        nm_fair_count:0,
-        nm_poor_count:0,
+        nm_good_count: 0,
+        nm_fair_count: 0,
+        nm_poor_count: 0,
         nm_no_data_count: 0,
 
         dynamicTot: 0,
-        dynamicPoor:0,
+        dynamicPoor: 0,
 
-        totTXBridges:0,
+        totTXBridges: 0,
         totNMBridges: 0,
-        tnodatabridges:0,
+        tnodatabridges: 0,
 
-        lowestRating:0
+        lowestRating: 0
     };
 
     let data_for_php = 0;
@@ -50,21 +50,22 @@ function pm26Data(mode, ex) {
 
     if (mode == 0 || mode == 1) { // if we want regional (default) data
         let key = 'all_pm26';
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
 
     } else if (mode == 2 || mode == 3) { // if we want corridors
         shape = 'ST_AsText(SHAPE)'; // fix -> add alias (AS) for column in mysql query: SELECT column AS shape
         php_handler = "corridor_handlerB.php";
         let key = 26;
         let tableName = 'pm26';
-       
+
         data_for_php = {
             key: key,
             corridors_selected: ex,
             tableName: tableName
         };
-    }
-    else if (mode == 4) { 
+    } else if (mode == 4) {
         data_for_php = ex; // in AOI: ex = AOI string , table from DB -> needed for PHP handler
         php_handler = "./backend/AOI.php";
     }
@@ -83,7 +84,7 @@ function pm26Data(mode, ex) {
             let typeHolder = currentType;
             lowestRating = Math.min(deck_cond_, superstruc, substruc_c);
 
-            if (mode ==0) {
+            if (mode == 0) {
                 let zeroType = "";
                 if (ex == "d") {
                     typeHolder = "driving";
@@ -92,7 +93,7 @@ function pm26Data(mode, ex) {
                 } else if (ex == "f") {
                     typeHolder = "freight";
                 }
-                
+
             }
 
             if (typeHolder == type) {
@@ -136,7 +137,7 @@ function pm26Data(mode, ex) {
                     } else {
                         pm26Data.nm_no_data_count++;
                     }
-                } else {//null
+                } else { //null
                     condition = 'No data';
                     image = "./img/markers/grey.png";
                     if (region == 'TX' || region == "Texas") {
@@ -146,30 +147,33 @@ function pm26Data(mode, ex) {
                     }
                 }
             }
-            
+
             let holder = [];
 
-            if (mode == 1 || mode == 2 || mode == 4)  { // mode 1 and 2 allows us to draw points 
+            if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
-                let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
-              
+                let to_visualize = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
+
                 let titleH = condition + ": " + lowestRating;
                 if (lowestRating == 999) {
                     titleH = condition;
                 }
                 let point = new google.maps.Marker({
                     position: to_visualize,
-                   title: titleH,
-                   // value: '',
+                    title: titleH,
+                    // value: '',
                     icon: image
                 });
                 // draw by 1 type at a time
                 if (currentType == type) {
                     point.setMap(map);
                     points.push(point);
-                } 
-               
+                }
+
             }
 
         }
@@ -214,33 +218,35 @@ function pm26Data(mode, ex) {
 
         if (mode == 0) { // menu text, this is only done once
             mpo = (mpo * 10).toString() + ' %';
-
+            let name = "";
             if (ex == 'd') {
-                document.getElementById("pm26DText").innerHTML = pm26Data.dynamicPoor + "%"; 
+                name = "pm26DText";
             } else if (ex == 't') {
-                document.getElementById("pm26TText").innerHTML = pm26Data.dynamicPoor + "%" ;
+                name = "pm26TText";
             } else if (ex == 'f') {
-                document.getElementById("pm26FText").innerHTML = pm26Data.dynamicPoor + "%";
+                name = "pm26FText";
             }
-
+            let value = {
+                name: name,
+                value: pm26Data.dynamicPoor + "%"
+            };
+            menu.push(value);
         }
 
         let corr = translateCorridor(ex); // what corridor are we on?
 
         if (mode == 1) {
             regionalText(pm26Data);
-        }
-        else if (mode == 2) {
+        } else if (mode == 2) {
             dynamicCorridorText(corr, pm26Data); // Send graph data and current corridor to dynamic text for corridors
-        }
-         else if (mode == 4) {
+        } else if (mode == 4) {
             dynamicCorridorText("AOI", pm26Data); // Send graph data and current corridor to dynamic text for corridors
         }
 
-    }).fail(function(error){
+    }).fail(function (error) {
         pm_error_handler(mode, ex);
         toggleSpinner('off');
-    }); 
+    });
 }
 
 //draw Chart
@@ -250,8 +256,7 @@ function chart_pm26(g1, data) {
         type: 'bar',
         data: {
             labels: [''],
-            datasets: [
-                {
+            datasets: [{
                     label: data.tx_good_count + " Good",
                     data: [data.goodTX],
                     backgroundColor: [
@@ -276,7 +281,7 @@ function chart_pm26(g1, data) {
                     borderWidth: 1
                 },
                 {
-                    label:data.tx_poor_count +   ' Poor',
+                    label: data.tx_poor_count + ' Poor',
                     data: [data.poorTX],
                     backgroundColor: [
                         'rgba(242, 38, 19, 1)',
@@ -288,7 +293,7 @@ function chart_pm26(g1, data) {
                     borderWidth: 1
                 },
                 {
-                    label:data.tx_no_data_count +  ' No Data',
+                    label: data.tx_no_data_count + ' No Data',
                     data: [data.noDataTX],
                     backgroundColor: [
                         'rgba(149, 165, 166, 1)',
@@ -298,7 +303,8 @@ function chart_pm26(g1, data) {
 
                     ],
                     borderWidth: 1
-                }]
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -310,30 +316,27 @@ function chart_pm26(g1, data) {
             },
             title: {
                 display: true,
-                text: 'Texas (' + data.totTXBridges+ ' bridges)'
+                text: 'Texas (' + data.totTXBridges + ' bridges)'
             },
             scales: {
-                yAxes: [
-                    {
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Percentage',
-                        },
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Percentage',
                     },
-                ],
+                }, ],
             },
         }
     });
 
 }
 
-function chart_pm26_2(g2,data){
+function chart_pm26_2(g2, data) {
     myChart2 = new Chart(g2, {
         type: 'bar',
         data: {
             labels: [''],
-            datasets: [
-                {
+            datasets: [{
                     label: data.nm_good_count + ' Good',
                     data: [data.goodNM],
                     backgroundColor: [
@@ -346,7 +349,7 @@ function chart_pm26_2(g2,data){
                     borderWidth: 1
                 },
                 {
-                    label:data.nm_fair_count +   ' Fair',
+                    label: data.nm_fair_count + ' Fair',
                     data: [data.fairNM],
                     backgroundColor: [
                         'rgba(247, 202, 24, 1)',
@@ -370,7 +373,7 @@ function chart_pm26_2(g2,data){
                     borderWidth: 1
                 },
                 {
-                    label: data.nm_no_data_count+' No Data',
+                    label: data.nm_no_data_count + ' No Data',
                     data: [data.noDataNM],
                     backgroundColor: [
                         'rgba(149, 165, 166, 1)',
@@ -380,7 +383,8 @@ function chart_pm26_2(g2,data){
 
                     ],
                     borderWidth: 1
-                }]
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -392,7 +396,7 @@ function chart_pm26_2(g2,data){
             },
             title: {
                 display: true,
-                text: 'New Mexico (' + data.totNMBridges+ ' bridges)'
+                text: 'New Mexico (' + data.totNMBridges + ' bridges)'
             },
             scales: {
                 yAxes: [{
@@ -400,7 +404,9 @@ function chart_pm26_2(g2,data){
                         beginAtZero: true,
                         callback: function (value) {
                             value = value / 100;
-                            return value.toLocaleString('en-US', { style: 'percent' });
+                            return value.toLocaleString('en-US', {
+                                style: 'percent'
+                            });
                         },
                     }
                 }]
@@ -408,4 +414,3 @@ function chart_pm26_2(g2,data){
         }
     });
 }
-

@@ -1,10 +1,10 @@
-//  ** There are 4 types of mode
-//  ** Mode 0: This is used when the page loads for the 1st time. Calculates Menu Text Only
-//  ** Mode 1: Regional Performance Points and data
-//  ** Mode 2: Corridor Performance Points and data
-// **Mode 3: Corridor Data only, data for benchmark
-// ** Mode 4: AOI
-//  */
+/* There are 4 types of mode
+ * Mode 0: This is used when the page loads for the 1st time. Calculates Menu Text Only
+ * Mode 1: Regional Performance Points and data
+ * Mode 2: Corridor Performance Points and data
+ * Mode 3: Corridor Data only, data for benchmark
+ * Mode 4: AOI
+ */
 let pdnColor = "#FDD835";
 let ysletaColor = "#FF9800";
 let botaColor = "#304FFE";
@@ -26,8 +26,8 @@ function pm13Data(mode) {
             bota: [],
             stanton_dcl: [],
             ysleta_dcl: [],
-            santa_teresa:[],
-            tornillo:[],
+            santa_teresa: [],
+            tornillo: [],
             period: [],
             total: []
         },
@@ -37,8 +37,8 @@ function pm13Data(mode) {
             bota: [],
             stanton_dcl: [],
             ysleta_dcl: [],
-            santa_teresa:[],
-            tornillo:[],
+            santa_teresa: [],
+            tornillo: [],
             period: [],
             total: []
         },
@@ -48,8 +48,8 @@ function pm13Data(mode) {
             bota: [],
             stanton_dcl: [],
             ysleta_dcl: [],
-            santa_teresa:[],
-            tornillo:[],
+            santa_teresa: [],
+            tornillo: [],
             period: [],
             total: []
         },
@@ -61,53 +61,61 @@ function pm13Data(mode) {
             averageF: 0
         }
     }
-    if(mode >0){      /**draw points in map */
+    if (mode > 0) {
+        /**draw points in map */
         let source_file = "mwt_handler.php";
-        let data_key = { "key": "all_pm13_14" }
+        let data_key = {
+            "key": "all_pm13_14"
+        }
         $.get(source_file, data_key, function (data) {
             let image = "./img/markers/grey.png";
-       
+
             for (let index = 0; index < data.shape_arr.length; index++) {
                 let holder_points = [];
-    
+
                 let title = data.shape_arr[index].title;
                 let to_visualize_points = 0;
-            // filter points by type
-            
-             
-                    if (title == "PDN") {
-                        image = "./icons/yellowPin.png";
-                    } else if (title == "Ysleta") {
-                        image = "./icons/orangePin.png";
-                    } else if (title == "BOTA") {
+                // filter points by type
+
+
+                if (title == "PDN") {
+                    image = "./icons/yellowPin.png";
+                } else if (title == "Ysleta") {
+                    image = "./icons/orangePin.png";
+                } else if (title == "BOTA") {
                     image = "./icons/darkbluePin.png";
-                    } else if (title == "Santa Teresa") {
-                        image = "./icons/pinkPin.png";
-                    }else if (title == "Tornillo") {
-                        image = "./icons/greenPin.png";
-                    }
-          
+                } else if (title == "Santa Teresa") {
+                    image = "./icons/pinkPin.png";
+                } else if (title == "Tornillo") {
+                    image = "./icons/greenPin.png";
+                }
+
                 // if the station is not ignored then print it
-              
-                    holder_points.push(wktFormatterPoint(data.shape_arr[index]["shape"]));
-                    holder_points = holder_points[0][0]; // Fixes BLOBs
-                    to_visualize_points = { lat: parseFloat(holder_points[0].lat), lng: parseFloat(holder_points[0].lng) };
-                    let point = new google.maps.Marker({
-                        position:  to_visualize_points,
-                        title: title,
-                        icon: image
-                    });
-                    point.setMap(map);
-                    points.push(point);
-                
+
+                holder_points.push(wktFormatterPoint(data.shape_arr[index]["shape"]));
+                holder_points = holder_points[0][0]; // Fixes BLOBs
+                to_visualize_points = {
+                    lat: parseFloat(holder_points[0].lat),
+                    lng: parseFloat(holder_points[0].lng)
+                };
+                let point = new google.maps.Marker({
+                    position: to_visualize_points,
+                    title: title,
+                    icon: image
+                });
+                point.setMap(map);
+                points.push(point);
+
             }
         });
     }
 
     let php_handler = './mwt_handler.php';
-    let data_for_php = { 'key': 'all_pm13' };
+    let data_for_php = {
+        'key': 'all_pm13'
+    };
     // if mode == x ...
-    $.get(php_handler, data_for_php).done(function (data) {//succesful
+    $.get(php_handler, data_for_php).done(function (data) { //succesful
         let greatest = 0;
         let greatestStation = "";
 
@@ -128,7 +136,7 @@ function pm13Data(mode) {
 
             // Port of entry with highest personal vehicle traffic
             // If statement makes sure to keep track of greatest station on current type ONLY
-            if ((currentType == "driving" && mode == "psgrveh") || (currentType == "walking" && mode == "pedestrian") || (currentType == "freight" && mode == "freight") ) {
+            if ((currentType == "driving" && mode == "psgrveh") || (currentType == "walking" && mode == "pedestrian") || (currentType == "freight" && mode == "freight")) {
                 if (greatest < pdn) {
                     greatest = pdn;
                     greatestStation = "PDN";
@@ -150,7 +158,7 @@ function pm13Data(mode) {
                     greatestStation = "Ysleta DCL";
                 }
             }
-      
+
 
             // filter into data_by_mode_pm13 dictionary
 
@@ -165,7 +173,7 @@ function pm13Data(mode) {
                 data_by_mode_pm13.driving.tornillo.push(tornillo);
                 data_by_mode_pm13.driving.total.push(total);
                 data_by_mode_pm13.driving.period.push(period);
-        
+
             } else if (mode == "pedestrian") {
                 data_by_mode_pm13.walking.pdn.push(pdn);
                 data_by_mode_pm13.walking.ysleta.push(ysleta);
@@ -188,7 +196,7 @@ function pm13Data(mode) {
                 data_by_mode_pm13.freight.total.push(total);
             }
         }
-        
+
         // save greatest station info
         data_by_mode_pm13.text.greatest = greatest;
         data_by_mode_pm13.text.greatestStation = greatestStation;
@@ -196,12 +204,26 @@ function pm13Data(mode) {
         data_by_mode_pm13.text.averageD = (data_by_mode_pm13.driving.total.reduce((a, b) => a + b, 0) / data_by_mode_pm13.driving.total.length).toFixed(0);
         data_by_mode_pm13.text.averageF = (data_by_mode_pm13.freight.total.reduce((a, b) => a + b, 0) / data_by_mode_pm13.freight.total.length).toFixed(0);
         data_by_mode_pm13.text.averageW = (data_by_mode_pm13.walking.total.reduce((a, b) => a + b, 0) / data_by_mode_pm13.walking.total.length).toFixed(0);
-     
+
         //modes 
         if (mode == 0) { // menu text
-            document.getElementById("pm13DText").innerHTML = commafy(data_by_mode_pm13.text.averageD);
-            document.getElementById("pm13FText").innerHTML = commafy(data_by_mode_pm13.text.averageF);
-            document.getElementById("pm13WText").innerHTML = commafy(data_by_mode_pm13.text.averageW);
+            let driveValue = {
+                name: "pm13DText",
+                value: commafy(data_by_mode_pm13.text.averageD)
+            };
+            let freightValue = {
+                name: "pm13FText",
+                value: commafy(data_by_mode_pm13.text.averageF)
+            };
+            let walkingValue = {
+                name: "pm13WText",
+                value: commafy(data_by_mode_pm13.text.averageW)
+            };
+
+            menu.push(driveValue);
+            menu.push(freightValue);
+            menu.push(walkingValue);
+
         } else if (mode == 1) {
             regionalText(data_by_mode_pm13);
         }
@@ -210,6 +232,7 @@ function pm13Data(mode) {
         console.log(error);
     });
 }
+
 function getMaxOfArray(numArray) {
     return Math.max.apply(null, numArray);
 }
@@ -224,8 +247,9 @@ function parseStrArray2IntArray(string_arr_of_ints) {
     }
     return new_arr;
 }
+
 function pm13ModeGraph(ctx, data) {
-    let sum = [0,0,0,0,0];
+    let sum = [0, 0, 0, 0, 0];
     for (index in data.driving.total) {
         sum[index] += data.driving.total[index];
         sum[index] += data.walking.total[index];
@@ -233,8 +257,7 @@ function pm13ModeGraph(ctx, data) {
     }
     var data = {
         labels: data.driving.period,
-        datasets: [
-            {
+        datasets: [{
                 label: "Passenger Vechicles",
                 data: data.driving.total,
                 backgroundColor: "lightgreen",
@@ -323,6 +346,7 @@ function pm13ModeGraph(ctx, data) {
         }
     });
 }
+
 function pm13Chart(ctx, data) {
     let dataH = [];
     let datasetHolder = [];
@@ -330,8 +354,7 @@ function pm13Chart(ctx, data) {
     if (currentType == "driving") {
         dataH = data.driving;
         titleH = "Northbound Crossing of Passenger Vehicles";
-        datasetHolder = [
-            {
+        datasetHolder = [{
                 label: "PDN",
                 data: dataH.pdn,
                 backgroundColor: pdnColor,
@@ -399,8 +422,7 @@ function pm13Chart(ctx, data) {
     } else if (currentType == "freight") {
         dataH = data.freight;
         titleH = "Northbound Crossing of Cargo Trucks";
-        datasetHolder = [
-            {
+        datasetHolder = [{
                 label: "Ysleta",
                 data: dataH.ysleta,
                 backgroundColor: ysletaColor,
@@ -437,12 +459,11 @@ function pm13Chart(ctx, data) {
                 radius: 5
             }
         ];
-        
+
     } else if (currentType == "walking") {
         dataH = data.walking;
         titleH = "Northbound Crossing of Pedestrians";
-        datasetHolder = [
-            {
+        datasetHolder = [{
                 label: "PDN",
                 data: dataH.pdn,
                 backgroundColor: pdnColor,
@@ -492,7 +513,7 @@ function pm13Chart(ctx, data) {
 
     var data = {
         labels: dataH.period,
-        datasets:  datasetHolder
+        datasets: datasetHolder
     };
 
     //create Chart class object

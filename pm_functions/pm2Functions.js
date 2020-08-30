@@ -1,11 +1,11 @@
 /* Last Edited: Sebastian 1/22/2020
     Added calculations
- */    
+ */
+
 /* Last Edited: Brian 1/05/2019
 	Added plotpm2 method
  */
 function plotPM2(mode, ex) {
-    //alert("Debugging 2");
     let color = "#039BE5";
     let sum = 0;
     let data_for_php = 0;
@@ -13,9 +13,10 @@ function plotPM2(mode, ex) {
     let php_handler = "mwt_handler.php";
     if (mode == 0 || mode == 1) { // if we want regional (default) data
         let key = 'all_pm2';
-        data_for_php = { key: key };
-    }
-   else if (mode == 2) {
+        data_for_php = {
+            key: key
+        };
+    } else if (mode == 2) {
         data_for_php = ex;
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
@@ -25,8 +26,7 @@ function plotPM2(mode, ex) {
             corridors_selected: ex,
             tableName: "pm_1_2"
         };
-    }
-    else if (mode == 4 ){
+    } else if (mode == 4) {
         php_handler = "./backend/AOI.php";
         data_for_php = ex;
     }
@@ -47,7 +47,7 @@ function plotPM2(mode, ex) {
                     sum += parseFloat(data.shape_arr[index].pt_bike);
                 }
             }
-      
+
         }
         median = (sum / data.shape_arr.length).toFixed(2); // for color coding
         for (index in data.shape_arr) {
@@ -79,7 +79,8 @@ function plotPM2(mode, ex) {
                     description: "",
                     description_value: '',
                     paths: to_visualize,
-                    strokeColor: 'black', strokeOpacity: 0.60,
+                    strokeColor: 'black',
+                    strokeOpacity: 0.60,
                     strokeWeight: 0.70,
                     fillColor: color,
                     fillOpacity: 0.60,
@@ -89,9 +90,15 @@ function plotPM2(mode, ex) {
                 polyToErase.exist.push(polygon);
 
                 //   Hover Effect for Google API Polygons
-                google.maps.event.addListener(polygon, 'mouseover', function (event) { injectTooltip(event, polygon.title); });
-                google.maps.event.addListener(polygon, 'mousemove', function (event) { moveTooltip(event); });
-                google.maps.event.addListener(polygon, 'mouseout', function (event) { deleteTooltip(event); });
+                google.maps.event.addListener(polygon, 'mouseover', function (event) {
+                    injectTooltip(event, polygon.title);
+                });
+                google.maps.event.addListener(polygon, 'mousemove', function (event) {
+                    moveTooltip(event);
+                });
+                google.maps.event.addListener(polygon, 'mouseout', function (event) {
+                    deleteTooltip(event);
+                });
 
                 polygon.setMap(map);
                 polygons.push(polygon);
@@ -101,16 +108,16 @@ function plotPM2(mode, ex) {
 }
 
 /**Creates graph data for PM2*/
-function pm2Data(mode, ex){ // gets valuesPm2 for pm2 graph, returns array with percent
+function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with percent
     let file = './mwt_handler.php';
     let key = 'all_pm1';
     // ! change the handler and key if needed according to the MODE requested
     if (mode == 0 || mode == 1) { // if we want regional (default) data
         key = 'all_pm2';
-        key = { key: key };
-    }
-    else if (mode == 2) {
-        // data_for_php = data_to_plot;
+        key = {
+            key: key
+        };
+    } else if (mode == 2) {
         shape = 'ST_AsText(SHAPE)';
         file = "corridor_handlerB.php";
 
@@ -119,23 +126,22 @@ function pm2Data(mode, ex){ // gets valuesPm2 for pm2 graph, returns array with 
             corridors_selected: ex,
             tableName: "pm_1_2"
         };
-    }
-    else if (mode == 4 ){
+    } else if (mode == 4) {
         file = "./backend/AOI.php";
         key = ex;
     }
 
-    /** Fetch data from database */ 
-    $.get(file,key).done(function(data) {//succesful
-       //acknowledge fetch
-   //   if(mode != 0){ alert('Retrieving Data, this might take a minute to load');}
-       let for_pm2 = {
-        SOV:-1, //
-        Walking:-1,
-        Biking:-1,
-        Transit:-1,
-        Non_SOV:-1
-    };
+    /** Fetch data from database */
+    $.get(file, key).done(function (data) { //succesful
+        //acknowledge fetch
+        //   if(mode != 0){ alert('Retrieving Data, this might take a minute to load');}
+        let for_pm2 = {
+            SOV: -1, //
+            Walking: -1,
+            Biking: -1,
+            Transit: -1,
+            Non_SOV: -1
+        };
 
         // All BELOW IS MODE INDEPENDENT..data comes from the variable 'file'; the specific handler [AOI,MWT,CORRIDOR]
         let nonsove = [];
@@ -150,7 +156,7 @@ function pm2Data(mode, ex){ // gets valuesPm2 for pm2 graph, returns array with 
             bike_data.push(parseFloat(data.shape_arr[index].ra_bike));
             public_trans_data.push(parseFloat(data.shape_arr[index].ra_publict));
         }
-       
+
         //Non SOV
         let data_avg = arrSum(nonsove) / arrSum(b_e1);
         for_pm2.Non_SOV = data_avg * 100;
@@ -169,43 +175,50 @@ function pm2Data(mode, ex){ // gets valuesPm2 for pm2 graph, returns array with 
         // Transit
         data_avg = arrSum(public_trans_data) / arrSum(b_e1);
         for_pm2.Transit = data_avg * 100;
- 
-   /*     if(mode != 0){
-            alert('Data ready'); // after operations
-        } */
-   
+
         // Draw Shapes
-        plotPM2(mode,ex);
-        
+        plotPM2(mode, ex);
+
 
         if (mode == 0) {
-            document.getElementById("pm2-transit").innerHTML = for_pm2.Transit.toFixed(2) + "%";
-            document.getElementById("pm2-biking").innerHTML = for_pm2.Biking.toFixed(2) + "%";
-            document.getElementById("pm2-walking").innerHTML = for_pm2.Walking.toFixed(2) + "%";
-        }
-        else if (mode == 1) {
+            let transitValue = {
+                name: "pm2-transit",
+                value: for_pm2.Transit.toFixed(2) + "%"
+            };
+            let bikingValue = {
+                name: "pm2-biking",
+                value: for_pm2.Biking.toFixed(2) + "%"
+            };
+            let walkingValue = {
+                name: "pm2-walking",
+                value: for_pm2.Walking.toFixed(2) + "%"
+            };
+
+            menu.push(transitValue);
+            menu.push(bikingValue);
+            menu.push(walkingValue);
+
+        } else if (mode == 1) {
             regionalText(for_pm2);
-            
-        }
-        else if (mode == 2) {
+
+        } else if (mode == 2) {
             let corr = translateCorridor(ex.corridors_selected); // what corridor are we on?
             dynamicCorridorText(corr, for_pm2);
-        }
-        else if (mode == 4) {
+        } else if (mode == 4) {
             //	let corr = translateCorridor(data_to_plot.corridors_selected); // what corridor are we on?
-                dynamicCorridorText("AOI",for_pm2);
-            }
-    }).fail(function(error){//error
+            dynamicCorridorText("AOI", for_pm2);
+        }
+    }).fail(function (error) { //error
         alert('Whoops, we could not retrieve data from our database. Check your internet connection or contact MPO');
         console.log(error);
     });
 
-    
+
 
 }
 /** Draws pie chart for pm2*/
-function piechartpm2(ctx,data){
-    colors=[];
+function piechartpm2(ctx, data) {
+    colors = [];
     colors = [
         'rgba(255,82,0,0.5)',
         'rgba(92,187,3,0.5)',
@@ -234,24 +247,24 @@ function piechartpm2(ctx,data){
         },
         options: {
             responsive: true,
-            legend:{
+            legend: {
                 labels: {
                     fontSize: 13,
-                    boxWidth:15
+                    boxWidth: 15
                 }
             },
-           /* title: {
-                display: true,
-                text: 'Title 2'
-            },*/
+            /* title: {
+                 display: true,
+                 text: 'Title 2'
+             },*/
             tooltips: {
                 callbacks: {
-                  label: function(tooltipItem, data) {
-                    return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';
-                  }
+                    label: function (tooltipItem, data) {
+                        return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';
+                    }
                 }
-              }
+            }
         }
-       
+
     });
 }

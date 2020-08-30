@@ -13,12 +13,13 @@ function pm10Data(mode, condition) {
     };
 
     let key = 'all_pm10';
-    let example = { key: key };
+    let example = {
+        key: key
+    };
     let color = "#039BE5";
 
-    console.log('before 10');
+
     $.get('mwt_handler.php', example, function (data) {
-        console.log('after 10');
         for (index in data.shape_arr) {
             let temp = wktFormatter(data.shape_arr[index]['shape']);
             let to_visualize = [];
@@ -37,7 +38,7 @@ function pm10Data(mode, condition) {
             if (mode == 1) {
                 for (let i = 0; i < temp.length; i++) {
                     if (type == "ex" && condition == "e") {
-                        color = "#039BE5";//blue
+                        color = "#039BE5"; //blue
                         to_visualize.push(temp[i]);
                         polyToErase.exist.push();
                     } else if (type == "all" && condition == "p") {
@@ -64,9 +65,15 @@ function pm10Data(mode, condition) {
                 if (condition == "p") polyToErase.plan.push(polygon);
 
                 // Hover Effect for Google API Polygons
-                google.maps.event.addListener(polygon, 'mouseover', function (event) { injectTooltip(event, polygon.title); });
-                google.maps.event.addListener(polygon, 'mousemove', function (event) { moveTooltip(event); });
-                google.maps.event.addListener(polygon, 'mouseout', function (event) { deleteTooltip(event); });
+                google.maps.event.addListener(polygon, 'mouseover', function (event) {
+                    injectTooltip(event, polygon.title);
+                });
+                google.maps.event.addListener(polygon, 'mousemove', function (event) {
+                    moveTooltip(event);
+                });
+                google.maps.event.addListener(polygon, 'mouseout', function (event) {
+                    deleteTooltip(event);
+                });
 
                 polygon.setMap(map);
                 polygons.push(polygon);
@@ -76,9 +83,12 @@ function pm10Data(mode, condition) {
     });
 
 }
+
 function pm10Calculations(pm10Data, mode) {
     let key = 'all_pm9_10';
-    let example = { key: key };
+    let example = {
+        key: key
+    };
     $.get('mwt_handler.php', example, function (data) {
         let totPop = 0;
         for (index in data.shape_arr) {
@@ -90,7 +100,12 @@ function pm10Calculations(pm10Data, mode) {
         pm10Data.totalpeopleLivingTransit = ((pm10Data.all_ratio_sum / pm10Data.totPop) * 100);
 
         if (mode == 0) {
-            document.getElementById("pm10Text").innerHTML = pm10Data.peopleLivingTransit.toFixed(2) + "%"; // menu text
+            let value = {
+                name: "pm10Text",
+                value: pm10Data.peopleLivingTransit.toFixed(2) + "%"
+            };
+
+            menu.push(value);
         } else if (mode == 1) {
             regionalText(pm10Data);
         }
@@ -142,4 +157,3 @@ function pm10chart(g2, data) {
 
     });
 }
-

@@ -2,7 +2,7 @@
  * Creates graphs for PM19
  * Calculates data for both Pm18 and PM19
  *  
-*/
+ */
 /**
  * There are 4 types of mode
  * Mode 0: This is used when the page loads for the 1st time. Calculates Menu Text Only
@@ -33,9 +33,15 @@ function pm19Data(mode, ex) {
         injured_biking: [0, 0, 0, 0, 0],
         //Dynamic Variables
         crashCount: 0,
-        crashCountDK: 0, crashCountWK: 0, crashCountFK: 0, crashCountBK: 0,
+        crashCountDK: 0,
+        crashCountWK: 0,
+        crashCountFK: 0,
+        crashCountBK: 0,
         // Deaths Total  per category
-        dtot: 0, ftot: 0, wtot: 0, btot: 0,
+        dtot: 0,
+        ftot: 0,
+        wtot: 0,
+        btot: 0,
 
         currentCorridor: 'Entire Region',
 
@@ -55,7 +61,9 @@ function pm19Data(mode, ex) {
 
     if (mode == 0 || mode == 1) {
         key = 'all_pm18_19';
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) {
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
@@ -84,7 +92,7 @@ function pm19Data(mode, ex) {
         let crashCountF = 0;
         let crashCountW = 0;
         let crashCountB = 0;
-    
+
 
         pm19data.latestYear = latestYear;
 
@@ -109,7 +117,10 @@ function pm19Data(mode, ex) {
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
 
-                let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                let to_visualize = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
 
                 let point = new google.maps.Marker({
                     position: to_visualize,
@@ -174,7 +185,7 @@ function pm19Data(mode, ex) {
                     pm19data.non_injuri[0] += non_injuri;
                     pm19data.unknown_injuri[0] += unknown_injuri;
 
-                    if (classA > 0) {  //for line graph
+                    if (classA > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm19data.injured_walking[0] += classA;
                             pm19data.crashCountWK++; //count crash
@@ -212,7 +223,7 @@ function pm19Data(mode, ex) {
                     pm19data.non_injuri[1] += non_injuri;
                     pm19data.unknown_injuri[1] += unknown_injuri;
 
-                    if (classA > 0) {  //for line graph
+                    if (classA > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm19data.injured_walking[1] += classA;
                             pm19data.crashCountWK++; //count crash
@@ -237,7 +248,7 @@ function pm19Data(mode, ex) {
                             pm19data.crashCountFK++;
                             pm19data.crashCountWK++;
                         } else {
-                           // console.log(type);
+                            // console.log(type);
                         }
                     }
                 } else if (crash_year == latestYear - 2) {
@@ -251,7 +262,7 @@ function pm19Data(mode, ex) {
                     pm19data.unknown_injuri[2] += unknown_injuri;
 
 
-                    if (classA > 0) {  //for line graph
+                    if (classA > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm19data.injured_walking[2] += classA;
                             pm19data.crashCountWK++; //count crash
@@ -276,7 +287,7 @@ function pm19Data(mode, ex) {
                             pm19data.crashCountFK++;
                             pm19data.crashCountWK++;
                         } else {
-                          //  console.log(type);
+                            //  console.log(type);
                         }
                     }
                 } else if (crash_year == latestYear - 1) {
@@ -289,7 +300,7 @@ function pm19Data(mode, ex) {
                     pm19data.non_injuri[3] += non_injuri;
                     pm19data.unknown_injuri[3] += unknown_injuri;
 
-                    if (classA > 0) {  //for line graph
+                    if (classA > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm19data.injured_walking[3] += classA;
                             pm19data.crashCountWK++; //count crash
@@ -314,7 +325,7 @@ function pm19Data(mode, ex) {
                             pm19data.crashCountFK++;
                             pm19data.crashCountWK++;
                         } else {
-                          //  console.log(type);
+                            //  console.log(type);
                         }
                     }
                 } else if (crash_year == latestYear) {
@@ -327,7 +338,7 @@ function pm19Data(mode, ex) {
                     pm19data.non_injuri[4] += non_injuri;
                     pm19data.unknown_injuri[4] += unknown_injuri;
 
-                    if (classA > 0) {  //for line graph
+                    if (classA > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm19data.injured_walking[4] += classA;
                             pm19data.crashCountWK++; //count crash
@@ -352,7 +363,7 @@ function pm19Data(mode, ex) {
                             pm19data.crashCountFK++;
                             pm19data.crashCountWK++;
                         } else {
-                        //    console.log(type);
+                            //    console.log(type);
                         }
                     }
                 }
@@ -365,14 +376,31 @@ function pm19Data(mode, ex) {
         pm19data.ftot = pm19data.injured_freight.reduce((a, b) => a + b, 0);
         pm19data.wtot = pm19data.injured_walking.reduce((a, b) => a + b, 0);
         pm19data.btot = pm19data.injured_biking.reduce((a, b) => a + b, 0);
-//console.table(pm19data);
+        //console.table(pm19data);
 
         if (mode == 0) { // menu text, this is only done once
             // Send to menu Text
-            document.getElementById("pm19DrivingTex").innerHTML = pm19data.dtot;
-            document.getElementById("pm19FreightText").innerHTML = pm19data.ftot;
-            document.getElementById("pm19WalkingText").innerHTML = pm19data.wtot;
-            document.getElementById("pm19BikeText").innerHTML = pm19data.btot;
+            let drivingValue = {
+                name: "pm19DrivingTex",
+                value: pm19data.dtot
+            };
+            let freightValue = {
+                name: "pm19FreightText",
+                value: pm19data.ftot
+            };
+            let walkingValue = {
+                name: "pm19WalkingText",
+                value: pm19data.wtot
+            };
+            let bikeValue = {
+                name: "pm19BikeText",
+                value: pm19data.btot
+            };
+
+            menu.push(drivingValue);
+            menu.push(freightValue);
+            menu.push(walkingValue);
+            menu.push(bikeValue);
         }
 
         //calculations for static text
@@ -389,13 +417,11 @@ function pm19Data(mode, ex) {
 
         if (mode == 1) {
             regionalText(pm19data);
-        }
-        else if (mode == 2 || mode == 3) {
+        } else if (mode == 2 || mode == 3) {
             let corr = translateCorridor(data_for_php.corridors_selected); // what corridor are we on?
             pm19data.currentCorridor = corr;
             dynamicCorridorText(corr, pm19data); // Send graph data and current corridor to dynamic text for corridors
-        }
-        else if (mode == 4) {
+        } else if (mode == 4) {
             dynamicCorridorText("AOI", pm19data); // Send graph data and current corridor to dynamic text for corridors
 
         }
@@ -444,8 +470,7 @@ function pm19chartLine(ctx, data) {
 
     var data = {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
-        datasets: [
-            {
+        datasets: [{
                 label: pm19_graphTitle,
                 data: pm19_graphValues,
                 backgroundColor: "purple",

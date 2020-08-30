@@ -6,62 +6,64 @@ let ysC2 = '#FFB74D';
 let botaC = "#304FFE";
 let botaC2 = "#2196F3";
 
-function pm14Data(mode){ 
+function pm14Data(mode) {
     let php_handler = 'mwt_handler.php';
-    let data_for_php = {'key':'all_pm14'};
+    let data_for_php = {
+        'key': 'all_pm14'
+    };
     let data_by_mode_pm14 = {
-        'driving':{
-            pdn:[],
-            pdn_ready:[], 
-            bota:[], 
-            bota_ready:[], 
-            ysleta:[], 
-            ysleta_ready:[]
+        'driving': {
+            pdn: [],
+            pdn_ready: [],
+            bota: [],
+            bota_ready: [],
+            ysleta: [],
+            ysleta_ready: []
         },
-        'walking':{
-            pdn:[], 
-            pdn_ready:[], 
-            bota:[], 
-            ysleta:[]
+        'walking': {
+            pdn: [],
+            pdn_ready: [],
+            bota: [],
+            ysleta: []
         },
-        'freight':{
-            bota:[],
-            bota_fast:[], 
-            ysleta:[],
-            ysleta_fast:[]
+        'freight': {
+            bota: [],
+            bota_fast: [],
+            ysleta: [],
+            ysleta_fast: []
         },
         'text': {
-            latestYear:0,
+            latestYear: 0,
 
-            drivingTime:0,
-            walkingTime:0,
-            freightTime:0,
-    
-            driving_highest_wait_time_station:"",
-            walking_highest_wait_time_station:"",
-            freight_highest_wait_time_station:"",
+            drivingTime: 0,
+            walkingTime: 0,
+            freightTime: 0,
+
+            driving_highest_wait_time_station: "",
+            walking_highest_wait_time_station: "",
+            freight_highest_wait_time_station: "",
         }
     }
-    $.get(php_handler,data_for_php).done(function(data) {//succesful
+    $.get(php_handler, data_for_php).done(function (data) { //succesful
         let station = {
-            "driving":{
-                name:[],
-                wait_time:[]
+            "driving": {
+                name: [],
+                wait_time: []
             },
-            "walking":{
-                name:[],
-                wait_time:[]
+            "walking": {
+                name: [],
+                wait_time: []
             },
-            "freight":{
-                name:[],
-                wait_time:[]
+            "freight": {
+                name: [],
+                wait_time: []
             }
         };
 
         let recentYear = 0;
         for (index in data.shape_arr) {
             let year = data.shape_arr[index]['period'];
-            if(year > recentYear){
+            if (year > recentYear) {
                 recentYear = year;
             }
         }
@@ -76,11 +78,11 @@ function pm14Data(mode){
             let pdn_found = data.shape_arr[index]['PDN'];
             let pdn_r_found = data.shape_arr[index]['PDN_Ready'];
             let ysleta_found = data.shape_arr[index]['Ysleta'];
-            let ysleta_r_found= data.shape_arr[index]['Ysleta_Ready'];
-            let ysleta_f_found= data.shape_arr[index]['Ysleta_Fast'];
+            let ysleta_r_found = data.shape_arr[index]['Ysleta_Ready'];
+            let ysleta_f_found = data.shape_arr[index]['Ysleta_Fast'];
             // let santa_teresa_found= data.bridge_data.santa_teresa[index];
             // let tornillo_found= data.bridge_data.tornillo[index];
-    
+
             if (mode_found == 'psgrveh') {
                 data_by_mode_pm14.driving.bota.push(parseFloat(bota_found));
                 data_by_mode_pm14.driving.bota_ready.push(parseFloat(bota_r_found));
@@ -88,9 +90,9 @@ function pm14Data(mode){
                 data_by_mode_pm14.driving.pdn_ready.push(parseFloat(pdn_r_found));
                 data_by_mode_pm14.driving.ysleta.push(parseFloat(ysleta_found));
                 data_by_mode_pm14.driving.ysleta_ready.push(parseFloat(ysleta_r_found));
-    
-             // calculations for highest wait time
-                if(year == recentYear){
+
+                // calculations for highest wait time
+                if (year == recentYear) {
                     // times - - - - - -  NOTE: If more stations are added to driving then add extra station times here as well 
                     station.driving.wait_time.push(parseFloat(bota_found));
                     station.driving.wait_time.push(parseFloat(bota_r_found));
@@ -106,32 +108,30 @@ function pm14Data(mode){
                     station.driving.name.push("Ysleta");
                     station.driving.name.push("Ysleta Ready");
                 }
-            }
-            else if (mode_found == 'freight') {
+            } else if (mode_found == 'freight') {
                 data_by_mode_pm14.freight.bota.push(parseFloat(bota_found));
                 data_by_mode_pm14.freight.bota_fast.push(parseFloat(bota_f_found));
                 data_by_mode_pm14.freight.ysleta.push(parseFloat(ysleta_found));
                 data_by_mode_pm14.freight.ysleta_fast.push(parseFloat(ysleta_f_found));
-            // calculations for highest wait time
-                if(year == recentYear){
+                // calculations for highest wait time
+                if (year == recentYear) {
                     station.freight.wait_time.push(parseFloat(bota_found));
                     station.freight.wait_time.push(parseFloat(bota_f_found));
                     station.freight.wait_time.push(parseFloat(ysleta_found));
                     station.freight.wait_time.push(parseFloat(ysleta_f_found));
-                     //names - - - - - -  NOTE: If more stations are added to freight then add extra stations here as well 
+                    //names - - - - - -  NOTE: If more stations are added to freight then add extra stations here as well 
                     station.freight.name.push("BOTA");
                     station.freight.name.push("BOTA Fast");
                     station.freight.name.push("Ysleta Cargo");
                     station.freight.name.push("Ysleta Cargo Fast");
                 }
-            }
-            else if (mode_found == 'pedestrian') {
+            } else if (mode_found == 'pedestrian') {
                 data_by_mode_pm14.walking.pdn.push(parseFloat(pdn_found));
                 data_by_mode_pm14.walking.pdn_ready.push(parseFloat(pdn_r_found));
                 data_by_mode_pm14.walking.bota.push(parseFloat(bota_found));
                 data_by_mode_pm14.walking.ysleta.push(parseFloat(ysleta_found));
-             // calculations for highest wait time    
-                if(year == recentYear){
+                // calculations for highest wait time    
+                if (year == recentYear) {
                     station.walking.wait_time.push(parseFloat(bota_found));
                     station.walking.wait_time.push(parseFloat(bota_f_found));
                     station.walking.wait_time.push(parseFloat(ysleta_found));
@@ -142,38 +142,54 @@ function pm14Data(mode){
                     station.walking.name.push("BOTA");
                     station.walking.name.push("Ysleta");
                 }
-         
+
             }
         }
-        
-             //********** calculations 
-             // Average time 
-             data_by_mode_pm14.text.drivingTime = pm14_average(data_by_mode_pm14.driving).toFixed(2);
-             data_by_mode_pm14.text.walkingTime = pm14_average(data_by_mode_pm14.walking).toFixed(2);
-             data_by_mode_pm14.text.freightTime = pm14_average(data_by_mode_pm14.freight).toFixed(2);
-            // highest wait time
-             data_by_mode_pm14.text.driving_highest_wait_time = pm14_highest_wait_time(station.driving);
-             data_by_mode_pm14.text.walking_highest_wait_time = pm14_highest_wait_time(station.walking);
-             data_by_mode_pm14.text.freight_highest_wait_time = pm14_highest_wait_time(station.freight);
+
+        //********** calculations 
+        // Average time 
+        data_by_mode_pm14.text.drivingTime = pm14_average(data_by_mode_pm14.driving).toFixed(2);
+        data_by_mode_pm14.text.walkingTime = pm14_average(data_by_mode_pm14.walking).toFixed(2);
+        data_by_mode_pm14.text.freightTime = pm14_average(data_by_mode_pm14.freight).toFixed(2);
+        // highest wait time
+        data_by_mode_pm14.text.driving_highest_wait_time = pm14_highest_wait_time(station.driving);
+        data_by_mode_pm14.text.walking_highest_wait_time = pm14_highest_wait_time(station.walking);
+        data_by_mode_pm14.text.freight_highest_wait_time = pm14_highest_wait_time(station.freight);
 
 
-        if (mode == 0){
-            document.getElementById("pm14DText").innerHTML = commafy(data_by_mode_pm14.text.drivingTime) + " min";
-            document.getElementById("pm14FText").innerHTML = commafy(data_by_mode_pm14.text.freightTime) + " min";
-            document.getElementById("pm14WText").innerHTML = commafy(data_by_mode_pm14.text.walkingTime) + " min";
-        } 
+        if (mode == 0) {
+            let driveVal = {
+                name: "pm14DText",
+                value: commafy(data_by_mode_pm14.text.drivingTime) + " min"
+            };
+            let freightVal = {
+                name: "pm14FText",
+                value: commafy(data_by_mode_pm14.text.freightTime) + " min"
+            };
+            let walkVal = {
+                name: "pm14WText",
+                value: commafy(data_by_mode_pm14.text.walkingTime) + " min"
+            };
+
+            menu.push(driveVal);
+            menu.push(freightVal);
+            menu.push(walkVal);
+        }
         if (mode == 1) {
             draw_points_pm14();
             regionalText(data_by_mode_pm14);
         }
-    }).fail(function(error){
+    }).fail(function (error) {
         alert("ERROR PM 14");
         console.log(error);
     });
 }
+
 function draw_points_pm14() {
     let source_file = "mwt_handler.php";
-    let data_key = { "key": "all_pm13_14" }
+    let data_key = {
+        "key": "all_pm13_14"
+    }
     let ignore = false; // checks if we need to ignore a point or station
     $.get(source_file, data_key, function (data) {
         let image = "./img/markers/grey.png";
@@ -188,86 +204,37 @@ function draw_points_pm14() {
             } else if (title == "Ysleta") {
                 image = "./icons/orangePin.png";
             } else if (title == "BOTA") {
-            image = "./icons/darkbluePin.png";
+                image = "./icons/darkbluePin.png";
             } else if (title == "Santa Teresa") {
                 image = "./icons/pinkPin.png";
-            }else if (title == "Tornillo") {
+            } else if (title == "Tornillo") {
                 image = "./icons/greenPin.png";
             }
-                holder_points.push(wktFormatterPoint(data.shape_arr[index]["shape"]));
-                holder_points = holder_points[0][0]; // Fixes BLOBs
-                to_visualize_points = { lat: parseFloat(holder_points[0].lat), lng: parseFloat(holder_points[0].lng) };
-                let point = new google.maps.Marker({
-                    position: to_visualize_points,
-                    title: title,
-                    icon: image
-                });
-                point.setMap(map);
-                points.push(point);
-            
+            holder_points.push(wktFormatterPoint(data.shape_arr[index]["shape"]));
+            holder_points = holder_points[0][0]; // Fixes BLOBs
+            to_visualize_points = {
+                lat: parseFloat(holder_points[0].lat),
+                lng: parseFloat(holder_points[0].lng)
+            };
+            let point = new google.maps.Marker({
+                position: to_visualize_points,
+                title: title,
+                icon: image
+            });
+            point.setMap(map);
+            points.push(point);
+
 
         }
     });
-/*.fail(function (error) {
-        alert("ERROR PM 14");
-        console.log(error);
-    });*/
-    /*
-    let image = "./img/markers/grey.png";
-    for (let index = 0; index < 4; index++) {
-        let title = points_data.bridge_points.port_name[index];
-        let to_visualize;
-        to_visualize = points_data.bridge_points.port_point[index];
-
-        // filter points by type
-        if (currentType == "driving") {
-            if (title == "PDN") {
-                to_visualize = points_data.port_point[index];
-                image = "./icons/yellowPin.png";
-            } else if (title == "Ysleta") {
-                to_visualize = points_data.port_point[index];
-                image = "./icons/orangePin.png";
-            } else if (title == "BOTA") {
-                to_visualize = points_data.port_point[index];
-                image = "./icons/darkbluePin.png";
-            }
-        } else if (currentType == "freight") {
-            if (title == "Ysleta") {
-                to_visualize = points_data.port_point[index];
-                image = "./icons/orangePin.png";
-            } else if (title == "BOTA") {
-                to_visualize = points_data.port_point[index];
-                image = "./icons/darkbluePin.png";
-            }
-        } else if (currentType == "walking") {
-            if (title == "PDN") {
-                to_visualize = points_data.port_point[index];
-                image = "./icons/yellowPin.png";
-            } else if (title == "Ysleta") {
-                to_visualize = points_data.port_point[index];
-                image = "./icons/orangePin.png";
-            } else if (title == "BOTA") {
-                to_visualize = points_data.port_point[index];
-                image = "./icons/darkbluePin.png";
-            }
-        }
-
-        let point = new google.maps.Marker({
-            position: to_visualize,
-            title: title,
-            icon: image
-        });
-        point.setMap(map);
-        points.push(point);
-    }*/
 }
 
-function pm14_highest_wait_time(array){
+function pm14_highest_wait_time(array) {
     h_wait_time = 0;
     h_name = "";
 
     for (index in array.wait_time) {
-        if(array.wait_time[index] > h_wait_time){
+        if (array.wait_time[index] > h_wait_time) {
             h_wait_time = array.wait_time[index];
             h_name = array.name[index];
         }
@@ -277,21 +244,20 @@ function pm14_highest_wait_time(array){
 }
 
 // receives array of type. Ex: Driving array
-function pm14_average(array){
+function pm14_average(array) {
     let holder = [];
     for (index in array) {
-        let arrAvg = array[index].reduce((a,b) => a + b, 0) /  array[index].length; // get average of 1 array of the given category array
+        let arrAvg = array[index].reduce((a, b) => a + b, 0) / array[index].length; // get average of 1 array of the given category array
         holder.push(arrAvg); // push average into holder array
     }
-    return holder.reduce((a,b) => a + b, 0) / holder.length; // average of averages
+    return holder.reduce((a, b) => a + b, 0) / holder.length; // average of averages
 }
 
-function pm14DrivingChart(ctx,data14){ 
+function pm14DrivingChart(ctx, data14) {
     let latestYear = data14.text.latestYear;
     var data = {
-       labels: [latestYear-4,latestYear-3,latestYear-2,latestYear-1,latestYear],
-       datasets: [
-           {
+        labels: [latestYear - 4, latestYear - 3, latestYear - 2, latestYear - 1, latestYear],
+        datasets: [{
                 label: "PDN Personal Vehicles",
                 data: data14.driving.pdn,
                 backgroundColor: pdnC,
@@ -299,8 +265,8 @@ function pm14DrivingChart(ctx,data14){
                 fill: false,
                 lineTension: 0,
                 radius: 5
-           },
-           {
+            },
+            {
                 label: "PND Ready Personal Vehicles",
                 data: data14.driving.pdn_ready,
                 backgroundColor: pdnC2,
@@ -308,10 +274,10 @@ function pm14DrivingChart(ctx,data14){
                 fill: false,
                 lineTension: 0,
                 radius: 5
-           },
-           {
+            },
+            {
                 label: "BOTA Personal Vehicles",
-                data:  data14.driving.bota,
+                data: data14.driving.bota,
                 backgroundColor: botaC,
                 borderColor: botaC,
                 fill: false,
@@ -320,7 +286,7 @@ function pm14DrivingChart(ctx,data14){
             },
             {
                 label: "BOTA Ready Personal Vehicles",
-                data:  data14.driving.bota_ready,
+                data: data14.driving.bota_ready,
                 backgroundColor: botaC2,
                 borderColor: botaC2,
                 fill: false,
@@ -329,7 +295,7 @@ function pm14DrivingChart(ctx,data14){
             },
             {
                 label: "Ysleta Personal Vehicles",
-                data:  data14.driving.ysleta,
+                data: data14.driving.ysleta,
                 backgroundColor: ysC2,
                 borderColor: ysC2,
                 fill: false,
@@ -338,51 +304,52 @@ function pm14DrivingChart(ctx,data14){
             },
             {
                 label: "Ysleta Ready Personal Vehicles",
-                data:  data14.driving.ysleta_ready,
+                data: data14.driving.ysleta_ready,
                 backgroundColor: ysC,
                 borderColor: ysC,
                 fill: false,
                 lineTension: 0,
                 radius: 5
             }
-       ]
-   };
+        ]
+    };
 
-   //create Chart class object
-   var chart = new Chart(ctx, {
-       type: "line",
-       data: data,
-       options: {
-        responsive: true,
-        scales:{
-            yAxes: [{
-                scaleLabel: {
+    //create Chart class object
+    var chart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Mean (Minutes)'
+                    }
+                }]
+            },
+            legend: {
                 display: true,
-                labelString: 'Mean (Minutes)'
-             }
-         }]},
-        legend: {
-            display: true,
-            position: "bottom",
-            labels: {
-                fontColor: "#333",
-                fontSize: 12,
-                boxWidth:8
+                position: "bottom",
+                labels: {
+                    fontColor: "#333",
+                    fontSize: 12,
+                    boxWidth: 8
+                }
+            },
+            title: {
+                display: true,
+                text: 'Wait Times Personal Vehicles'
             }
-       },
-        title: {
-            display: true,
-            text: 'Wait Times Personal Vehicles'
         }
-    }
-   });
+    });
 }
-function pm14FreightChart(ctx,data14){
+
+function pm14FreightChart(ctx, data14) {
     let latestYear = data14.text.latestYear;
- var data = {
-    labels: [latestYear-4,latestYear-3,latestYear-2,latestYear-1,latestYear],
-       datasets: [
-           {
+    var data = {
+        labels: [latestYear - 4, latestYear - 3, latestYear - 2, latestYear - 1, latestYear],
+        datasets: [{
                 label: "BOTA Cargo",
                 data: data14.freight.bota,
                 backgroundColor: botaC,
@@ -390,17 +357,17 @@ function pm14FreightChart(ctx,data14){
                 fill: false,
                 lineTension: 0,
                 radius: 5
-           },
-           {
+            },
+            {
                 label: "BOTA Fast Cargo",
-                data:  data14.freight.bota_fast,
-                backgroundColor: botaC2 ,
+                data: data14.freight.bota_fast,
+                backgroundColor: botaC2,
                 borderColor: botaC2,
                 fill: false,
                 lineTension: 0,
                 radius: 5
-           },
-           {
+            },
+            {
                 label: "Ysleta Cargo",
                 data: data14.freight.ysleta,
                 backgroundColor: ysC,
@@ -418,63 +385,62 @@ function pm14FreightChart(ctx,data14){
                 lineTension: 0,
                 radius: 5
             }
-       ]
-   };
+        ]
+    };
 
     //options
-   var options = {
-    scales: {
-      },
-       responsive: true,
-       title: {
-       
-       },
-       legend: {
-       display: true,
-       position: "bottom",
-       labels: {
-           fontColor: "#333",
-           fontSize: 12,
-           boxWidth:10
-       }
-       }
-   };
+    var options = {
+        scales: {},
+        responsive: true,
+        title: {
 
-   //create Chart class object
-   var chart = new Chart(ctx, {
-       type: "line",
-       data: data,
-       options: {
-        scales:{
-            yAxes: [{
-                scaleLabel: {
-                display: true,
-                labelString: 'Mean (Minutes)'
-             }
-         }]},
+        },
         legend: {
             display: true,
             position: "bottom",
             labels: {
                 fontColor: "#333",
                 fontSize: 12,
-                boxWidth:10
+                boxWidth: 10
             }
-        },
-        title: {
-            display: true,
-            text: 'Wait Times Cargo Trucks'
         }
-    }
-   });
+    };
+
+    //create Chart class object
+    var chart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: {
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Mean (Minutes)'
+                    }
+                }]
+            },
+            legend: {
+                display: true,
+                position: "bottom",
+                labels: {
+                    fontColor: "#333",
+                    fontSize: 12,
+                    boxWidth: 10
+                }
+            },
+            title: {
+                display: true,
+                text: 'Wait Times Cargo Trucks'
+            }
+        }
+    });
 }
 
-function pm14WalkingChart(ctx,data14){
+function pm14WalkingChart(ctx, data14) {
     let latestYear = data14.text.latestYear;
     var data = {
-       labels: [latestYear-4,latestYear-3,latestYear-2,latestYear-1,latestYear],
-       datasets: [
-           {
+        labels: [latestYear - 4, latestYear - 3, latestYear - 2, latestYear - 1, latestYear],
+        datasets: [{
                 label: "PDN Pedestrians",
                 data: data14.walking.pdn,
                 backgroundColor: pdnC,
@@ -482,8 +448,8 @@ function pm14WalkingChart(ctx,data14){
                 fill: false,
                 lineTension: 0,
                 radius: 5
-           },
-           {
+            },
+            {
                 label: "PDN Ready Pedestrians",
                 data: data14.walking.pdn_ready,
                 backgroundColor: pdnC2,
@@ -491,8 +457,8 @@ function pm14WalkingChart(ctx,data14){
                 fill: false,
                 lineTension: 0,
                 radius: 5
-           },
-           {
+            },
+            {
                 label: "BOTA Pedestrians",
                 data: data14.walking.bota,
                 backgroundColor: botaC,
@@ -503,41 +469,42 @@ function pm14WalkingChart(ctx,data14){
             },
             {
                 label: "Ysleta Pedestrians",
-                data:  data14.walking.ysleta,
+                data: data14.walking.ysleta,
                 backgroundColor: ysC,
                 borderColor: ysC,
                 fill: false,
                 lineTension: 0,
                 radius: 5
             }
-       ]
-   };
+        ]
+    };
 
-   //create Chart class object
-   var chart = new Chart(ctx, {
-       type: "line",
-       data: data,
-       options: {
-        scales:{
-            yAxes: [{
-                scaleLabel: {
+    //create Chart class object
+    var chart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: {
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Mean (Minutes)'
+                    }
+                }]
+            },
+            legend: {
                 display: true,
-                labelString: 'Mean (Minutes)'
-             }
-         }]},
-        legend: {
-            display: true,
-            position: "bottom",
-            labels: {
-                fontColor: "#333",
-                fontSize: 12,
-                boxWidth:10
+                position: "bottom",
+                labels: {
+                    fontColor: "#333",
+                    fontSize: 12,
+                    boxWidth: 10
+                }
+            },
+            title: {
+                display: true,
+                text: 'Wait Times Pedestrians'
             }
-        },
-        title: {
-            display: true,
-            text: 'Wait Times Pedestrians'
         }
-    }
-   });
+    });
 }

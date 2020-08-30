@@ -2,7 +2,7 @@
  * Creates graph for PM22
  * Calculates graph data
  *  
-*/
+ */
 
 function pm22Data(mode, ex) {
     console.log("here 1");
@@ -15,7 +15,9 @@ function pm22Data(mode, ex) {
     }
 
     if (mode == 0 || mode == 1) {
-        data_for_php = { 'key': 'all_pm22' };
+        data_for_php = {
+            'key': 'all_pm22'
+        };
     } else if (mode == 2) {
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
@@ -23,7 +25,6 @@ function pm22Data(mode, ex) {
         data_for_php = {
             key: 22,
             corridors_selected: ex
-            //tableName: ""
         };
     }
 
@@ -33,24 +34,24 @@ function pm22Data(mode, ex) {
     let pm22_data = {
         currentCorridor: 'Entire Region',
         dynamic_txt_val: 0,
-        years:[],
+        years: [],
         TX: {
-            years:[],
+            years: [],
             killed: [0, 0, 0, 0, 0],
             classa: [0, 0, 0, 0, 0],
             classb: [0, 0, 0, 0, 0],
             classc: [0, 0, 0, 0, 0],
             classo: [0, 0, 0, 0, 0],
-            crashes:[0, 0, 0, 0, 0]
+            crashes: [0, 0, 0, 0, 0]
         },
         NM: {
-            years:[],
+            years: [],
             killed: [0, 0, 0, 0, 0],
             classa: [0, 0, 0, 0, 0],
             classb: [0, 0, 0, 0, 0],
             classc: [0, 0, 0, 0, 0],
             classo: [0, 0, 0, 0, 0],
-            crashes:[0, 0, 0, 0, 0]
+            crashes: [0, 0, 0, 0, 0]
         }
 
     }
@@ -58,15 +59,14 @@ function pm22Data(mode, ex) {
         pm22_data.currentCorridor = ex;
     }
 
-   // console.log("here2");
     //print lines when called from PM button menu
     if (mode > 0) {
         let source_file = "backend/cmp_lines_handler.php";
-        let data_for_lines = { "key": "pm22_lines" };
+        let data_for_lines = {
+            "key": "pm22_lines"
+        };
         $.get(source_file, data_for_lines, function (data) {
             for (let index = 0; index < data.shape_arr.length; index++) {
-                //       console.log('PRINT LINES CMP')
-
                 let shp = data.shape_arr[index]["shape"];
                 let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
                 let r = reader.read(shp); // r becomes an object from the 3rd party tool, for a single shp
@@ -94,9 +94,7 @@ function pm22Data(mode, ex) {
 
         });
     }
-    //console.log(php_handler);
-    //console.log(data_for_php);
-    
+
     $.get(php_handler, data_for_php, function (data) {
         let latestYear = 0;
         for (index in data.shape_arr) {
@@ -130,13 +128,13 @@ function pm22Data(mode, ex) {
 
             if (year_found == latestYear - 4) {
                 year_index = 0;
-  
+
             } else if (year_found == latestYear - 3) {
                 year_index = 1;
 
             } else if (year_found == latestYear - 2) {
                 year_index = 2;
- 
+
             } else if (year_found == latestYear - 1) {
                 year_index = 3;
 
@@ -145,15 +143,15 @@ function pm22Data(mode, ex) {
             }
 
             if (state == 48) {
-                pm22_data.TX.crashes[year_index] ++;//= killed + classa + classb + classc + classo;
+                pm22_data.TX.crashes[year_index]++; //= killed + classa + classb + classc + classo;
                 pm22_data.TX.killed[year_index] += killed;
                 pm22_data.TX.classb[year_index] += classb;
                 pm22_data.TX.classc[year_index] += classc;
                 pm22_data.TX.classa[year_index] += classa;
                 pm22_data.TX.classo[year_index] += classo;
-            
+
             } else if (state == 35) {
-                pm22_data.NM.crashes[year_index] ++//= killed + classa + classb + classc + classo;
+                pm22_data.NM.crashes[year_index]++ //= killed + classa + classb + classc + classo;
                 pm22_data.NM.killed[year_index] += killed;
                 pm22_data.NM.classb[year_index] += classb;
                 pm22_data.NM.classc[year_index] += classc;
@@ -172,14 +170,20 @@ function pm22Data(mode, ex) {
                 let holder = [];
                 holder.push(wktFormatterPoint(data.shape_arr[index]['shape']));
                 holder = holder[0][0]; // Fixes BLOB
-                cluster_points = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                cluster_points = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
                 cluster_markers.push(cluster_points);
             }
             for (index in data.shape_arr) {
                 let holder = [];
                 holder.push(wktFormatterPoint(data.shape_arr[index]['shape']));
                 holder = holder[0][0]; // Fixes BLOB
-                cluster_points = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                cluster_points = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
                 cluster_markers.push(cluster_points);
             }
             var markers = cluster_markers.map(function (location, i) {
@@ -190,32 +194,34 @@ function pm22Data(mode, ex) {
                 });
             });
             clusters.push(markers);
-            markerCluster = new MarkerClusterer(map, markers,
-                {
-                    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-                });
+            markerCluster = new MarkerClusterer(map, markers, {
+                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+            });
         }
         //dynamic text calculation
 
-        pm22_data.dynamic_txt_val  = pm22_data.TX.crashes.reduce((a,b) => a + b, 0);
-        pm22_data.dynamic_txt_val  += pm22_data.NM.crashes.reduce((a,b) => a + b, 0);
+        pm22_data.dynamic_txt_val = pm22_data.TX.crashes.reduce((a, b) => a + b, 0);
+        pm22_data.dynamic_txt_val += pm22_data.NM.crashes.reduce((a, b) => a + b, 0);
 
         if (mode == 0) {
-            document.getElementById('pm22Count').innerHTML = commafy(pm22_data.dynamic_txt_val);
-        }
-        else if (mode == 1) {
+            let val = {
+                name: "pm22Count",
+                value: commafy(pm22_data.dynamic_txt_val)
+            };
+
+            menu.push(val);
+        } else if (mode == 1) {
             regionalText(pm22_data);
-        }
-        else if (mode == 2) {
+        } else if (mode == 2) {
             dynamicCorridorText(corr, pm22_data); // Send graph data and current corridor to dynamic text for corridors
-        }
-        else if (mode == 4) {
+        } else if (mode == 4) {
             dynamicCorridorText("AOI", pm22_data); // Send graph data and current corridor to dynamic text for corridors
         }
     }).fail(function (error) {
         pm_error_handler(mode, ex);
     });
 }
+
 function arraySum(array1, array2) {
     let sum = [];
     for (var i = 0; i < array1.length; i++) {
@@ -241,8 +247,7 @@ function pm22chartLine(ctx, data) {
 
     var data = {
         labels: data.years,
-        datasets: [
-            {
+        datasets: [{
                 label: "Total Crashes",
                 data: data_crashes,
                 backgroundColor: "purple",
@@ -298,32 +303,29 @@ function pm22StackedChart(ctx, data) {
     if (titleH != 'Entire Region') { //if corridor, fix wording
         titleH = wordFix(titleH + " Corridor");
     }
-    //  console.log(data.TX.killed);
     var barChartData = {
-        labels: data.years,//[0], data.TX.years[1], data.TX.years[2],data.TX.years[3], data.TX.years[4]],
-        datasets: [
-            {
+        labels: data.years, //[0], data.TX.years[1], data.TX.years[2],data.TX.years[3], data.TX.years[4]],
+        datasets: [{
             label: 'Killed',
             backgroundColor: 'rgba(255,82,0,0.5)',
             data: arraySum(data.TX.killed, data.NM.killed)
-            }, {
-                label: 'Serious Injuries',
-                backgroundColor: 'rgba(92,187,3,0.5)',
-                data: arraySum(data.TX.classa, data.NM.classa)
-            },{
+        }, {
+            label: 'Serious Injuries',
+            backgroundColor: 'rgba(92,187,3,0.5)',
+            data: arraySum(data.TX.classa, data.NM.classa)
+        }, {
             label: 'Non-Incapacitating Injuries',
             backgroundColor: 'rgba(117,36,221,0.5)',
             data: arraySum(data.TX.classb, data.NM.classb)
-            },{
+        }, {
             label: 'Possible Injuries',
             backgroundColor: 'rgba(255,235,59,1)',
             data: arraySum(data.TX.classc, data.NM.classc)
-            },{
+        }, {
             label: 'Non-Injury',
             backgroundColor: 'rgb(255,0,255,0.5)',
             data: arraySum(data.TX.classo, data.NM.classo)
-            }
-        ]
+        }]
 
     };
     var chartBar = new Chart(ctx, {
@@ -365,4 +367,3 @@ function pm22StackedChart(ctx, data) {
     });
 
 }
-

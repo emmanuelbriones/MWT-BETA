@@ -4,9 +4,12 @@
  * in sharing and keeping track of global variables
  *   
  * */
+
+
  /**
  * Data only for pm1 [NonSOV, SOV] - builds pie chart
  *  */
+
 function plotPM1(mode, data_to_plot) {
     let color = "#039BE5";
     let sum = 0; 
@@ -33,8 +36,7 @@ function plotPM1(mode, data_to_plot) {
         php_handler = './backend/AOI.php'
         data_for_php =data_to_plot;
     }
-   // console.log(data_for_php);
- //   console.log(data_for_php);
+ 
     $.get(php_handler, data_for_php, function (data) {
         let median = 0;
         //to get median for color coding
@@ -47,8 +49,8 @@ function plotPM1(mode, data_to_plot) {
         for (index in data.shape_arr) {
             let temp = wktFormatter(data.shape_arr[index][shape]);
             let pm_prcnt_n = parseFloat(data.shape_arr[index].pt_nonsove).toFixed(2);
-            //let nonsov_e = parseFloat(data.shape_arr[index].nonsov_e);
             let to_visualize = [];
+
             if (mode > 0){
                 for (let i = 0; i < temp.length; i++) {
                     if (pm_prcnt_n == 0) {
@@ -93,7 +95,7 @@ function pm1chart(g2, data) {
         'rgba(255,152,0,1)',
     ];
     let tot = 100 - (Math.round(data.Sum_nonsov_e));
-   // console.log(tot);
+ 
     myPieChart = new Chart(g2, {
         type: 'pie',
         data: {
@@ -131,8 +133,6 @@ function pm1chart(g2, data) {
     });
 }
 function pieChartpm1(ctx,data){
- //   console.log("inside PM1 graph");
-   // console.log(data);
     colors = [];
     colors = [
         'rgba(33,150,243,1)',
@@ -243,7 +243,11 @@ function pm1Data(mode, data_to_plot) {
     
 
         if (mode == 0) {
-			document.getElementById("pm1-sov").innerHTML = for_pm1.SOV.toFixed(2) +  "%";
+            let value = {
+                name: "pm1-sov",
+                value: for_pm1.SOV.toFixed(2) +  "%"
+            };
+            menu.push(value);
         } else if (mode == 1) {
             regionalText(for_pm1);
         } else if (mode == 2) {

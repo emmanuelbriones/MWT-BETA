@@ -9,35 +9,36 @@
  */
 function pm4Data(mode, data_in) {
     let count = 0; // PM4 Data
-    let color = '#03A9F4'; 
+    let color = '#03A9F4';
     let caller = "mwt_handler.php";
     let shape = "shape";
     let key = 'all_pm4';
     let data_for_php = {};
     let pm4data = {
         dataW: 0,
-        dataB:0
+        dataB: 0
     }
 
     //let walkingTracker = 0; // Aids mode 0 distinguish the type
 
     if (mode == 0) {
-        data_for_php = { key: key };
-    }
-    else if ( mode == 1) {
-        data_for_php = { key: key };
-    }
-     else  if(mode == 2){
+        data_for_php = {
+            key: key
+        };
+    } else if (mode == 1) {
+        data_for_php = {
+            key: key
+        };
+    } else if (mode == 2) {
         caller = "corridor_handlerB.php";
         shape = 'ST_AsText(SHAPE)';
-    
+
         data_for_php = {
             key: 4,
             corridors_selected: data_in,
             tableName: "pm4"
         };
-    }
-    else if (mode == 4) { 
+    } else if (mode == 4) {
         caller = "./backend/AOI.php";
         data_for_php = data_in;
     }
@@ -55,18 +56,21 @@ function pm4Data(mode, data_in) {
             //PMS Data
 
             let pm4tct = data.shape_arr[index].tactcnt; // works for both walking and Biking
-            let type = data.shape_arr[index].type; 
+            let type = data.shape_arr[index].type;
 
             if (type == "walking") {
                 pm4data.dataW += parseInt(data.shape_arr[index].tactcnt); // count if total miles
-            } else if (type == "bike" ) {
+            } else if (type == "bike") {
                 pm4data.dataB += parseInt(data.shape_arr[index].tactcnt); // count if total miles
             }
 
 
             if (mode == 1 || mode == 2 || mode == 4) {
                 for (let i = 0; i < ln.length; i++) {
-                    coord = { lat: ln[i]['y'], lng: ln[i]['x'] }; // this is how lat & lng is interpreted by the tool
+                    coord = {
+                        lat: ln[i]['y'],
+                        lng: ln[i]['x']
+                    }; // this is how lat & lng is interpreted by the tool
                     to_visualize.push(coord); // pushing the interpretation to our to_visualize array
                 }
                 // filter colors 
@@ -86,14 +90,19 @@ function pm4Data(mode, data_in) {
                         zIndex: 99 // on top of every other shape
                     });
                     // Hover Effect for Google API Polygons
-                    google.maps.event.addListener(line, 'mouseover', function (event) { injectTooltip(event, pm4tct); });
-                    google.maps.event.addListener(line, 'mousemove', function (event) { moveTooltip(event); });
-                    google.maps.event.addListener(line, 'mouseout', function (event) { deleteTooltip(event); });
+                    google.maps.event.addListener(line, 'mouseover', function (event) {
+                        injectTooltip(event, pm4tct);
+                    });
+                    google.maps.event.addListener(line, 'mousemove', function (event) {
+                        moveTooltip(event);
+                    });
+                    google.maps.event.addListener(line, 'mouseout', function (event) {
+                        deleteTooltip(event);
+                    });
 
                     line.setMap(map);
                     polylines.push(line);
-                }
-                else if (currentType == "biking") {
+                } else if (currentType == "biking") {
                     if (pm4tct > 4 && pm4tct < 31) {
                         color = '#f44336';
                     } else if (pm4tct > 31 && pm4tct < 481) {
@@ -110,9 +119,15 @@ function pm4Data(mode, data_in) {
                         zIndex: 99 // on top of every other shape
                     });
                     // Hover Effect for Google API Polygons
-                    google.maps.event.addListener(line, 'mouseover', function (event) { injectTooltip(event, pm4tct); });
-                    google.maps.event.addListener(line, 'mousemove', function (event) { moveTooltip(event); });
-                    google.maps.event.addListener(line, 'mouseout', function (event) { deleteTooltip(event); });
+                    google.maps.event.addListener(line, 'mouseover', function (event) {
+                        injectTooltip(event, pm4tct);
+                    });
+                    google.maps.event.addListener(line, 'mousemove', function (event) {
+                        moveTooltip(event);
+                    });
+                    google.maps.event.addListener(line, 'mouseout', function (event) {
+                        deleteTooltip(event);
+                    });
 
                     line.setMap(map);
                     polylines.push(line);
@@ -122,23 +137,27 @@ function pm4Data(mode, data_in) {
         }
 
         if (mode == 0) {
-            document.getElementById("pm4WText").innerHTML = commafy(pm4data.dataW);
-            document.getElementById("pm4BText").innerHTML = commafy(pm4data.dataB);
+            let walkingValue = {
+                name: "pm4WText",
+                value: commafy(pm4data.dataW)
+            };
+            let bikingValue = {
+                name: "pm4BText",
+                value: commafy(pm4data.dataB)
+            };
         } else if (mode == 1) {
             regionalText(pm4data);
         } else if (mode == 2) {
             let corr2 = translateCorridor(data_in); // what corridor are we on?
             dynamicCorridorText(corr2, pm4data);
-        }
-        else if (mode == 4) {
+        } else if (mode == 4) {
             dynamicCorridorText("AOI", pm4data); // Send graph data and current corridor to dynamic text for corridors
         }
     }).fail(function (error) {
         console.log(error);
         alert("Error Fetching Data. Please Contact MPO.");
         clean();
-    }); 
+    });
 
 
 }
-

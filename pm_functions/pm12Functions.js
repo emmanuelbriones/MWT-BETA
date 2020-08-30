@@ -1,5 +1,3 @@
-
-
 function pm12Data(mode, ex) {
     var pm12Info = {
         pm12existing: 0,
@@ -17,19 +15,21 @@ function pm12Data(mode, ex) {
 
         tot: 0,
         existingMiles: 0,
-        proposedMiles:0,
+        proposedMiles: 0,
         milesExistingPercent: 0,
-        proposedBikewaysPercent:0, 
-        endPercentage:0 
+        proposedBikewaysPercent: 0,
+        endPercentage: 0
 
     };
     let php_handler = "mwt_handler.php";
-    let color = '#03A9F4';  
+    let color = '#03A9F4';
     let shape = 'shape';
 
     if (mode == 0 || mode == 1) {
         let key = 'all_pm12';
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) {
         php_handler = "corridor_handlerB.php";
         shape = 'ST_AsText(SHAPE)';
@@ -38,22 +38,21 @@ function pm12Data(mode, ex) {
             corridors_selected: ex,
             tableName: "pm12"
         };
-    }
-    else if (mode == 4) {
-        php_handler =" ./backend/AOI.php";
+    } else if (mode == 4) {
+        php_handler = " ./backend/AOI.php";
         data_for_php = ex;
     }
 
-    $.get(php_handler, data_for_php, function (data) { 
+    $.get(php_handler, data_for_php, function (data) {
 
-        for (index in data.shape_arr) { 
-            let shp = data.shape_arr[index][shape]; 
-            let reader = new jsts.io.WKTReader(); 
+        for (index in data.shape_arr) {
+            let shp = data.shape_arr[index][shape];
+            let reader = new jsts.io.WKTReader();
             let r = reader.read(shp);
-            let to_visualize = []; 
-            let coord; 
-            let ln = r.getCoordinates(); 
-    
+            let to_visualize = [];
+            let coord;
+            let ln = r.getCoordinates();
+
 
             //PMS Data
             let pm12Status = data.shape_arr[index].status; // used to color code lines
@@ -62,8 +61,11 @@ function pm12Data(mode, ex) {
 
             if (mode == 1 || mode == 2 || mode == 4) {
                 for (let i = 0; i < ln.length; i++) {
-                    coord = { lat: ln[i]['y'], lng: ln[i]['x'] };
-                    to_visualize.push(coord); 
+                    coord = {
+                        lat: ln[i]['y'],
+                        lng: ln[i]['x']
+                    };
+                    to_visualize.push(coord);
                 }
 
                 if (pm12Status.toLowerCase() == 'proposed') {
@@ -74,12 +76,12 @@ function pm12Data(mode, ex) {
                     color = '#3949AB';
                 }
 
-                let line = new google.maps.Polyline({ 
-                    path: to_visualize, 
+                let line = new google.maps.Polyline({
+                    path: to_visualize,
                     strokeColor: color,
                     strokeOpacity: .50,
                     strokeWeight: 4,
-                    zIndex: 99 
+                    zIndex: 99
                 });
                 line.setMap(map);
                 polylines.push(line);
@@ -101,7 +103,7 @@ function pm12Data(mode, ex) {
                     console.log(pm12Status);
                     console.log(pm12bikepath);
                 }
-            } else if (pm12Status == 'EXISTING' || pm12Status == 'Existing' || pm12Status == 'Existing/Proposed' ) {
+            } else if (pm12Status == 'EXISTING' || pm12Status == 'Existing' || pm12Status == 'Existing/Proposed') {
                 pm12Info.pm12existing += parseFloat(pm12mile);
                 pm12Info.tot += parseFloat(pm12mile)
                 if (pm12bikepath == "COEP") {
@@ -115,63 +117,52 @@ function pm12Data(mode, ex) {
                 } else {
                     console.log(pm12bikepath);
                 }
-            } else {            
-                //pm12Info.pdn_exist += parseFloat(pm12mile); // the values that fall in here are for pdn
+            } else {
                 pm12Info.tot += parseFloat(pm12mile)
                 console.log(pm12Status);
 
             }
         }
         // calculations
-
         pm12Info.proposedMiles = pm12Info.tot - pm12Info.pm12existing;
         pm12Info.milesExistingPercent = (pm12Info.pm12existing / pm12Info.tot) * 100;
         pm12Info.proposedBikewaysPercent = (pm12Info.tot - pm12Info.pm12existing) * 100;
         pm12Info.endPercentage = (pm12Info.proposedBikeways - pm12Info.milesExistingPercent) * 100;
-        
-
 
         let corr = translateCorridor(ex); // what corridor are we on?
 
 
         if (mode == 0) {
-            document.getElementById("pm12Text").innerHTML = pm12Info.pm12existing.toFixed(2);
+            let value = {
+                name: "pm12Text",
+                value: pm12Info.pm12existing.toFixed(2)
+            };
+            menu.push(value);
         } else if (mode == 1) {
-            console.log('12.5');
             regionalText(pm12Info);
         } else if (mode == 2) {
             dynamicCorridorText(corr, pm12Info);
-        }
-        else if (mode == 4) {
+        } else if (mode == 4) {
             dynamicCorridorText('AOI', pm12Info);
         }
-    });           
+    });
 }
 
-function pm12StackedChart(ctx,data) {
-    //prettyBlue = 'rgba(25, 118, 210, 1)';
-    //prettyGreen = 'rgba(29, 231, 130, 1)';
-    console.log('12 updated');
+function pm12StackedChart(ctx, data) {
     var barChartData = {
         labels: ['City of El Paso Bike Plan', 'PDN Paso del Norte Trial', 'Sunland Park Bike Trail', 'San Elizario'],
         datasets: [{
             label: 'Existing',
             backgroundColor: 'rgba(57,73,171 ,1)',
-            data: [ data.coep_exist.toFixed(2),  data.pdn_exist.toFixed(2),  data.sun_exist.toFixed(2), data.s_e_exist.toFixed(2)]
+            data: [data.coep_exist.toFixed(2), data.pdn_exist.toFixed(2), data.sun_exist.toFixed(2), data.s_e_exist.toFixed(2)]
         }, {
             label: 'Proposed',
             backgroundColor: 'rgba(129,199,132 ,1)',
-            data: [data.coep_prop.toFixed(2),  data.pdn_prop.toFixed(2), data.sun_prop.toFixed(2),data.s_e_prop.toFixed(2)]
+            data: [data.coep_prop.toFixed(2), data.pdn_prop.toFixed(2), data.sun_prop.toFixed(2), data.s_e_prop.toFixed(2)]
         }]
 
     };
-    /*
-    backgroundColor: '#1976D2',
-            data: [10,5,20,14]
-        }, {
-            label: 'Proposed',
-            backgroundColor: '#FF5722',
-            data: [5,6,8,12]*/ 
+
     var chartBar = new Chart(ctx, {
         type: "bar",
         data: barChartData,
@@ -200,9 +191,10 @@ function pm12StackedChart(ctx,data) {
                 }],
                 yAxes: [{
                     scaleLabel: {
-                    display: true,
-                    fontSize: 10,
-                    labelString: 'Number of Miles of Bikeways in the El Paso MPO Region'},
+                        display: true,
+                        fontSize: 10,
+                        labelString: 'Number of Miles of Bikeways in the El Paso MPO Region'
+                    },
                     stacked: true,
                     ticks: {
                         //max:45000

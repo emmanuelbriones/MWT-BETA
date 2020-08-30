@@ -633,47 +633,16 @@ function get_corridors_buffer() {
 }
 let corridorPointsT = [];
 
-// Loads graph Data, fetches go here
+// Loads Menu Data
 function performanceDataLoader() {
     toggleSpinner('on');
     var values;
     $.when(
        readJSON()
-       /* $.ajax(pm1Data(0, '')),
-        $.ajax(pm2Data(0, '')),
-        $.ajax(pm3Data(0, '')),
-        $.ajax(pm4Data(0, '')),
-        $.ajax(pm5Data(0, '')),
-        $.ajax(pm6Data(0, '')),
-        $.ajax(pm7Data(0, '')),
-        $.ajax(pm8Data(0, '')),
-        $.ajax(pm9Data(0, '')),
-        $.ajax(pm10Data(0, '')),
-        $.ajax(pm11Data(0, '')),
-        $.ajax(pm12Data(0, '')),
-        $.ajax(pm13Data(0)),
-        $.ajax(pm14Data(0)),
-        $.ajax(pm15Data(0)),
-        $.ajax(pm16Data(0)),
-        $.ajax(pm17Data(0)),
-        $.ajax(pm18Data(0, '')),
-        $.ajax(pm19Data(0, '')),
-        $.ajax(pm20Data(0, '')),
-        $.ajax(pm21Data(0, '')),
-        $.ajax(pm22Data(0, '')),
-        $.ajax(pm24Data(0, 'f')),
-        $.ajax(pm24Data(0, 'd')),
-        $.ajax(pm25Data(0, 'd')),
-        $.ajax(pm25Data(0, 't')),
-        $.ajax(pm25Data(0, 'f')),
-        $.ajax(pm26Data(0, 'd')),
-        $.ajax(pm26Data(0, 't')),
-        $.ajax(pm26Data(0, 'f'))
-        */
         )
         .done(function(){
-            console.log("values read");
-            console.log(values);
+           // console.log("values read");
+           // console.log(values);
             toggleSpinner('off');
         })
         .fail(function(error){

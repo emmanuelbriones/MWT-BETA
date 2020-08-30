@@ -1,4 +1,3 @@
-
 function pm15Data(mode) {
     var pm15Data = [];
     let images = [];
@@ -19,7 +18,9 @@ function pm15Data(mode) {
 
 
     let key = 'all_pm15_16_17g';
-    let example = { key: key };
+    let example = {
+        key: key
+    };
 
     //for calculations
     let greathestNum8 = 0;
@@ -129,11 +130,13 @@ function pm15Data(mode) {
             station1: greathestStat1,
             year_1: year1
         };
-        
+
         //print points 
         if (mode == 1) {
             key = 'all_pm15_16_17';
-            example = { key: key };
+            example = {
+                key: key
+            };
             $.get('mwt_handler.php', example, function (data) {
                 for (index in data.shape_arr) {
                     let holder = [];
@@ -143,7 +146,10 @@ function pm15Data(mode) {
                     holder = holder[0][0]; // Fixes BLOB
                     stationName = data.shape_arr[index]['station_na'];
 
-                    let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                    let to_visualize = {
+                        lat: parseFloat(holder[0].lat),
+                        lng: parseFloat(holder[0].lng)
+                    };
 
                     let point = new google.maps.Marker({
                         position: to_visualize,
@@ -152,16 +158,20 @@ function pm15Data(mode) {
                         icon: images[index]
                     });
 
-                        point.setMap(map);
-                        points.push(point);
-               
+                    point.setMap(map);
+                    points.push(point);
+
                 }
             });
         }
-    
+
         //menu text
         if (mode == 0) {
-            document.getElementById("pm15Text").innerHTML = pm15Data[pm15Data.length - 1].num8 + " ppb";
+            let val = {
+                name: "pm15Text",
+                value: pm15Data[pm15Data.length - 1].num8 + " ppb"
+            };
+            menu.push(val);
         } else if (mode == 1) {
             regionalText(pm15Data);
         }
@@ -173,8 +183,7 @@ function pm15Data(mode) {
 function pm15chartLine(ctx, data) {
     var data = {
         labels: ['2014', '2015', '2016', '2017', '2018'],
-        datasets: [
-            {
+        datasets: [{
                 label: data[5].name,
                 data: data[5].graphData,
                 backgroundColor: "red",
@@ -256,7 +265,7 @@ function pm15chartLine(ctx, data) {
                 boxWidth: 10
             }
         }
-     
+
     };
 
     //create Chart class object
@@ -270,8 +279,7 @@ function pm15chartLine(ctx, data) {
 function pm15chartLine2(ctx, data) {
     var data = {
         labels: ['2014', '2015', '2016', '2017', '2018'],
-        datasets: [
-            {
+        datasets: [{
                 label: data[0].name,
                 data: data[0].graphData,
                 backgroundColor: "yellow",
@@ -353,4 +361,3 @@ function pm15chartLine2(ctx, data) {
         options: options
     });
 }
-

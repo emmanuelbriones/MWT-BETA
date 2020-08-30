@@ -1,5 +1,3 @@
-
-
 function pm11Data(mode, ex) {
     let php_handler = "mwt_handler.php";
     let shape = "shape";
@@ -8,13 +6,15 @@ function pm11Data(mode, ex) {
     pm11data = {
         sideWalks: 0,
         roadways: 0,
-        missing:0
+        missing: 0
     }
 
     let color = '#0D47A1';
 
     if (mode == 0 || mode == 1) {
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) {
         php_handler = "corridor_handlerB.php";
         shape = 'ST_AsText(SHAPE)';
@@ -23,8 +23,7 @@ function pm11Data(mode, ex) {
             corridors_selected: ex,
             tableName: "pm11"
         };
-    }
-    else if(mode == 4){
+    } else if (mode == 4) {
         php_handler = "./backend/AOI.php";
         data_for_php = ex;
     }
@@ -46,7 +45,7 @@ function pm11Data(mode, ex) {
             if (mode == 1 || mode == 2 || mode == 4) {
                 if ('geometries' in r) { //multilinestrings
                     to_visualize = pm3_polyline_geojson_formatter(r);
-                 
+
                     for (i in to_visualize) {
                         let line = new google.maps.Polyline({ // it is a POLYLINE
                             path: to_visualize[i], // polyline has a path, defined by lat & lng 
@@ -71,14 +70,10 @@ function pm11Data(mode, ex) {
                     line.setMap(map);
                     polylines.push(line);
                 }
-       
+
             }
 
         }
-
-
-
-
 
         //convert feet to miles
         pm11data.sideWalks = parseInt(pm11data.sideWalks * 0.000189393939);
@@ -86,18 +81,22 @@ function pm11Data(mode, ex) {
         pm11data.missing = parseInt((pm11data.roadways * 2) - pm11data.sideWalks);
 
         if (mode == 0) {
-            document.getElementById("pm11WText").innerHTML = commafy(pm11data.sideWalks);
+            let value = {
+                name: "pm11WText",
+                value: commafy(pm11data.sideWalks)
+            };
+
+            menu.push(value);
+            
         } else if (mode == 1) {
             regionalText(pm11data);
         } else if (mode == 2) {
             let corr = translateCorridor(ex); // what corridor are we on?
             dynamicCorridorText(corr, pm11data);
-        }
-        else if (mode == 4) {
+        } else if (mode == 4) {
             dynamicCorridorText("AOI", pm11data);
         }
 
     });
 
 }
-    

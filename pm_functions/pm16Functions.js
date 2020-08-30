@@ -1,7 +1,6 @@
-
 function pm16Data(mode) {
     var pm16Data = [];
-	var greatest = [];
+    var greatest = [];
     let images = [];
 
     //store all colors for points
@@ -20,16 +19,16 @@ function pm16Data(mode) {
 
 
     let key = 'all_pm15_16_17g';
-    let example = { key: key };
+    let example = {
+        key: key
+    };
     //for calculations
-	
+
     let greathestNum = 0;
     let greathestStat = '';
     let year = 0;
 
     let i = 0; //helps on index of CO 
-
-
 
     //store graph data
     $.get('mwt_handler.php', example, function (data) {
@@ -41,7 +40,7 @@ function pm16Data(mode) {
             year3 = data.shape_arr[index].year3;
             year4 = data.shape_arr[index].year4;
             year5 = data.shape_arr[index].year5;
-           
+
 
             if (category == "CO") {
                 if (year1 == '0') {
@@ -63,10 +62,10 @@ function pm16Data(mode) {
                     name: stationName,
                     graphData: [year1, year2, year3, year4, year5]
                 };
-           
+
                 i++;
 
-                if (greathestNum < year1) {				
+                if (greathestNum < year1) {
                     greathestNum = year1;
                     year = 2014;
                     greathestStat = stationName;
@@ -91,43 +90,43 @@ function pm16Data(mode) {
                     year = 2018;
                     greathestStat = stationName;
                 }
-				
-				//store greatest on current station
-				greatest[i] = {
-					name: greathestStat,
-					year: year,
-					greathestNum: greathestNum
-				};
-				// reset
-				greathestNum = 0;
-				greathestStat = '';
-				year = 0;
-           
+
+                //store greatest on current station
+                greatest[i] = {
+                    name: greathestStat,
+                    year: year,
+                    greathestNum: greathestNum
+                };
+                // reset
+                greathestNum = 0;
+                greathestStat = '';
+                year = 0;
+
             }
         }
 
-		// sort all the greathest stations from highest to lowest 
-		greatest.sort(function(a, b){
-			return b.greathestNum-a.greathestNum
-		})
-		
-		
+        // sort all the greathest stations from highest to lowest 
+        greatest.sort(function (a, b) {
+            return b.greathestNum - a.greathestNum
+        })
+
         //adding dynamic variables to last element of our data 
         pm16Data[pm16Data.length] = {
             num: greatest[0].greathestNum,
             station: greatest[0].name,
             year: greatest[0].year,
-			
-			num2: greatest[1].greathestNum,
-			station2:  greatest[1].name,
-			year2:  greatest[1].year
+            num2: greatest[1].greathestNum,
+            station2: greatest[1].name,
+            year2: greatest[1].year
         };
- 
+
 
         //print points 
         if (mode == 1) {
             key = 'all_pm15_16_17';
-            example = { key: key };
+            example = {
+                key: key
+            };
             $.get('mwt_handler.php', example, function (data) {
                 for (index in data.shape_arr) {
                     let holder = [];
@@ -137,7 +136,10 @@ function pm16Data(mode) {
                     holder = holder[0][0]; // Fixes BLOB
                     stationName = data.shape_arr[index]['station_na'];
 
-                    let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                    let to_visualize = {
+                        lat: parseFloat(holder[0].lat),
+                        lng: parseFloat(holder[0].lng)
+                    };
 
                     let point = new google.maps.Marker({
                         position: to_visualize,
@@ -150,7 +152,7 @@ function pm16Data(mode) {
                         points.push(point);
                     }
 
-                 
+
 
                 }
             });
@@ -158,7 +160,12 @@ function pm16Data(mode) {
 
         //menu text
         if (mode == 0) {
-            document.getElementById("pm16Text").innerHTML = pm16Data[pm16Data.length - 1].num + " ppm";
+            let val = {
+                name: "pm16Text",
+                value: pm16Data[pm16Data.length - 1].num + " ppm"
+            };
+
+            menu.push(val);
         } else if (mode == 1) {
             regionalText(pm16Data);
         }
@@ -166,65 +173,60 @@ function pm16Data(mode) {
 }
 
 
-    function pm16chartLine(ctx, data) {
-        var data = {
-            labels: ['2014', '2015', '2016', '2017', '2018'],
-            datasets: [
-                {
-                    label: data[0].name,
-                    data: data[0].graphData,
-                    backgroundColor: "orange",
-                    borderColor: "orange",
-                    fill: false,
-                    lineTension: 0,
-                    radius: 5
-                },
-                {
-                    label: data[1].name,
-                    data: data[1].graphData,
-                    backgroundColor: "pink",
-                    borderColor: "pink",
-                    fill: false,
-                    lineTension: 0,
-                    radius: 5
-                }
-            ]
-        };
-
-
-        //options
-        var options = {
-            scales: {
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Parts per Million (ppm)'
-                    }
-                }]
+function pm16chartLine(ctx, data) {
+    var data = {
+        labels: ['2014', '2015', '2016', '2017', '2018'],
+        datasets: [{
+                label: data[0].name,
+                data: data[0].graphData,
+                backgroundColor: "orange",
+                borderColor: "orange",
+                fill: false,
+                lineTension: 0,
+                radius: 5
             },
-            responsive: true,
-            title: {
-
-            },
-            legend: {
-                display: true,
-                position: "bottom",
-                labels: {
-                    fontColor: "#333",
-                    fontSize: 12,
-                    boxWidth: 10
-                }
+            {
+                label: data[1].name,
+                data: data[1].graphData,
+                backgroundColor: "pink",
+                borderColor: "pink",
+                fill: false,
+                lineTension: 0,
+                radius: 5
             }
-        };
-
-        //create Chart class object
-        var chart = new Chart(ctx, {
-            type: "line",
-            data: data,
-            options: options
-        });
-    }
-  
+        ]
+    };
 
 
-    
+    //options
+    var options = {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Parts per Million (ppm)'
+                }
+            }]
+        },
+        responsive: true,
+        title: {
+
+        },
+        legend: {
+            display: true,
+            position: "bottom",
+            labels: {
+                fontColor: "#333",
+                fontSize: 12,
+                boxWidth: 10
+            }
+        }
+    };
+
+    //create Chart class object
+    var chart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: options
+    });
+}

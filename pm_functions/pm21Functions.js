@@ -3,7 +3,7 @@ function pm21Data(mode, ex) {
 }
 
 
-function loadpm21P(mode,ex) {
+function loadpm21P(mode, ex) {
     let data_for_php = 0;
     let shape = "shape";
     let php_handler = "mwt_handler.php";
@@ -11,14 +11,16 @@ function loadpm21P(mode,ex) {
 
     if (mode == 0 || mode == 1) { // if we want regional (default) data
         let key = 'all_pm21P';
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) { // if we want corridors
         data_for_php = ex;
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
     }
 
-    
+
     $.get(php_handler, data_for_php, function (data) {
         let image = "./img/markers/yellow.png";
         for (index in data.shape_arr) {
@@ -29,12 +31,15 @@ function loadpm21P(mode,ex) {
             if (hotspot_ty != "N/A") {
                 pm21dataCount++;
             }
-    
+
             if (mode == 1 || mode == 2) { // mode 1 and 2 allows us to store points
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
 
-                let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                let to_visualize = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
 
                 let point = new google.maps.Marker({
                     position: to_visualize,
@@ -44,11 +49,11 @@ function loadpm21P(mode,ex) {
                 });
                 point.setMap(map);
                 points.push(point);
-            
+
             }
         }
 
-     
+
         loadpm21Lines(mode, ex, pm21dataCount);
     });
 
@@ -62,7 +67,9 @@ function loadpm21H(mode, ex) {
 
     if (mode == 0 || mode == 1) { // if we want regional (default) data
         let key = 'all_pm21_h';
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) { // if we want corridors
         data_for_php = ex;
         shape = 'ST_AsText(SHAPE)';
@@ -70,8 +77,8 @@ function loadpm21H(mode, ex) {
     }
 
     $.get(php_handler, data_for_php, function (data) {
-        if (mode ==1) {
-            let color = "#039BE5";//blue
+        if (mode == 1) {
+            let color = "#039BE5"; //blue
             for (index in data.shape_arr) {
                 let temp = wktFormatter(data.shape_arr[index][shape]);
                 let to_visualize = [];
@@ -136,14 +143,19 @@ function loadpm21H(mode, ex) {
                 });
 
 
-                google.maps.event.addListener(polygon, 'mousemove', function (event) { moveTooltip(event); });
-                google.maps.event.addListener(polygon, 'mouseout', function (event) { deleteTooltip(event); infowindow.close(); });
+                google.maps.event.addListener(polygon, 'mousemove', function (event) {
+                    moveTooltip(event);
+                });
+                google.maps.event.addListener(polygon, 'mouseout', function (event) {
+                    deleteTooltip(event);
+                    infowindow.close();
+                });
 
                 polygon.setMap(map);
                 polygons.push(polygon);
             }
         }
-        
+
         loadpm21P(mode, ex);
     });
 }
@@ -156,7 +168,9 @@ function loadpm21Projected(mode, ex) {
 
     if (mode == 0 || mode == 1) { // if we want regional (default) data
         let key = 'all_pm21_pj';
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) { // if we want corridors
         data_for_php = ex;
         shape = 'ST_AsText(SHAPE)';
@@ -187,7 +201,7 @@ function loadpm21Projected(mode, ex) {
 
                 } else if (pattern == 'Sporadic Hot Spot') {
 
-                } 
+                }
 
                 to_visualize.push(temp[i]);
                 polyToErase.exist.push();
@@ -209,9 +223,15 @@ function loadpm21Projected(mode, ex) {
             polyToErase.exist.push(polygon);
 
             // Hover Effect for Google API Polygons
-            google.maps.event.addListener(polygon, 'mouseover', function (event) { injectTooltip(event, polygon.title); });
-            google.maps.event.addListener(polygon, 'mousemove', function (event) { moveTooltip(event); });
-            google.maps.event.addListener(polygon, 'mouseout', function (event) { deleteTooltip(event); });
+            google.maps.event.addListener(polygon, 'mouseover', function (event) {
+                injectTooltip(event, polygon.title);
+            });
+            google.maps.event.addListener(polygon, 'mousemove', function (event) {
+                moveTooltip(event);
+            });
+            google.maps.event.addListener(polygon, 'mouseout', function (event) {
+                deleteTooltip(event);
+            });
 
             polygon.setMap(map);
             polygons.push(polygon);
@@ -228,13 +248,15 @@ function loadpm21Lines(mode, ex, pm21dataCount) {
 
     if (mode == 0 || mode == 1) { // if we want regional (default) data
         let key = 'all_pm21_lines';
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) { // if we want corridors
         data_for_php = ex;
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
     }
-    let color = "#039BE5";//blue
+    let color = "#039BE5"; //blue
 
     $.get(php_handler, data_for_php, function (data) { // ajax call to populate pavement lines
         let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
@@ -244,29 +266,35 @@ function loadpm21Lines(mode, ex, pm21dataCount) {
             let to_visualize = []; // used to populate the map (latitude & longitude)
             let projectId = data.shape_arr[index]['project_id'];
             let hotspot_ty = data.shape_arr[index]['hotspot_ty'];
-       
-            if (hotspot_ty!="N/A") {
+
+            if (hotspot_ty != "N/A") {
                 pm21dataCount++;
             }
 
             if (mode == 1 || mode == 2) {
                 if ('geometries' in r) { //multilinestrings
                     to_visualize = pm3_polyline_geojson_formatter(r);
-                   
+
                     for (i in to_visualize) {
                         let line = new google.maps.Polyline({ // it is a POLYLINE
-                            title:projectId, // Add column that has name of project here !!!!!
+                            title: projectId, // Add column that has name of project here !!!!!
                             path: to_visualize[i], // polyline has a path, defined by lat & lng 
                             strokeColor: color,
                             strokeOpacity: .50,
                             strokeWeight: 4,
                             zIndex: 99 // on top of every other shape
                         });
-						
-						google.maps.event.addListener(line, 'mouseover', function (event) { injectTooltip(event, line.title); });
-						google.maps.event.addListener(line, 'mousemove', function (event) { moveTooltip(event); });
-						google.maps.event.addListener(line, 'mouseout', function (event) { deleteTooltip(event); });
-							
+
+                        google.maps.event.addListener(line, 'mouseover', function (event) {
+                            injectTooltip(event, line.title);
+                        });
+                        google.maps.event.addListener(line, 'mousemove', function (event) {
+                            moveTooltip(event);
+                        });
+                        google.maps.event.addListener(line, 'mouseout', function (event) {
+                            deleteTooltip(event);
+                        });
+
                         line.setMap(map);
                         polylines.push(line);
                     }
@@ -281,20 +309,30 @@ function loadpm21Lines(mode, ex, pm21dataCount) {
                         strokeWeight: 4,
                         zIndex: 99 // on top of every other shape
                     });
-					
-					google.maps.event.addListener(line, 'mouseover', function (event) { injectTooltip(event, line.title); });
-					google.maps.event.addListener(line, 'mousemove', function (event) { moveTooltip(event); });
-					google.maps.event.addListener(line, 'mouseout', function (event) { deleteTooltip(event); });
-					
+
+                    google.maps.event.addListener(line, 'mouseover', function (event) {
+                        injectTooltip(event, line.title);
+                    });
+                    google.maps.event.addListener(line, 'mousemove', function (event) {
+                        moveTooltip(event);
+                    });
+                    google.maps.event.addListener(line, 'mouseout', function (event) {
+                        deleteTooltip(event);
+                    });
+
                     line.setMap(map);
                     polylines.push(line);
                 }
             }
         }
-        if (mode ==0) {
-            document.getElementById("pm21Text").innerHTML = pm21dataCount;
-        }
-        else if (mode == 1) {
+        if (mode == 0) {
+            let val = {
+                name: "pm21Text",
+                value: pm21dataCount
+            };
+
+            menu.push(val);
+        } else if (mode == 1) {
             regionalText(pm21dataCount);
         }
 

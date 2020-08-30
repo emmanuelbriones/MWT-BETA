@@ -2,7 +2,8 @@
  * Creates graphs for PM18
  * Calculates data for both Pm18 and PM19
  *  
-*/
+ */
+
 /**
  * There are 4 types of mode
  * Mode 0: This is used when the page loads for the 1st time. Calculates Menu Text Only
@@ -16,7 +17,7 @@ function pm18Data(mode, ex) {
     let data_for_php = {};
 
     //stores graph values
-    var pm18data= {
+    var pm18data = {
         //barGraph
         classA: [0, 0, 0, 0, 0],
         classB: [0, 0, 0, 0, 0],
@@ -32,27 +33,35 @@ function pm18Data(mode, ex) {
         killed_biking: [0, 0, 0, 0, 0],
         //Dynamic Variables
         crashCount: 0,
-        crashCountDK: 0, crashCountWK: 0, crashCountFK: 0, crashCountBK: 0,
+        crashCountDK: 0,
+        crashCountWK: 0,
+        crashCountFK: 0,
+        crashCountBK: 0,
         // Deaths Total  per category
-        dtot: 0, ftot: 0, wtot: 0, btot: 0,
+        dtot: 0,
+        ftot: 0,
+        wtot: 0,
+        btot: 0,
         currentCorridor: 'Entire Region',
         dtextPercent: 0,
         dtextFatality: 0,
-        latestYear:0
+        latestYear: 0
     }
 
     //let data_for_php = 0;
     let shape = "shape";
     let php_handler = "mwt_handler.php";
     let key = "";
-    if(mode == 4){
+    if (mode == 4) {
         data_for_php = ex;
         php_handler = "./backend/AOI.php";
     }
 
     if (mode == 0 || mode == 1) {
         key = 'all_pm18_19';
-         data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) {
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
@@ -76,12 +85,13 @@ function pm18Data(mode, ex) {
                 latestYear = year;
             }
         }
+
         //crash counts
         let crashCountD = 0;
         let crashCountF = 0;
         let crashCountW = 0;
         let crashCountB = 0;
-        //crash count kills
+
 
         pm18data.latestYear = latestYear;
 
@@ -98,15 +108,18 @@ function pm18Data(mode, ex) {
             let classB = parseInt(data.shape_arr[index]['classB']);
             let classC = parseInt(data.shape_arr[index]['classC']);
             let classO = parseInt(data.shape_arr[index]['classO']);
-    
-      
+
+
             let ogrID = parseInt(data.shape_arr[index]['OGR_FID']);
-     
+
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
 
-                let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                let to_visualize = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
 
                 let point = new google.maps.Marker({
                     position: to_visualize,
@@ -115,7 +128,7 @@ function pm18Data(mode, ex) {
                     icon: image
                 });
 
-              
+
 
                 //filter crashes/points
                 if (currentType == "walking") {
@@ -127,7 +140,7 @@ function pm18Data(mode, ex) {
                     if ((type == "COMV" || type == "Commerical_Vehicles" || type == "BIKE_COMV" || type == "PED_COMV") && killed > 0) {
                         point.setMap(map);
                         points.push(point);
-                    } 
+                    }
                 } else if (currentType == "driving") {
                     if (type == "GEN" && killed > 0) {
                         point.setMap(map);
@@ -139,9 +152,9 @@ function pm18Data(mode, ex) {
                         points.push(point);
                     }
                 }
-              
-            }      
-			
+
+            }
+
             if (killed > 0 || classA > 0 || classB > 0 || classC > 0 || classO > 0 || non_injuri > 0 || unknown_injuri > 0) {
                 pm18data.crashCount++;
                 // crash counts
@@ -161,7 +174,7 @@ function pm18Data(mode, ex) {
                     crashCountW++;
                 }
 
-                if (crash_year == latestYear-4) {
+                if (crash_year == latestYear - 4) {
                     //for bar graph
                     pm18data.killed[0] += killed;
                     pm18data.classA[0] += classA;
@@ -170,8 +183,8 @@ function pm18Data(mode, ex) {
                     pm18data.classO[0] += classO;
                     pm18data.non_injuri[0] += non_injuri;
                     pm18data.unknown_injuri[0] += unknown_injuri;
-                 
-                    if (killed > 0) {  //for line graph
+
+                    if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm18data.killed_walking[0] += killed;
                             pm18data.crashCountWK++; //count crash
@@ -199,7 +212,7 @@ function pm18Data(mode, ex) {
                             console.log(type);
                         }
                     }
-                } else if (crash_year == latestYear-3) {
+                } else if (crash_year == latestYear - 3) {
                     //for bar graph
                     pm18data.killed[1] += killed;
                     pm18data.classA[1] += classA;
@@ -209,7 +222,7 @@ function pm18Data(mode, ex) {
                     pm18data.non_injuri[1] += non_injuri;
                     pm18data.unknown_injuri[1] += unknown_injuri;
 
-                    if (killed > 0) {  //for line graph
+                    if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm18data.killed_walking[1] += killed;
                             pm18data.crashCountWK++; //count crash
@@ -224,7 +237,7 @@ function pm18Data(mode, ex) {
                             pm18data.crashCountBK++; //count crash
                         } else if (type == "BIKE_COMV") {
                             pm18data.killed_biking[1] += killed;
-                            pm18data.killed_freight[1]+= killed;
+                            pm18data.killed_freight[1] += killed;
                             pm18data.crashCountBK++; //count crash
                             pm18data.crashCountFK++;
                             pm18data.crashCountBK++; //count crash
@@ -237,7 +250,7 @@ function pm18Data(mode, ex) {
                             console.log(type);
                         }
                     }
-                } else if (crash_year == latestYear-2) {
+                } else if (crash_year == latestYear - 2) {
                     //for bar graph
                     pm18data.killed[2] += killed;
                     pm18data.classA[2] += classA;
@@ -247,8 +260,8 @@ function pm18Data(mode, ex) {
                     pm18data.non_injuri[2] += non_injuri;
                     pm18data.unknown_injuri[2] += unknown_injuri;
 
-       
-                    if (killed > 0) {  //for line graph
+
+                    if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm18data.killed_walking[2] += killed;
                             pm18data.crashCountWK++; //count crash
@@ -276,7 +289,7 @@ function pm18Data(mode, ex) {
                             console.log(type);
                         }
                     }
-                } else if (crash_year == latestYear-1) {
+                } else if (crash_year == latestYear - 1) {
                     //for bar graph
                     pm18data.killed[3] += killed;
                     pm18data.classA[3] += classA;
@@ -286,7 +299,7 @@ function pm18Data(mode, ex) {
                     pm18data.non_injuri[3] += non_injuri;
                     pm18data.unknown_injuri[3] += unknown_injuri;
 
-                    if (killed > 0) {  //for line graph
+                    if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm18data.killed_walking[3] += killed;
                             pm18data.crashCountWK++; //count crash
@@ -324,7 +337,7 @@ function pm18Data(mode, ex) {
                     pm18data.non_injuri[4] += non_injuri;
                     pm18data.unknown_injuri[4] += unknown_injuri;
 
-                    if (killed > 0) {  //for line graph
+                    if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
                             pm18data.killed_walking[4] += killed;
                             pm18data.crashCountWK++; //count crash
@@ -354,8 +367,8 @@ function pm18Data(mode, ex) {
                     }
                 }
             }
-         
-        } 
+
+        }
 
         //calculations for menu Text, summations
         pm18data.dtot = pm18data.killed_Driving.reduce((a, b) => a + b, 0);
@@ -365,34 +378,48 @@ function pm18Data(mode, ex) {
 
 
         if (mode == 0) { // menu text, this is only done once
-            // Send to menu Text
-            document.getElementById("pm18DrivingText").innerHTML = pm18data.dtot;
-            document.getElementById("pm18FreightText").innerHTML = pm18data.ftot;
-            document.getElementById("pm18WalkingText").innerHTML = pm18data.wtot;
-            document.getElementById("pm18BikeText").innerHTML = pm18data.btot;
+            let drivingValue = {
+                name: "pm18DrivingText",
+                value: pm18data.dtot
+            };
+            let freightValue = {
+                name: "pm18FreightText",
+                value: pm18data.ftot
+            };
+            let walkingValue = {
+                name: "pm18WalkingText",
+                value: pm18data.wtot
+            };
+            let bikeValue = {
+                name: "pm18BikeText",
+                value: pm18data.btot
+            };
+
+            menu.push(drivingValue);
+            menu.push(freightValue);
+            menu.push(walkingValue);
+            menu.push(bikeValue);
         }
-         
+
         //calculations for static text
-		  if(currentType == 'driving') {
-              pm18data.dtextPercent = (pm18data.crashCountDK / crashCountD) * 100; 
-          } else if (currentType == 'walking') {
-              pm18data.dtextPercent = (pm18data.crashCountWK / crashCountW) * 100;  
-          } else if (currentType == 'biking') {
-              pm18data.dtextPercent = (pm18data.crashCountBK / crashCountB) * 100; 
-          } else if (currentType == 'freight') {
-              pm18data.dtextPercent = (pm18data.crashCountFK / crashCountF) * 100; 
-          }
-		  
-		  
+        if (currentType == 'driving') {
+            pm18data.dtextPercent = (pm18data.crashCountDK / crashCountD) * 100;
+        } else if (currentType == 'walking') {
+            pm18data.dtextPercent = (pm18data.crashCountWK / crashCountW) * 100;
+        } else if (currentType == 'biking') {
+            pm18data.dtextPercent = (pm18data.crashCountBK / crashCountB) * 100;
+        } else if (currentType == 'freight') {
+            pm18data.dtextPercent = (pm18data.crashCountFK / crashCountF) * 100;
+        }
+
+
         if (mode == 1) {
             regionalText(pm18data);
-        }
-        else if (mode == 2 || mode == 3 ) {
+        } else if (mode == 2 || mode == 3) {
             let corr = translateCorridor(data_for_php.corridors_selected); // what corridor are we on?
             pm18data.currentCorridor = corr;
             dynamicCorridorText(corr, pm18data); // Send graph data and current corridor to dynamic text for corridors
-        }
-        else if(mode == 4){
+        } else if (mode == 4) {
             dynamicCorridorText("AOI", pm18data); // Send graph data and current corridor to dynamic text for corridors
 
         }
@@ -441,8 +468,7 @@ function pm18chartLine(ctx, data) {
 
     var data = {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
-        datasets: [
-            {
+        datasets: [{
                 label: pm18_graphTitle,
                 data: pm18_graphValues,
                 backgroundColor: "purple",
@@ -501,29 +527,29 @@ function pm18StackedChart(ctx, data) {
     }
     var barChartData = {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
-			datasets: [{
-				label: 'Fatalities',
-				backgroundColor: 'rgba(255,82,0,0.5)',
-				data: data.killed
-			}, {
-				label: 'Serious Injuries',
-				backgroundColor: 'rgba(92,187,3,0.5)rgba(92,187,3,0.5)',
-				data: data.classA
-			}, {
-				label: 'Non-Incapacitating Injuries',
-                    backgroundColor: 'rgba(117,36,221,0.5)',
-                    data: data.classB
-			},  {
-				label: 'Possible Injuries',
-                    backgroundColor: 'rgba(255,235,59,1)',
-                    data: data.classC
-			},  {
-				label: 'Non-Injury',
-                    backgroundColor: 'rgb(255,0,255,0.5)',
-                    data: data.non_injuri
-			}]
+        datasets: [{
+            label: 'Fatalities',
+            backgroundColor: 'rgba(255,82,0,0.5)',
+            data: data.killed
+        }, {
+            label: 'Serious Injuries',
+            backgroundColor: 'rgba(92,187,3,0.5)rgba(92,187,3,0.5)',
+            data: data.classA
+        }, {
+            label: 'Non-Incapacitating Injuries',
+            backgroundColor: 'rgba(117,36,221,0.5)',
+            data: data.classB
+        }, {
+            label: 'Possible Injuries',
+            backgroundColor: 'rgba(255,235,59,1)',
+            data: data.classC
+        }, {
+            label: 'Non-Injury',
+            backgroundColor: 'rgb(255,0,255,0.5)',
+            data: data.non_injuri
+        }]
 
-	};
+    };
     var chartBar = new Chart(ctx, {
         type: "bar",
         data: barChartData,
@@ -534,9 +560,9 @@ function pm18StackedChart(ctx, data) {
                 labels: {
                     fontColor: "#333",
                     fontSize: 10,
-                    boxWidth:6
+                    boxWidth: 6
                 }
-                },
+            },
             title: {
                 display: true,
                 text: titleH,
@@ -561,5 +587,5 @@ function pm18StackedChart(ctx, data) {
             }
         }
     });
-	
+
 }

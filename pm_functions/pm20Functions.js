@@ -1,32 +1,27 @@
 function pm20Data(mode, corr) {
-    pm20_buffers(mode,corr);
-    
-
+    pm20_buffers(mode, corr);
 }
 
 
 function pm20_buffers(mode, corr) {
-  //  console.log(1);
     let pm20data = {
         countSumB: 0,
-        countSumP:0,
+        countSumP: 0,
 
         b_greatest: 0,
         b_greatestCounter: 1,
         b_address: 'beto',
         b_on_st: '',
         b_at_strt: 0,
-     //   b_count: 1,
 
         w_greatest: 0,
         w_greatestCounter: 1,
         w_address: '',
         w_on_st: '',
         w_at_strt: 0,
-       // w_count: 1,
 
         percentPed: 0,
-        percentBike:0
+        percentBike: 0
     };
 
     let data_for_php = 0;
@@ -36,9 +31,10 @@ function pm20_buffers(mode, corr) {
 
     if (mode == 0 || mode == 1) {
         key = 'all_pm20B';
-        data_for_php = { key: key };
-    } 
-    else if (mode == 2) {
+        data_for_php = {
+            key: key
+        };
+    } else if (mode == 2) {
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
 
@@ -47,8 +43,7 @@ function pm20_buffers(mode, corr) {
             corridors_selected: corr,
             tableName: "pm20_buffer"
         };
-    }
-    else if(mode == 4){
+    } else if (mode == 4) {
         data_for_php = corr;
         data_for_php.PM_SOURCE = "pm20_buffer";
         php_handler = "./backend/AOI.php"
@@ -56,7 +51,6 @@ function pm20_buffers(mode, corr) {
 
 
     $.get(php_handler, data_for_php, function (data) {
-      //  console.log(2);
         let color = "#1A237E"; // Blue
         let currentCount = 0;
 
@@ -72,7 +66,7 @@ function pm20_buffers(mode, corr) {
             //calculations 
             if (count_bike > 0) {
                 pm20data.countSumB += count_bike;
-            
+
                 if (count_bike == pm20data.b_greatest) {
                     pm20data.b_greatestCounter++;
                 }
@@ -87,7 +81,7 @@ function pm20_buffers(mode, corr) {
             }
             if (count_ped > 0) {
                 pm20data.countSumP += count_ped;
-           
+
                 if (count_ped == pm20data.w_greatest) {
                     pm20data.w_greatestCounter++;
                 }
@@ -127,10 +121,10 @@ function pm20_buffers(mode, corr) {
                     } else if (currentCount == 1) {
                         color = "#8BC34A"; //lime
                     } else if (currentCount == 2) {
-                        color = "#f44336";  //red
+                        color = "#f44336"; //red
                     }
                 }
-            
+
 
                 for (let i = 0; i < temp.length; i++) {
                     to_visualize.push(temp[i]);
@@ -161,14 +155,14 @@ function pm20_buffers(mode, corr) {
                     polygons.push(polygon);
                 }
             }
-           
-         
+
+
         }
         loadpm20P(mode, corr, pm20data);
     });
 }
+
 function loadpm20P(mode, corr, pm20data) {
- //   console.log(3);
     let data_for_php = 0;
     let shape = "shape";
     let php_handler = "mwt_handler.php";
@@ -183,7 +177,9 @@ function loadpm20P(mode, corr, pm20data) {
     }
 
     if (mode == 0 || mode == 1) {
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) {
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
@@ -193,11 +189,10 @@ function loadpm20P(mode, corr, pm20data) {
             corridors_selected: corr,
             tableName: "pm20_crashes"
         };
-    }
-    else if( mode == 4 ){
+    } else if (mode == 4) {
         php_handler = "./backend/AOI.php";
         data_for_php = corr;
-        data_for_php.PM_SOURCE ='pm20_crashes';
+        data_for_php.PM_SOURCE = 'pm20_crashes';
     }
 
 
@@ -205,12 +200,15 @@ function loadpm20P(mode, corr, pm20data) {
         for (index in data.shape_arr) {
             let holder = [];
             let type = data.shape_arr[index]['type'];
-            
+
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to store points
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
-                let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
-            
+                let to_visualize = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
+
 
                 let point = new google.maps.Marker({
                     position: to_visualize,
@@ -234,31 +232,37 @@ function loadpm20P(mode, corr, pm20data) {
                 pedCrash++;
             }
         }
-        // console.log(pedCrash);
-        // console.log(bikeCrash);
 
         //calculations
         pm20data.percentPed = (pm20data.countSumP * 100) / pedCrash;
         pm20data.percentBike = (pm20data.countSumB * 100) / bikeCrash;
         if (mode == 0) {
-            document.getElementById("pm20-B").innerHTML = pm20data.percentBike.toFixed(2) + '%';
-            document.getElementById("pm20-P").innerHTML = pm20data.percentPed.toFixed(2) + '%';
+            let bikeVal = {
+                name: "pm20-B",
+                value: pm20data.percentBike.toFixed(2) + '%'
+            };
+            let pedVal = {
+                name: "pm20-P",
+                value: pm20data.percentPed.toFixed(2) + '%'
+            };
+
+            menu.push(bikeVal);
+            menu.push(pedVal);
         } else if (mode == 1) {
             regionalText(pm20data);
         } else if (mode == 2) {
             let corr = translateCorridor(data_for_php.corridors_selected); // what corridor are we on?
             dynamicCorridorText(corr, pm20data);
-        }
-        else if (mode == 4) {
+        } else if (mode == 4) {
             dynamicCorridorText("AOI", pm20data);
         }
-        loadpm20Bus(mode,corr);
-        
+        loadpm20Bus(mode, corr);
+
     });
 
 }
+
 function loadpm20Bus(mode, corr) {
-    //console.log(5);
     let data_for_php = 0;
     let shape = "shape";
     let php_handler = "mwt_handler.php";
@@ -266,7 +270,9 @@ function loadpm20Bus(mode, corr) {
     let key = "all_pm20_bus";
 
     if (mode == 0 || mode == 1) {
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
     } else if (mode == 2) {
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
@@ -276,12 +282,11 @@ function loadpm20Bus(mode, corr) {
             corridors_selected: corr,
             tableName: "pm20_stationsbus"
         };
-    }
-    else if( mode == 4 ){
+    } else if (mode == 4) {
         data_for_php = corr;
         php_handler = "./backend/AOI.php"
         data_for_php = corr;
-        data_for_php.PM_SOURCE ='pm20_stationsbus';
+        data_for_php.PM_SOURCE = 'pm20_stationsbus';
         shape = 'ST_AsText(SHAPE)';
 
     }
@@ -295,7 +300,10 @@ function loadpm20Bus(mode, corr) {
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to store points
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
-                let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                let to_visualize = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
 
                 let point = new google.maps.Marker({
                     position: to_visualize,

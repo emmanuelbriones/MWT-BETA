@@ -2,7 +2,7 @@
  * Creates 2 graphs for PM26
  * Calculates percentage of Bridge Conditions
  *  
-*/
+ */
 /**
  * There are 4 types of mode
  * Mode 0: This is used when the page loads for the 1st time. Calculates Menu Text Only
@@ -53,7 +53,9 @@ function pm26Data(mode, ex) {
         if (currentType == "transit") {
             key = 'all_pm26T';
         }
-        data_for_php = { key: key };
+        data_for_php = {
+            key: key
+        };
 
 
     } else if (mode == 2 || mode == 3) { // if we want corridors
@@ -65,8 +67,7 @@ function pm26Data(mode, ex) {
             corridors_selected: ex,
             tableName: "pm26"
         };
-    }
-    else if (mode == 4) {
+    } else if (mode == 4) {
         data_for_php = ex; // in AOI: ex = AOI string , table from DB -> needed for PHP handler
         php_handler = "./backend/AOI.php";
     }
@@ -158,7 +159,7 @@ function pm26Data(mode, ex) {
                 } else {
                     pm26Data.nm_no_data_count++;
                 }
-            } else {//null
+            } else { //null
                 condition = 'No data';
                 image = "./img/markers/grey.png";
                 if (region == 'TX') {
@@ -171,7 +172,10 @@ function pm26Data(mode, ex) {
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to store points 
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
-                let to_visualize = { lat: parseFloat(holder[0].lat), lng: parseFloat(holder[0].lng) };
+                let to_visualize = {
+                    lat: parseFloat(holder[0].lat),
+                    lng: parseFloat(holder[0].lng)
+                };
                 let titleH = condition + ": " + lowestRating;
                 if (lowestRating == 999) {
                     titleH = condition;
@@ -229,19 +233,20 @@ function pm26Data(mode, ex) {
         if (mode == 0) { // menu text, this is only done once
             // ! mpo = ( (tx_poor + nm_poor) / 2 ) * 10  | operation was missing multiplication by 10 & text was missing  ' % '  character  
             mpo = (mpo * 10).toString() + ' %';
-
-            document.getElementById("pm26Text").innerHTML = mpo;
+            let val = {
+                name: "pm26Text",
+                value: mpo
+            };
+            menu.push(val);
         }
 
         let corr = translateCorridor(ex); // what corridor are we on?
 
         if (mode == 1) {
             regionalText(pm26Data);
-        }
-        else if (mode > 1 & mode < 4) {
+        } else if (mode > 1 & mode < 4) {
             dynamicCorridorText(corr, pm26Data); // Send graph data and current corridor to dynamic text for corridors
-        }
-        else if (mode == 4) {
+        } else if (mode == 4) {
             dynamicCorridorText("AOI", pm26Data); // Send graph data and current corridor to dynamic text for corridors
         }
 
@@ -253,13 +258,11 @@ function pm26Data(mode, ex) {
 
 //draw Chart
 function chart_pm26(g1, data) {
-    //  pm26Percentates();
     var myChart = new Chart(g1, {
         type: 'bar',
         data: {
             labels: [''],
-            datasets: [
-                {
+            datasets: [{
                     label: data.tx_good_count + " Good",
                     data: [data.goodTX],
                     backgroundColor: [
@@ -306,7 +309,8 @@ function chart_pm26(g1, data) {
 
                     ],
                     borderWidth: 1
-                }]
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -321,14 +325,12 @@ function chart_pm26(g1, data) {
                 text: 'Texas (' + data.totTXBridges + ' bridges)'
             },
             scales: {
-                yAxes: [
-                    {
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Percentage',
-                        },
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Percentage',
                     },
-                ],
+                }, ],
             },
         }
     });
@@ -340,8 +342,7 @@ function chart_pm26_2(g2, data) {
         type: 'bar',
         data: {
             labels: [''],
-            datasets: [
-                {
+            datasets: [{
                     label: 'Good',
                     data: [data.goodNM],
                     backgroundColor: [
@@ -388,7 +389,8 @@ function chart_pm26_2(g2, data) {
 
                     ],
                     borderWidth: 1
-                }]
+                }
+            ]
         },
         options: {
             responsive: true,
@@ -408,7 +410,9 @@ function chart_pm26_2(g2, data) {
                         beginAtZero: true,
                         callback: function (value) {
                             value = value / 100;
-                            return value.toLocaleString('en-US', { style: 'percent' });
+                            return value.toLocaleString('en-US', {
+                                style: 'percent'
+                            });
                         },
                     }
                 }]
@@ -416,4 +420,3 @@ function chart_pm26_2(g2, data) {
         }
     });
 }
-
