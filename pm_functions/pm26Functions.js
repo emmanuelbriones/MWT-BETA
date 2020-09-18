@@ -3,8 +3,9 @@
  * Calculates percentage of Bridge Conditions
  *  
  */
+
 /**
- * There are 4 types of mode
+ * There are 5 types of mode
  * Mode 0: This is used when the page loads for the 1st time. Calculates Menu Text Only
  * Mode 1: Regional Performance Points and data
  * Mode 2: Corridor Performance Points and data
@@ -13,6 +14,7 @@
  */
 
 function pm26Data(mode, ex) {
+    console.log(ex);
     let pm26Data = {
         goodTX: 0,
         fairTX: 0,
@@ -241,6 +243,19 @@ function pm26Data(mode, ex) {
             dynamicCorridorText(corr, pm26Data); // Send graph data and current corridor to dynamic text for corridors
         } else if (mode == 4) {
             dynamicCorridorText("AOI", pm26Data); // Send graph data and current corridor to dynamic text for corridors
+        } else if(mode == 3){
+            console.log(pm26Data);
+            console.log("BS");
+            let data = {
+                pm:'26',
+                type:currentType,
+                title:"Bridge & culvert condition 2018",
+                corridor: corr,
+                value:pm26Data.dynamicPoor + "%"
+            }
+            benchmarkData.push(data);
+
+            
         }
 
     }).fail(function (error) {

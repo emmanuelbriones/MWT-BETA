@@ -101,7 +101,7 @@ function pm6Calculations(pm6Data, mode) {
                 value: String(pm6Data.jobsPercent.toFixed(2)) + "%"
             };
 
-            menu.push(drivingValue);
+            menu.push(value);
         } else if (mode == 1) {
             regionalText(pm6Data);
         }

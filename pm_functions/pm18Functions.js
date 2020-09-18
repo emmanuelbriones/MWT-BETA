@@ -62,7 +62,7 @@ function pm18Data(mode, ex) {
         data_for_php = {
             key: key
         };
-    } else if (mode == 2) {
+    } else if (mode == 2 || mode == 3) {
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";
 
@@ -412,16 +412,24 @@ function pm18Data(mode, ex) {
             pm18data.dtextPercent = (pm18data.crashCountFK / crashCountF) * 100;
         }
 
+        let corr = translateCorridor(data_for_php.corridors_selected); // what corridor are we on?
 
         if (mode == 1) {
             regionalText(pm18data);
-        } else if (mode == 2 || mode == 3) {
-            let corr = translateCorridor(data_for_php.corridors_selected); // what corridor are we on?
+        } else if (mode == 2) {
             pm18data.currentCorridor = corr;
             dynamicCorridorText(corr, pm18data); // Send graph data and current corridor to dynamic text for corridors
+        } else if(mode == 3){
+            let data = {
+                pm:'18',
+                type:currentType,
+                title:"Fatalities 2013 - 2017",
+                corridor: corr,
+                value:pm18data.dtot
+            }
+            benchmarkData.push(data);
         } else if (mode == 4) {
             dynamicCorridorText("AOI", pm18data); // Send graph data and current corridor to dynamic text for corridors
-
         }
 
     }).fail(function (error) {

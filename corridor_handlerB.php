@@ -1,11 +1,8 @@
 <?php
 ini_set('memory_limit', '-1');
 ini_set('max_execution_time', 30000); //300 seconds = 5 minutes
-$user = "ctis";
-$db = "mpo_test_jhuerta";
-$ps = "19691963";
-$host = "irpsrvgis35.utep.edu";
-$conn = mysqli_connect($host, $user, $ps, $db);
+//conection to utep database
+require_once("./conn_mwt.php"); //file needed to make connection to DB, "$conn" variable originates from there
 
 $key = $_GET['key'];
 $corridors_selected = $_GET['corridors_selected'];//"mesa_buffer"; 

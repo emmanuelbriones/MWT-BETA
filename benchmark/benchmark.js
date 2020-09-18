@@ -8,7 +8,7 @@
     curly: true,
     loopfunc: true
 */
-let id = 0;  //* reference to the different layouts
+let id = 0; //* reference to the different layouts
 let benchmark_data; //* results of the data.
 let benchmark_layout; //* rows and options for the each of the tables
 
@@ -16,31 +16,30 @@ $('#benchmarking').click(() => {
     load_benchmark_modal();
     let content = $('#benchmark-content');
     let table = $('#benchmark-table');
-    let containers=$('#benchmark-containers');
+    let containers = $('#benchmark-containers');
     // console.log('table length: ' + table.length);
     // console.log('table children length: '+table.children().length);
 
-    if(table.children().length === 1 && containers.is(':empty')){ //* prevents duplicates
+    if (table.children().length === 1 && containers.is(':empty')) { //* prevents duplicates
 
-        if((benchmark_layout === undefined || null)|| ( benchmark_data === undefined || null) ){ //* prevents redundant requests
+        if ((benchmark_layout === undefined || null) || (benchmark_data === undefined || null)) { //* prevents redundant requests
             get_benchmark_data('benchmark/benchmark_layout.json')
-                .then(res=>{  //* fetch layout data.
+                .then(res => { //* fetch layout data.
                     // //console.log(res);
                     benchmark_layout = res;
                     create_benchmark_categories(res.pm_categories);
                 })
-                .then(res=>{
+                .then(res => {
                     get_benchmark_data('benchmark/benchmark_data_sr.json')
-                        .then(res =>{ //* get results data
+                        .then(res => { //* get results data
                             // //console.log(res);
                             benchmark_data = res;
-                            create_benchmark_column(benchmark_layout.corridors, res);        
+                            create_benchmark_column(benchmark_layout.corridors, res);
                         })
-                        .catch(err =>console.log(err));
-                }).catch(err =>console.log(err));
+                        .catch(err => console.log(err));
+                }).catch(err => console.log(err));
 
-        }
-        else{ //* reuse the loaded variables. if already there.
+        } else { //* reuse the loaded variables. if already there.
             create_benchmark_categories(benchmark_layout.pm_categories);
             create_benchmark_column(benchmark_layout.corridors, benchmark_data);
 
@@ -48,10 +47,10 @@ $('#benchmarking').click(() => {
     }
 });
 
-function load_benchmark_modal(){
+function load_benchmark_modal() {
     //refresh
     clean();
-    id= 0;
+    id = 0;
     let base_content = document.createElement('DIV');
     base_content.innerHTML = `
         <div class="modal fade in" id="benchmark">
@@ -91,7 +90,7 @@ function load_benchmark_modal(){
     and dictates the categories of the performances.
     Also it allows to run the same as the buttons on the regional performance.
 */
-function create_benchmark_categories(categories) { 
+function create_benchmark_categories(categories) {
     let root = document.getElementById('benchmark-table');
 
     let bench_cat = document.createElement('DIV');
@@ -116,8 +115,8 @@ function create_benchmark_categories(categories) {
     accordion.className = 'panel-group';
     accordion.id = 'cat-accordion';
 
-    for (let category in categories) {    //* categories are the different group of related PMs. (Driving, Fright, etc.)
-       //// console.log(category); // the keys
+    for (let category in categories) { //* categories are the different group of related PMs. (Driving, Fright, etc.)
+        //// console.log(category); // the keys
         let cat = document.createElement('DIV');
         let content = `
                     <div class="panel panel-default">
@@ -157,6 +156,7 @@ function create_benchmark_categories(categories) {
     bench_cat.appendChild(accordion);
     root.insertBefore(bench_cat, root.children[0]);
 }
+
 function create_benchmark_column(corridors, categories) { //* These columns are the ones that contain results of the pms.
     let target = document.getElementById('benchmark-containers');
     // create the container
@@ -173,7 +173,7 @@ function create_benchmark_column(corridors, categories) { //* These columns are 
                     <form action="" class="form-group"style="margin-bottom: 0.5rem;">
                         <select name="corridor" onChange="update_benchmark_column('${root.id}',this.value);"id="corridor-select" class="form-control">
             `;
-    
+
     // create title options
     corridors.forEach(corridor => {
         ////console.log(corridor);
@@ -200,13 +200,13 @@ function create_benchmark_column(corridors, categories) { //* These columns are 
 }
 
 //* this function creates the content of the accordion and gets appended to the benchmark
-function update_benchmark_column(id, corridor){  
-    console.log('id = ' +id);
-    console.log('corridor = '+ corridor);
+function update_benchmark_column(id, corridor) {
+    console.log('id = ' + id);
+    console.log('corridor = ' + corridor);
 
-    let root =  $('#'+id); //*parent benchmark column
+    let root = $('#' + id); //*parent benchmark column
 
-    if (root.children().length === 2){
+    if (root.children().length === 2) {
         root.children()[1].remove(); //* remove the 2nd element of the column a.k.a the accordion.
     }
 
@@ -230,16 +230,16 @@ function update_benchmark_column(id, corridor){
                                 </a>
                             </h2>
                         </div>`;
-        
-        if($('.'+category).hasClass('show')){ //* check if the other columns has the categories expanded.
+
+        if ($('.' + category).hasClass('show')) { //* check if the other columns has the categories expanded.
             content += `<div
                             class=" ${category} panel-collapse collapse show"
                         >`;
-        }else{
+        } else {
             content += `<div
                             class=" ${category} panel-collapse collapse"
                         >`;
-            }
+        }
         Object.keys(benchmark_data[category]).forEach(pm => {
             ////console.log('--'+pm);  //each of the categories
             content += `<li class="list-group-item">${benchmark_data[category][pm][corridor]}</li>`;
@@ -255,9 +255,9 @@ function update_benchmark_column(id, corridor){
     root.append(accordion);
 }
 
-function benchmark_activate_pm(id){ //* the function will click on the id that triggers the performance measures.
+function benchmark_activate_pm(id) { //* the function will click on the id that triggers the performance measures.
     // //console.log(id);
- //   $('#'+id).trigger('click');   /* this is the part where buttons get triggered.
+    //   $('#'+id).trigger('click');   /* this is the part where buttons get triggered.
 }
 
 function remove_benchmark_column(id) { //* deletes any of the benchmark columns being clicked.
@@ -266,6 +266,7 @@ function remove_benchmark_column(id) { //* deletes any of the benchmark columns 
     target.remove();
     ////console.log('current column removed');
 }
+
 function add_column() { //* adds a new column to benchmark to be compared. up to 3 only.
     parent = $('#benchmark-containers')[0];
     if (parent.children.length < 3) {
@@ -298,4 +299,3 @@ $('.driving').click(() => {
     console.log('driving hiding');
     $('.driving .panel-collapse .in').collapse('hide');
 });
-

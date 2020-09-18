@@ -1,11 +1,12 @@
 <?php
-//
+
 ini_set('memory_limit', '-1');
 ini_set('max_execution_time', 30000); //300 seconds = 5 minutes
 //conection to utep database
 require_once("./conn_mwt.php"); //file needed to make connection to DB, "$conn" variable originates from there
 
 $key = $_GET['key']; // key sent from front-end, from the object defined at the ajax call
+
 //global array that will return requested data
 $toReturn = array();
 $tables = array(); 															// used to store where the pm will be found ("found_in_table")

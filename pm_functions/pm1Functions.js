@@ -197,7 +197,7 @@ function pm1Data(mode, data_to_plot) {
         key = 'all_pm1';
         key = { key: key };
     }
-    else if (mode == 2) {
+    else if (mode == 2 || mode ==3) {
         // data_for_php = data_to_plot;
         shape = 'ST_AsText(SHAPE)';
         file = "corridor_handlerB.php";
@@ -253,6 +253,15 @@ function pm1Data(mode, data_to_plot) {
         } else if (mode == 2) {
 			let corr = translateCorridor(data_to_plot.corridors_selected); // what corridor are we on?
             dynamicCorridorText(corr,for_pm1);
+        }
+        else if (mode == 3) {
+            let data = {
+                pm:'1',
+                type:currentType,
+                title:"Bridge & culvert condition 2018",
+                corridor: corr,
+                value:pm26Data.dynamicPoor + "%"
+            }
         }
         else if (mode == 4) {
 		//	let corr = translateCorridor(data_to_plot.corridors_selected); // what corridor are we on?
