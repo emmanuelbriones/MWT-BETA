@@ -1,0 +1,234 @@
+<!-- National Measures -->
+<div id="national-measures" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title float-left">National Measures in El Paso Area</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="accordion" id="pms_accordion">
+
+                    <!-- DRIVING -->
+                    <div class="card">
+                        <div class="card-header text-center" id="heading1">
+                            <button class="btn  btn-light btn-lg btn-block collapsed " type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                <h5> PM1 - Safety </h5>
+                            </button>
+                        </div>
+                        <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#pms_accordion">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm26" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="pointHandler('pm26')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm26DText"></h3>
+                                                    <h5>Fatalities</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm18Driving" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="pointHandler('pm18Driving')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm18DrivingText"></h3>
+                                                    <h5>Rates of Fatalities</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm19Driving" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="pointHandler('pm19Driving')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm19DrivingTex"></h3>
+                                                    <h5>Serious injuries</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm1" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="polygonHandler('PM1')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm1-sov"></h3>
+                                                    <h5>Rate of Serious</h5>
+                                                    <h5>Injuries</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm22Driving" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="pointHandler('PM22');">
+                                                <!--  onclick="pointHandler('PM22') -->
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm22Count"></h3>
+                                                    <h5>Non-Motorized</h5>
+                                                    <h5>Fatalities</h5>
+                                                    <h5>and</h5>
+                                                    <h5>Serious Injuries</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FREIGHT -->
+                    <div class="card">
+                        <div class="card-header text-center" id="heading2">
+                            <button class="btn  btn-light btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                <h5> PM 2 - Infrastructure </h5>
+                            </button>
+                        </div>
+                        <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#pms_accordion">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm18Freight" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="pointHandler('pm18Freight')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm18FreightText"></h3>
+                                                    <h5>Bridges in Good</h5>
+                                                    <h5>Condition</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm19Freight" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="pointHandler('pm19Freight')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm19FreightText"></h3>
+                                                    <h5>Bridges in Poor</h5>
+                                                    <h5>Condition</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm13Freight" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="pointHandler('PM13F')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm13FText"></h3>
+                                                    <h5>Interestate</h5>
+                                                    <h5>Pavement</h5>
+                                                    <h5>in Good Condition</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div> 
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm14Freight" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="pointHandler('PM14F')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm14FText"></h3>
+                                                    <h5>National Highway</h5>
+                                                    <h5>System</h5>
+                                                    <h5>Non-Interstate</hs5>
+                                                    <h5>Pavement</h5>
+                                                    <h5>in Good Condition</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div> 
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm26F" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="pointHandler('pm26F')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm26FText"></h3>
+                                                    <h5>Interestate</h5>
+                                                    <h5>Pavement</h5>
+                                                    <h5>in Poor Condition</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="pm25Freight" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="lineHandler('PM25F')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm25FText"> </h3>
+                                                    <h5>National Highway</h5>
+                                                    <h5>System</h5>
+                                                    <h5>Non-Interstate</hs5>
+                                                    <h5>Pavement</h5>
+                                                    <h5>in Poor Condition</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TRANSIT -->
+                    <div class="card">
+                        <div class="card-header text-center" id="heading3">
+                            <button class="btn  btn-light btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                <h5> PM 3 - System Performance </h5>
+                            </button>
+                        </div>
+                        <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#pms_accordion">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="transitWC" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="polygonHandler('PM2T')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm2-transit"></h3>
+                                                    <h5>Interstate</h5>
+                                                    <h5>Reliability</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="PM3" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="lineHandler('PM3')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm3Text"></h3>
+                                                    <h5>Non-Interstate</h5>
+                                                    <h5>National Highway</h5>
+                                                    <h5>System Reliability</h5>
+                                                    <h5>XXXX - XXXX</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <button type="button" href="#" value="PM5" data-dismiss="modal" class="btn btn-info btn-lg same-btn-size btn-block " onclick="polygonHandler('PM5')">
+                                                <div data-target="#sidebar" data-toggle="collapse" aria-expanded="false" class="card-body">
+                                                    <h3 id="pm5Text"></h3>
+                                                    <h5>Truck Travel</h5>
+                                                    <h5>Time Reliability</h5>
+                                                    <h5>Index</h5>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>     <!-- END --- National Measures -->
