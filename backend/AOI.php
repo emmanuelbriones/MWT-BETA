@@ -25,8 +25,8 @@ $result = mysqli_query($conn, $query);
 /**
  * Select query to be run in database
  */
-if($active_pm == "pm_1_2_2021"){
-	$query = "SELECT ra_nonsove, ratio_area, b08301e1 as e1, b08301e3 as e3, publict_e, walk_e, bike_e, pt_nonsove, publict_m, walk_m, bike_m, ST_AsText(SHAPE) as shape FROM $active_pm WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 5), shape );";
+if($active_pm == "pm_1_2_new"){
+	$query = "SELECT ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike,ST_AsText(SHAPE) as shape FROM $active_pm WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4294967294), shape );";
 }
 
 else if($active_pm == "pm22txpoints" || $active_pm == "pm22nmpoints"){

@@ -24,7 +24,7 @@ $shape = array();												// for the data that will be returned, shape and va
 // ! some repetition needs to be addressed 
 
 if($key == "all_pm1" || $key == "all_pm2"){ 
-	$query = "select astext(SHAPE) as shape, ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, publict_e, walk_e, bike_e, pt_nonsove, publict_m, walk_m, bike_m from pm_1_2_2021;";
+	$query = "select astext(SHAPE) as shape, ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2_new;";
 }else if($key == "all_pmbridge"){ 
 	$query = "select astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm26"){ 

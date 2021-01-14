@@ -105,8 +105,8 @@ function AOI(AOI_STRING) {
         'all_pm24': 'pm24',
         'all_pm25': 'pm25',
         //Polygons
-        'all_pm1': 'pm_1_2_2021',
-        'all_pm2': 'pm_1_2_2021',
+        'all_pm1': 'pm_1_2_new',
+        'all_pm2': 'pm_1_2_new',
     }
     let table_wanted = tables_reference[active_pm_for_AOI];
     //console.log(table_wanted);
@@ -117,15 +117,13 @@ function AOI(AOI_STRING) {
     //   console.log(to_php);
 
     clearMetadata();
-    if (table_wanted == 'pm_1_2_2021') {
+    if (table_wanted == 'pm_1_2_new') {
         if(active_pm_for_AOI == 'all_pm1'){
             pm1Data(4,to_php);
         }
         else if (active_pm_for_AOI == 'all_pm2'){
             pm2Data(4,to_php);
         }
-
-
     }
     else if (table_wanted == 'pm26') {
         pm26Data(4, to_php);

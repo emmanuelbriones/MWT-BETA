@@ -24,7 +24,7 @@ function plotPM2(mode, ex) {
         data_for_php = {
             key: 1,
             corridors_selected: ex,
-            tableName: "pm_1_2"
+            tableName: "pm_1_2_new"
         };
     } else if (mode == 4) {
         php_handler = "./backend/AOI.php";
@@ -124,7 +124,7 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
         key = {
             key: 1,
             corridors_selected: ex,
-            tableName: "pm_1_2"
+            tableName: "pm_1_2_new"
         };
     } else if (mode == 4) {
         file = "./backend/AOI.php";
@@ -218,6 +218,8 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
 }
 /** Draws pie chart for pm2*/
 function piechartpm2(ctx, data) {
+    console.log("Sov:" + data.SOV);
+    console.log("Non Sov:" + data.Non_SOV);
     colors = [];
     colors = [
         'rgba(255,82,0,0.5)',
