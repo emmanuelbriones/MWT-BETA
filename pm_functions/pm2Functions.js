@@ -217,9 +217,7 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
 
 }
 /** Draws pie chart for pm2*/
-function piechartpm2(ctx, data) {
-    console.log("Sov:" + data.SOV);
-    console.log("Non Sov:" + data.Non_SOV);
+/*function piechartpm2(ctx, data) {
     colors = [];
     colors = [
         'rgba(255,82,0,0.5)',
@@ -259,7 +257,7 @@ function piechartpm2(ctx, data) {
                  display: true,
                  text: 'Title 2'
              },*/
-            tooltips: {
+            /*tooltips: {
                 callbacks: {
                     label: function (tooltipItem, data) {
                         return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';
@@ -269,4 +267,19 @@ function piechartpm2(ctx, data) {
         }
 
     });
+}*/
+
+function piechartpm2(ctx, data) {
+    var data = [
+        {
+            domain: { x: [0, 1], y: [0, 1] },
+            value: 84.0,
+            title: { text: "Transit" },
+            type: "indicator",
+            mode: "gauge+number"
+        }
+    ];
+    
+    var layout = { width: 300, height: 200, margin: { t: 0, b: 0 } };
+    Plotly.newPlot('chart1', data, layout);
 }
