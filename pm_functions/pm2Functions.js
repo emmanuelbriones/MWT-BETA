@@ -270,16 +270,41 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
 }*/
 
 function piechartpm2(ctx, data) {
-    var data = [
+    var dataset = [
         {
-            domain: { x: [0, 1], y: [0, 1] },
-            value: 84.0,
+            value: data.Transit.toFixed(1),
             title: { text: "Transit" },
             type: "indicator",
-            mode: "gauge+number"
+            mode: "gauge+number",
+            gauge: {axis: {visible: false, range: [0,100]}, bar: {color: "red"}},
+            domain: { row: 0, column:1 }
+        },
+        {
+            value: data.Biking,
+            title: { text: "Biking" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: {axis: {visible: false, range: [0,100]}, bar: {color: "yellow"}},
+            domain: { row: 1, column:0 }
+        },
+        {
+            value: data.Walking.toFixed(1),
+            title: { text: "Walking" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: {axis: {visible: false, range: [0,100]}, bar: {color: "blue"}},
+            domain: { row: 1, column:1 }
+        },
+        {
+            value: data.Non_SOV.toFixed(1),
+            title: { text: "Other (Non - Sov Driving)" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: {axis: {visible: false, range: [0,100]}, bar: {color: "green"}},
+            domain: { row: 1, column:2 }
         }
     ];
     
-    var layout = { width: 300, height: 200, margin: { t: 0, b: 0 } };
-    Plotly.newPlot('chart1', data, layout);
+    var layout = { width: 950, height: 600, margin: { t: 0, b: 0 }, grid: {rows:2, columns:3}};
+    Plotly.newPlot('chart1', dataset, layout);
 }

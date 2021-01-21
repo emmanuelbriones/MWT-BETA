@@ -736,7 +736,7 @@ function pm2Text(text, data) {
     anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
     anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("PM1 is calculated as:", "paragraph", "calc-info");
+    paragraphAdder("PM 2 is calculated as:", "paragraph", "calc-info");
     imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
     paragraphAdder("", "paragraph", "calc-info");
     imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
