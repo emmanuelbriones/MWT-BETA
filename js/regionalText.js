@@ -86,15 +86,15 @@ function regionalText(data) {
     }
 }
 function pm1R(data) {
-    let pm1RText = data.SOV.toFixed(2) + "% of workers living in the El Paso MPO area reported to drive alone during their commute to work,"
-        + "therefore only " + data.NonSOV.toFixed(2) + "% of workers commute via non-SOV modes, which includes carpooled via car, truck, or van. Workers"
+    let pm1RText = data.SOV.toFixed(1) + "% of workers living in the El Paso MPO area reported to drive alone during their commute to work,"
+        + "therefore only " + data.NonSOV.toFixed(1) + "% of workers commute via non-SOV modes, which includes carpooled via car, truck, or van. Workers"
         + "used Public Transport means such as bus or trolley bus, streetcar or trolley car, subway or elevated railroad, railroad,"
         + " and ferryboat. Some workers also used a taxicab, motorcycle, bicycle, walking, and other means to go to work or they worked"
         + " at home.";
     pm1Text(pm1RText, data)
 }
 function pm2R(data) {
-    let text = " During 2012-2016 " + data.Walking.toFixed(2)+ "% of workers living in the El Paso MPO area reported to walk to work, "+data.Biking.toFixed(2)+"% of workers bike, and "+data.Transit.toFixed(2)+"% of workers reported to commute by public transit.";
+    let text = " During 2012-2016 " + data.Walking.toFixed(1)+ "% of workers living in the El Paso MPO area reported to walk to work, "+data.Biking.toFixed(2)+"% of workers bike, and "+data.Transit.toFixed(1)+"% of workers reported to commute by public transit.";
     pm2Text(text,data);
 
 }

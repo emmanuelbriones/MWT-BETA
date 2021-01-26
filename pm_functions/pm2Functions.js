@@ -216,58 +216,6 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
 
 
 }
-/** Draws pie chart for pm2*/
-/*function piechartpm2(ctx, data) {
-    colors = [];
-    colors = [
-        'rgba(255,82,0,0.5)',
-        'rgba(92,187,3,0.5)',
-        'rgba(117,36,221,0.5)',
-        'rgba(228,245,20,0.5)',
-    ];
-    myPieChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            datasets: [{
-                data: [
-                    data.Transit.toFixed(2),
-                    data.Biking.toFixed(2),
-                    data.Walking.toFixed(2),
-                    data.Non_SOV.toFixed(2)
-                ],
-                backgroundColor: colors,
-                label: 'Dataset 1'
-            }],
-            labels: [
-                'Transit',
-                'Biking',
-                'Walking',
-                'Other Modes',
-            ]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                labels: {
-                    fontSize: 13,
-                    boxWidth: 15
-                }
-            },
-            /* title: {
-                 display: true,
-                 text: 'Title 2'
-             },*/
-            /*tooltips: {
-                callbacks: {
-                    label: function (tooltipItem, data) {
-                        return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';
-                    }
-                }
-            }
-        }
-
-    });
-}*/
 
 function piechartpm2(ctx, data) {
     var dataset = [
@@ -276,15 +224,25 @@ function piechartpm2(ctx, data) {
             title: { text: "Transit" },
             type: "indicator",
             mode: "gauge+number",
-            gauge: {axis: {visible: false, range: [0,100]}, bar: {color: "red"}},
+            gauge: {
+                axis: {visible: false, range: [0,100]}, bar: {color: "red"},
+                steps: [
+                    {range: [0,100], color: "lightgray"}
+                ]
+            },
             domain: { row: 0, column:1 }
         },
         {
-            value: data.Biking,
+            value: data.Biking.toFixed(2),
             title: { text: "Biking" },
             type: "indicator",
             mode: "gauge+number",
-            gauge: {axis: {visible: false, range: [0,100]}, bar: {color: "yellow"}},
+            gauge: {
+                axis: {visible: false, range: [0,100]}, bar: {color: "yellow"},
+                steps: [
+                    {range: [0,100], color: "lightgray"}
+                ]
+            },
             domain: { row: 1, column:0 }
         },
         {
@@ -292,19 +250,29 @@ function piechartpm2(ctx, data) {
             title: { text: "Walking" },
             type: "indicator",
             mode: "gauge+number",
-            gauge: {axis: {visible: false, range: [0,100]}, bar: {color: "blue"}},
+            gauge: {
+                axis: {visible: false, range: [0,100]}, bar: {color: "blue"},
+                steps: [
+                    {range: [0,100], color: "lightgray"}
+                ]
+            },
             domain: { row: 1, column:1 }
         },
         {
             value: data.Non_SOV.toFixed(1),
-            title: { text: "Other (Non - Sov Driving)" },
+            title: { text: "Other (Non - SOV Driving)" },
             type: "indicator",
             mode: "gauge+number",
-            gauge: {axis: {visible: false, range: [0,100]}, bar: {color: "green"}},
+            gauge: {
+                axis: {visible: false, range: [0,100]}, bar: {color: "green"},
+                steps: [
+                    {range: [0,100], color: "lightgray"}
+                ]
+            },
             domain: { row: 1, column:2 }
         }
     ];
     
-    var layout = { width: 950, height: 600, margin: { t: 0, b: 0 }, grid: {rows:2, columns:3}};
+    var layout = { width: 950, height: 600, margin: { t: 0, b: 0 }, grid: {rows:2, columns:3}, paper_bgcolor: "lightblue"};
     Plotly.newPlot('chart1', dataset, layout);
 }

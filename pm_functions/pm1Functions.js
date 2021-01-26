@@ -144,7 +144,7 @@ function pieChartpm1(ctx,data){
         type: 'pie',
         data: {
             datasets: [{
-                data: [data.NonSOV.toFixed(2), data.SOV.toFixed(2)],
+                data: [data.NonSOV.toFixed(1), data.SOV.toFixed(1)],
                 backgroundColor: colors,
                 label: 'Dataset 1'
             }],
@@ -245,7 +245,7 @@ function pm1Data(mode, data_to_plot) {
         if (mode == 0) {
             let value = {
                 name: "pm1-sov",
-                value: for_pm1.SOV.toFixed(2) +  "%"
+                value: for_pm1.SOV.toFixed(1) +  "%"
             };
             menu.push(value);
         } else if (mode == 1) {
