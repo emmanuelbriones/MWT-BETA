@@ -221,24 +221,26 @@ function piechartpm2(ctx, data) {
     var dataset = [
         {
             value: data.Transit.toFixed(1),
+            number: {suffix: "%"},
             title: { text: "Transit" },
             type: "indicator",
             mode: "gauge+number",
             gauge: {
-                axis: {visible: false, range: [0,100]}, bar: {color: "red"},
+                axis: {visible: false, range: [0,5]}, bar: {color: "blue"},
                 steps: [
                     {range: [0,100], color: "lightgray"}
                 ]
             },
-            domain: { row: 0, column:1 }
+            domain: { x: [0.2,0.8], y:[0.5,1] }
         },
         {
             value: data.Biking.toFixed(2),
+            number: {suffix: "%"},
             title: { text: "Biking" },
             type: "indicator",
             mode: "gauge+number",
             gauge: {
-                axis: {visible: false, range: [0,100]}, bar: {color: "yellow"},
+                axis: {visible: false, range: [0,5]}, bar: {color: "blue"},
                 steps: [
                     {range: [0,100], color: "lightgray"}
                 ]
@@ -247,11 +249,12 @@ function piechartpm2(ctx, data) {
         },
         {
             value: data.Walking.toFixed(1),
+            number: {suffix: "%"},
             title: { text: "Walking" },
             type: "indicator",
             mode: "gauge+number",
             gauge: {
-                axis: {visible: false, range: [0,100]}, bar: {color: "blue"},
+                axis: {visible: false, range: [0,5]}, bar: {color: "blue"},
                 steps: [
                     {range: [0,100], color: "lightgray"}
                 ]
@@ -260,11 +263,12 @@ function piechartpm2(ctx, data) {
         },
         {
             value: data.Non_SOV.toFixed(1),
-            title: { text: "Other (Non - SOV Driving)" },
+            number: {suffix: "%"},
+            title: { text: "Other (Non-SOV Driving)", font:{size:16}},
             type: "indicator",
             mode: "gauge+number",
             gauge: {
-                axis: {visible: false, range: [0,100]}, bar: {color: "green"},
+                axis: {visible: false, range: [0,40]}, bar: {color: "blue"},
                 steps: [
                     {range: [0,100], color: "lightgray"}
                 ]
@@ -273,6 +277,6 @@ function piechartpm2(ctx, data) {
         }
     ];
     
-    var layout = { width: 950, height: 600, margin: { t: 0, b: 0 }, grid: {rows:2, columns:3}, paper_bgcolor: "lightblue"};
+    var layout = { width: 750, height: 600, margin: { t: 0, b: 0 }, grid: {rows:2, columns:3}};
     Plotly.newPlot('chart1', dataset, layout);
 }

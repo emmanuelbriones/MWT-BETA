@@ -737,11 +737,11 @@ function pm2Text(text, data) {
     anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("PM 2 is calculated as:", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
+    imageAdder('./img/performance_measures/pm2/bikingEqn.PNG', 'calc-info');
     paragraphAdder("", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
+    imageAdder('./img/performance_measures/pm2/transEqn.PNG', 'calc-info');
     paragraphAdder("", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
+    imageAdder('./img/performance_measures/pm2/walkEqn.PNG', 'calc-info');
     //legend elements
     if (detectmob() != true) {
         let names = ['No Data', 'Below mean', 'Above Mean'];
