@@ -14,7 +14,6 @@ $shape = array(); // for the data that will be returned, shape and value
 if($key == 1) {
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	//$query = "SELECT OGR_FID,ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2,ST_AsText(SHAPE) FROM " . $active_pm ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 5), p.SHAPE ) and OGR_FID >0;";
 	$query = "SELECT ST_AsText(SHAPE),ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4294967294), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
@@ -125,11 +124,9 @@ else if($key == 22){
 }
 else if($key == 26){ 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
-	
 	$result = mysqli_query($conn, $query); 
-	$query = "select mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
-	
 
+	$query = "select mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 7), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -139,8 +136,8 @@ else if($key == 26){
 else if($key == 26.1){ 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "select deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
 
+	$query = "select deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 7), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 

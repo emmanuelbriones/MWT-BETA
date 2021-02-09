@@ -26,9 +26,9 @@ $shape = array();												// for the data that will be returned, shape and va
 if($key == "all_pm1" || $key == "all_pm2"){ 
 	$query = "select astext(SHAPE) as shape, ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2_new;";
 }else if($key == "all_pmbridge"){ 
-	$query = "select astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select astext(SHAPE) as shape from pm26_new where corridor_key = '$key'";
 }else if($key == "all_pm26"){ 
-	$query = "select mode,deck_cond_,superstruc,substruc_c,region,astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select mode,deck_cond_,superstruc,substruc_c,region,astext(SHAPE) as shape from pm26_new where corridor_key = '$key'";
 }else if($key == "all_pm3"){
 	$query = "select TotalRid_7 , TotalRid_1 , astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; // temporal note: find an elegant way to generalize this
 }else if($key == "all_pm4"){

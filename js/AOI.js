@@ -84,7 +84,7 @@ function AOI(AOI_STRING) {
     //  console.log("current active pm " + active_pm_for_AOI);
     let tables_reference = {
         //Points:
-        'all_pm26': 'pm26',			//done
+        'all_pm26': 'pm26_new',			//done
         'all_pm13_14': 'pm14points',
         'all_pm21P': 'pm21_points', // does not exist in PM folder
         'all_pm7P': 'pm7_planbrst', //pending dynamic data
@@ -125,7 +125,7 @@ function AOI(AOI_STRING) {
             pm2Data(4,to_php);
         }
     }
-    else if (table_wanted == 'pm26') {
+    else if (table_wanted == 'pm26_new') {
         pm26Data(4, to_php);
 
     }

@@ -65,7 +65,7 @@ function pm26Data(mode, ex) {
         data_for_php = {
             key: 26,
             corridors_selected: ex,
-            tableName: "pm26"
+            tableName: "pm26_new"
         };
     } else if (mode == 4) {
         data_for_php = ex; // in AOI: ex = AOI string , table from DB -> needed for PHP handler
