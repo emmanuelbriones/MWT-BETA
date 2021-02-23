@@ -63,10 +63,9 @@ function pm1DynamicText(corridor, data) {
 }
 
 function pm2DynamicText(corridor, data) {
-    let text = "During 2012-2016 " + data.Walking.toFixed(2)+ "% of workers living in the El Paso MPO area reported to walk to work, "+data.Biking.toFixed(2)+"% of workers bike, and "+data.Transit.toFixed(2)+"% of workers reported to commute by public transit.";
+    let text = " During 2014-2018 " + data.Transit.toFixed(1)+"% of workers reported to commute by public transit, " + data.Biking.toFixed(2)+"% of workers bike, " + data.Walking.toFixed(1)+ "% of workers living in the El Paso MPO area reported to walk to work, and " + data.Non_SOV.toFixed(1) + "% of workers used other means.";
     pm2Text(text, data);
 }
-
 
 function pm24DynamicText(corridor, data) {
     canvasMaker('chart1', 'myChart');
@@ -391,7 +390,7 @@ function pm26DynamicText(corridor, data) {
     paragraphAdder("Bridge condition rating is based on the lowest condition rating from the following components: deck, substructure, superstructure or culvert.", "paragraph", "calc-info");
     paragraphAdder("Following the FHWA guidance, bridges with lowest rating between 7 and 9 are classified as Good, those rated 6 or 5 are classified as Fair and bridges with lowest rating 4 or below are classified as Poor.", "paragraph", "calc-info");
     paragraphAdder("More information about Bridge Condition Performance can be found at this FHWA website: ", "paragraph", "calc-info");
-    anchorAdder(1, "https://www.fhwa.dot.gov/bridge/britab.cfm");
+    anchorAdder(1, "https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659");
     openNav();
 }
 

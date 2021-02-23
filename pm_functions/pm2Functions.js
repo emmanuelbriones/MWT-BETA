@@ -212,9 +212,6 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
         alert('Whoops, we could not retrieve data from our database. Check your internet connection or contact MPO');
         console.log(error);
     });
-
-
-
 }
 
 function piechartpm2(ctx, data) {
@@ -226,7 +223,7 @@ function piechartpm2(ctx, data) {
             type: "indicator",
             mode: "gauge+number",
             gauge: {
-                axis: {visible: false, range: [0,5]}, bar: {color: "blue"},
+                axis: {visible: true, range: [0,5]}, bar: {color: "blue"},
                 steps: [
                     {range: [0,100], color: "lightgray"}
                 ]
@@ -240,12 +237,12 @@ function piechartpm2(ctx, data) {
             type: "indicator",
             mode: "gauge+number",
             gauge: {
-                axis: {visible: false, range: [0,5]}, bar: {color: "blue"},
+                axis: {visible: true, range: [0,5]}, bar: {color: "blue"},
                 steps: [
                     {range: [0,100], color: "lightgray"}
                 ]
             },
-            domain: { row: 1, column:0 }
+            domain: { x: [0,0.27], y:[0.1, 0.35] }
         },
         {
             value: data.Walking.toFixed(1),
@@ -254,12 +251,12 @@ function piechartpm2(ctx, data) {
             type: "indicator",
             mode: "gauge+number",
             gauge: {
-                axis: {visible: false, range: [0,5]}, bar: {color: "blue"},
+                axis: {visible: true, range: [0,5]}, bar: {color: "blue"},
                 steps: [
                     {range: [0,100], color: "lightgray"}
                 ]
             },
-            domain: { row: 1, column:1 }
+            domain: { x: [0.35,0.62], y:[0.1, 0.35] }
         },
         {
             value: data.Non_SOV.toFixed(1),
@@ -268,12 +265,12 @@ function piechartpm2(ctx, data) {
             type: "indicator",
             mode: "gauge+number",
             gauge: {
-                axis: {visible: false, range: [0,40]}, bar: {color: "blue"},
+                axis: {visible: true, range: [0,40]}, bar: {color: "blue"},
                 steps: [
                     {range: [0,100], color: "lightgray"}
                 ]
             },
-            domain: { row: 1, column:2 }
+            domain: { x: [0.70,0.97], y:[0.1, 0.35] }
         }
     ];
     
