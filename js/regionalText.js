@@ -382,7 +382,7 @@ function pm26R(data) {
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Bridge condition rating is based on the lowest condition rating from the following components: deck, substructure, superstructure or culvert.", "paragraph", "calc-info");
     paragraphAdder("Following the FHWA guidance, bridges with lowest rating between 7 and 9 are classified as Good, those rated 6 or 5 are classified as Fair and bridges with lowest rating 4 or below are classified as Poor.", "paragraph", "calc-info");
-    paragraphAdder("More information about Bridge Condition Performance can be found at this FHWA website: ", "paragraph", "calc-info");
+    paragraphAdder("More information about Bridge Condition Performance can be found at this TxDOT website: ", "paragraph", "calc-info");
     anchorAdder(1, "https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659");
     openNav();
 }
@@ -717,6 +717,9 @@ function pm1Text(text, data) {
     imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
     openNav();
 }
+/**
+ * Modify and create function.
+ */
 function pm2Text(text, data) {
     canvasMaker('chart1', 'myChart');
     var ctx2pm1 = document.getElementById('myChart').getContext('2d');
@@ -735,13 +738,9 @@ function pm2Text(text, data) {
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2018.html");
     anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
-    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("PM 2 is calculated as:", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm2/bikingEqn.PNG', 'calc-info');
-    paragraphAdder("", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm2/transEqn.PNG', 'calc-info');
-    paragraphAdder("", "paragraph", "calc-info");
-    imageAdder('./img/performance_measures/pm2/walkEqn.PNG', 'calc-info');
+    paragraphAdder("Means of Transportation: Bicycle: workers 16 and over (estimate) &#247 Total workers 16 years and over","paragraph","calc-info");
+    paragraphAdder("Means of Transportation: Public Transportation (exluding cabs): workers 16 and over &#247 Total workers 16 years and over","paragraph","calc-info");
+    paragraphAdder("Means of Transportation: Walked: workers 16 and over (estimate) &#247 Total workers 16 years and over","paragraph","calc-info");
     //legend elements
     if (detectmob() != true) {
         let names = ['No Data', 'Below mean', 'Above Mean'];
