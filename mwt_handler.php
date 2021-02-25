@@ -75,7 +75,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 	$query = "select hotspot_ty,project_id, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";// ! repetition
 }
 else if($key == "all_pm22"){ 
-	$query = "select crash_year, killed, classa, classb,classc, classo,total,crash_type,statefp, astext(SHAPE) as shape from pm22 where corridor_key = '$key'";
+	$query = "select crash_year, killed, classa, classb,classc, classo,total,crash_type,statefp, astext(SHAPE) as shape from pm22_alan where corridor_key = '$key'";
 	/*
    //constraints:
     //1. Shape data has to be from the last 5 years stored in database
