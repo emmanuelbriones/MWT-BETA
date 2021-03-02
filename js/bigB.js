@@ -1908,9 +1908,9 @@ function wkt_points(blob){
 
             headerAdder("Number of crashes on the CMP network", "title");
 	        paragraphAdder("Summary:", "subtitle", "summary-title");
-            paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(pm22Text) + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
+            paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(pm22Text) + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
             paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-            paragraphAdder("2013 – 2017", "paragraph", "analysis-info");
+            paragraphAdder("2015 – 2019", "paragraph", "analysis-info");
             paragraphAdder("Data Source:", "subtitle", "data-title");
             paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
             paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
