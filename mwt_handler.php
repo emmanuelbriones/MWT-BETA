@@ -1,4 +1,17 @@
 <?php
+															// used to store where the pm will be found ("found_in_table")
+/*$query = "select * from pms where pms_key = '$key';"; // return all the information for ONE pm, because $key is unique
+$result = mysqli_query($conn, $query);		 		// do the query, store in result
+while($temporal = mysqli_fetch_assoc($result)){ // loops through $result array, stores into $temporal
+	array_push($tables, $temporal); 						// pushes $temporal to our desired array
+}
+$pm_table = $tables[0]['found_in_table']; 			// table name where we will find the data for our particular pm
+$corridor_key = explode("_", $key); 				// extract the corridor key into an array
+$corridor_key = $corridor_key[0]; 					// following our DB and naming conventions, the $corridor_key will be found at the 0 index
+											// for the data that will be returned, shape and value
+
+// ! some repetition needs to be addressed */
+
 
 ini_set('memory_limit', '-1');
 ini_set('max_execution_time', 30000); //300 seconds = 5 minutes
@@ -9,22 +22,11 @@ $key = $_GET['key']; // key sent from front-end, from the object defined at the 
 
 //global array that will return requested data
 $toReturn = array();
-$tables = array(); 															// used to store where the pm will be found ("found_in_table")
-$query = "select * from pms where pms_key = '$key';"; // return all the information for ONE pm, because $key is unique
-$result = mysqli_query($conn, $query); 				// do the query, store in result
 $temporal = 0;
-while($temporal = mysqli_fetch_assoc($result)){ // loops through $result array, stores into $temporal
-	array_push($tables, $temporal); 						// pushes $temporal to our desired array
-}
-$pm_table = $tables[0]['found_in_table']; 			// table name where we will find the data for our particular pm
-$corridor_key = explode("_", $key); 				// extract the corridor key into an array
-$corridor_key = $corridor_key[0]; 					// following our DB and naming conventions, the $corridor_key will be found at the 0 index
-$shape = array();												// for the data that will be returned, shape and value
-
-// ! some repetition needs to be addressed 
+$shape = array();	
 
 if($key == "all_pm1" || $key == "all_pm2"){ 
-	$query = "select astext(SHAPE) as shape, ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2_new;";
+	$query = "select St_astext(SHAPE) as shape, ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2;";
 }else if($key == "all_pmbridge"){ 
 	$query = "select astext(SHAPE) as shape from pm26_new where corridor_key = '$key'";
 }else if($key == "all_pm26"){ 
@@ -140,9 +142,10 @@ else if($key == "all_pm24"){
 	$query = "SELECT st_astext(SHAPE) as shape,port_of_en as title FROM mpo_test_jhuerta.pm14points;";
 }*/
 else if($key == "all_pm15_16_17"){
-	$query = "select station_na, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
+	$query = "select station_na, astext(SHAPE) as shape from stations";
 }else if($key == "all_pm15_16_17g"){
-	$query = "select Station, year1,year2,year3,year4,year5,Pollutant from $pm_table where corridor_key = '$key'"; 
+	#$query = "select Station, year1,year2,year3,year4,year5,Pollutant from $pm_table where corridor_key = '$key'"; 
+	$query = "select Station,year1,year2,year3,year4,year5,Pollutant from PM15_16_17";
 }else if($key == "all_pm20B"){
 	$query = "select count_bike,count_ped,address,on_st,at_strt, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
 }else if($key == "all_pm20P"){
@@ -154,9 +157,19 @@ else{
 	$query = "select astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; // temporal note: find an elegant way to generalize this
 }
 
-$result = mysqli_query($conn, $query); 
+/*$result = mysqli_query($conn, $query); 
 while($temporal = mysqli_fetch_assoc($result)){ 
 	array_push($shape, $temporal);
+}*/
+
+$result = mysqli_query($conn, $query);
+if($result === FALSE){
+	die(mysqli_error());
+}
+
+while ($temporal = mysqli_fetch_assoc($result)) {
+    array_push($shape, $temporal);
+
 }
 
 $toReturn['shape_arr'] = $shape; // store it in an index on our array, by name == more significant

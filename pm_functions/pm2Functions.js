@@ -24,7 +24,7 @@ function plotPM2(mode, ex) {
         data_for_php = {
             key: 1,
             corridors_selected: ex,
-            tableName: "pm_1_2_new"
+            tableName: "pm_1_2"
         };
     } else if (mode == 4) {
         php_handler = "./backend/AOI.php";
@@ -124,15 +124,18 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
         key = {
             key: 1,
             corridors_selected: ex,
-            tableName: "pm_1_2_new"
+            tableName: "pm_1_2"
         };
     } else if (mode == 4) {
         file = "./backend/AOI.php";
         key = ex;
     }
 
+    console.log("Before");
+    console.log(key);
     /** Fetch data from database */
     $.get(file, key).done(function (data) { //succesful
+        console.log(data);
         //acknowledge fetch
         //   if(mode != 0){ alert('Retrieving Data, this might take a minute to load');}
         let for_pm2 = {

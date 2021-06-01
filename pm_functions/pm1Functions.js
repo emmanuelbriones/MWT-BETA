@@ -29,7 +29,7 @@ function plotPM1(mode, data_to_plot) {
         data_for_php = {
             key: 1,
             corridors_selected: data_to_plot,
-            tableName: "pm_1_2_new"
+            tableName: "pm_1_2"
         };
     }
     else if(mode == 4){
@@ -205,7 +205,7 @@ function pm1Data(mode, data_to_plot) {
         key = {
             key: 1,
             corridors_selected: data_to_plot,
-            tableName: "pm_1_2_new"
+            tableName: "pm_1_2"
         };
     }
     else if (mode == 4 ){
