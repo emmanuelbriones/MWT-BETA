@@ -197,51 +197,51 @@ function turnOn_Switch(selected) {
         } else if (selected == "DONIPHAN") {
             corridors_selected.DONIPHAN = true;
             corridors_T.DONIPHAN = true;
-            sendCurrentCorridor("doniphan_buffer");
+            sendCurrentCorridor("doniphancorridor_buffer");
         } else if (selected == "DYER") {
             corridors_selected.DYER = true;
             corridors_T.DYER = true;
-            sendCurrentCorridor("dyer_buffer");
+            sendCurrentCorridor("dyercorridor_buffer");
         } else if (selected == "HORIZON") {
             corridors_selected.HORIZON = true;
             corridors_T.HORIZON = true;
-            sendCurrentCorridor("horizon_buffer");
+            sendCurrentCorridor("horizoncorridor_buffer");
         } else if (selected == "MESA") {
             corridors_selected.MESA = true;
             corridors_T.MESA = true;
-            sendCurrentCorridor("mesa_buffer");
+            sendCurrentCorridor("mesacorridor_buffer");
         } else if (selected == "MONTANA") {
             corridors_selected.MONTANA = true;
             corridors_T.MONTANA = true;
-            sendCurrentCorridor("montana_buffer");
+            sendCurrentCorridor("montanacorridor_buffer");
         } else if (selected == "MONTWOOD") {
             corridors_selected.MONTWOOD = true;
             corridors_T.MONTWOOD = true;
-            sendCurrentCorridor("montwood_buffer");
+            sendCurrentCorridor("montwood_buffer"); // pending
         } else if (selected == "YARBROUGH") {
             corridors_selected.YARBROUGH = true;
             corridors_T.YARBROUGH = true;
-            sendCurrentCorridor("yarbrough_buffer");
+            sendCurrentCorridor("yarbroughcorridor_buffer");
         } else if (selected == "ZARAGOZA") {
             corridors_selected.ZARAGOZA = true;
             corridors_T.ZARAGOZA = true;
-            sendCurrentCorridor("zaragoza_buffer");
+            sendCurrentCorridor("zaragozacorridor_buffer");
         } else if (selected == "EASTLAKE") {
             corridors_selected.EASTLAKE = true;
             corridors_T.EASTLAKE = true;
-            sendCurrentCorridor("eastlake_buffer");
+            sendCurrentCorridor("eastlakecorridor_buffer");
         } else if (selected == "SOCORRO") {
             corridors_selected.SOCORRO = true;
             corridors_T.SOCORRO = true;
-            sendCurrentCorridor("socorro_buffer");
+            sendCurrentCorridor("socorrocorridor_buffer");
         } else if (selected == "ARTCRAFT") {
             corridors_selected.ARTCRAFT = true;
             corridors_T.ARTCRAFT = true;
-            sendCurrentCorridor("artcraft_buffer");
+            sendCurrentCorridor("artcraft_domenicicorridor_buffer");
         } else if (selected == "MCNUTT") {
             corridors_selected.MCNUTT = true;
             corridors_T.MCNUTT = true;
-            sendCurrentCorridor("mcnutt_buffer");
+            sendCurrentCorridor("mcnuttcorridor_buffer");
         }
 
         //call these methods to populate corridor
@@ -811,8 +811,8 @@ function wktFormatter(poly) {
             for (i = 0; i < polyTemp.length; i++) {
                 let temp = polyTemp[i].split(" ");
                 polyCoordi.push({
-                    lat: parseFloat(temp[1]),
-                    lng: parseFloat(temp[0])
+                    lat: parseFloat(temp[0]),
+                    lng: parseFloat(temp[1])
                 });
             }
             shape_s[j] = polyCoordi;
@@ -828,8 +828,8 @@ function wktFormatter(poly) {
             for (i = 0; i < polyTemp.length; i++) {
                 let temp = polyTemp[i].split(" ");
                 polyCoordi.push({
-                    lat: parseFloat(temp[1]),
-                    lng: parseFloat(temp[0])
+                    lat: parseFloat(temp[0]),
+                    lng: parseFloat(temp[1])
                 });
             }
             shape_s[j] = polyCoordi;

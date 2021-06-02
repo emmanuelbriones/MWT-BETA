@@ -162,10 +162,7 @@ while($temporal = mysqli_fetch_assoc($result)){
 	array_push($shape, $temporal);
 }*/
 
-$result = mysqli_query($conn, $query);
-if($result === FALSE){
-	die(mysqli_error());
-}
+$result = mysqli_query($conn, $query) or die (mysqli_error($conn));
 
 while ($temporal = mysqli_fetch_assoc($result)) {
     array_push($shape, $temporal);
