@@ -217,7 +217,7 @@ function turnOn_Switch(selected) {
         } else if (selected == "MONTWOOD") {
             corridors_selected.MONTWOOD = true;
             corridors_T.MONTWOOD = true;
-            sendCurrentCorridor("montwood_buffer"); // pending
+            sendCurrentCorridor("montwoodcorridor_buffer"); // pending
         } else if (selected == "YARBROUGH") {
             corridors_selected.YARBROUGH = true;
             corridors_T.YARBROUGH = true;

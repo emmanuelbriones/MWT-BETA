@@ -126,7 +126,7 @@ else if($key == 26){
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
 
-	$query = "select mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 7), p.SHAPE ) and OGR_FID >0;";
+	$query = "select mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -137,7 +137,7 @@ else if($key == 26.1){
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
 
-	$query = "select deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 7), p.SHAPE ) and OGR_FID >0;";
+	$query = "select deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -169,7 +169,7 @@ else if($key == 4 ){ //lines
 else if($key == 25){ //lines 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT type,state_code,year_recor,iri, miles, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT type,state_code,year_recor,iri, miles, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 0), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 

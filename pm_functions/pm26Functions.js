@@ -60,7 +60,7 @@ function pm26Data(mode, ex) {
         shape = 'ST_AsText(SHAPE)'; // fix -> add alias (AS) for column in mysql query: SELECT column AS shape
         php_handler = "corridor_handlerB.php";
         let key = 26;
-        let tableName = 'pm26_new';
+        let tableName = 'pm26';
 
         data_for_php = {
             key: key,

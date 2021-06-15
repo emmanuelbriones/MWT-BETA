@@ -28,9 +28,9 @@ $shape = array();
 if($key == "all_pm1" || $key == "all_pm2"){ 
 	$query = "select St_astext(SHAPE) as shape, ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2;";
 }else if($key == "all_pmbridge"){ 
-	$query = "select astext(SHAPE) as shape from pm26_new where corridor_key = '$key'";
+	$query = "select astext(SHAPE) as shape from pm26 where corridor_key = '$key'";
 }else if($key == "all_pm26"){ 
-	$query = "select mode,deck_cond_,superstruc,substruc_c,region,astext(SHAPE) as shape from pm26_new where corridor_key = '$key'";
+	$query = "select mode,deck_cond_,superstruc,substruc_c,region,ST_astext(SHAPE) as shape from pm26 where corridor_key = '$key'";
 }else if($key == "all_pm3"){
 	$query = "select TotalRid_7 , TotalRid_1 , astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; // temporal note: find an elegant way to generalize this
 }else if($key == "all_pm4"){
@@ -113,7 +113,7 @@ else if($key == "pm22_lines"){
 else if($key == "all_pm24"){ 
 	$query = "select leng_cal,miles,tti,trktti,astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm25"){
-	$query = "select type,state_code,year_recor,iri, miles, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
+	$query = "select type,state_code,year_recor,iri, miles, st_astext(SHAPE) as shape from pm25";
 }else if($key == "all_pm13"){ 
 	$query = "SET @year_ = (SELECT Max(Period) FROM mpo_test_jhuerta.pm13);";
 	$result = mysqli_query($conn, $query); 

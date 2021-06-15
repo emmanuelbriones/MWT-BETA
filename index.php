@@ -173,26 +173,20 @@
                   <div class="list-group border-0 card text-center text-md-left">
                      <a href="http://www.elpasompo.org/" target="#" class="d-none d-md-inline"><img src="./img/elmpologo.png" class="img-responsive"></a>
                      <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class=""></i><span class="d-none d-md-inline"></span></a>
-                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#national-measures" data-toggle="modal"><i class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">National Measures</span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="NPM.php"><i class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">National Measures</span></a>
                      <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#pms-modal" data-toggle="modal"><i class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">Regional Performance</span></a>
-                     <!-- <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#corridors-modal" data-toggle="modal"><i class="fa fa-toggle-on"></i> <span class="d-none d-md-inline">Corridor Performance</span></a> -->
                      <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#benchmark"  data-toggle="modal" id="benchmarking"><i class="fa fa-tachometer"></i> <span class="d-none d-md-inline">Benchmarking</span></a>
-
-                     <!-- <a onclick="switch_AOI()"class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#" ><i class="fa fa-map"></i> <span class="d-none d-md-inline">Interactive AOI</span></a> -->
-                     
-                     <a class="list-group-item d-inline-block collapsed" data-target="#sidebar" href="#mtp-projects"                  id="mtp-projects"   ><i class="fa fa-pencil-square-o"></i> <span class="d-none d-md-inline">MTP Projects</span></a>
+                     <a class="list-group-item d-inline-block collapsed" data-target="#sidebar" href="#mtp-projects" id="mtp-projects"><i class="fa fa-pencil-square-o"></i> <span class="d-none d-md-inline">MTP Projects</span></a>
                      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#data-repo" data-toggle="modal" id="data-repository"><i class="fa fa-database"></i> <span class="d-none d-md-inline">Regional Data Repository</span></a>
                      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#studies" data-toggle="modal" id="studies-matrix" ><i class="fa fa-th-list"></i> <span class="d-none d-md-inline">Existing Studies</span></a>
-
-                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"                                                   ><i class=""></i><span class="d-none d-md-inline"></span></a>
-                     
-                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#tutorial"  data-toggle="modal" id="tut"            ><i class="fa fa-certificate"></i> <span class="d-none d-md-inline">Tutorial</span></a>   
-                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#aboutmodal"data-toggle="modal"                     ><i class="fa fa-info"></i> <span class="d-none d-md-inline">About</span></a>
-                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"                                                   ><i class=""></i><span class="d-none d-md-inline"></span></a>
+                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"><i class=""></i><span class="d-none d-md-inline"></span></a>
+                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#tutorial"  data-toggle="modal" id="tut"><i class="fa fa-certificate"></i> <span class="d-none d-md-inline">Tutorial</span></a>   
+                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#aboutmodal"data-toggle="modal"><i class="fa fa-info"></i> <span class="d-none d-md-inline">About</span></a>
+                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"><i class=""></i><span class="d-none d-md-inline"></span></a>
                      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" onclick="clearMetadata(); closeNav();   switch_AOI('off');  removeAllElementsLegend();  toggleNav('off');deleteUserShapes();removeNonPMContent();"><i class="fa fa-trash-o"></i> <span class="d-none d-md-inline">Clear</span></a>
                      <a onclick="pdf()" href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-print"></i> <span class="d-none d-md-inline">Print</span></a>
                      <br><br><br><br><br> <br><br>
-					      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"                                                   ><i class=""></i><span class="d-none d-md-inline">Version: 1.0.0</span></a>
+					      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"><i class=""></i><span class="d-none d-md-inline">Version: 1.0.0</span></a>
                   </div>
                </div>
                <!-- Main Banner/Google Map -->
