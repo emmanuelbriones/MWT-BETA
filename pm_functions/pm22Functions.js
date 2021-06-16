@@ -5,7 +5,6 @@
  */
 
 function pm22Data(mode, ex) {
-    console.log("here 1");
     let shape = "shape";
     let php_handler = "mwt_handler.php";
     let key = "";
@@ -18,6 +17,7 @@ function pm22Data(mode, ex) {
         data_for_php = {
             'key': 'all_pm22'
         };
+        console.log(data_for_php);
     } else if (mode == 2) {
         shape = 'ST_AsText(SHAPE)';
         php_handler = "corridor_handlerB.php";

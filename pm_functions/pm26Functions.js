@@ -159,6 +159,7 @@ function pm26Data(mode, ex) {
                     lat: parseFloat(holder[0].lat),
                     lng: parseFloat(holder[0].lng)
                 };
+                console.log(to_visualize.lat)
 
                 let titleH = condition + ": " + lowestRating;
                 if (lowestRating == 999) {

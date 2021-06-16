@@ -7,18 +7,15 @@
    <style>
       .sub-header {
          font-weight: bold;
-         color: lightgrey;
+         color: blue;
       }
       .paragraph{ 
-         color: white;
+         color: black;
          font-size: 20px;
       }
       .pm-header {
-         color:red;
+         color:blue;
          font-weight: bold;
-      }
-      .test {
-         background-color: red;
       }
       html {
          overflow: scroll;
@@ -72,7 +69,7 @@
                      <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" data-toggle="modal" id="benchmarking"><span class="d-none d-md-inline">PM 3 - System Performance</span></a>
                   </div>
                </div>
-               <div class="col-md-10 float-left"><br><br>
+               <div class="col-md-10 float-left" style="background-color: white;"><br><br>
                   <div id=info>
                      <h2 class=sub-header>
                      What is Transportation Performance Management?
@@ -95,16 +92,18 @@
                         To achieve these targets, MPOs across the state, TxDOT, and local governments must work for safer outcomes through design, education, law enforcement, emergency response and evaluation of programs and projects. 
                         The MPO revisits targets annually.
                      </p><br>
-                     <h4 class="pm-header">
-                        <strong>Fatalities - 2020</strong>
-                     </h4>
+                     <h3 class="pm-header">
+                        <strong>PM 1-1 Number of Fatalities</strong>
+                     </h3>
                      <p class="paragraph">The number of fatalities is the total number of deaths in 
                         reportable motor vehicle traffic crashes in a calendar year.
                      </p>
                      <div class="row" style="background-color:#F5F5F5">
                         <div class="col-6">
-                           <h2>Fatalities</h2>
-                           <h2>El Paso Area MPO - Texas</h2>
+                        <div style="color:green">
+                           <h4>Fatalities</h4>
+                           <h4>El Paso Area MPO - El Paso County, TX - 2020</h4>
+                        </div>
                            <p class="paragraph" style="color:black">
                            The number of fatalities is the total number of deaths in 
                            reportable motor vehicle traffic crashes in a calendar year.
@@ -112,11 +111,12 @@
                            <h5>Baseline Performance 2014 - 2018: 73</h5>
                            <h5>5-Year Rolling Average 2016 - 2020: 79.4</h5>
                            <h5>Better than Baseline?: N/A</h5>
+                           <h5>Better than Target?: Yes</h5>
                            <h5>Target CY 2021: 91.1</h5>
                         </div>
                         <div class="col-3">
-                           <h2>Current: 84</h2>
-                           <h2>Target: 87.5</h2>
+                           <h4>Current: 84</h4>
+                           <h4>Target: 87.5</h4>
                         </div>
                         <div class="col-3" style="text-align:center">
                            <h2 style="background-color:green">On Target</h2>

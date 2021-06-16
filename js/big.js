@@ -866,8 +866,8 @@ function wktFormatterPoint(point) {
         for (i = 0; i < pointTemp.length; i++) {
             let temp = pointTemp[i].split(" ");
             pointCoordi.push({
-                lat: parseFloat(temp[1]),
-                lng: parseFloat(temp[0])
+                lat: parseFloat(temp[0]),
+                lng: parseFloat(temp[1])
             });
         }
         shape_s[j] = pointCoordi;
