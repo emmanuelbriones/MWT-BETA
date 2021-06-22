@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>National Measures</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="npm_functions/NPM1.js"></script>
+  </body>
+
+   <div class="main">
+      <div id="legendHolder" class="legend">
+         <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">
+               <div class='my-legend'>
+                  <div id='legend_title'></div>
+                  <div class='legend-scale'>
+                     <ul id="legendList" class='legend-labels'></ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="wrapper">
+         <div class="container-fluid">
+            <div class="row d-md-block flex-nowrap wrapper">
+               <div class="col-md-2 float-left col-1 pl-0 pr-0  show width" id="sidebar">
+                  <div class="list-group border-0 card text-center text-md-left">
+                     <a class="logo" href="http://www.elpasompo.org/" target="#" class="d-none d-md-inline"><img src="./img/elmpologo.png" class="img-responsive"></a>
+                     <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class=""></i><span class="d-none d-md-inline"></span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" data-toggle="modal"><span class="d-none d-md-inline">PM 1 - Safety</span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" data-toggle="modal"><span class="d-none d-md-inline">PM 2 - Infrastructure</span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" data-toggle="modal" id="benchmarking"><span class="d-none d-md-inline">PM 3 - System Performance</span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="index.php"><i class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">Main Menu</span></a>
+
+                  </div>
+               </div>
+               <div class="col-md-10 float-left" style="background-color: white;"><br><br>
+                  <div id=info>
+                     <h2 class=sub-header>
+                     What is Transportation Performance Management?
+                     </h2>
+                     <p class=paragraph>Between 2016 and 2017, the  Federal Highway Administration (FHWA) and the Federal Transit Administration
+                        (FTA) published several rules establishing performance measures and reporting
+                        requirements for State Departments of Transportation (DOTs), Metropolitan 
+                        Planning Organizations (MPOs), and transit agencies. Among other changes, the 
+                        rules require State DOTs and MPOs to take a performance-based approach to planning for mobility needs and programming transportation funding.
+                     </p>
+                  </div>
+                  <div id = "pm1">
+                     <h2 class="pm-header">
+                        <strong>PM 1 - Safety</strong>
+                     </h2>
+                     <p class="paragraph">Safety is rightfully the first area of performance management.
+                        Everyone should have the right to get to their destination safely, regardless of whether they are driving, riding a bus, bicycling or walking. 
+                        On January 22, 2018, January 28, 2019, and January 27, 2020, the MPO’s Transportation Policy Board (TPB) adopted TxDOT’s statewide Safety targets. 
+                        Additionally, in 2020, the TPB resolved to support TxDOT’s visionary goals to end traffic fatalities on Texas roads by year 2050 and reduce fatal crashes by half by year 2035. 
+                        To achieve these targets, MPOs across the state, TxDOT, and local governments must work for safer outcomes through design, education, law enforcement, emergency response and evaluation of programs and projects. 
+                        The MPO revisits targets annually.
+                     </p><br>
+                     <h3 class="pm-header">
+                        <strong>PM 1-1 Number of Fatalities</strong>
+                     </h3>
+                     <p class="paragraph">The number of fatalities is the total number of deaths in 
+                        reportable motor vehicle traffic crashes in a calendar year.
+                     </p>
+                  
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM1-1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                           Methodology
+                     </a>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM1-1Graphs" role="button" onclick="npm1_1tx();npm1_1nm()" aria-expanded="false" aria-controls="collapseExample">
+                        Show Graphs
+                     </a>
+                     <br><br>
+                     <div class="collapse" id="PM1-1">
+                        <div class="card card-body">
+                           <p>
+                              The performance measure for the number of fatalities is the 5-year rolling average of the total number of fatalities and shall be calculated by adding 
+                              the number of fatalities for each of the most recent 5 consecutive years ending in the year for which the target is established, dividing by 5, and rounding to the tenth decimal place.
+                              Baseline safety performance is calculated using 5-year rolling average ending two years for Texas, or three years for New Mexico, prior to current calendar year (CY). <br>
+                              The MPO performance target established under paragraph § 490.209(c)(4) represents the anticipated performance outcome for all public roadways within the metropolitan planning 
+                              boundary regardless of ownership or functional class. Two separate sets of targets are provided for Texas and New Mexico, as per § 490.209(d)(2). <br>
+                              Met or Made Significant Progress Toward Meeting Targets Evaluation Process: <br>
+                              When at least four of the performance targets established under § 490.207(a) are: <br>
+                              (i)	Met; or <br>
+                              (ii)	The outcome for a performance measure is less than the 5-year rolling average data for the performance measure for the year prior to the establishment of the target (i.e. baseline safety performance).  
+                              (§ 490.207 (c)(2)) <br>
+                           </p>
+                           <h5>Definitions</h5>
+                           <p>
+                              Number of fatalities means the total number of persons suffering fatal injuries in a motor vehicle traffic crash during a calendar year. <br>
+                              5-year rolling average means the average of 5 individual, consecutive annual points of data (e.g., the 5-year rolling average of the annual number of fatalities). <br>
+                              The performance target represents the anticipated performance outcome for the same calendar year. <br>
+                              CY means calendar year.
+                           </p>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <h4>Fatalities</h4>
+                              <h4>El Paso Area MPO - El Paso County, TX - 2020</h4>
+                           </div>
+                           <p class="paragraph" style="color:black">
+                           The number of fatalities is the total number of deaths in 
+                           reportable motor vehicle traffic crashes in a calendar year.
+                           </p>
+                           <h5>Baseline Performance 2014 - 2018: 73</h5>
+                           <h5>5-Year Rolling Average 2016 - 2020: 79.4</h5>
+                           <h5>Better than Target?: Yes</h5>
+                           <h5>Better than Baseline?: N/A</h5>
+                           <h5>Target CY 2021: 91.1</h5>
+                        </div>
+                        <div class="col-3">
+                           <h4>Current: 79.4</h4>
+                           <h4>Target: 87.5</h4>
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green">On Target</h2>
+                           <img class="face" src="img/face.jpeg">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM1-1Graphs">
+                        <canvas id="Tx_NPM1-1" width="100" height="20"></canvas>
+                     </div>
+                     <br><br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <br><h4>Fatalities</h4>
+                              <h4>El Paso Area MPO - Dona Ana / Otero, NM - 2019</h4>
+                           </div>
+                           <p class="paragraph" style="color:black">
+                           The number of fatalities is the total number of deaths in 
+                           reportable motor vehicle traffic crashes in a calendar year.
+                           </p>
+                           <h5>Baseline Performance 2012 - 2016: 5.6</h5>
+                           <h5>5-Year Rolling Average 2015 - 2019: 5.2</h5>
+                           <h5>Better than Target?: Yes</h5>
+                           <h5>Better than Baseline?: N/A</h5>
+                           <h5>Target CY 2020: 6.6</h5>
+                        </div>
+                        <div class="col-3">
+                           <h4>Current: 5.2</h4>
+                           <h4>Target: 6.0</h4>
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green">On Target</h2>
+                           <img class="face" src="img/face.jpeg">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM1-1Graphs">
+                        <canvas id="Nm_NPM1-1" width="100" height="20"></canvas>
+                     </div>
+                     <br><br>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</html>
+
+<style>
+      .sub-header {
+         font-weight: bold;
+         color: blue;
+      }
+      .paragraph{ 
+         color: black;
+         font-size: 20px;
+      }
+      .pm-header {
+         color:blue;
+         font-weight: bold;
+      }
+      html {
+         overflow: scroll;
+      }
+      .face {
+         height: auto;
+         width: 140px;
+      }
+   </style>
+   <!-- Custom styles from CSS folder -->
+   <link href="css/sidebar.css" rel="stylesheet" type="text/css">
+   <link href="css/corridorDropdown.css" rel="stylesheet" type="text/css">
+   <link href="css/legend.css" rel="stylesheet" type="text/css">
+   <link href="css/custom.css" rel="stylesheet" type="text/css">
+   <link href="css/mwt.css" rel="stylesheet" type="text/css">
+   <!-- load all functions -->

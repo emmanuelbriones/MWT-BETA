@@ -173,7 +173,7 @@
                   <div class="list-group border-0 card text-center text-md-left">
                      <a href="http://www.elpasompo.org/" target="#" class="d-none d-md-inline"><img src="./img/elmpologo.png" class="img-responsive"></a>
                      <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class=""></i><span class="d-none d-md-inline"></span></a>
-                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="NPM.php"><i class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">National Measures</span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#npm" data-toggle="modal"><i class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">National Measures</span></a>
                      <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#pms-modal" data-toggle="modal"><i class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">Regional Performance</span></a>
                      <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#benchmark"  data-toggle="modal" id="benchmarking"><i class="fa fa-tachometer"></i> <span class="d-none d-md-inline">Benchmarking</span></a>
                      <a class="list-group-item d-inline-block collapsed" data-target="#sidebar" href="#mtp-projects" id="mtp-projects"><i class="fa fa-pencil-square-o"></i> <span class="d-none d-md-inline">MTP Projects</span></a>
