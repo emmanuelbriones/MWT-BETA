@@ -14,7 +14,6 @@
  */
 
 function pm26Data(mode, ex) {
-    console.log(ex);
     let pm26Data = {
         goodTX: 0,
         fairTX: 0,
@@ -159,8 +158,6 @@ function pm26Data(mode, ex) {
                     lat: parseFloat(holder[0].lat),
                     lng: parseFloat(holder[0].lng)
                 };
-                console.log(to_visualize.lat)
-
                 let titleH = condition + ": " + lowestRating;
                 if (lowestRating == 999) {
                     titleH = condition;
