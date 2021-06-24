@@ -84,10 +84,10 @@ else if($active_pm == "pm22_allpoints_final"){
 
 }
 else if($active_pm =="pm24"){ 
-	$query = "SELECT leng_cal,miles,tti,trktti, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
+	$query = "SELECT leng_cal,miles,tti,trktti, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
 }
 else if($active_pm =="pm25"){ 
-	$query = "SELECT type,state_code,year_recor,iri, miles, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
+	$query = "SELECT type,state_code,year_recor,iri, miles, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
 }
 
 else if($active_pm =="pm26"){

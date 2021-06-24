@@ -81,8 +81,8 @@ function pm24Data(mode, ex) {
             if (mode == 1 || mode == 2 || mode == 4) {
                 for (let i = 0; i < ln.length; i++) {
                     coord = {
-                        lat: ln[i]['y'],
-                        lng: ln[i]['x']
+                        lat: ln[i]['x'],
+                        lng: ln[i]['y']
                     };
                     to_visualize.push(coord);
                 }

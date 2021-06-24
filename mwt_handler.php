@@ -111,7 +111,7 @@ else if($key == "pm22_lines"){
 
 }
 else if($key == "all_pm24"){ 
-	$query = "select leng_cal,miles,tti,trktti,astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select leng_cal,miles,tti,trktti,st_astext(SHAPE) as shape from pm24";
 }else if($key == "all_pm25"){
 	$query = "select type,state_code,year_recor,iri, miles, st_astext(SHAPE) as shape from pm25";
 }else if($key == "all_pm13"){ 
