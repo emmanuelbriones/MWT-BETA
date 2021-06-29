@@ -43,9 +43,9 @@ function pm24Data(mode, ex) {
             let miles = parseFloat(data.shape_arr[index].leng_cal);
             let tti = 0;
             if (currentType == 'driving' || identifier == 'd') {
-                tti = parseFloat(data.shape_arr[index].tti);
+                tti = parseFloat(data.shape_arr[index].tti).toFixed(2);
             } else if (currentType == 'freight' || identifier == 'f') {
-                tti = parseFloat(data.shape_arr[index].trktti);
+                tti = parseFloat(data.shape_arr[index].trktti).toFixed(2);
             }
 
             ttiSum += tti;
@@ -148,13 +148,13 @@ function pm24Data(mode, ex) {
 }
 
 function pm24BarGraph(ctx, data) {
-    let label1 = "1-1.1";
-    let label2 = "1.11-1.2";
-    let label3 = "1.21-1.3";
-    let label4 = "1.31-1.5";
+    let label1 = "1-1.10";
+    let label2 = "1.11-1.20";
+    let label3 = "1.21-1.30";
+    let label4 = "1.31-1.50";
     let label5 = "1.51 >";
     let title = '';
-    // console.log(data);
+    //console.log(data.graphVals);
     if (currentType == 'driving') {
         title = 'TTI(driving)';
     } else if (currentType == 'freight') {
