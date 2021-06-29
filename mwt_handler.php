@@ -142,10 +142,9 @@ else if($key == "all_pm24"){
 	$query = "SELECT st_astext(SHAPE) as shape,port_of_en as title FROM mpo_test_jhuerta.pm14points;";
 }*/
 else if($key == "all_pm15_16_17"){
-	$query = "select station_na, astext(SHAPE) as shape from stations";
+	$query = "select station_na, st_astext(SHAPE) as shape from pm15_16_17";
 }else if($key == "all_pm15_16_17g"){
-	#$query = "select Station, year1,year2,year3,year4,year5,Pollutant from $pm_table where corridor_key = '$key'"; 
-	$query = "select Station,year1,year2,year3,year4,year5,Pollutant from PM15_16_17";
+	$query = "select Station,year1,year2,year3,year4,year5,Pollutant from PM15_16_17_g";
 }else if($key == "all_pm20B"){
 	$query = "select count_bike,count_ped,address,on_st,at_strt, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
 }else if($key == "all_pm20P"){

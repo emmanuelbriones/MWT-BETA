@@ -525,12 +525,12 @@ function pm15R(data) {
     pm15chartLine2(ctx2, data);
     headerAdder("Ozone emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("According to the data available, ozone pollution has been increasing in the last 5 years.", "paragraph", "summary-info");
+    //paragraphAdder("According to the data available, ozone pollution has been increasing in the last 5 years.", "paragraph", "summary-info");
     paragraphAdder("Stations with the highest annual readings for each pollutant are:", "paragraph", "summary-info");
     paragraphAdder("Ozone 8hr - " + data[data.length-1].station8+" in "+data[data.length-1].year_8+".", "paragraph", "summary-info");
     paragraphAdder("Ozone 1hr - " + data[data.length-1].station1 + " in " + data[data.length-1].year_1 +".", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2014-2018", "paragraph", "analysis-info");
+    paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("Texas Commission on Environmental Quality website", "https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539");
     anchorAdder("New Mexico Environment Department website ", "http://nmaqinow.net/");
@@ -549,12 +549,12 @@ function pm16R(data) {
     pm16chartLine(ctx, data);
     headerAdder("Carbon monoxide emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("According to the data available, Carbon Monoxide pollution has been the same for the last 5 years. Except for 2018 that UTEP registered a high reading. ", "paragraph", "summary-info");
+    //paragraphAdder("According to the data available, Carbon Monoxide pollution has been the same for the last 5 years. Except for 2018 that UTEP registered a high reading. ", "paragraph", "summary-info");
     paragraphAdder("Stations with the highest annual readings for Carbon Monoxide are:  ", "paragraph", "summary-info");
     paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year +".", "paragraph", "summary-info"); ///////////////////////////////////////////////////////**************
     paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 +".", "paragraph", "summary-info"); 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2014-2018", "paragraph", "analysis-info");
+    paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("Texas Commission on Environmental Quality website", "https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539");
     anchorAdder("New Mexico Environment Department website ", "http://nmaqinow.net/");
@@ -571,11 +571,11 @@ function pm17R(data) {
     headerAdder("Particulate matter emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("According to the data available, Particulate Matter pollution has been increasing and decreasing depending of the station in the last 5 years.", "paragraph", "summary-info");
-    paragraphAdder("Stations with the highest annual readings for Particulate Matte are:  ", "paragraph", "summary-info");
+    paragraphAdder("Stations with the highest annual readings for Particulate Matter are:  ", "paragraph", "summary-info");
     paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year +".", "paragraph", "summary-info");
     paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 +".", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2014-2018", "paragraph", "analysis-info");
+    paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("Texas Commission on Environmental Quality website", "https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539");
     anchorAdder("New Mexico Environment Department website ", "http://nmaqinow.net/");
