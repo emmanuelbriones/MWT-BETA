@@ -419,13 +419,13 @@ function pm18Data(mode, ex) {
         } else if (mode == 2) {
             pm18data.currentCorridor = corr;
             dynamicCorridorText(corr, pm18data); // Send graph data and current corridor to dynamic text for corridors
-        } else if(mode == 3){
+        } else if (mode == 3) {
             let data = {
-                pm:'18',
-                type:currentType,
-                title:"Fatalities 2013 - 2017",
+                pm: '18',
+                type: currentType,
+                title: "Fatalities 2013 - 2017",
                 corridor: corr,
-                value:pm18data.dtot
+                value: pm18data.dtot
             }
             benchmarkData.push(data);
         } else if (mode == 4) {
@@ -477,24 +477,24 @@ function pm18chartLine(ctx, data) {
     var data = {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
         datasets: [{
-                label: pm18_graphTitle,
-                data: pm18_graphValues,
-                backgroundColor: "purple",
-                borderColor: "lightblue",
-                fill: false,
-                lineTension: 0,
-                radius: 5
-            },
-            {
-                label: "Total Fatalities",
-                data: data.killed,
-                //data: [data.tot13, data.tot14, data.tot15, data.tot16, data.tot17],
-                backgroundColor: "green",
-                borderColor: "lightgreen",
-                fill: false,
-                lineTension: 0,
-                radius: 5
-            }
+            label: pm18_graphTitle,
+            data: pm18_graphValues,
+            backgroundColor: "purple",
+            borderColor: "lightblue",
+            fill: false,
+            lineTension: 0,
+            radius: 5
+        },
+        {
+            label: "Total Fatalities",
+            data: data.killed,
+            //data: [data.tot13, data.tot14, data.tot15, data.tot16, data.tot17],
+            backgroundColor: "green",
+            borderColor: "lightgreen",
+            fill: false,
+            lineTension: 0,
+            radius: 5
+        }
         ]
     };
 

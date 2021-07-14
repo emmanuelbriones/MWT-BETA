@@ -108,9 +108,9 @@ function pm24R(data) {
 
     paragraphAdder("In the El Paso MPO region, the average travel time index is " + data.ttiAvg + ". In " + data.percentGreater.toFixed(2) + "% (" + data.sumGreater.toFixed(2) + " miles) of roadways, the travel time index is 1.5 and greater.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2018", "paragraph", "analysis-info");
+    paragraphAdder("2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("2018 Congestion Management process assessment tools (COMPAT).  ", "https://compat.tti.tamu.edu/");
+    anchorAdder("2019 Congestion Management process assessment tools (COMPAT).  ", "https://compat.tti.tamu.edu/");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("The travel time index is categorized in the following travel times: 1-1.1, 1.1-1.2, 1.2-1.3, 1.3-1.5, and more than 1.5. This performance measure shows the travel time index for passenger vehicles as well as commercial vehicles in the El Paso MPO region based on data reported in the National Performance Management Research Data Set (NPMRDS). The number of miles are summed per categorization and displayed in the graph.  ", "paragraph", "calc-info");
     if (detectmob() != true) {

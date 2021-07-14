@@ -471,23 +471,23 @@ function pm19chartLine(ctx, data) {
     var data = {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
         datasets: [{
-                label: pm19_graphTitle,
-                data: pm19_graphValues,
-                backgroundColor: "purple",
-                borderColor: "lightblue",
-                fill: false,
-                lineTension: 0,
-                radius: 5
-            },
-            {
-                label: "Total Serious Injuries",
-                data: data.injured,
-                backgroundColor: "green",
-                borderColor: "lightgreen",
-                fill: false,
-                lineTension: 0,
-                radius: 5
-            }
+            label: pm19_graphTitle,
+            data: pm19_graphValues,
+            backgroundColor: "purple",
+            borderColor: "lightblue",
+            fill: false,
+            lineTension: 0,
+            radius: 5
+        },
+        {
+            label: "Total Serious Injuries",
+            data: data.injured,
+            backgroundColor: "green",
+            borderColor: "lightgreen",
+            fill: false,
+            lineTension: 0,
+            radius: 5
+        }
         ]
     };
 

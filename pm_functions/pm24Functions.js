@@ -48,7 +48,8 @@ function pm24Data(mode, ex) {
                 tti = parseFloat(data.shape_arr[index].trktti).toFixed(2);
             }
 
-            ttiSum += tti;
+            newtti = parseFloat(tti);
+            ttiSum += newtti;
 
             if (tti > 1.5) {
                 pm24data.sumGreater += miles;
@@ -107,8 +108,12 @@ function pm24Data(mode, ex) {
 
                 line.setMap(map);
                 polylines.push(line);
+                
             }
         }
+
+       // console.log(ttiSum);
+
         //calculations
         pm24data.ttiAvg = (ttiSum / ttiLength).toFixed(2);
         pm24data.percentGreater = (pm24data.sumGreater / totalMiles) * 100;
@@ -154,7 +159,6 @@ function pm24BarGraph(ctx, data) {
     let label4 = "1.31-1.50";
     let label5 = "1.51 >";
     let title = '';
-    //console.log(data.graphVals);
     if (currentType == 'driving') {
         title = 'TTI(driving)';
     } else if (currentType == 'freight') {
