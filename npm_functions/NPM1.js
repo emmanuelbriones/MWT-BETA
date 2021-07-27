@@ -1,5 +1,20 @@
+const chartAreaBorder = {
+    id: 'chartAreaBorder',
+    beforeDraw(chart, args, options) {
+      const {ctx, chartArea: {left, top, width, height}} = chart;
+      ctx.save();
+      ctx.strokeStyle = options.borderColor;
+      ctx.lineWidth = options.borderWidth;
+      ctx.setLineDash(options.borderDash || []);
+      ctx.lineDashOffset = options.borderDashOffset;
+      ctx.strokeRect(left, top, width, height);
+      ctx.restore();
+    }
+  };
+  
 function npm1_1tx() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Tx_NPM1-1');
     var myChart = new Chart(ctx, {
         data: {
@@ -34,7 +49,7 @@ function npm1_1tx() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2016, 2017, 2018, 2019, 2020, 2021]
+            labels: [2016, 2017, 2018, 2019, 2020, 2021, 2022]
         },
         options: {
             responsive: true,
@@ -58,7 +73,7 @@ function npm1_1tx() {
                             weight: 'bold'
                         }
                     },
-                    min: 40,
+                    min: 0,
                     max: 100,
                     ticks: {
                         stepSize: 10
@@ -77,15 +92,21 @@ function npm1_1tx() {
                     display: true,
                     padding: 1,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
 
 
 function npm1_1nm() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Nm_NPM1-1');
     var myChart = new Chart(ctx, {
         data: {
@@ -121,7 +142,7 @@ function npm1_1nm() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2015, 2016, 2017, 2018, 2019, 2020]
+            labels: [2015, 2016, 2017, 2018, 2019, 2020, 2021]
         },
         options: {
             responsive: true,
@@ -161,14 +182,20 @@ function npm1_1nm() {
                     display: true,
                     padding: 5,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
 
 function npm1_2tx() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Tx_NPM1-2');
     var myChart = new Chart(ctx, {
         data: {
@@ -203,7 +230,7 @@ function npm1_2tx() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2016, 2017, 2018, 2019, 2020, 2021]
+            labels: [2016, 2017, 2018, 2019, 2020, 2021, 2022]
         },
         options: {
             responsive: true,
@@ -227,10 +254,10 @@ function npm1_2tx() {
                             weight: 'bold'
                         }
                     },
-                    min: 0.8,
+                    min: 0,
                     max: 2,
                     ticks: {
-                        stepSize: 0.15
+                        stepSize: 0.4
                     }
                 }
             },
@@ -246,15 +273,21 @@ function npm1_2tx() {
                     display: true,
                     padding: 1,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
 
 
 function npm1_2nm() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Nm_NPM1-2');
     var myChart = new Chart(ctx, {
         data: {
@@ -290,7 +323,7 @@ function npm1_2nm() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2015, 2016, 2017, 2018, 2019, 2020]
+            labels: [2015, 2016, 2017, 2018, 2019, 2020, 2021]
         },
         options: {
             responsive: true,
@@ -314,8 +347,11 @@ function npm1_2nm() {
                             weight: 'bold'
                         }
                     },
-                    // min:0,
-                    // max:10
+                    min:0,
+                    max:5,
+                    ticks: {
+                        stepSize: 1
+                    }
                 }
             },
             plugins: {
@@ -330,14 +366,20 @@ function npm1_2nm() {
                     display: true,
                     padding: 5,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
 
 function npm1_3tx() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Tx_NPM1-3');
     var myChart = new Chart(ctx, {
         data: {
@@ -372,7 +414,7 @@ function npm1_3tx() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2016, 2017, 2018, 2019, 2020, 2021]
+            labels: [2016, 2017, 2018, 2019, 2020, 2021, 2022]
         },
         options: {
             responsive: true,
@@ -396,11 +438,11 @@ function npm1_3tx() {
                             weight: 'bold'
                         }
                     },
-                    // min: 0,
-                    // max: 2,
-                    // ticks: {
-                    //     stepSize: 20
-                    // }
+                    min: 100,
+                    max: 400,
+                    ticks: {
+                        stepSize: 50
+                    }
                 }
             },
             plugins: {
@@ -415,14 +457,20 @@ function npm1_3tx() {
                     display: true,
                     padding: 1,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
 
 function npm1_3nm() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Nm_NPM1-3');
     var myChart = new Chart(ctx, {
         data: {
@@ -458,7 +506,7 @@ function npm1_3nm() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2015, 2016, 2017, 2018, 2019, 2020]
+            labels: [2015, 2016, 2017, 2018, 2019, 2020, 2021]
         },
         options: {
             responsive: true,
@@ -498,14 +546,20 @@ function npm1_3nm() {
                     display: true,
                     padding: 5,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
 
 function npm1_4tx() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Tx_NPM1-4');
     var myChart = new Chart(ctx, {
         data: {
@@ -540,7 +594,7 @@ function npm1_4tx() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2016, 2017, 2018, 2019, 2020, 2021]
+            labels: [2016, 2017, 2018, 2019, 2020, 2021, 2022]
         },
         options: {
             responsive: true,
@@ -564,8 +618,8 @@ function npm1_4tx() {
                             weight: 'bold'
                         }
                     },
-                    // min: 0,
-                    // max: 2,
+                    min: 0,
+                    max: 10
                     // ticks: {
                     //     stepSize: 20
                     // }
@@ -583,14 +637,20 @@ function npm1_4tx() {
                     display: true,
                     padding: 1,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
 
 function npm1_4nm() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Nm_NPM1-4');
     var myChart = new Chart(ctx, {
         data: {
@@ -626,7 +686,7 @@ function npm1_4nm() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2015, 2016, 2017, 2018, 2019, 2020]
+            labels: [2015, 2016, 2017, 2018, 2019, 2020, 2021]
         },
         options: {
             responsive: true,
@@ -666,14 +726,20 @@ function npm1_4nm() {
                     display: true,
                     padding: 5,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
 
 function npm1_5tx() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Tx_NPM1-5');
     var myChart = new Chart(ctx, {
         data: {
@@ -708,7 +774,7 @@ function npm1_5tx() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2016, 2017, 2018, 2019, 2020, 2021]
+            labels: [2016, 2017, 2018, 2019, 2020, 2021, 2022]
         },
         options: {
             responsive: true,
@@ -732,8 +798,8 @@ function npm1_5tx() {
                             weight: 'bold'
                         }
                     },
-                    // min: 0,
-                    // max: 2,
+                    min: 0,
+                    max: 100,
                     // ticks: {
                     //     stepSize: 20
                     // }
@@ -751,14 +817,20 @@ function npm1_5tx() {
                     display: true,
                     padding: 1,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
 
 function npm1_5nm() {
     Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
     var ctx = document.getElementById('Nm_NPM1-5');
     var myChart = new Chart(ctx, {
         data: {
@@ -794,7 +866,7 @@ function npm1_5nm() {
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2015, 2016, 2017, 2018, 2019, 2020]
+            labels: [2015, 2016, 2017, 2018, 2019, 2020, 2021]
         },
         options: {
             responsive: true,
@@ -819,7 +891,10 @@ function npm1_5nm() {
                         }
                     },
                     // min:0,
-                    // max:12
+                    max:4,
+                    ticks: {
+                        stepSize: 1
+                    }
                 }
             },
             plugins: {
@@ -834,8 +909,13 @@ function npm1_5nm() {
                     display: true,
                     padding: 5,
                     font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
                 }
             }
-        }
+        },
+        plugins:[chartAreaBorder]
     });
 }
