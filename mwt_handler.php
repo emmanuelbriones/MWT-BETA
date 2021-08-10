@@ -40,7 +40,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm5K"){ // Pm5 and PM9 share table both have all_pm9
 	$query = "select primjobsc0 from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm6"){ 
-	$query = "select type,ratio_prim, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select primjobsc0, type,ratio_prim, St_astext(SHAPE) as shape from pm6_10_tx";
 }else if($key == "all_pm5_6"){ 
 	$query = "select primjobsc0 from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm7B"){
@@ -62,7 +62,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm9_10"){ 
 	$query = "select b00001e1 from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm11"){
-	$query = "select Sidewalk_4, Roads_LA_3, Roads_LA_6, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select Sidewalk_4, Roads_LA_3, Roads_LA_6, St_astext(SHAPE) as shape from pm11old";
 }else if($key == "all_pm12"){
 	$query = "select status, bikepath, mile, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm13_14"){
