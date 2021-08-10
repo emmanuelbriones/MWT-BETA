@@ -134,8 +134,8 @@ function pm3_line_geojson_formatter(data) {
     let shape = data.points.coordinates; //reduced to the array of points.
     for (let point in shape) {
         let formatted_point = {
-            lat: parseFloat(shape[point].y),
-            lng: parseFloat(shape[point].x),
+            lat: parseFloat(shape[point].x),
+            lng: parseFloat(shape[point].y),
         };
         res.push(formatted_point);
     }

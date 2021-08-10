@@ -23,7 +23,6 @@ function pm6Data(mode, condition) {
             let to_visualize = [];
             let type = data.shape_arr[index].type;
             let ratio_prim = parseFloat(data.shape_arr[index].ratio_prim);
-
             //update Dynamic Data
             if (type == "existing") {
                 pm6Data.existing_ratio_sum += ratio_prim;
@@ -81,7 +80,9 @@ function pm6Data(mode, condition) {
 }
 
 function pm6Calculations(pm6Data, mode) {
-    let key = 'all_pm5_6';
+    // TODO: Fix keys for this PM
+    // let key = "all_pm5_6"
+    let key = 'all_pm6';
     let example = {
         key: key
     };

@@ -5,8 +5,9 @@ function pm10Data(mode, condition) {
 
     let pm10Data = {
         totPop: 0, //The summation of people living in the proposed & planned areas
-        peopleLivingTransit: 0,
-        totalpeopleLivingTransit: 0,
+
+        peopleLivingTransit: 0, // PeopleLivingBikeways
+        totalpeopleLivingTransit: 0, // PeopleLivingBikeways
 
         existing_ratio_sum: 0,
         all_ratio_sum: 0
@@ -97,7 +98,7 @@ function pm10Calculations(pm10Data, mode) {
         //calculations
         pm10Data.totPop = totPop;
         pm10Data.peopleLivingTransit = ((pm10Data.existing_ratio_sum / pm10Data.totPop) * 100);
-        pm10Data.totalpeopleLivingTransit = ((pm10Data.all_ratio_sum / pm10Data.totPop) * 100);
+        // pm10Data.totalpeopleLivingTransit = ((pm10Data.all_ratio_sum / pm10Data.totPop) * 100);
 
         if (mode == 0) {
             let value = {

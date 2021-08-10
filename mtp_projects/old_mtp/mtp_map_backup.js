@@ -238,8 +238,8 @@ function line_geojson_formatter(data) {
   for (let point in shape) {
     //console.log(point);
     let formatted_point = {
-      lat: parseFloat(shape[point].y),
-      lng: parseFloat(shape[point].x),
+      lat: parseFloat(shape[point].x),
+      lng: parseFloat(shape[point].y),
     };
     //console.log(formatted_point);
     res.push(formatted_point);
