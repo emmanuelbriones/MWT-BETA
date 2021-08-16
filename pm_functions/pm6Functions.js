@@ -24,20 +24,20 @@ function pm6Data(mode, condition) {
             let type = data.shape_arr[index].type;
             let ratio_prim = parseFloat(data.shape_arr[index].ratio_prim);
             //update Dynamic Data
-            if (type == "existing") {
+            if (type == "Existing") {
                 pm6Data.existing_ratio_sum += ratio_prim;
-            } else if (type == "all") {
+            } else if (type == "Proposed") {
                 pm6Data.all_ratio_sum += ratio_prim;
             }
 
             if (mode == 1) {
                 // if the status of a shape exists, push to visualize
                 for (let i = 0; i < temp.length; i++) {
-                    if (type == "existing" && condition == "e") {
+                    if (type == "Existing" && condition == "e") {
                         color = "#039BE5"; //blue
                         to_visualize.push(temp[i]);
                         polyToErase.exist.push();
-                    } else if (type == "all" && condition == "p") {
+                    } else if (type == "Proposed" && condition == "p") {
                         color = "#9E9E9E"; //gray
                         to_visualize.push(temp[i]);
                         polyToErase.plan.push();

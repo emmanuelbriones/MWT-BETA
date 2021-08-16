@@ -30,19 +30,19 @@ function pm10Data(mode, condition) {
             let statefp = parseInt(data.shape_arr[index].statefp);
 
             // update Text Data
-            if (type == "ex") {
+            if (type == "Existing") {
                 pm10Data.existing_ratio_sum += ratioPop;
-            } else if (type == "all" && statefp == 48) {
+            } else if (type == "Proposed" && statefp == 48) {
                 pm10Data.all_ratio_sum += ratioPop;
             }
 
             if (mode == 1) {
                 for (let i = 0; i < temp.length; i++) {
-                    if (type == "ex" && condition == "e") {
+                    if (type == "Existing" && condition == "e") {
                         color = "#039BE5"; //blue
                         to_visualize.push(temp[i]);
                         polyToErase.exist.push();
-                    } else if (type == "all" && condition == "p") {
+                    } else if (type == "Proposed" && condition == "p") {
                         color = "#9E9E9E"; //gray
                         to_visualize.push(temp[i]);
                         polyToErase.plan.push();
@@ -86,7 +86,8 @@ function pm10Data(mode, condition) {
 }
 
 function pm10Calculations(pm10Data, mode) {
-    let key = 'all_pm9_10';
+    // let key = 'all_pm9_10';
+    let key = "all_pm10"
     let example = {
         key: key
     };
