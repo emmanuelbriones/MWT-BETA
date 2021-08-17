@@ -40,7 +40,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm5K"){ // Pm5 and PM9 share table both have all_pm9
 	$query = "select primjobsc0 from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm6"){ 
-	$query = "select primjobsc0, type,ratio_prim, St_astext(SHAPE) as shape from pm6_10";
+	$query = "select primjobsc0,type,ratio_prim,prcnt_prim,St_astext(SHAPE) as shape from pm6_10";
 }else if($key == "all_pm5_6"){ 
 	$query = "select primjobsc0 from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm7B"){

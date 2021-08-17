@@ -99,7 +99,7 @@ function pm10Calculations(pm10Data, mode) {
         //calculations
         pm10Data.totPop = totPop;
         pm10Data.peopleLivingTransit = ((pm10Data.existing_ratio_sum / pm10Data.totPop) * 100);
-        // pm10Data.totalpeopleLivingTransit = ((pm10Data.all_ratio_sum / pm10Data.totPop) * 100);
+        pm10Data.totalpeopleLivingTransit = ((pm10Data.all_ratio_sum / pm10Data.totPop) * 100);
 
         if (mode == 0) {
             let value = {
@@ -133,7 +133,7 @@ function pm10chart(g2, data) {
             }],
             labels: [
                 'Total Population',
-                'Population within 1/2 mi from proposed high-quality rapid transit',
+                'Population within 1/2 mi from proposed bikeways',
             ]
         },
         options: {

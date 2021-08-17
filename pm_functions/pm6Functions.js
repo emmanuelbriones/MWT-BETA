@@ -23,6 +23,7 @@ function pm6Data(mode, condition) {
             let to_visualize = [];
             let type = data.shape_arr[index].type;
             let ratio_prim = parseFloat(data.shape_arr[index].ratio_prim);
+            let prcnt_prim = parseFloat(data.shape_arr[index].prcnt_prim);
             //update Dynamic Data
             if (type == "Existing") {
                 pm6Data.existing_ratio_sum += ratio_prim;
@@ -54,7 +55,7 @@ function pm6Data(mode, condition) {
                     fillColor: color,
                     fillOpacity: 0.60,
                     zIndex: -1,
-                    title: ratio_prim.toFixed(2) + "%",
+                    title: prcnt_prim.toFixed(1) + "%",
                 });
 
                 if (condition == "e") polyToErase.exist.push(polygon);
@@ -127,7 +128,7 @@ function pm6chart(g2, data) {
             }],
             labels: [
                 'Total Jobs in the El Paso MPO region',
-                'Percent of jobs 0.5 mi from existing high-quality rapid transit',
+                'Percent of jobs 0.5 mi from existing bikeways',
             ]
         },
         options: {

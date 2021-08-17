@@ -467,7 +467,7 @@ function pm10R(data) {
     pm10chart(ctx, data);
     headerAdder("Population within ½ mile of bikeways", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("There are " + commafy(data.totPop) + " people residing in the El Paso MPO region. There are " + data.peopleLivingTransit.toFixed(2) + "%  people living within a half-mile of existing bikeways.  Once all proposed bikeways are complete, there will be a total of " + data.totalpeopleLivingTransit.toFixed(2) + "% people living within a half-mile of bikeways.", "paragraph", "summary-info");
+    paragraphAdder("There are " + commafy(data.totPop) + " people residing in the El Paso MPO region who where surveyed. There are " + data.peopleLivingTransit.toFixed(2) + "%  people living within a half-mile of existing bikeways.  Once all proposed bikeways are complete, there will be a total of " + data.totalpeopleLivingTransit.toFixed(2) + "% people living within a half-mile of bikeways.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Data from the 2012-2016 ACS data and 2019 Transit data ", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
