@@ -132,8 +132,8 @@ function pm10chart(g2, data) {
                 label: 'Dataset 1'
             }],
             labels: [
-                'Total Population',
-                'Population within 1/2 mi from proposed bikeways',
+                'Population Not-within 1/2 mi from existing bikeways',
+                'Population within 1/2 mi from existing bikeways',
             ]
         },
         options: {

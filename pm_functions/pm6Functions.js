@@ -127,8 +127,8 @@ function pm6chart(g2, data) {
                 label: 'Dataset 1'
             }],
             labels: [
-                'Total Jobs in the El Paso MPO region',
-                'Percent of jobs 0.5 mi from existing bikeways',
+                'Percent of jobs not-within 0.5 mi from existing bikeways',
+                'Percent of jobs within 0.5 mi from existing bikeways',
             ]
         },
         options: {
