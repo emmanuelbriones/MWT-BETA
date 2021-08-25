@@ -132,9 +132,10 @@ function pm14Data(mode) {
                 data_by_mode_pm14.walking.ysleta.push(parseFloat(ysleta_found));
                 // calculations for highest wait time    
                 if (year == recentYear) {
+                    console.log(bota_found);
+                    station.walking.wait_time.push(parseFloat(pdn_found));
+                    station.walking.wait_time.push(parseFloat(pdn_r_found));
                     station.walking.wait_time.push(parseFloat(bota_found));
-                    station.walking.wait_time.push(parseFloat(bota_f_found));
-                    station.walking.wait_time.push(parseFloat(ysleta_found));
                     station.walking.wait_time.push(parseFloat(ysleta_f_found));
                     //names - - - - - -  NOTE: If more stations are added to walking then add extra stations here as well 
                     station.walking.name.push("PDN");
@@ -155,6 +156,7 @@ function pm14Data(mode) {
         data_by_mode_pm14.text.driving_highest_wait_time = pm14_highest_wait_time(station.driving);
         data_by_mode_pm14.text.walking_highest_wait_time = pm14_highest_wait_time(station.walking);
         data_by_mode_pm14.text.freight_highest_wait_time = pm14_highest_wait_time(station.freight);
+
 
 
         if (mode == 0) {
@@ -230,6 +232,7 @@ function draw_points_pm14() {
 }
 
 function pm14_highest_wait_time(array) {
+    console.log(array);
     h_wait_time = 0;
     h_name = "";
 

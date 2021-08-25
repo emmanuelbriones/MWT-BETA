@@ -66,7 +66,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm12"){
 	$query = "select status, bikepath, mile, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm13_14"){
-	$query = "select port_of_en as title, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select port_of_en as title, St_astext(SHAPE) as shape from pm13_14";
 }else if($key == "all_pm18_19"){
 	$query = "select OGR_FID,crash_year,type,killed,classA,classB,classC,classO,non_injuri,unknown_in,statefp, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
 }else if($key == "all_pm21_h"){ //
@@ -115,14 +115,14 @@ else if($key == "all_pm24"){
 }else if($key == "all_pm25"){
 	$query = "select type,state_code,year_recor,iri, miles, st_astext(SHAPE) as shape from pm25";
 }else if($key == "all_pm13"){ 
-	$query = "SET @year_ = (SELECT Max(Period) FROM mpo_test_jhuerta.pm13);";
+	$query = "SET @year_ = (SELECT Max(Period) FROM mwt.pm13);";
 	$result = mysqli_query($conn, $query); 
 	$query = "SET @year_ = @year_ - 4; ";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT * FROM mpo_test_jhuerta.pm13 WHERE Period >= @year_;";
+	$query = "SELECT * FROM mwt.pm13 WHERE Period >= @year_;";
 
 }else if($key == "all_pm14"){
-	$query = "SET @year_pm14 = (SELECT Max(period) FROM mpo_test_jhuerta.pm14);";
+	$query = "SET @year_pm14 = (SELECT Max(period) FROM mwt.pm14);";
 	$result = mysqli_query($conn, $query); 
 	$query = "SET @year_pm14 = @year_pm14 - 4; ";
 	$result = mysqli_query($conn, $query); 
@@ -137,7 +137,7 @@ else if($key == "all_pm24"){
     Ysleta_Fast,
     Santa_Teresa,
     Tornillo,
-    MODE FROM mpo_test_jhuerta.pm14 WHERE Period >= @year_pm14;";
+    MODE FROM mwt.pm14 WHERE Period >= @year_pm14;";
 }/*else if($key == "pm13_14_points"){
 	$query = "SELECT st_astext(SHAPE) as shape,port_of_en as title FROM mpo_test_jhuerta.pm14points;";
 }*/

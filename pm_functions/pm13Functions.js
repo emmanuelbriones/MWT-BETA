@@ -76,8 +76,6 @@ function pm13Data(mode) {
                 let title = data.shape_arr[index].title;
                 let to_visualize_points = 0;
                 // filter points by type
-
-
                 if (title == "PDN") {
                     image = "./icons/yellowPin.png";
                 } else if (title == "Ysleta") {
@@ -130,7 +128,7 @@ function pm13Data(mode) {
             let tornillo = parseFloat(data.shape_arr[index]['Tornillo'].replace(/,/g, ''));
 
             let period = parseFloat(data.shape_arr[index]['period'].replace(/,/g, ''));
-            let total = parseFloat(data.shape_arr[index]['Total'].replace(/,/g, ''));
+            let total = parseFloat(data.shape_arr[index]['total'].replace(/,/g, ''));
 
             //********** calculations
 
