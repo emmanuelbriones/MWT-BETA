@@ -383,7 +383,7 @@ function toggleHolderBiking(state) {
         toggleElements("off", "dropdownMenuButton"); 
 
     } else if (state == "off") {
-        document.getElementById("ToggleHolder").style.display = "none";
+        document.getElementById("ToggleBiking").style.display = "none";
 
     }
 }

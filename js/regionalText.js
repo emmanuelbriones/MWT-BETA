@@ -2,9 +2,16 @@
  * Handles Regional Text, Handles Spinner
  * Receives Data from PM then creates text and graphs from that Data
  */
-
+// let active = false;
 function regionalText(data) {
+
+//     if (active == true) {
+//         canvasSafeDelete('chartG');
+//     }
+//     active = false;
+
     toggleHolderSwitch('off');
+    toggleHolderBiking('off');
     toggleRadio('off');
     toggleVisibilityCorr('off');
     toggleNav('off');
@@ -13,6 +20,7 @@ function regionalText(data) {
         pm1R(data);
     }
     else if (currentPM == 2) {
+        // active = true;
         pm2R(data);
     }
     else if (currentPM == 3) {
@@ -79,7 +87,7 @@ function regionalText(data) {
         pm24R(data);
     }
     else if (currentPM == 25) {
-       pm25R(data);
+        pm25R(data);
     }
     else if (currentPM == 26) {
         pm26R(data);
@@ -94,8 +102,8 @@ function pm1R(data) {
     pm1Text(pm1RText, data)
 }
 function pm2R(data) {
-    let text = " During 2014-2018 " + data.Transit.toFixed(1)+"% of workers reported to commute by public transit, " + data.Biking.toFixed(2)+"% of workers bike, " + data.Walking.toFixed(1)+ "% of workers living in the El Paso MPO area reported to walk to work, and " + data.Non_SOV.toFixed(1) + "% of workers used other means.";
-    pm2Text(text,data);
+    let text = " During 2014-2018 " + data.Transit.toFixed(1) + "% of workers reported to commute by public transit, " + data.Biking.toFixed(2) + "% of workers bike, " + data.Walking.toFixed(1) + "% of workers living in the El Paso MPO area reported to walk to work, and " + data.Non_SOV.toFixed(1) + "% of workers used other means.";
+    pm2Text(text, data);
 
 }
 function pm24R(data) {
@@ -122,8 +130,6 @@ function pm24R(data) {
     openNav();
 }
 
-
-
 function pm18R(data) {
     canvasMaker('chart1/2', 'myChart');
     canvasMaker('chart2/2', 'myChart2');
@@ -131,13 +137,13 @@ function pm18R(data) {
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
 
-    pm18StackedChart(ctx2,data);
+    pm18StackedChart(ctx2, data);
     pm18chartLine(ctx, data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
 
     if (currentType == 'driving') {
         headerAdder("Number of Fatalities - Driving", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountDK+" (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.dtot + " people were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountDK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.dtot + " people were killed.", "paragraph", "summary-info");
 
     }
     else if (currentType == 'freight') {
@@ -160,8 +166,6 @@ function pm18R(data) {
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("The total number of crashes includes crashes of all severities: fatal, suspected serious injury, non-incapacitating injury, possible injury, and non-injury*. ", "paragraph", "calc-info");
     paragraphAdder("*Note: Crash severities classified by TxDOT as 'non-injury' or 'unknown injury' are here shown as 'non-injury'. Crash severity classified by NMDOT as 'unhurt' is shown here as 'non-injury'. ", "paragraph", "calc-info");
-
-
     openNav();
 }
 function pm19R(data) {
@@ -170,7 +174,7 @@ function pm19R(data) {
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
 
-    pm19StackedChart(ctx2,data);
+    pm19StackedChart(ctx2, data);
 
     if (currentType == 'driving') {
         headerAdder("Number serious injuries - Driving", "title");
@@ -206,15 +210,15 @@ function pm25R(data) {
     canvasMaker('chart2/2', 'myChart2');
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
-    pm25StackedChart(ctx,data);
-    pm25chartLine(ctx2,data);
+    pm25StackedChart(ctx, data);
+    pm25chartLine(ctx2, data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("HPMS reports 2017 pavement condition for " + data.tot_poor_mi + " miles within the El Paso MPO area, out of that " + data.poor_mi_perc + "% is in poor condition. " + data.tx_poor_mi.toFixed(2) + " miles (" + data.tx_poor_mi_perc + "%) of pavement in poor condition are located in Texas and " + data.nm_poor_mi.toFixed(2) + " miles (" + data.nm_poor_mi_perc + "%) are in New Mexico.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2013-2017", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("Highway Performance Monitoring System (HPMS) Public Release of Geospatial Data in Shapefile Format", "https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm");
-   // anchorAdder("https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm ","https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm");
+    // anchorAdder("https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm ","https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Pavement condition was based on International Roughness Index (IRI) as defined by:", "paragraph", "calc-info");
     anchorAdder("Federal Highway Administration", "https://www.fhwa.dot.gov/policy/2013cpr/chap3.cfm#1");
@@ -238,7 +242,7 @@ function pm3R(data) {
     paragraphAdder("Data provided by Sun Metro", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("The received data was separated by years and routes. The average ridership over the 5 years is shown in the map based on geometric interval; 2,777-107,272 (Yellow), 107,272-388,321 (Orange), 388,321-1,144,232 (Blue). Since Sun Metro stopped using route 204 in 2014 data was not included. ", "paragraph", "calc-info");
- 
+
     if (detectmob() != true) {
         let names = ['2,777 - 107,272', '107,273 - 388,321', '388,321 - 1,144,232'];
         let colors = ['background:#FFEB3B;', 'background:#FF9800;', 'background:#2196F3'];
@@ -249,7 +253,7 @@ function pm3R(data) {
 function pm4R(data) {
     let names = "";
     if (currentType == 'biking') {
-      
+
         headerAdder("Biking trips recorded by Strava", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
         paragraphAdder("In 2018, a total of " + commafy(data.dataB) + " bike trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
@@ -260,9 +264,9 @@ function pm4R(data) {
         paragraphAdder("How Performancep Measure was Calculated:", "subtitle", "calc-title");
         paragraphAdder("This performance measure reflects the total number of bike trips on the street regardless of the direction (column TACTCNT) recorded by Strava in 2018. Trips recorded on Interstate 10 were removed from this dataset, since I-10 is a limited access facility. The legend shows the data in a geometric interval, which provides the best viewing distribution.", "paragraph", "calc-info");
         names = ['5 - 30', '30 - 479', '479 - 6,460'];
-   
+
     }
-   else if (currentType == 'walking') {
+    else if (currentType == 'walking') {
         headerAdder("Walking trips recorded by Strava", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
         paragraphAdder("In 2017, a total of " + commafy(data.dataW) + " walk trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
@@ -283,7 +287,7 @@ function pm4R(data) {
 function pm11R(data) {
     headerAdder("Sidewalks per mile", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("There are a total of " + commafy(data.sideWalks) + " miles of sidewalks along " + commafy(data.roadways) + " miles of roadways within the City of El Paso limits. Assuming that each roadway has a sidewalk on both sides, there are " + commafy(data.missing)+" miles of sidewalks missing.", "paragraph", "summary-info");
+    paragraphAdder("There are a total of " + commafy(data.sideWalks) + " miles of sidewalks along " + commafy(data.roadways) + " miles of roadways within the City of El Paso limits. Assuming that each roadway has a sidewalk on both sides, there are " + commafy(data.missing) + " miles of sidewalks missing.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Sidewalk GIS layer was provided in 2018", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -297,7 +301,7 @@ function pm12R(data) {
     headerAdder("Bikeway Buildout", "title");
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
-    pm12StackedChart(ctx,data);
+    pm12StackedChart(ctx, data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("In the El Paso MPO region, there are a total of " + data.pm12existing.toFixed(2) + " miles of existing bikeways. There are " + data.proposedMiles.toFixed(2) + " miles of proposed bikeways. If all proposed bikeways are completed, there would be a total of " + data.tot.toFixed(2) + " miles in the El Paso MPO region.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
@@ -314,16 +318,16 @@ function pm13R(data) {
     canvasMaker('chart2/2', 'myChart2');
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
-    pm13ModeGraph(ctx,data);
+    pm13ModeGraph(ctx, data);
     pm13Chart(ctx2, data);
     let yearRange = (data.driving.period).reduce((a, b) => Math.min(a, b)); // get smalleest year
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    if (currentType == "driving") {  
-        paragraphAdder("During a 5-year period (" + yearRange + "-" + (yearRange + 4) + "), on average " + commafy(data.text.averageD)+" personal vehicles crossed northbound at the ports of entry. The port of entry with highest personal vehicle traffic is " +data.text.greatestStation+".", "paragraph", "summary-info");
-    } else if (currentType == "freight") {     
-        paragraphAdder("During a 5-year period (" + yearRange + "-" + (yearRange + 4) +"), on average " + commafy(data.text.averageF)+" commercial vehicles crossed northbound at the ports of entry. The port of entry with highest commercial vehicle traffic is " +data.text.greatestStation+".", "paragraph", "summary-info");
+    if (currentType == "driving") {
+        paragraphAdder("During a 5-year period (" + yearRange + "-" + (yearRange + 4) + "), on average " + commafy(data.text.averageD) + " personal vehicles crossed northbound at the ports of entry. The port of entry with highest personal vehicle traffic is " + data.text.greatestStation + ".", "paragraph", "summary-info");
+    } else if (currentType == "freight") {
+        paragraphAdder("During a 5-year period (" + yearRange + "-" + (yearRange + 4) + "), on average " + commafy(data.text.averageF) + " commercial vehicles crossed northbound at the ports of entry. The port of entry with highest commercial vehicle traffic is " + data.text.greatestStation + ".", "paragraph", "summary-info");
     } else if (currentType == "walking") {
-        paragraphAdder("During a 5-year period (" + yearRange + "-" + (yearRange + 4) +"), on average " + commafy(data.text.averageW)+" pedestrians crossed northbound at the ports of entry. The port of entry with highest pedestrian traffic is " +data.text.greatestStation+".", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (" + yearRange + "-" + (yearRange + 4) + "), on average " + commafy(data.text.averageW) + " pedestrians crossed northbound at the ports of entry. The port of entry with highest pedestrian traffic is " + data.text.greatestStation + ".", "paragraph", "summary-info");
     }
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
@@ -341,26 +345,27 @@ function pm14R(data) {
     var ctx = document.getElementById('myChart').getContext('2d');
     let latestYear = data.text.latestYear;
     if (currentType == "driving") {
-        paragraphAdder("In "+latestYear+" the average wait time for personal vehicles crossing northbound at the ports of entry was "+data.text.drivingTime+" minutes. The port of entry with highest wait time for personal vehicles in  "+latestYear+" was "+data.text.driving_highest_wait_time+". ", "paragraph", "summary-info");
-        pm14DrivingChart(ctx,data);
+        paragraphAdder("In " + latestYear + " the average wait time for personal vehicles crossing northbound at the ports of entry was " + data.text.drivingTime + " minutes. The port of entry with highest wait time for personal vehicles in  " + latestYear + " was " + data.text.driving_highest_wait_time + ". ", "paragraph", "summary-info");
+        pm14DrivingChart(ctx, data);
     } else if (currentType == "freight") {
-        paragraphAdder("In "+latestYear+" the average wait time for commercial vehicles crossing northbound at the ports of entry was "+data.text.freightTime+" minutes. The port of entry with highest wait time for commercial vehicles in  "+latestYear+" was "+data.text.freight_highest_wait_time+". ", "paragraph", "summary-info");
-        pm14FreightChart(ctx,data);
+        paragraphAdder("In " + latestYear + " the average wait time for commercial vehicles crossing northbound at the ports of entry was " + data.text.freightTime + " minutes. The port of entry with highest wait time for commercial vehicles in  " + latestYear + " was " + data.text.freight_highest_wait_time + ". ", "paragraph", "summary-info");
+        pm14FreightChart(ctx, data);
     } else if (currentType == "walking") {
-        paragraphAdder("In "+latestYear+" the average wait time for pedestrians crossing northbound at the ports of entry was "+data.text.walkingTime+" minutes. The port of entry with highest average wait time for pedestrians in  "+latestYear+" was "+data.text.walking_highest_wait_time+". ", "paragraph", "summary-info");
-        pm14WalkingChart(ctx,data);
+        paragraphAdder("In " + latestYear + " the average wait time for pedestrians crossing northbound at the ports of entry was " + data.text.walkingTime + " minutes. The port of entry with highest average wait time for pedestrians in  " + latestYear + " was " + data.text.walking_highest_wait_time + ". ", "paragraph", "summary-info");
+        pm14WalkingChart(ctx, data);
     }
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder((latestYear-4) + "-" + latestYear, "paragraph", "analysis-info");
+    paragraphAdder((latestYear - 4) + "-" + latestYear, "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Customs and Border Protection, compiled by the City of El Paso International Bridges Department. ", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("These statistics were obtained from the City of El Paso International Bridges Department. In this context, pedestrians include people walking or bicycling. Wait times for Santa Teresa and Tornillo were not available at the time of analysis.  Wait times estimates are determined using either a manual, line-of-sight methodology via predetermined benchmarks or an automated system. For more info related with wait times refer to:", "paragraph", "calc-info");
-    anchorAdder("https://bwt.cbp.gov/","https://bwt.cbp.gov/");
+    anchorAdder("https://bwt.cbp.gov/", "https://bwt.cbp.gov/");
     openNav();
 }
 function pm26R(data) {
+    // canvasSafeDelete('chartG');
     canvasMaker('chart1/2', 'myChart');
     canvasMaker('chart2/2', 'myChart2');
 
@@ -391,12 +396,12 @@ function pm22R(data) {
     canvasMaker('chart2/2', 'myChart2');
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
-    pm22chartLine(ctx,data);
-    pm22StackedChart(ctx2,data);
+    pm22chartLine(ctx, data);
+    pm22StackedChart(ctx2, data);
 
     headerAdder("Number of crashes on the CMP network", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.dynamic_txt_val)  + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
+    paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.dynamic_txt_val) + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2015 – 2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -408,7 +413,7 @@ function pm22R(data) {
 function pm5R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
-    pm5chart(ctx,data);
+    pm5chart(ctx, data);
     headerAdder("Jobs within ½ mile of high-quality rapid transit", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("In the El Paso MPO region, there are a total of " + commafy(data.totJobs) + " jobs. In a half-mile of high-quality rapid transit, there are a total of " + data.jobsPercent.toFixed(2) + "% jobs.  Once all proposed high-quality rapid transit stations are complete, there will be a total of " + data.totalJobsPercent.toFixed(2) + "% jobs within a half-mile of high-quality rapid transit.", "paragraph", "summary-info");
@@ -428,7 +433,7 @@ function pm5R(data) {
 function pm9R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
-    pm9chart(ctx,data);
+    pm9chart(ctx, data);
     headerAdder("Population within ½ mile of high-quality rapid transit.", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("There are " + commafy(data.totPop) + " people residing in the El Paso MPO region. There are " + data.peopleLivingTransit.toFixed(2) + "% people living within a half-mile of high-quality rapid transit.  Once all proposed high-quality rapid transit stations are complete, there will be a total of " + data.totalpeopleLivingTransit.toFixed(2) + "% people living within a high-quality rapid transit.", "paragraph", "summary-info");
@@ -437,7 +442,7 @@ function pm9R(data) {
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("American Community Survey 5-Year Estimates & TIGER/Line Shapefiles.", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
     anchorAdder("The layer of the high-quality transit stations was provided by Sun Metro.   ", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2016.html");
-   
+
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("American Community Survey data was analysed on a census block group-level in order to estimate the population within ½ mile of high-quality rapid transit, assuming a homogenous distribution of population each the block group.", "paragraph", "calc-info");
     toggleHolderSwitch('on');
@@ -465,7 +470,7 @@ function pm10R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm10chart(ctx, data);
-    headerAdder("Population within ½ mile of bikeways", "title");
+    headerAdder("Population within 1/2 mile.", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("There are " + commafy(data.totPop) + " people residing in the El Paso MPO region who where surveyed. There are " + data.peopleLivingTransit.toFixed(2) + "%  people living within a half-mile of existing bikeways.  Once all proposed bikeways are complete, there will be a total of " + data.totalpeopleLivingTransit.toFixed(2) + "% people living within a half-mile of bikeways.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
@@ -483,7 +488,7 @@ function pm10R(data) {
 function pm7R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
-    pm7HorizontalBar(ctx,data);
+    pm7HorizontalBar(ctx, data);
 
 
     headerAdder("Key destinations within ½ mile of high-quality rapid transit", "title");
@@ -502,7 +507,7 @@ function pm7R(data) {
 function pm8R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
-    pm8HorizontalBar(ctx,data);
+    pm8HorizontalBar(ctx, data);
     headerAdder("key destinations within ½ mile of bikeways", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder(" In the El Paso MPO region, there are a total of " + data.totKeyDest + " key destinations. In a half-mile of existing bikeways, there are a total of " + data.percentKeyD1.toFixed(2) + "% key destinations.  Once all proposed bikeways are complete, there will be a total of " + data.percentKeyD2.toFixed(2) + "%   key destinations within a half-mile of bikeways. ", "paragraph", "summary-info");
@@ -527,8 +532,8 @@ function pm15R(data) {
     paragraphAdder("Summary:", "subtitle", "summary-title");
     //paragraphAdder("According to the data available, ozone pollution has been increasing in the last 5 years.", "paragraph", "summary-info");
     paragraphAdder("Stations with the highest annual readings for each pollutant are:", "paragraph", "summary-info");
-    paragraphAdder("Ozone 8hr - " + data[data.length-1].station8+" in "+data[data.length-1].year_8+".", "paragraph", "summary-info");
-    paragraphAdder("Ozone 1hr - " + data[data.length-1].station1 + " in " + data[data.length-1].year_1 +".", "paragraph", "summary-info");
+    paragraphAdder("Ozone 8hr - " + data[data.length - 1].station8 + " in " + data[data.length - 1].year_8 + ".", "paragraph", "summary-info");
+    paragraphAdder("Ozone 1hr - " + data[data.length - 1].station1 + " in " + data[data.length - 1].year_1 + ".", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -545,14 +550,14 @@ function pm16R(data) {
     canvasMaker('chart1', 'myChart');
 
     var ctx = document.getElementById('myChart').getContext('2d');
- 
+
     pm16chartLine(ctx, data);
     headerAdder("Carbon monoxide emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     //paragraphAdder("According to the data available, Carbon Monoxide pollution has been the same for the last 5 years. Except for 2018 that UTEP registered a high reading. ", "paragraph", "summary-info");
     paragraphAdder("Stations with the highest annual readings for Carbon Monoxide are:  ", "paragraph", "summary-info");
-    paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year +".", "paragraph", "summary-info"); ///////////////////////////////////////////////////////**************
-    paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 +".", "paragraph", "summary-info"); 
+    paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year + ".", "paragraph", "summary-info"); ///////////////////////////////////////////////////////**************
+    paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 + ".", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -572,8 +577,8 @@ function pm17R(data) {
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("According to the data available, Particulate Matter pollution has been increasing and decreasing depending of the station in the last 5 years.", "paragraph", "summary-info");
     paragraphAdder("Stations with the highest annual readings for Particulate Matter are:  ", "paragraph", "summary-info");
-    paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year +".", "paragraph", "summary-info");
-    paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 +".", "paragraph", "summary-info");
+    paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year + ".", "paragraph", "summary-info");
+    paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 + ".", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -589,7 +594,7 @@ function pm20R(data) {
     if (currentType == "walking") {
         headerAdder("Pedestrians crashes nearby bus stops", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
-        if (data.w_greatest ==0) {
+        if (data.w_greatest == 0) {
             paragraphAdder("No pedestrian crashes in El Paso region occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         }
         else if (data.w_greatestCounter == 1) {
@@ -597,7 +602,7 @@ function pm20R(data) {
         } else if (data.w_greatestCounter > 1) {
             paragraphAdder(data.percentPed.toFixed(2) + "% of all pedestrian crashes in El Paso region occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.w_greatest + " (" + data.w_greatestCounter + " locations have the same number)", "paragraph", "summary-info");
         }
-      
+
     } else if (currentType == "biking") {
         headerAdder("Bicyclist crashes nearby bus stops", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
@@ -608,7 +613,7 @@ function pm20R(data) {
         } else if (data.b_greatestCounter > 1) {
             paragraphAdder(data.percentBike.toFixed(2) + "% of all bicyclists crashes in El Paso region occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.b_greatest + " (" + data.b_greatestCounter + " locations have the same number)", "paragraph", "summary-info");
         }
-       
+
     }
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Crashes 2013-2017, SunMetro bus stops as of 2019 ", "paragraph", "analysis-info");
@@ -716,12 +721,13 @@ function pm1Text(text, data) {
     paragraphAdder("Percent of non-single occupancy vehicle (SOV) commute is calculated as:", "paragraph", "calc-info");
     imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
     openNav();
+
 }
 /**
  * Modify and create function.
  */
 function pm2Text(text, data) {
-    canvasMaker('chart1', 'myChart');
+    canvasMaker('chartG', 'myChart');
     var ctx2pm1 = document.getElementById('myChart').getContext('2d');
     piechartpm2(ctx2pm1, data);
     if (currentType == "transit") {
@@ -738,9 +744,9 @@ function pm2Text(text, data) {
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2018.html");
     anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
-    paragraphAdder("Means of Transportation: Bicycle: workers 16 and over (estimate) &#247 Total workers 16 years and over","paragraph","calc-info");
-    paragraphAdder("Means of Transportation: Public Transportation (exluding cabs): workers 16 and over &#247 Total workers 16 years and over","paragraph","calc-info");
-    paragraphAdder("Means of Transportation: Walked: workers 16 and over (estimate) &#247 Total workers 16 years and over","paragraph","calc-info");
+    paragraphAdder("Means of Transportation: Bicycle: workers 16 and over (estimate) &#247 Total workers 16 years and over", "paragraph", "calc-info");
+    paragraphAdder("Means of Transportation: Public Transportation (exluding cabs): workers 16 and over &#247 Total workers 16 years and over", "paragraph", "calc-info");
+    paragraphAdder("Means of Transportation: Walked: workers 16 and over (estimate) &#247 Total workers 16 years and over", "paragraph", "calc-info");
     //legend elements
     if (detectmob() != true) {
         let names = ['No Data', 'Below mean', 'Above Mean'];
