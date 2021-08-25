@@ -278,5 +278,5 @@ function piechartpm2(ctx, data) {
     ];
     
     var layout = { width: 750, height: 600, margin: { t: 0, b: 0 }, grid: {rows:2, columns:3}};
-    Plotly.newPlot('chart1', dataset, layout);
+    Plotly.newPlot('chartG', dataset, layout);
 }
