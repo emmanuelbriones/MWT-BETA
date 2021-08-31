@@ -314,8 +314,8 @@ function pm12R(data) {
 }
 function pm13R(data) {
     headerAdder("Northbound border crossings", "title");
-    canvasMaker('chart1/2', 'myChart');
-    canvasMaker('chart2/2', 'myChart2');
+    canvasMaker('chart1', 'myChart');
+    canvasMaker('chart2', 'myChart2');
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
     pm13ModeGraph(ctx, data);
@@ -470,7 +470,7 @@ function pm10R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm10chart(ctx, data);
-    headerAdder("Population within 1/2 mile.", "title");
+    headerAdder("Population within 1/2 mile (Sample).", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("There are " + commafy(data.totPop) + " people residing in the El Paso MPO region who where surveyed. There are " + data.peopleLivingTransit.toFixed(2) + "%  people living within a half-mile of existing bikeways.  Once all proposed bikeways are complete, there will be a total of " + data.totalpeopleLivingTransit.toFixed(2) + "% people living within a half-mile of bikeways.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");

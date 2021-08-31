@@ -1,10 +1,10 @@
 // Colors for Graphs/
-let pdnC = "#FDD835";
-let pdnC2 = "#FFEB3B"
-let ysC = "#FF9800";
-let ysC2 = '#FFB74D';
+let pdnC = "#FF0000";
+let pdnC2 = "#FFABAB"
+let ysC = "#006118";
+let ysC2 = '#03ff41';
 let botaC = "#304FFE";
-let botaC2 = "#2196F3";
+let botaC2 = "#8103ff";
 
 function pm14Data(mode) {
     let php_handler = 'mwt_handler.php';
@@ -270,7 +270,7 @@ function pm14DrivingChart(ctx, data14) {
                 radius: 5
             },
             {
-                label: "PND Ready Personal Vehicles",
+                label: "PDN Ready Personal Vehicles",
                 data: data14.driving.pdn_ready,
                 backgroundColor: pdnC2,
                 borderColor: pdnC2,

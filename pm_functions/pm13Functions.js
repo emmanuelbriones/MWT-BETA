@@ -391,8 +391,8 @@ function pm13Chart(ctx, data) {
             {
                 label: "Ysleta DCL",
                 data: dataH.ysleta_dcl,
-                backgroundColor: "#FFB74D",
-                borderColor: "#FFB74D",
+                backgroundColor: "#4fe81c",
+                borderColor: "#4fe81c",
                 fill: false,
                 lineTension: 0,
                 radius: 5
