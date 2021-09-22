@@ -29,6 +29,10 @@
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <script type="text/javascript" src="npm_functions/NPM2.js"></script>
 
+   <!-- Mathjax -->
+   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
    <div class="main">
       <div id="legendHolder" class="legend">
          <div class="row">
@@ -73,7 +77,7 @@
                         requirements for State Departments of Transportation (DOTs), Metropolitan
                         Planning Organizations (MPOs), and transit agencies. Among other changes, the
                         rules require State DOTs and MPOs to take a performance-based approach to planning for mobility
-                        needs and programming transportation funding.
+                        needs and programming transportation funding.                        
                      </p>
                   </div>
                   <div id="pm2">
@@ -129,10 +133,8 @@
                               Good condition shall be computed to the one tenth of a percent as follows <a
                                  href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(2)">(23
                                  CFR
-                                 490.313(f)(2))</a>
-                              Percentage of Pavements on the Interstate System in Good Condition = 100 X &sum;
-                              [End_Point - Begin_Point] X Through Lanes section g / &sum; [End_Point - Begin_Point] X
-                              Through Lanes section t
+                                 490.313(f)(2)):</a><br>
+                                 $$Percentage Of Pavements On The Interestate System In Good Condition = 100 * \frac{\sum_{g=1}[(End Point - BeginPoint) * Through Lanes]section_g}{\sum_{t=1}[(End Point - BeginPoint) * Through Lanes]section_t} $$
                            </p>
                            <h5>Definitions</h5>
                            <p>
@@ -245,9 +247,7 @@
                               Poor condition shall be computed to the one tenth of a percent as follows <a
                                  href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(3)">(23
                                  CFR 490.313(f)(3)):</a><br>
-                              Percentage of Pavements on the Interstate System in Poor Condition = 100 X &sum;
-                              [End_Point - Begin_Point] X Through Lanes section p / &sum; [End_Point - Begin_Point] X
-                              Through Lanes section t
+                                 $$Percentage Of Pavements On The Interestate System In Poor Condition = 100 * \frac{\sum_{g=1}[(End Point - BeginPoint) * Through Lanes]section_p}{\sum_{t=1}[(End Point - BeginPoint) * Through Lanes]section_t} $$
                            </p>
                            <h5>Definitions</h5>
                            <p>
@@ -359,9 +359,7 @@
                               follows <a
                                  href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(4)">(23
                                  CFR 490.313(f)(4))</a><br>
-                              Percentage of Pavements on the Non-Interstate NHS in Good Condition = 100 X &sum;
-                              [End_Point - Begin_Point] X Through Lanes section g / &sum; [End_Point - Begin_Point] X
-                              Through Lanes section t
+                              $$Percentage Of Pavements On The Non-Interestate NHS In Good Condition = 100 * \frac{\sum_{g=1}[(End Point - BeginPoint) * Through Lanes]section_g}{\sum_{t=1}[(End Point - BeginPoint) * Through Lanes]section_t} $$
                            </p>
                            <h5>Definitions</h5>
                            <p>
@@ -475,10 +473,8 @@
                                  490.307(a)(4)</a> shall be computed to the one tenth of a percent as
                               follows <a
                                  href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(5)">(23
-                                 CFR 490.313(f)(5))</a>:
-                              Percentage of Pavements on the Non-Interstate NHS in Poor Condition = 100 X &sum;
-                              [End_Point - Begin_Point] X Through Lanes section p / &sum; [End_Point - Begin_Point] X
-                              Through Lanes section t
+                                 CFR 490.313(f)(5))</a>:  
+                              $$Percentage Of Pavements On The Non-Interestate NHS In Poor Condition = 100 * \frac{\sum_{g=1}[(End Point - BeginPoint) * Through Lanes]section_p}{\sum_{t=1}[(End Point - BeginPoint) * Through Lanes]section_t} $$
                            </p>
                            <h5>Definitions</h5>
                            <p>
@@ -612,10 +608,7 @@
                                  href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-D/section-490.409#p-490.409(c)(1)">(§
                                  23 CFR
                                  490.409(c)(1))</a>:
-
-                              Percentage of Bridges classified in Good Condition = 100 X &sum; [Length X Width] Bridge g
-                              /
-                              &sum; Length X Width] Bridge s <br>
+                              $$Percentage Of Bridges Classified In Good Condition = 100 * \frac{\sum_{g=1}[Length * Width]Bridge_g}{\sum_{s=1}[Length * Width]Bridge_s} $$
                               The measures identified in <a
                                  href="https://ecfr.federalregister.gov/current/title-23/section-490.407#p-490.407(c)">§
                                  490.407(c)</a> shall be used to establish targets in accordance with
@@ -748,10 +741,8 @@
                               condition shall be computed and reported to the one tenth of a percent as follows <a
                                  href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-D/section-490.409#p-490.409(c)(2)">(§
                                  23 CFR
-                                 490.409(c)(2))</a>: <br>
-                              Percentage of Bridges classified in Poor Condition = 100 X &sum; [Length X Width] Bridge p
-                              /
-                              &sum; Length X Width] Bridge s <br>
+                                 490.409(c)(2))</a>:
+                              $$Percentage Of Bridges Classified In Poor Condition = 100 * \frac{\sum_{p=1}[Length * Width]Bridge_p}{\sum_{s=1}[Length * Width]Bridge_s} $$
                               The measures identified in <a
                                  href="https://ecfr.federalregister.gov/current/title-23/section-490.407#p-490.407(c)">§
                                  490.407(c)</a> shall be used to establish targets in accordance with
@@ -762,7 +753,7 @@
                            </p>
                            <h5>Definitions</h5>
                            <p>
-                              POOR = total number of the applicable bridges, where their condition is Poor per <a
+                              Poor = total number of the applicable bridges, where their condition is Poor per <a
                                  href="https://ecfr.federalregister.gov/current/title-23/section-490.409#p-490.409(b)(3)">paragraph
                                  (b)(3)</a> of this section. <br>
                               p = a bridge determined to be in Poor condition per <a
