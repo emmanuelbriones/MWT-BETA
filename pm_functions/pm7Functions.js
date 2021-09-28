@@ -150,11 +150,11 @@ function pm7DataPKey(mode, stat) {
                     title: type
                 });
 
-                if (existing == "yes" && stat == "e") {
+                if (existing == "Yes" && stat == "e") {
                     pointsToErase.exist.push(point);
                     point.setMap(map);
                     points.push(point);
-                } else if (planned == "yes" && stat == "p") {
+                } else if (planned == "Yes" && stat == "p") {
                     pointsToErase.plan.push(point);
                     point.setMap(map);
                     points.push(point);
@@ -170,69 +170,69 @@ function pm7DataPKey(mode, stat) {
 
             //COUNT
             if (type == "Airport") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[0]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[0]++;
                 }
             } else if (type == "Hospital") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[1]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[1]++;
                 }
             } else if (type == "Leisure Time Activity") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[2]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[2]++;
                 }
             } else if (type == "Mall") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[3]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[3]++;
                 }
             } else if (type == "Military Base") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[4]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[4]++;
                 }
             } else if (type == "Natural and Heritage") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[5]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[5]++;
                 }
             } else if (type == "Nursing Home") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[6]++;
-                } else if (existing == "yes") {
+                } else if (existing == "Yes") {
                     pm7Data.planned[6]++;
                 }
             } else if (type == "Prison/Jail") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[7]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[7]++;
                 }
             } else if (type == "Shelter") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[8]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[8]++;
                 }
             } else if (type == "Transit Center") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[9]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[9]++;
                 }
             } else if (type == "University/College") {
-                if (existing == "yes") {
+                if (existing == "Yes") {
                     pm7Data.existing[10]++;
-                } else if (planned == "yes") {
+                } else if (planned == "Yes") {
                     pm7Data.planned[10]++;
                 }
             }
@@ -310,7 +310,7 @@ function pm7HorizontalBar2(ctx) {
     var myBarChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-            labels: ["Millitary Base", "Airport", "University/College", "Transit Center", "Shelter", "Prison/jail", "Nursing Home", "Natural and heritage", "Mall", "Leisure Time Activity", "Hospital"],
+            labels: ["Airport", "Hospital", "Leisure Time Activity", "Mall", "Military Base", "Natural and Heritage", "Nursing Home", "Prison/Jail", "Shelter", "Transit Center", "University/College"],
             datasets: [{
                     label: "Number of Key Destinations in El Paso MPO Region",
                     data: [1, 5, 8, 5, 6, 7, 8, 9, 4, 6, 11],

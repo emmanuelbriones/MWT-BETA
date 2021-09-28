@@ -30,7 +30,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pmbridge"){ 
 	$query = "select astext(SHAPE) as shape from pm26 where corridor_key = '$key'";
 }else if($key == "all_pm26"){ 
-	$query = "select mode,deck_cond_,superstruc,substruc_c,region,ST_astext(SHAPE) as shape from pm26 where corridor_key = '$key'";
+	$query = "select mode,deck_cond_,superstruc,substruc_c,region, ST_astext(SHAPE) as shape, year from pm26";
 }else if($key == "all_pm3"){
 	$query = "select TotalRid_7 , TotalRid_1 , astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; // temporal note: find an elegant way to generalize this
 }else if($key == "all_pm4"){
@@ -44,15 +44,15 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm5_6"){ 
 	$query = "select primjobsc0 from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm7B"){
-	$query = "select type, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";// ! repetition
+	$query = "select type, St_astext(SHAPE) as shape from pm7_8bikeways";// ! repetition
 }else if($key == "all_pm7S"){
-	$query = "select status, stopname,astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";// ! repetition
+	$query = "select status, stopname,St_astext(SHAPE) as shape from pm7_8bikeways";// ! repetition
 }else if($key == "all_pm7K"){
-	$query = "select display,type,existing,planned,astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";// ! repetition
+	$query = "select display,type,existing,planned,St_astext(SHAPE) as shape from pm7_8bikeways";// ! repetition
 }else if($key == "all_pm8B"){
-	$query = "select type, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";// ! repetition
+	$query = "select type, St_astext(SHAPE) as shape from pm7_8stations";// ! repetition
 }else if($key == "all_pm8K"){
-	$query = "select display,type,existing,planned, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";// ! repetition
+	$query = "select display,type,existing,planned, St_astext(SHAPE) as shape from pm7_8stations";// ! repetition
 }else if($key == "all_pm9"){ // Pm5 and PM9 share table both have all_pm9
 	$query = "select type,ratio_pop, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm9_C"){ // Pm5 and PM9 share table both have all_pm9
