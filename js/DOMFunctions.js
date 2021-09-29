@@ -377,16 +377,16 @@ function toggleHolderSwitch(state) {
     }
 }
 
-function toggleHolderBiking(state) {
-    if (state == "on") {
-        document.getElementById("ToggleBiking").style.display  = "block";
-        toggleElements("off", "dropdownMenuButton"); 
+// function toggleHolderBiking(state) {
+//     if (state == "on") {
+//         document.getElementById("ToggleBiking").style.display  = "block";
+//         toggleElements("off", "dropdownMenuButton"); 
 
-    } else if (state == "off") {
-        document.getElementById("ToggleBiking").style.display = "none";
+//     } else if (state == "off") {
+//         document.getElementById("ToggleBiking").style.display = "none";
 
-    }
-}
+//     }
+// }
 
 // detects if user is on mobile
 function detectmob() {
