@@ -11,7 +11,7 @@ function regionalText(data) {
 //     active = false;
 
     toggleHolderSwitch('off');
-    // toggleHolderBiking('off');
+    toggleHolderBiking('off');
     toggleRadio('off');
     toggleVisibilityCorr('off');
     toggleNav('off');
@@ -463,8 +463,8 @@ function pm6R(data) {
     paragraphAdder("Bikeway data was provided by the following entities in January 2019: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario, and the City of El Paso.   ", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("LEHD workplace area characteristics (WAC) data was analysed on a census block group-level in order to estimate the number of jobs within a ½ mile from a bikeway, assuming a homogenous distribution of jobs each the block group.", "paragraph", "calc-info");
-    // toggleHolderBiking('on');
-    toggleHolderSwitch('on');
+    toggleHolderBiking('on');
+    // toggleHolderSwitch('on');
     openNav();
 }
 function pm10R(data) {
@@ -482,8 +482,8 @@ function pm10R(data) {
     paragraphAdder("Bikeway data was provided by the municipalities: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario, and the City of El Paso.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("American Community Survey data was analysed on a census block group-level in order to estimate the number of jobs within a ½ mile from a bikeway, assuming a homogenous distribution of jobs for each block group. ", "paragraph", "calc-info");
-    // toggleHolderBiking('on');
-    toggleHolderSwitch('on');
+    toggleHolderBiking('on');
+    // toggleHolderSwitch('on');
 
     openNav();
 }

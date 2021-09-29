@@ -152,3 +152,56 @@ $("#toggle2").on('change', function () {
         }
     }
 });
+
+$("#toggle3").on('change', function () {
+    if ($(this).is(':checked')) { //when TRUE
+        removeAllElementsBar();
+        toggleSpinner('on');
+        toggleRadio('off');
+        toggleHolderBiking('off');
+        toggleVisibilityCorr('off');
+        toggleNav('off');
+        if (currentPM == 6) {
+            PM_existing_selected.PM6 = true;
+            pm6Data(1, "p");
+        } else if (currentPM == 10) {
+            PM_existing_selected.PM10 = true;
+            pm10Data(1, "p");
+        }
+    } else {
+        if (currentPM == 6) {
+            PM_existing_selected.PM6 = false;
+            clear_Planned();
+        } else if (currentPM == 10) {
+            PM_existing_selected.PM10 = false;
+            clear_Planned();
+        }
+    }
+});
+
+$("#toggle4").on('change', function () {
+    if ($(this).is(':checked')) { //when TRUE
+        removeAllElementsBar();
+        toggleSpinner('on');
+        toggleRadio('off');
+        toggleHolderBiking('off');
+        toggleVisibilityCorr('off');
+        toggleNav('off');
+        if (currentPM == 6) {
+            PM_planned_selected.PM6 = true;
+            pm6Data(1, "p");
+        } else if (currentPM == 10) {
+            PM_planned_selected.PM10 = true;
+            pm10Data(1, "p");
+        }
+    } else {
+        if (currentPM == 6) {
+            PM_planned_selected.PM6 = false;
+            clear_Planned();
+        } else if (currentPM == 10) {
+            PM_planned_selected.PM10 = false;
+            clear_Planned();
+        }
+    }
+});
+
