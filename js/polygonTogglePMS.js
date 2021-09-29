@@ -163,18 +163,18 @@ $("#toggle3").on('change', function () {
         toggleNav('off');
         if (currentPM == 6) {
             PM_existing_selected.PM6 = true;
-            pm6Data(1, "p");
+            pm6Data(1, "e");
         } else if (currentPM == 10) {
             PM_existing_selected.PM10 = true;
-            pm10Data(1, "p");
+            pm10Data(1, "e");
         }
     } else {
         if (currentPM == 6) {
             PM_existing_selected.PM6 = false;
-            clear_Planned();
+            clear_Exist();
         } else if (currentPM == 10) {
             PM_existing_selected.PM10 = false;
-            clear_Planned();
+            clear_Exist();
         }
     }
 });
