@@ -16,27 +16,22 @@ function pm8DataBuffer(mode, stat) {
     }
 
     $.get(php_handler, data_for_php, function (data) {
-
         let color = "#039BE5"; //blue
         if (mode == 1) {
             for (index in data.shape_arr) {
                 let temp = wktFormatter(data.shape_arr[index][shape]);
                 let to_visualize = [];
                 let type = data.shape_arr[index]['type'];
-
                 // if the status of a shape exists, push to visualize
                 for (let i = 0; i < temp.length; i++) {
-                    if (type == "existing" && stat == "e") {
+                    if (type == "Existing" && stat == "e") {
                         color = "#039BE5"; //blue
                         to_visualize.push(temp[i]);
-
-                    } else if (type == "plan_ex" && stat == "p") {
+                    } else if (type == "Proposed" && stat == "p") {
                         color = "#9E9E9E"; //gray
                         to_visualize.push(temp[i]);
-
                     }
                 }
-
                 let polygon = new google.maps.Polygon({
                     description: "",
                     description_value: '',
@@ -49,7 +44,6 @@ function pm8DataBuffer(mode, stat) {
                     zIndex: -1,
                     title: "",
                 });
-
                 if (stat == "e") polyToErase.exist.push(polygon);
                 if (stat == "p") polyToErase.plan.push(polygon);
 
@@ -57,7 +51,6 @@ function pm8DataBuffer(mode, stat) {
                 polygons.push(polygon);
             }
         }
-
         pm8DataP(mode, stat);
     });
 }
@@ -68,7 +61,6 @@ function pm8DataP(mode, stat) {
         key: key
     };
     let color = "#039BE5";
-
     let pm8Data = {
         existing: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         planned: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -76,10 +68,7 @@ function pm8DataP(mode, stat) {
         percentKeyD1: 0,
         percentKeyD2: 0,
     };
-
-
     $.get('mwt_handler.php', example, function (data) {
-
         let image = "./img/markers/red.png";
 
         pm8Data.totKeyDest = data.shape_arr.length + 1; // we are adding 1 since we are also counting the null value on this table
@@ -193,7 +182,6 @@ function pm8DataP(mode, stat) {
                     pm8Data.planned[10]++;
                 }
             }
-
         }
         //calculations
         pm8Data.percentKeyD1 = (existingCount / pm8Data.totKeyDest) * 100;
@@ -234,10 +222,8 @@ function pm8HorizontalBar(ctx, data) {
                     borderColor: ['rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)'],
                     borderWidth: 1
                 },
-
             ]
         },
-
         options: {
             legend: {
                 position: 'bottom',
@@ -258,9 +244,6 @@ function pm8HorizontalBar(ctx, data) {
                 }]
             }
         }
-
-
-
     });
 }
 
@@ -285,10 +268,8 @@ function pm8HorizontalBar2(ctx) {
                     borderColor: ['rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)', 'rgb(33,150,243)'],
                     borderWidth: 1
                 },
-
             ]
         },
-
         options: {
             legend: {
                 position: 'bottom',

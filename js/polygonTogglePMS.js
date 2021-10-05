@@ -205,3 +205,82 @@ $("#toggle4").on('change', function () {
     }
 });
 
+$("#toggle5").on('change', function () {
+    if ($(this).is(':checked')) { //when TRUE
+        removeAllElementsBar();
+        toggleSpinner('on');
+        toggleRadio('off');
+        toggleHolderKeyDestinations('off');
+        toggleVisibilityCorr('off');
+        toggleNav('off');
+        if (currentPM == 8) {
+            PM_existing_selected.PM8 = true;
+            pm8Data(1, "e");
+        }
+    } else {
+        if (currentPM == 8) {
+            PM_existing_selected.PM8 = false;
+            clear_Exist();
+        }
+    }
+});
+
+$("#toggle6").on('change', function () {
+    if ($(this).is(':checked')) { //when TRUE
+        removeAllElementsBar();
+        toggleSpinner('on');
+        toggleRadio('off');
+        toggleHolderKeyDestinations('off');
+        toggleVisibilityCorr('off');
+        toggleNav('off');
+        if (currentPM == 8) {
+            PM_planned_selected.PM8 = true;
+            pm8Data(1, "p");
+        }
+    } else {
+        if (currentPM == 8) {
+            PM_planned_selected.PM8 = false;
+            clear_Planned();
+        }
+    }
+});
+
+$("#toggle7").on('change', function () {
+    if ($(this).is(':checked')) { //when TRUE
+        removeAllElementsBar();
+        toggleSpinner('on');
+        toggleRadio('off');
+        toggleHolderKeyStations('off');
+        toggleVisibilityCorr('off');
+        toggleNav('off');
+        if (currentPM == 7) {
+            PM_existing_selected.PM7 = true;
+            pm7Data(1, "e");
+        }
+    } else {
+        if (currentPM == 7) {
+            PM_existing_selected.PM7 = false;
+            clear_Exist();
+        }
+    }
+});
+
+$("#toggle8").on('change', function () {
+    if ($(this).is(':checked')) { //when TRUE
+        removeAllElementsBar();
+        toggleSpinner('on');
+        toggleRadio('off');
+        toggleHolderKeyStations('off');
+        toggleVisibilityCorr('off');
+        toggleNav('off');
+        if (currentPM == 7) {
+            PM_planned_selected.PM7 = true;
+            pm7Data(1, "p");
+        }
+    } else {
+        if (currentPM == 7) {
+            PM_planned_selected.PM7 = false;
+            clear_Planned();
+        }
+    }
+});

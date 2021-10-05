@@ -373,7 +373,6 @@ function toggleHolderSwitch(state) {
 
     } else if (state == "off") {
         document.getElementById("ToggleHolder").style.display = "none";
-
     }
 }
 
@@ -384,7 +383,26 @@ function toggleHolderBiking(state) {
 
     } else if (state == "off") {
         document.getElementById("ToggleBiking").style.display = "none";
+    }
+}
 
+function toggleHolderKeyDestinations(state) {
+    if (state == "on") {
+        document.getElementById("ToggleKeyDestinations").style.display  = "block";
+        toggleElements("off", "dropdownMenuButton"); 
+
+    } else if (state == "off") {
+        document.getElementById("ToggleKeyDestinations").style.display = "none";
+    }
+}
+
+function toggleHolderKeyStations(state) {
+    if (state == "on") {
+        document.getElementById("ToggleKeyStations").style.display  = "block";
+        toggleElements("off", "dropdownMenuButton"); 
+
+    } else if (state == "off") {
+        document.getElementById("ToggleKeyStations").style.display = "none";
     }
 }
 

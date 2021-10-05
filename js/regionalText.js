@@ -12,6 +12,8 @@ function regionalText(data) {
 
     toggleHolderSwitch('off');
     toggleHolderBiking('off');
+    toggleHolderKeyStations('off');
+    toggleHolderKeyDestinations('off');
     toggleRadio('off');
     toggleVisibilityCorr('off');
     toggleNav('off');
@@ -503,7 +505,7 @@ function pm7R(data) {
     paragraphAdder("The layer of the high-quality transit stations was provided by Sun Metro. Key destinations were identified from the EPMPO 2040 Horizon Model – Model Development Report and leisure time activity locations were identified from Visit El Paso website.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("A ½ mile buffer was drawn around existing high-quality rapid transit and the number of key destinations within the buffer was calculated. This analysis was also done for proposed high-quality rapid transit, to indicate the potential result if all high-quality rapid transit in existing plans were completed.", "paragraph", "calc-info");
-    toggleHolderSwitch('on');
+    toggleHolderKeyStations('on');
     openNav();
 }
 
@@ -511,7 +513,7 @@ function pm8R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm8HorizontalBar(ctx, data);
-    headerAdder("key destinations within ½ mile of bikeways", "title");
+    headerAdder("Key destinations within ½ mile of bikeways", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder(" In the El Paso MPO region, there are a total of " + data.totKeyDest + " key destinations. In a half-mile of existing bikeways, there are a total of " + data.percentKeyD1.toFixed(2) + "% key destinations.  Once all proposed bikeways are complete, there will be a total of " + data.percentKeyD2.toFixed(2) + "%   key destinations within a half-mile of bikeways. ", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
@@ -520,7 +522,7 @@ function pm8R(data) {
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("A ½ mile buffer was drawn around existing bikeways and the number of key destinations within the buffer was calculated. This analysis was also done for proposed bikeways, to indicate the potential result if all bikeways in existing plans were completed.", "paragraph", "calc-info");
-    toggleHolderSwitch('on');
+    toggleHolderKeyDestinations('on');
     openNav();
 }
 

@@ -44,13 +44,13 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm5_6"){ 
 	$query = "select primjobsc0 from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm7B"){
-	$query = "select type, St_astext(SHAPE) as shape from pm7_8stations";// ! repetition
+	$query = "select status, St_astext(SHAPE) as shape from stations7_8";// ! repetition
 }else if($key == "all_pm7S"){
 	$query = "select status, stopname,St_astext(SHAPE) as shape from pm7_8stations";// ! repetition
 }else if($key == "all_pm7K"){
 	$query = "select display,type,existing,planned,St_astext(SHAPE) as shape from pm7_8stations";// ! repetition
 }else if($key == "all_pm8B"){
-	$query = "select type, St_astext(SHAPE) as shape from pm7_8bikeways";// ! repetition
+	$query = "select type, St_astext(SHAPE) as shape from bikeways7_8";// ! repetition
 }else if($key == "all_pm8K"){
 	$query = "select display,type,existing,planned, St_astext(SHAPE) as shape from pm7_8bikeways";// ! repetition
 }else if($key == "all_pm9"){ // Pm5 and PM9 share table both have all_pm9
