@@ -26,7 +26,6 @@ function pm9Data(mode, condition) {
 
             let type = data.shape_arr[index].type;
             let ratioPop = parseFloat(data.shape_arr[index].ratio_pop);
-            console.log(type);
 
             // update Text Data
             if (type == "Existing") {
@@ -94,7 +93,6 @@ function pm9Calculations(pm9Data, mode) {
         for (index in data.shape_arr) {
             totPop += parseInt(data.shape_arr[index].b01001e1);
         }
-        console.log(totPop);
         //calculations
         pm9Data.totPop = totPop;
         pm9Data.peopleLivingTransit = ((pm9Data.existing_ratio_sum / pm9Data.totPop) * 100);
