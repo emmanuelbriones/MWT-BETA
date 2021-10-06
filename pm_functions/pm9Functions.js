@@ -26,21 +26,22 @@ function pm9Data(mode, condition) {
 
             let type = data.shape_arr[index].type;
             let ratioPop = parseFloat(data.shape_arr[index].ratio_pop);
+            console.log(type);
 
             // update Text Data
-            if (type == "existing") {
+            if (type == "Existing") {
                 pm9Data.existing_ratio_sum += ratioPop;
-            } else if (type == "all") {
+            } else if (type == "Planned") {
                 pm9Data.all_ratio_sum += ratioPop;
             }
 
             if (mode == 1) {
                 for (let i = 0; i < temp.length; i++) {
-                    if (type == "all" && condition == "e") {
+                    if (type == "Existing" && condition == "e") {
                         color = "#039BE5"; //blue
                         to_visualize.push(temp[i]);
                         polyToErase.exist.push();
-                    } else if (type == "existing" && condition == "p") {
+                    } else if (type == "Planned" && condition == "p") {
                         color = "#9E9E9E"; //gray
                         to_visualize.push(temp[i]);
                         polyToErase.plan.push();
@@ -91,8 +92,9 @@ function pm9Calculations(pm9Data, mode) {
     $.get('mwt_handler.php', example, function (data) {
         let totPop = 0;
         for (index in data.shape_arr) {
-            totPop += parseInt(data.shape_arr[index].b00001e1);
+            totPop += parseInt(data.shape_arr[index].b01001e1);
         }
+        console.log(totPop);
         //calculations
         pm9Data.totPop = totPop;
         pm9Data.peopleLivingTransit = ((pm9Data.existing_ratio_sum / pm9Data.totPop) * 100);

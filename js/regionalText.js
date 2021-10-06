@@ -440,7 +440,7 @@ function pm9R(data) {
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("There are " + commafy(data.totPop) + " people residing in the El Paso MPO region. There are " + data.peopleLivingTransit.toFixed(2) + "% people living within a half-mile of high-quality rapid transit.  Once all proposed high-quality rapid transit stations are complete, there will be a total of " + data.totalpeopleLivingTransit.toFixed(2) + "% people living within a high-quality rapid transit.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("Data from 2015 LEHD files, 2012-2016 ACS data, bikeway data from 2018.", "paragraph", "analysis-info");
+    paragraphAdder("Data from 2018 LEHD files, 2014-2018 ACS data", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("American Community Survey 5-Year Estimates & TIGER/Line Shapefiles.", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
     anchorAdder("The layer of the high-quality transit stations was provided by Sun Metro.   ", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2016.html");

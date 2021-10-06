@@ -54,13 +54,11 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm8K"){
 	$query = "select display,type,existing,planned, St_astext(SHAPE) as shape from pm7_8bikeways";// ! repetition
 }else if($key == "all_pm9"){ // Pm5 and PM9 share table both have all_pm9
-	$query = "select type,ratio_pop, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
-}else if($key == "all_pm9_C"){ // Pm5 and PM9 share table both have all_pm9
-	$query = "select b00001e1 from $pm_table where corridor_key = '$key'";
+	$query = "select type,ratio_pop, St_astext(SHAPE) as shape from pm9";
 }else if($key == "all_pm10"){ 
 	$query = "select statefp,type,ratio_pop, b00001e1, St_astext(SHAPE) as shape from pm6_10";
 }else if($key == "all_pm9_10"){ 
-	$query = "select b00001e1 from $pm_table where corridor_key = '$key'";
+	$query = "select b01001e1 from mpo_pop_data";
 }else if($key == "all_pm11"){
 	$query = "select Sidewalk_4, Roads_LA_3, Roads_LA_6, St_astext(SHAPE) as shape from pm11old";
 }else if($key == "all_pm12"){
