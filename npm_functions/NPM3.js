@@ -11,6 +11,99 @@ const chartAreaBorder = {
         ctx.restore();
     }
 };
+function npm3_1mpo() {
+    Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
+    var ctx = document.getElementById('Mpo_NPM3-1');
+    var myChart = new Chart(ctx, {
+        data: {
+            datasets: [{
+                type: 'line',
+                label: 'Annual',
+                data: [89.2, 89.1, 91.8, 98.4],
+                backgroundColor: 'blue',
+                borderColor: 'blue',
+                borderWidth: 2,
+                pointRadius: 3
+            },
+            {
+                type: 'line',
+                label: "Baseline",
+                data: [79.6, 79.6, 79.6, 79.6],
+                backgroundColor: 'orange',
+                borderColor: 'orange',
+                borderWidth: 2,
+                pointRadius: 0
+            },
+            {
+                type: 'scatter',
+                label: 'MPO Target - 2020',
+                data: [null, null, null, 61.2],
+                backgroundColor: 'black',
+                pointStyle: 'rectRot',
+                pointRadius: 7
+            },
+            {
+                type: 'scatter',
+                label: 'MPO Target - 2022',
+                data: [null, null, null, null, null, 56.6],
+                backgroundColor: 'red',
+                pointStyle: 'rect',
+                pointRadius: 7
+            }],
+            labels: [2017, 2018, 2019, 2020, 2021, 2022, 2023]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Year",
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Travel Time Reliability Measure",
+                        font: {
+                            weight: 'bold'
+                        }
+                    },
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 25
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        usePointStyle: true
+                    }
+                },
+                title: {
+                    text: "Person-Miles Traveled",
+                    display: true,
+                    padding: 1,
+                    font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
+                }
+            }
+        },
+        plugins: [chartAreaBorder]
+    });
+}
 
 function npm3_1tx() {
     Chart.defaults.font.size = 18;
@@ -124,7 +217,7 @@ function npm3_1nm() {
             {
                 type: 'line',
                 label: "Baseline",
-                data: [79.6, 79.6, 79.6, 79.6],
+                data: [97.0, 97.0, 97.0, 97.0],
                 backgroundColor: 'orange',
                 borderColor: 'orange',
                 borderWidth: 2,
@@ -132,16 +225,93 @@ function npm3_1nm() {
             },
             {
                 type: 'scatter',
-                label: 'NMDOT Target - 2020',
-                data: [null, null, null, 61.2],
+                label: 'NMDOT Target - 2019',
+                data: [null, null, 96.1],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             },
             {
                 type: 'scatter',
-                label: 'NMDOT Target - 2022',
-                data: [null, null, null, null, null, 56.6],
+                label: 'NMDOT Target - 2021',
+                data: [null, null, null, null, 95.1],
+                backgroundColor: 'red',
+                pointStyle: 'rect',
+                pointRadius: 7
+            }],
+            labels: [2017, 2018, 2019, 2020, 2021, 2022]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Year",
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Travel Time Reliability Measure",
+                        font: {
+                            weight: 'bold'
+                        }
+                    },
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 25
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        usePointStyle: true
+                    }
+                },
+                title: {
+                    text: "Person-Miles Traveled",
+                    display: true,
+                    padding: 1,
+                    font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
+                }
+            }
+        },
+        plugins: [chartAreaBorder]
+    });
+}
+
+function npm3_2mpo() {
+    Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
+    var ctx = document.getElementById('Mpo_NPM3-2');
+    var myChart = new Chart(ctx, {
+        data: {
+            datasets: [{
+                type: 'line',
+                label: 'Annual',
+                data: [79.6, 77.2, 83.0, 86.7],
+                backgroundColor: 'blue',
+                borderColor: 'blue',
+                borderWidth: 2,
+                pointRadius: 3
+            },
+            {
+                type: 'scatter',
+                label: 'MPO Target - 2022',
+                data: [null, null, null, null, null, 55.4],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
                 pointRadius: 7
@@ -294,13 +464,21 @@ function npm3_2nm() {
             },
             {
                 type: 'scatter',
-                label: 'NMDOT Target - 2022',
-                data: [null, null, null, null, null, 55.4],
+                label: 'NMDOT Target - 2019',
+                data: [null, null, 90.4],
+                backgroundColor: 'black',
+                pointStyle: 'rectRot',
+                pointRadius: 7
+            },
+            {
+                type: 'scatter',
+                label: 'NMDOT Target - 2021',
+                data: [null, null, null, null, 90.4],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2017, 2018, 2019, 2020, 2021, 2022, 2023]
+            labels: [2017, 2018, 2019, 2020, 2021, 2022]
         },
         options: {
             responsive: true,
@@ -340,6 +518,100 @@ function npm3_2nm() {
                 },
                 title: {
                     text: "Person-Miles Traveled",
+                    display: true,
+                    padding: 1,
+                    font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
+                }
+            }
+        },
+        plugins: [chartAreaBorder]
+    });
+}
+
+function npm3_3mpo() {
+    Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
+    var ctx = document.getElementById('Mpo_NPM3-3');
+    var myChart = new Chart(ctx, {
+        data: {
+            datasets: [{
+                type: 'line',
+                label: 'Annual',
+                data: [1.49, 1.45, 1.43, 1.25],
+                backgroundColor: 'blue',
+                borderColor: 'blue',
+                borderWidth: 2,
+                pointRadius: 3
+            },
+            {
+                type: 'line',
+                label: "Baseline",
+                data: [1.50, 1.50, 1.50, 1.50],
+                backgroundColor: 'orange',
+                borderColor: 'orange',
+                borderWidth: 2,
+                pointRadius: 0
+            },
+            {
+                type: 'scatter',
+                label: 'MPO Target - 2020',
+                data: [null, null, null, 1.70],
+                backgroundColor: 'black',
+                pointStyle: 'rectRot',
+                pointRadius: 7
+            },
+            {
+                type: 'scatter',
+                label: 'MPO Target - 2022',
+                data: [null, null, null, null, null, 1.79],
+                backgroundColor: 'red',
+                pointStyle: 'rect',
+                pointRadius: 7
+            }],
+            labels: [2017, 2018, 2019, 2020, 2021, 2022, 2023]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Year",
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Truck Travel Time Reliability (TTTR)",
+                        font: {
+                            weight: 'bold'
+                        }
+                    },
+                    min: 1.00,
+                    max: 1.80,
+                    ticks: {
+                        stepSize: 0.10
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        usePointStyle: true
+                    }
+                },
+                title: {
+                    text: "Truck Travel Time Reliability",
                     display: true,
                     padding: 1,
                     font: { weight: 'bold' }
@@ -466,7 +738,7 @@ function npm3_3nm() {
             {
                 type: 'line',
                 label: "Baseline",
-                data: [1.50, 1.50, 1.50, 1.50],
+                data: [1.13, 1.13, 1.13, 1.13],
                 backgroundColor: 'orange',
                 borderColor: 'orange',
                 borderWidth: 2,
@@ -474,21 +746,21 @@ function npm3_3nm() {
             },
             {
                 type: 'scatter',
-                label: 'NMDOT Target - 2020',
-                data: [null, null, null, 1.70],
+                label: 'NMDOT Target - 2019',
+                data: [null, null, 1.14],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             },
             {
                 type: 'scatter',
-                label: 'NMDOT Target - 2022',
-                data: [null, null, null, null, null, 1.79],
+                label: 'NMDOT Target - 2021',
+                data: [null, null, null, null, 1.15],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
                 pointRadius: 7
             }],
-            labels: [2017, 2018, 2019, 2020, 2021, 2022, 2023]
+            labels: [2017, 2018, 2019, 2020, 2021, 2022]
         },
         options: {
             responsive: true,
@@ -528,6 +800,213 @@ function npm3_3nm() {
                 },
                 title: {
                     text: "Truck Travel Time Reliability",
+                    display: true,
+                    padding: 1,
+                    font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
+                }
+            }
+        },
+        plugins: [chartAreaBorder]
+    });
+}
+
+function npm3_5mpo() {
+    Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
+    var ctx = document.getElementById('Mpo_NPM3-5');
+    var myChart = new Chart(ctx, {
+        data: {
+            datasets: [{
+                type: 'line',
+                label: 'Annual Performance',
+                data: [20.6, 20.2, 20.3, 19.6, 19.3],
+                backgroundColor: 'blue',
+                borderColor: 'blue',
+                borderWidth: 2,
+                pointRadius: 3
+            }],
+            labels: [2015, 2016, 2017, 2018, 2019]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Year",
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Percent of Non-SOV Travel",
+                        font: {
+                            weight: 'bold'
+                        }
+                    },
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 25
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        usePointStyle: true
+                    }
+                },
+                title: {
+                    text: "Percent of Non-SOV Travel",
+                    display: true,
+                    padding: 1,
+                    font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
+                }
+            }
+        },
+        plugins: [chartAreaBorder]
+    });
+}
+
+function npm3_5tx() {
+    Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
+    var ctx = document.getElementById('Tx_NPM3-5');
+    var myChart = new Chart(ctx, {
+        data: {
+            datasets: [{
+                type: 'line',
+                label: 'Annual Performance',
+                data: [20.6, 20.2, 20.3, 19.6, 19.3],
+                backgroundColor: 'blue',
+                borderColor: 'blue',
+                borderWidth: 2,
+                pointRadius: 3
+            }],
+            labels: [2015, 2016, 2017, 2018, 2019]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Year",
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Percent of Non-SOV Travel",
+                        font: {
+                            weight: 'bold'
+                        }
+                    },
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 25
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        usePointStyle: true
+                    }
+                },
+                title: {
+                    text: "Percent of Non-SOV Travel",
+                    display: true,
+                    padding: 1,
+                    font: { weight: 'bold' }
+                },
+                chartAreaBorder: {
+                    borderColor: "black",
+                    borderWidth: 2,
+                }
+            }
+        },
+        plugins: [chartAreaBorder]
+    });
+}
+
+function npm3_5nm() {
+    Chart.defaults.font.size = 18;
+    Chart.defaults.color = "black";
+    var ctx = document.getElementById('Nm_NPM3-5');
+    var myChart = new Chart(ctx, {
+        data: {
+            datasets: [{
+                type: 'line',
+                label: 'Annual Performance',
+                data: [13.4, 12.1, 11.3, 11.5, 11.4],
+                backgroundColor: 'blue',
+                borderColor: 'blue',
+                borderWidth: 2,
+                pointRadius: 3
+            }],
+            labels: [2015, 2016, 2017, 2018, 2019]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Year",
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Percent of Non-SOV Travel",
+                        font: {
+                            weight: 'bold'
+                        }
+                    },
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 25
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        usePointStyle: true
+                    }
+                },
+                title: {
+                    text: "Percent of Non-SOV Travel",
                     display: true,
                     padding: 1,
                     font: { weight: 'bold' }
