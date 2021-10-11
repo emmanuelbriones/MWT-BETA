@@ -420,7 +420,7 @@ function pm5R(data) {
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("In the El Paso MPO region, there are a total of " + commafy(data.totJobs) + " jobs. In a half-mile of high-quality rapid transit, there are a total of " + data.jobsPercent.toFixed(2) + "% jobs.  Once all proposed high-quality rapid transit stations are complete, there will be a total of " + data.totalJobsPercent.toFixed(2) + "% jobs within a half-mile of high-quality rapid transit.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("Data from 2015 LEHD files, 2017 Tigerline shapefile, bikeway data from 2018. ", "paragraph", "analysis-info");
+    paragraphAdder("Data from 2018 LEHD files, 2018 Tigerline shapefile ", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("TIGER/Line Shapefiles", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
     anchorAdder("Longitudinal Employer-Household Dynamics (LEHD) files", "https://lehd.ces.census.gov/data/");
