@@ -498,7 +498,7 @@ function pm7R(data) {
 
     headerAdder("Key destinations within ½ mile of high-quality rapid transit", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("In the El Paso MPO region, there are a total of " + data.totKeyDest + " key destinations. In a half-mile of existing high-quality rapid transit stations, there are a total of " + data.percentKeyD1.toFixed(2) + "% key destinations.  Once all proposed high-quality rapid transit stations are complete, there will be a total of " + data.percentKeyD2.toFixed(2) + "% key destinations within a half-mile of high-quality rapid transit.", "paragraph", "summary-info");
+    paragraphAdder("There are a total of " + data.totKeyDest + " key destinations in the El Paso MPO region. Out of those, " + data.percentKeyD1.toFixed(1) + "% are within a half-mile of existing BRT stations.  Once all proposed BRT stations are built, there will be a total of " + data.percentKeyD2.toFixed(1) + "% key destinations within a half-mile of BRT stations.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2019 Transit data", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -515,7 +515,7 @@ function pm8R(data) {
     pm8HorizontalBar(ctx, data);
     headerAdder("Key destinations within ½ mile of bikeways", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder(" In the El Paso MPO region, there are a total of " + data.totKeyDest + " key destinations. In a half-mile of existing bikeways, there are a total of " + data.percentKeyD1.toFixed(2) + "% key destinations.  Once all proposed bikeways are complete, there will be a total of " + data.percentKeyD2.toFixed(2) + "%   key destinations within a half-mile of bikeways. ", "paragraph", "summary-info");
+    paragraphAdder("There are a total of " + data.totKeyDest + " key destinations in the El Paso MPO region. Out of those, " + data.percentKeyD1.toFixed(1) + "% are within half-mile of existing bikeways.  Once all proposed bikeways are built, there will be a total of " + data.percentKeyD2.toFixed(1) + "% key destinations within a half-mile of bikeways. ", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Data was provided by various local agencies in 2019 ", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
