@@ -379,8 +379,8 @@ function pm26R(data) {
 
     headerAdder("Bridge & Culvert Condition", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within the Texas portion of the El Paso MPO area, there are " + data.tx_good_count + " bridges(" + data.goodTX + "%) in Good condition, " + data.tx_fair_count + " bridges(" + data.fairTX + "%) in Fair condition, " + data.tx_poor_count + " bridges(" + data.poorTX + "%) in Poor condition.", "paragraph", "summary-info");
-    paragraphAdder("Within the New Mexico portion of the El Paso MPO area, there are " + data.nm_good_count + " bridges(" + data.goodNM + "%) in Good conditions, " + data.nm_fair_count + " bridges(" + data.fairNM + "%) in Fair condition, " + data.nm_poor_count + " bridge(" + data.poorNM + "%) in Poor condition.", "paragraph", "summary-info");
+    paragraphAdder("Within the Texas portion of the El Paso MPO area, there are " + data.tx_good_count[4] + " bridges(" + data.goodTX + "%) in Good condition, " + data.tx_fair_count[4] + " bridges(" + data.fairTX + "%) in Fair condition, " + data.tx_poor_count[4] + " bridges(" + data.poorTX + "%) in Poor condition.", "paragraph", "summary-info");
+    paragraphAdder("Within the New Mexico portion of the El Paso MPO area, there are " + data.nm_good_count[4] + " bridges(" + data.goodNM + "%) in Good conditions, " + data.nm_fair_count[4] + " bridges(" + data.fairNM + "%) in Fair condition, " + data.nm_poor_count[4] + " bridges(" + data.poorNM + "%) in Poor condition.", "paragraph", "summary-info");
     paragraphAdder("Condition data was not available for " + data.tnodatabridges + " bridges within the El Paso MPO area.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Bridges condition data as of 2018", "paragraph", "analysis-info");

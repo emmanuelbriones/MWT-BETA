@@ -36,13 +36,11 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm4"){
 	$query = "select type,tactcnt, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
 }else if($key == "all_pm5"){ // Pm5 and PM9 share table both have all_pm9
-	$query = "select prcnt_prim,type,ratio_prim, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
-}else if($key == "all_pm5K"){ // Pm5 and PM9 share table both have all_pm9
-	$query = "select primjobsc0 from $pm_table where corridor_key = '$key'";
+	$query = "select prcnt_prim,type,ratio_prim, St_astext(SHAPE) as shape from pm5new2";
 }else if($key == "all_pm6"){ 
 	$query = "select primjobsc0,type,ratio_prim,prcnt_prim,St_astext(SHAPE) as shape from pm6_10";
 }else if($key == "all_pm5_6"){ 
-	$query = "select primjobsc0 from $pm_table where corridor_key = '$key'";
+	$query = "select prim_jobs from pm5new";
 }else if($key == "all_pm7B"){
 	$query = "select status, St_astext(SHAPE) as shape from stations7_8";// ! repetition
 }else if($key == "all_pm7S"){
