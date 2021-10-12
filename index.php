@@ -36,15 +36,6 @@
 
       <style>
       </style>
-	  <!-- Global site tag (gtag.js) - Google Analytics 
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158227326-1"></script>
-      <script>
-         window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-
-         gtag('config', 'UA-158227326-1');
-      </script> -->
    </head>
    <body>
    <!-- spinner  -B -->
@@ -55,19 +46,6 @@
       <div>
          <?php include("inject-sidenavbar_PMs.php");?>
       </div>
-      <!-- Sidenavbar2 -->
-      <!--! I removed it because it was already handled inside the non-pm-content div-->
-      <!--
-      <div id="mtp" class=" sidenav rounded-left mb-2 bg-light text-dark" ondblclick="openNavMTP()" data-toggle="tooltip" data-placement="left" title="Double click to Open" >
-         <a href="javascript:void(0)" class=" col-lg-1 closebtn" onclick="closeNavMTP()">&times;</a>
-         <div id="mtp-title" class="row container">
-            <h1 class="col-lg-6 text-center">MTP Projects</h1>
-            <button id="locate-project-btn" type="button" class="col-lg-6 btn btn-outline-info btn-lg">Locate</button>
-         </div>
-         <div  id="mtp-content" >
-         </div>
-      </div>
-      -->
       <!-- Legend -->
       <div id="legendHolder" class="legend">
          <div class="row">
@@ -138,6 +116,7 @@
                               <h5>Developing Team</h5><br>
                            </li>
                            <div class="row">
+                              <li>Alan Licerio</li>
                               <li>Brian Cardiel</li>
                               <li>Sebastian Gonzalez</li>
                               <li>Christopher Santos</li>

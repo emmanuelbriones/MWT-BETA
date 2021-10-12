@@ -1,17 +1,4 @@
 <?php
-															// used to store where the pm will be found ("found_in_table")
-/*$query = "select * from pms where pms_key = '$key';"; // return all the information for ONE pm, because $key is unique
-$result = mysqli_query($conn, $query);		 		// do the query, store in result
-while($temporal = mysqli_fetch_assoc($result)){ // loops through $result array, stores into $temporal
-	array_push($tables, $temporal); 						// pushes $temporal to our desired array
-}
-$pm_table = $tables[0]['found_in_table']; 			// table name where we will find the data for our particular pm
-$corridor_key = explode("_", $key); 				// extract the corridor key into an array
-$corridor_key = $corridor_key[0]; 					// following our DB and naming conventions, the $corridor_key will be found at the 0 index
-											// for the data that will be returned, shape and value
-
-// ! some repetition needs to be addressed */
-
 
 ini_set('memory_limit', '-1');
 ini_set('max_execution_time', 30000); //300 seconds = 5 minutes
@@ -79,26 +66,6 @@ else if($key == "all_pm22"){
     //1. Shape data has to be from the last 5 years stored in database
     //2. Crash data has be from the last 5 years stored in database
     //3. TX and NM data can't be merged in the same array
-
-    $pm22_data = Array();// return this will all points
-    $toReturn = []; // clear return array
-    //Setup year range
-    $query = "SET @year_ = (SELECT Max(crash_year) FROM pm22_allpoints_final);";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    $query = "SET @year_ = @year_ - 4;";
-    $result = mysqli_query($conn, $query); // do the query, store in result
-    // Given the year range, fetch the data
-    $query = "SELECT st_astext(SHAPE) AS shape, 
-	crash_year, 
-	killed,
-	classa, 
-	classb,
-	classc,
-	classo,
-	total,
-	crash_type,
-	statefp
-	FROM pm22"; // WHERE crash_year >= @year_ ORDER BY crash_year ASC;";
 */
 }
 else if($key == "pm22_lines"){
@@ -134,9 +101,7 @@ else if($key == "all_pm24"){
     Santa_Teresa,
     Tornillo,
     MODE FROM mwt.pm14 WHERE Period >= @year_pm14;";
-}/*else if($key == "pm13_14_points"){
-	$query = "SELECT st_astext(SHAPE) as shape,port_of_en as title FROM mpo_test_jhuerta.pm14points;";
-}*/
+}
 else if($key == "all_pm15_16_17"){
 	$query = "select station_na, st_astext(SHAPE) as shape from pm15_16_17";
 }else if($key == "all_pm15_16_17g"){
@@ -152,16 +117,10 @@ else{
 	$query = "select astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; // temporal note: find an elegant way to generalize this
 }
 
-/*$result = mysqli_query($conn, $query); 
-while($temporal = mysqli_fetch_assoc($result)){ 
-	array_push($shape, $temporal);
-}*/
-
 $result = mysqli_query($conn, $query) or die (mysqli_error($conn));
 
 while ($temporal = mysqli_fetch_assoc($result)) {
     array_push($shape, $temporal);
-
 }
 
 $toReturn['shape_arr'] = $shape; // store it in an index on our array, by name == more significant

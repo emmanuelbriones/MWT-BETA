@@ -733,71 +733,6 @@ function pdf() {
 }
 
 
-// function cmp_lines() {
-//     fetch('./results.json').then(function (response) {
-//         return response.json();
-//     }).then(function (myJson) {
-//         console.log("CMP NETWORK LINES");
-//         for (var index in myJson.PM22_Lines) {
-//             for (var county in myJson.PM22_Lines[index]) {
-//                 let shp = myJson.PM22_Lines[index][county]["shape"];
-
-//                 let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
-//                 let r = reader.read(shp); // r becomes an object from the 3rd party tool, for a single shp
-//                 let to_visualize = []; // used to populate the map (latitude & longitude)
-//                 let coord; // will be an object to push coordinates to populate the map
-//                 let ln = r.getCoordinates(); // parses the shape into lat & lng
-//                 for (let i = 0; i < ln.length; i++) {
-//                     coord = {
-//                         lat: ln[i]['y'],
-//                         lng: ln[i]['x']
-//                     };
-//                     to_visualize.push(coord);
-//                 }
-//                 let line = new google.maps.Polyline({ // it is a POLYLINE
-//                     path: to_visualize, // polyline has a path, defined by lat & lng
-//                     // value: data.corridor_data[index]['value'], // iri (attribute for the pavement condition score)
-//                     strokeColor: 'pink',
-//                     strokeOpacity: 0.80,
-//                     strokeWeight: 5,
-//                     zIndex: 99 // on top of every other shape
-//                 });
-//                 line.setMap(map);
-//                 polylines.push(line);
-//             }
-
-//         }
-
-//         // for (var index in myJson.PM22_Lines.TX_CMP_LINES) {
-//         //     let shp =  myJson.PM22_Lines[index]['shape']; // shape is LINESTRING or MULTILINESTRING
-//         //     let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
-//         //     let r = reader.read(shp); // r becomes an object from the 3rd party tool, for a single shp
-//         //     let to_visualize = []; // used to populate the map (latitude & longitude)
-//         //     let coord; // will be an object to push coordinates to populate the map
-//         //     let ln = r.getCoordinates(); // parses the shape into lat & lng
-//         //     for (let i = 0; i < ln.length; i++) {
-//         //         coord = {
-//         //             lat: ln[i]['y'],
-//         //             lng: ln[i]['x']
-//         //         };
-//         //         to_visualize.push(coord);
-//         //     }
-//         //     let line = new google.maps.Polyline({ // it is a POLYLINE
-//         //         path: to_visualize, // polyline has a path, defined by lat & lng
-//         //         // value: data.corridor_data[index]['value'], // iri (attribute for the pavement condition score)
-//         //         strokeColor: 'teal',
-//         //         strokeOpacity: 0.70,
-//         //         strokeWeight: 5,
-//         //         zIndex: 99 // on top of every other shape
-//         //     });
-//         //     line.setMap(map);
-//         //     corridors_shown[_key].push(line);
-
-
-//         // }
-//     });
-// }
-
 function wktFormatter(poly) {
     let name = poly.slice(0, 7);
     let shape_s = [];
@@ -838,18 +773,6 @@ function wktFormatter(poly) {
     return shape_s;
 }
 
-// function wkt_points(blob){
-//     console.log("1 " + blob);
-//     var point = new Wkt.Wkt();
-//     point =  point.read(blob);
-//     console.log("3 " + point.components );
-//     point.toObject();
-//     console.log("4");
-//     point.toJson();
-//     console.log("5");
-//     return point;
-
-// }
 function wktFormatterPoint(point) {
     // let name = point.slice(0,5);
     // console.log(name);
@@ -961,25 +884,3 @@ function clearMetadata() {
   //  currentPM = 0;
     markerClusterSafeDelete();
 }
-
-/** Get SUM of array
- * | Input: array
- * | Output: integer || float*/
-// function arrSum(list){
-//   let sum= 0;
-//   for(let i = 0; i < list.length; i++){
-//     sum = sum + list[i];
-//   }
-//   return sum;
-// }
-
-
-/** Get AVG of array
-* | Input: array
-* | Output: integer || float*/
-// function arrAvg(list){
-//   let avg = 0;
-//   let sum = arrSum(list);
-//   avg = sum / list.length;
-//   return avg;
-// }
