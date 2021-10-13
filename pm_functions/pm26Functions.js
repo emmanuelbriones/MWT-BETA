@@ -33,9 +33,9 @@ function pm26Data(mode, ex) {
        totBridges: [0,0,0,0,0],
        tnodatabridges: 0,
 
-        lowestRating: 0, 
+       lowestRating: 0, 
 
-        totBad: [0,0,0,0,0]
+       totBad: [0,0,0,0,0]
 
     };
 
