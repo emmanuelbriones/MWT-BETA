@@ -368,19 +368,19 @@ function pm14R(data) {
 }
 function pm26R(data) {
     // canvasSafeDelete('chartG');
-    canvasMaker('chart1/2', 'myChart');
-    canvasMaker('chart2/2', 'myChart2');
+    // canvasMaker('chart1/2', 'myChart');
+    // canvasMaker('chart2/2', 'myChart2');
+    canvasMaker('chart1', 'myChart');
 
     var ctx = document.getElementById('myChart').getContext('2d');
-    var ctx2 = document.getElementById('myChart2').getContext('2d');
+    // var ctx2 = document.getElementById('myChart2').getContext('2d');
 
     chart_pm26(ctx, data);
-    chart_pm26_2(ctx2, data);
+    // chart_pm26_2(ctx2, data);
 
     headerAdder("Bridge & Culvert Condition", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within the Texas portion of the El Paso MPO area, there are " + data.tx_good_count[4] + " bridges(" + data.goodTX + "%) in Good condition, " + data.tx_fair_count[4] + " bridges(" + data.fairTX + "%) in Fair condition, " + data.tx_poor_count[4] + " bridges(" + data.poorTX + "%) in Poor condition.", "paragraph", "summary-info");
-    paragraphAdder("Within the New Mexico portion of the El Paso MPO area, there are " + data.nm_good_count[4] + " bridges(" + data.goodNM + "%) in Good conditions, " + data.nm_fair_count[4] + " bridges(" + data.fairNM + "%) in Fair condition, " + data.nm_poor_count[4] + " bridges(" + data.poorNM + "%) in Poor condition.", "paragraph", "summary-info");
+    paragraphAdder("Within the El Paso MPO area, there are " + data.good_count[4] + " bridges (" + data.good + "%) in Good condition, " + data.fair_count[4] + " bridges (" + data.fair + "%) in Fair condition, " + data.poor_count[4] + " bridges (" + data.poor + "%) in Poor condition.", "paragraph", "summary-info");
     paragraphAdder("Condition data was not available for " + data.tnodatabridges + " bridges within the El Paso MPO area.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Bridges condition data as of 2018", "paragraph", "analysis-info");
@@ -418,7 +418,7 @@ function pm5R(data) {
     pm5chart(ctx, data);
     headerAdder("Jobs within ½ mile of high-quality rapid transit", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("In the El Paso MPO region, there are a total of " + commafy(data.totJobs) + " jobs. In a half-mile of high-quality rapid transit, there are a total of " + data.jobsPercent.toFixed(2) + "% jobs.  Once all proposed high-quality rapid transit stations are complete, there will be a total of " + data.totalJobsPercent.toFixed(2) + "% jobs within a half-mile of high-quality rapid transit.", "paragraph", "summary-info");
+    paragraphAdder("There are a total of " + commafy(data.totJobs) + " jobs in the El Paso MPO region. Out of those, " + data.jobsPercent.toFixed(1) + "% are within a half-mile of BRT stations.  Once all proposed BRT stations are built, there will be a total of " + data.totalJobsPercent.toFixed(1) + "% jobs within a half-mile of BRT stations.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Data from 2018 LEHD files, 2018 Tigerline shapefile ", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -438,7 +438,7 @@ function pm9R(data) {
     pm9chart(ctx, data);
     headerAdder("Population within ½ mile of high-quality rapid transit.", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("There are " + commafy(data.totPop) + " people residing in the El Paso MPO region. There are " + data.peopleLivingTransit.toFixed(2) + "% people living within a half-mile of high-quality rapid transit.  Once all proposed high-quality rapid transit stations are complete, there will be a total of " + data.totalpeopleLivingTransit.toFixed(2) + "% people living within a high-quality rapid transit.", "paragraph", "summary-info");
+    paragraphAdder("There are a total of" + commafy(data.totPop) + " people residing in the El Paso MPO region. Out of those, " + data.peopleLivingTransit.toFixed(1) + "% people live within a half-mile of BRT stations.  Once all proposed BRT stations are built, there will be a total of " + data.totalpeopleLivingTransit.toFixed(1) + "% people living within a half-mile of BRT stations.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Data from 2018 LEHD files, 2014-2018 ACS data", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");

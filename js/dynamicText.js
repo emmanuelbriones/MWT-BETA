@@ -360,14 +360,10 @@ function pm25DynamicText(corridor, data) {
     openNav();
 }
 function pm26DynamicText(corridor, data) {
-    canvasMaker('chart1/2', 'myChart');
-    canvasMaker('chart2/2', 'myChart2');
-
+    canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
-    var ctx2 = document.getElementById('myChart2').getContext('2d');
 
     chart_pm26(ctx, data);
-    chart_pm26_2(ctx2, data);
 
     headerAdder("Bridge & Culvert Condition", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
@@ -380,8 +376,6 @@ function pm26DynamicText(corridor, data) {
     paragraphAdder("Condition data was not available for " + data.tnodatabridges + " bridges within " + corridor + " corridor.", "paragraph", "summary-info");
 
 }
-    //  paragraphAdder("Within the Texas portion of the El Paso MPO area, there are " + data.tx_good_count + " bridges(" + data.goodTX + "%) in Good condition, " + data.tx_fair_count + " bridges(" + data.fairTX + "%) in Fair condition, " + data.tx_poor_count + " bridges(" + data.poorTX + "%) in Poor condition.", "paragraph", "summary-info");
-    //  paragraphAdder("Within the New Mexico portion of the El Paso MPO area, there are " + data.nm_good_count + " bridges(" + data.goodNM + "%) in Good conditions, " + data.nm_fair_count + " bridges(" + data.fairNM + "%) in Fair condition, " + data.nm_poor_count + " bridge(" + data.poorNM + "%) in Poor condition.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Bridges condition data as of 2018", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
