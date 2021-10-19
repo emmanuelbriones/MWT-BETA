@@ -113,7 +113,7 @@ else if($active_pm == "pm11"){
 }
 
 else if($active_pm == "pm12"){
-	$query = "SELECT  status, bikepath, mile, astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4), p.SHAPE );"; 
+	$query = "SELECT status, bikepath, mile, St_astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4326), p.SHAPE );"; 
 	
 }
 else{

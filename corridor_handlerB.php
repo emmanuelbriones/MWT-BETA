@@ -188,7 +188,7 @@ else if($key == 11){ //lines
 }else if($key == 12){ //lines 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT status, bikepath, mile, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT status, bikepath, mile, ST_AsText(SHAPE) FROM pm12 as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 

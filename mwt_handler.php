@@ -47,7 +47,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm11"){
 	$query = "select Sidewalk_4, Roads_LA_3, Roads_LA_6, St_astext(SHAPE) as shape from pm11";
 }else if($key == "all_pm12"){
-	$query = "select status, bikepath, mile, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select status, bikepath, mile, St_astext(SHAPE) as shape from pm12";
 }else if($key == "all_pm13_14"){
 	$query = "select port_of_en as title, St_astext(SHAPE) as shape from pm13_14";
 }else if($key == "all_pm18_19"){
