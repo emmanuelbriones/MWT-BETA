@@ -85,7 +85,11 @@ function pm25Data(mode, ex) {
             let year = parseInt(data.shape_arr[index].year_recor);
             let miles = parseFloat(data.shape_arr[index].miles);
             let state = data.shape_arr[index].state_code;
-            let type = (data.shape_arr[index].type).toLowerCase();
+            let type;
+            if(data.shape_arr[index].type != null) {
+                type = (data.shape_arr[index].type).toLowerCase();
+            }
+            
 
             // makes sure to only calculate the current mode
             if (type == currentType || ex == type) {

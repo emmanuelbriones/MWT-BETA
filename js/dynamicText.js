@@ -336,18 +336,17 @@ function pm25DynamicText(corridor, data) {
     pm25chartLine(ctx2,data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
     if(corridor == "AOI"){
-        paragraphAdder("HPMS reports 2017 pavement condition for " + data.tot_poor_mi + " miles within the AOI, out of that " + data.poor_mi_perc + "% is in poor condition. ", "paragraph", "summary-info");
+        paragraphAdder("HPMS reports 2019 pavement condition for " + data.tot_miles.toFixed(1) + " miles within the AOI, out of those, " + data.poor_mi_perc.toFixed(1) + "% are in poor condition. ", "paragraph", "summary-info");
 
     }
     else{
-        paragraphAdder("HPMS reports 2017 pavement condition for " + data.tot_poor_mi + " miles within the " + corridor + " corridor, out of that " + data.poor_mi_perc + "% is in poor condition. ", "paragraph", "summary-info");
+        paragraphAdder("HPMS reports 2019 pavement condition for " + data.tot_miles.toFixed(1) + " miles within the " + corridor + " corridor, out of those, " + data.poor_mi_perc.toFixed(1) + "% are in poor condition. ", "paragraph", "summary-info");
     }
     
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2013-2017", "paragraph", "analysis-info");
+    paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("Highway Performance Monitoring System (HPMS) Public Release of Geospatial Data in Shapefile Format", "https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm");
-    //anchorAdder("https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm ","https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Pavement condition was based on International Roughness Index (IRI) as defined by:", "paragraph", "calc-info");
     anchorAdder("Federal Highway Administration", "https://www.fhwa.dot.gov/policy/2013cpr/chap3.cfm#1");
