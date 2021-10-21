@@ -186,7 +186,7 @@ function pm12DynamicText(corridor, data) {
         paragraphAdder("In the " + corridor + " corridor, there are a total of " + data.pm12existing.toFixed(1) + " miles of existing bikeways and " + data.proposedMiles.toFixed(1) + " miles of proposed bikeways. If all proposed bikeways are completed, there would be a total of " + data.tot.toFixed(1) + " miles in the " + corridor + " corridor.", "paragraph", "summary-info");
     }   
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2019 bikeway data provided.", "paragraph", "analysis-info");
+    paragraphAdder("2021 bikeway data provided.", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Bikeway data was provided by the municipalities: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario and the City of El Paso. ", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");

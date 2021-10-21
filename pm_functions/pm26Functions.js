@@ -305,7 +305,7 @@ function chart_pm26(g1, data) {
                 yAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Percentage',
+                        labelString: 'Bridges',
                     },
                 }, ],
             },

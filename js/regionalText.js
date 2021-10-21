@@ -306,7 +306,7 @@ function pm12R(data) {
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("In the El Paso MPO region, there are a total of " + data.pm12existing.toFixed(1) + " miles of existing bikeways and " + data.proposedMiles.toFixed(1) + " miles of proposed bikeways. If all proposed bikeways are completed, there would be a total of " + data.tot.toFixed(1) + " miles of bikeways in the El Paso MPO region.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2019 bikeway data provided.", "paragraph", "analysis-info");
+    paragraphAdder("2021 bikeway data provided.", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Bikeway data was provided by the municipalities: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario and the City of El Paso. ", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
@@ -437,7 +437,7 @@ function pm9R(data) {
     pm9chart(ctx, data);
     headerAdder("Population within ½ mile of high-quality rapid transit.", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("There are a total of" + commafy(data.totPop) + " people residing in the El Paso MPO region. Out of those, " + data.peopleLivingTransit.toFixed(1) + "% people live within a half-mile of BRT stations.  Once all proposed BRT stations are built, there will be a total of " + data.totalpeopleLivingTransit.toFixed(1) + "% people living within a half-mile of BRT stations.", "paragraph", "summary-info");
+    paragraphAdder("There are a total of " + commafy(data.totPop) + " people residing in the El Paso MPO region. Out of those, " + data.peopleLivingTransit.toFixed(1) + "% people live within a half-mile of BRT stations.  Once all proposed BRT stations are built, there will be a total of " + data.totalpeopleLivingTransit.toFixed(1) + "% people living within a half-mile of BRT stations.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Data from 2018 LEHD files, 2014-2018 ACS data", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
