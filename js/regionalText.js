@@ -2,13 +2,13 @@
  * Handles Regional Text, Handles Spinner
  * Receives Data from PM then creates text and graphs from that Data
  */
-// let active = false;
+let active = false;
 function regionalText(data) {
 
-//     if (active == true) {
-//         canvasSafeDelete('chartG');
-//     }
-//     active = false;
+    if (active == true) {
+        canvasSafeDelete('chartG');
+    }
+    active = false;
 
     toggleHolderSwitch('off');
     toggleHolderBiking('off');
@@ -22,7 +22,7 @@ function regionalText(data) {
         pm1R(data);
     }
     else if (currentPM == 2) {
-        // active = true;
+        active = true;
         pm2R(data);
     }
     else if (currentPM == 3) {
@@ -366,17 +366,9 @@ function pm14R(data) {
     openNav();
 }
 function pm26R(data) {
-    // canvasSafeDelete('chartG');
-    // canvasMaker('chart1/2', 'myChart');
-    // canvasMaker('chart2/2', 'myChart2');
     canvasMaker('chart1', 'myChart');
-
     var ctx = document.getElementById('myChart').getContext('2d');
-    // var ctx2 = document.getElementById('myChart2').getContext('2d');
-
     chart_pm26(ctx, data);
-    // chart_pm26_2(ctx2, data);
-
     headerAdder("Bridge & Culvert Condition", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("Within the El Paso MPO area, there are " + data.good_count[4] + " bridges (" + data.good + "%) in Good condition, " + data.fair_count[4] + " bridges (" + data.fair + "%) in Fair condition, " + data.poor_count[4] + " bridges (" + data.poor + "%) in Poor condition.", "paragraph", "summary-info");
@@ -443,7 +435,6 @@ function pm9R(data) {
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("American Community Survey 5-Year Estimates & TIGER/Line Shapefiles.", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
     anchorAdder("The layer of the high-quality transit stations was provided by Sun Metro.   ", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2016.html");
-
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("American Community Survey data was analysed on a census block group-level in order to estimate the population within ½ mile of high-quality rapid transit, assuming a homogenous distribution of population each the block group.", "paragraph", "calc-info");
     toggleHolderSwitch('on');
@@ -465,7 +456,6 @@ function pm6R(data) {
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("LEHD workplace area characteristics (WAC) data was analysed on a census block group-level in order to estimate the number of jobs within a ½ mile from a bikeway, assuming a homogenous distribution of jobs each the block group.", "paragraph", "calc-info");
     toggleHolderBiking('on');
-    // toggleHolderSwitch('on');
     openNav();
 }
 function pm10R(data) {
@@ -484,8 +474,6 @@ function pm10R(data) {
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("American Community Survey data was analysed on a census block group-level in order to estimate the number of jobs within a ½ mile from a bikeway, assuming a homogenous distribution of jobs for each block group. ", "paragraph", "calc-info");
     toggleHolderBiking('on');
-    // toggleHolderSwitch('on');
-
     openNav();
 }
 
@@ -493,7 +481,6 @@ function pm7R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm7HorizontalBar(ctx, data);
-
 
     headerAdder("Key destinations within ½ mile of high-quality rapid transit", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
@@ -534,7 +521,6 @@ function pm15R(data) {
     pm15chartLine2(ctx2, data);
     headerAdder("Ozone emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    //paragraphAdder("According to the data available, ozone pollution has been increasing in the last 5 years.", "paragraph", "summary-info");
     paragraphAdder("Stations with the highest annual readings for each pollutant are:", "paragraph", "summary-info");
     paragraphAdder("Ozone 8hr - " + data[data.length - 1].station8 + " in " + data[data.length - 1].year_8 + ".", "paragraph", "summary-info");
     paragraphAdder("Ozone 1hr - " + data[data.length - 1].station1 + " in " + data[data.length - 1].year_1 + ".", "paragraph", "summary-info");
@@ -547,18 +533,14 @@ function pm15R(data) {
     paragraphAdder("Annual readings are reported exactly as they appear at  <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539\" target=\"_blank\">Texas Commission on Environmental Quality website</a> and <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"http://nmaqinow.net/\" target=\"_blank\">New Mexico Environment Department website</a> In Texas 8-hour ozone standard is reported, in NM only 1-hour ozone standard was available. Carbon monoxide and particulate matter (PM10) are also reported.", "paragraph", "calc-info");
     paragraphAdder("*Note: Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "calc-info");
     openNav();
-
 }
 
 function pm16R(data) {
     canvasMaker('chart1', 'myChart');
-
     var ctx = document.getElementById('myChart').getContext('2d');
-
     pm16chartLine(ctx, data);
     headerAdder("Carbon monoxide emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    //paragraphAdder("According to the data available, Carbon Monoxide pollution has been the same for the last 5 years. Except for 2018 that UTEP registered a high reading. ", "paragraph", "summary-info");
     paragraphAdder("Stations with the highest annual readings for Carbon Monoxide are:  ", "paragraph", "summary-info");
     paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year + ".", "paragraph", "summary-info"); ///////////////////////////////////////////////////////**************
     paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 + ".", "paragraph", "summary-info");
@@ -646,7 +628,6 @@ function pm21R(data) {
     headerAdder("Safety projects near crash hotspots", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("The Metropolitan Transportation Plan Destino 2045 identifies " + data + " safety projects:", "paragraph", "summary-info");
-
     paragraphAdder("<span class=\"fa fa-play\"></span> Project C035X. Hot-spot type: Consecutive.", "paragraph", "summary-info");
     paragraphAdder("<span class=\"fa fa-play\"></span> Project P402X-05A. Hot-spot type: Consecutive.", "paragraph", "summary-info");
     paragraphAdder("<span class=\"fa fa-play\"></span> Project P464X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
@@ -688,7 +669,6 @@ function pm21R(data) {
     paragraphAdder("<span class=\"fa fa-play\"></span> Project I006X-15A. Hot-spot type: Intensifying.", "paragraph", "summary-info");
     paragraphAdder("<span class=\"fa fa-play\"></span> Project A434X-CAP. Hot-spot type: Oscillating.", "paragraph", "summary-info");
     paragraphAdder("<span class=\"fa fa-play\"></span> Project I405X-CAP. Hot-spot type: Oscillating.", "paragraph", "summary-info");
-
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Crash data from 2013-2017, safety projects identified from the Metropolitan Transportation Plan Destino 2045", "paragraph", "analysis-info");

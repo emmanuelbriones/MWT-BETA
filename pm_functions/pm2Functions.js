@@ -131,15 +131,11 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
         key = ex;
     }
 
-    console.log("Before");
-    console.log(key);
     /** Fetch data from database */
     $.get(file, key).done(function (data) { //succesful
-        console.log(data);
         //acknowledge fetch
-        //   if(mode != 0){ alert('Retrieving Data, this might take a minute to load');}
         let for_pm2 = {
-            SOV: -1, //
+            SOV: -1,
             Walking: -1,
             Biking: -1,
             Transit: -1,
@@ -181,7 +177,6 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
 
         // Draw Shapes
         plotPM2(mode, ex);
-
 
         if (mode == 0) {
             let transitValue = {
