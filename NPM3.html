@@ -84,26 +84,33 @@
                         <strong>PM 3 - System Performance</strong>
                      </h2>
                      <p class="paragraph">
-                        <!--  -->
+                        System performance is measured by six performance measures. The Performance of the NHS, Freight,
+                        and CMAQ Measures (PM 3) Final Rule, which is codified in <a
+                           href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490">23 Code of
+                           Federal Regulations (CFR)
+                           Part 490</a>, defines the following national performance measures to assess the performance
+                        of the
+                        Interstate and non-Interstate National Highway System (NHS) for the purpose of carrying out the
+                        National Highway Performance Program (NHPP); to assess freight movement on the Interstate
+                        System; and to assess traffic congestion and on-road mobile source emissions for the purpose of
+                        carrying out the Congestion Mitigation and Air Quality Improvement (CMAQ) Program.
                      </p>
-                     <!-- <h4></h4> -->
-                     <!-- <p class="paragraph">
-                        The latest <a href="https://www.fhwa.dot.gov/policyinformation/hpms.cfm">Federal Highway
-                           Performance Monitoring System (HPMS) public release</a> of pavement
-                        condition data was available for year 2018 for El Paso, Dona Ana, and Otero counties. <br>
-                        The latest National Bridge Inventory (NBI) condition data available at the <a
-                           href="https://infobridge.fhwa.dot.gov">HWA InfoBridge Long-Term Bridge
-                           Performance (LTBP)</a> portal was available for year 2020 for El Paso, Dona Ana, and Otero
-                        counties. <br>
-                        El Paso MPO adopted TxDOT 2020 and 2022 targets for El Paso County PMs, and NMDOT 2019 and 2021
-                        NMDOT targets for Doña Ana and Otero counties. <br>
-                        The Bridge and Pavement Performance Management (PM 2) Final Rule, which is codified in <a
-                           href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490">23
-                           Code of
-                           Federal Regulations (CFR) Part 490</a>, defines the following national performance measures
-                        for
-                        pavement and bridges.
-                     </p> -->
+                     <h4>Data Sources</h4>
+                     <p class="paragraph">
+                        The latest <a href="https://npmrds.ritis.org/analytics/">National Performance Management
+                           Research Data Set (NPMRDS)</a> datasets for year 2019 for
+                        El Paso MPO. NPMRDS is a monthly archive of average travel times, reported every 5 minutes when
+                        data is available, on the National Highway System. <br>
+                        The latest U.S. Census <a href="https://www.census.gov/programs-surveys/acs">American Community
+                           Survey (ACS)</a> available for year 2019 for El Paso, Doña
+                        Ana, and Otero counties. <br>
+                        El Paso MPO adopted <a
+                           href="https://www.fhwa.dot.gov/tpm/reporting/state/condition.cfm?state=Texas">TxDOT 2020 and
+                           2022 targets</a> for El Paso County PMs, and <a
+                           href="https://www.fhwa.dot.gov/tpm/reporting/state/condition.cfm?state=New%20Mexico">NMDOT
+                           2019 and 2021</a>
+                        targets for Doña Ana and Otero counties for PM 3-1, 3-2 and 3-3.
+                     </p>
                      <!-- 3-1 -->
                      <h3 class="pm-header">
                         <strong>PM 3-1 Percent of the person-miles traveled on the Interstate that are reliable <br> (IH
@@ -116,8 +123,7 @@
                         Methodology
                      </a>
                      <a class="btn btn-primary" data-toggle="collapse" href="#PM3-1Graphs" role="button"
-                        onclick="npm3_1tx();npm3_1nm()" aria-expanded="false"
-                        aria-controls="collapseExample">
+                        onclick="npm3_1tx();npm3_1nm()" aria-expanded="false" aria-controls="collapseExample">
                         Show Graphs
                      </a>
                      <br><br>
@@ -125,47 +131,34 @@
                         <div class="card card-body">
                            <p>
                               For <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.307#p-490.307(a)(1)">§
-                                 490.307(a)(1)</a> the measure for percentage of lane-miles of the Interstate System in
-                              Good condition shall be computed to the one tenth of a percent as follows <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(2)">(23
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-E/section-490.507#p-490.507(a)(1)">§
+                                 490.507(a)(1)</a> the measure for percentage of the person-miles traveled on the
+                              Interstate that are reliable (referred to as the Interstate Travel Time Reliability
+                              measure) shall be computed to the nearest tenth of a percent as follows <a
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-E#p-490.513(b)">(23
                                  CFR
-                                 490.313(f)(2)):</a><br>
-                              $$\text{Percentage of Pavements on the Interestate System in Good Condition} = 100 \times
-                              \frac{\sum_{g=1}[(End Point - BeginPoint) \times Through Lanes]section_g}{\sum_{t=1}[(End
-                              Point - BeginPoint) \times Through Lanes]section_t} $$
+                                 490.513(b))</a>:
+                              $$\text {Interestate Travel Time Reliability} = 100 \times \frac{\sum_{i=1}SLi \times AVi
+                              \times OFj}{\sum_{i=1}SLi \times AVi \times OFj} $$
                            </p>
                            <h5>Definitions</h5>
                            <p>
-                              Good = total number of mainline highway Interstate System sections where the overall
-                              condition is Good. <br>
-                              g = a section's overall condition is determined Good per <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)">
-                                 paragraphs
-                                 (b)</a> or <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(c)">(c)</a>
-                              of section <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
-                                 490.313</a>
-                              <br>
-                              t = an Interstate System section <br>
-                              Total = total number of mainline highway Interstate System sections excluding bridges,
-                              unpaved surface and “other” surface types, and missing data sections, described in <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(f)(1)">paragraph
-                                 (f)(1)</a>
-                              and <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)(4)(i)">(b)(4)(i)</a>
-                              of section <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
-                                 490.313</a> <br>
-                              Begin_Point = Begin Milepost of each section g or t <br>
-                              End Point = End Milepost of each section g or t; and <br>
-                              Through_lanes = the number of lanes designated for through-traffic represented by a
-                              section g
-                              or t. <br>
-                              Two separate sets of targets are provided for Texas and New Mexico, as per <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.209(d)(2)">§
-                                 490.209(d)(2)</a>
+                              R = total number of Interstate System reporting segments that are exhibiting a Level of
+                              Travel Time Reliability (LOTTR) below 1.50 during all of the time periods identified in <a
+                                 href="https://www.ecfr.gov/current/title-23/section-490.511#p-490.511(b)(1)(i)">§
+                                 490.511(b)(1)(i)</a> through <a
+                                 href="https://www.ecfr.gov/current/title-23/section-490.511#p-490.511(b)(1)(iv)">(iv)</a><br>
+                              i = Interstate System reporting segment “i” <br>
+                              SLi = length, to the nearest thousandth of a mile, of Interstate System reporting segment
+                              “i” <br>
+                              AVi = total annual traffic volume to the nearest single vehicle, of the Interstate System
+                              reporting segment “i” <br>
+                              j = geographic area in which the reporting segment “i” is located where a unique occupancy
+                              factor has been determined <br>
+                              OFi = occupancy factor for vehicles on the NHS within a specified geographic area within
+                              the State/Metropolitan planning area <br>
+                              T = total number of Interstate System reporting segments.
+                              Two separate sets of targets are provided for Texas and New Mexico.
                            </p>
                         </div>
                      </div>
@@ -233,8 +226,7 @@
                         Methodology
                      </a>
                      <a class="btn btn-primary" data-toggle="collapse" href="#PM3-2Graphs" role="button"
-                        onclick="npm3_2tx();npm3_2nm()" aria-expanded="false"
-                        aria-controls="collapseExample">
+                        onclick="npm3_2tx();npm3_2nm()" aria-expanded="false" aria-controls="collapseExample">
                         Show Graphs
                      </a>
                      <br><br>
@@ -242,47 +234,33 @@
                         <div class="card card-body">
                            <p>
                               For <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.307#p-490.307(a)(1)">§
-                                 490.307(a)(1)</a> the measure for percentage of lane-miles of the Interstate System in
-                              Good condition shall be computed to the one tenth of a percent as follows <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(2)">(23
-                                 CFR
-                                 490.313(f)(2)):</a><br>
-                              $$\text{Percentage of Pavements on the Interestate System in Good Condition} = 100 \times
-                              \frac{\sum_{g=1}[(End Point - BeginPoint) \times Through Lanes]section_g}{\sum_{t=1}[(End
-                              Point - BeginPoint) \times Through Lanes]section_t} $$
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-E/section-490.507#p-490.507(a)(2)">§
+                                 490.507(a)(2)</a> the measure for percentage of the person-miles traveled on the
+                              non-Interstate NHS that are reliable (referred to as the Non-Interstate Travel Time
+                              Reliability measure) shall be computed to the nearest tenth of a percent as follows <a
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-E#p-490.513(c)">(23
+                                 CFR 490.490.513(c)):</a>
+                              $$\text {Interestate Travel Time Reliability} = 100 \times \frac{\sum_{i=1}SLi \times AVi
+                              \times OFj}{\sum_{i=1}SLi \times AVi \times OFj} $$
                            </p>
                            <h5>Definitions</h5>
                            <p>
-                              Good = total number of mainline highway Interstate System sections where the overall
-                              condition is Good. <br>
-                              g = a section's overall condition is determined Good per <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)">
-                                 paragraphs
-                                 (b)</a> or <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(c)">(c)</a>
-                              of section <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
-                                 490.313</a>
-                              <br>
-                              t = an Interstate System section <br>
-                              Total = total number of mainline highway Interstate System sections excluding bridges,
-                              unpaved surface and “other” surface types, and missing data sections, described in <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(f)(1)">paragraph
-                                 (f)(1)</a>
-                              and <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)(4)(i)">(b)(4)(i)</a>
-                              of section <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
-                                 490.313</a> <br>
-                              Begin_Point = Begin Milepost of each section g or t <br>
-                              End Point = End Milepost of each section g or t; and <br>
-                              Through_lanes = the number of lanes designated for through-traffic represented by a
-                              section g
-                              or t. <br>
-                              Two separate sets of targets are provided for Texas and New Mexico, as per <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.209(d)(2)">§
-                                 490.209(d)(2)</a>
+                              R = total number of Interstate System reporting segments that are exhibiting a Level of
+                              Travel Time Reliability (LOTTR) below 1.50 during all of the time periods identified in <a
+                                 href="https://www.ecfr.gov/current/title-23/section-490.511#p-490.511(b)(1)(i)">§
+                                 490.511(b)(1)(i)</a> through <a
+                                 href="https://www.ecfr.gov/current/title-23/section-490.511#p-490.511(b)(1)(iv)">(iv)</a><br>
+                              i = Interstate System reporting segment “i” <br>
+                              SLi = length, to the nearest thousandth of a mile, of Interstate System reporting segment
+                              “i” <br>
+                              AVi = total annual traffic volume to the nearest single vehicle, of the Interstate System
+                              reporting segment “i” <br>
+                              j = geographic area in which the reporting segment “i” is located where a unique occupancy
+                              factor has been determined <br>
+                              OFi = occupancy factor for vehicles on the NHS within a specified geographic area within
+                              the State/Metropolitan planning area <br>
+                              T = total number of Interstate System reporting segments.
+                              Two separate sets of targets are provided for Texas and New Mexico.
                            </p>
                         </div>
                      </div>
@@ -347,8 +325,7 @@
                         Methodology
                      </a>
                      <a class="btn btn-primary" data-toggle="collapse" href="#PM3-3Graphs" role="button"
-                        onclick="npm3_3tx();npm3_3nm()" aria-expanded="false"
-                        aria-controls="collapseExample">
+                        onclick="npm3_3tx();npm3_3nm()" aria-expanded="false" aria-controls="collapseExample">
                         Show Graphs
                      </a>
                      <br><br>
@@ -356,47 +333,28 @@
                         <div class="card card-body">
                            <p>
                               For <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.307#p-490.307(a)(1)">§
-                                 490.307(a)(1)</a> the measure for percentage of lane-miles of the Interstate System in
-                              Good condition shall be computed to the one tenth of a percent as follows <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(2)">(23
-                                 CFR
-                                 490.313(f)(2)):</a><br>
-                              $$\text{Percentage of Pavements on the Interestate System in Good Condition} = 100 \times
-                              \frac{\sum_{g=1}[(End Point - BeginPoint) \times Through Lanes]section_g}{\sum_{t=1}[(End
-                              Point - BeginPoint) \times Through Lanes]section_t} $$
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-F/section-490.607">§
+                                 490.607</a> the performance measure to assess freight movement on the Interstate System
+                              is the Truck Travel Time Reliability (TTTR) Index (referred to as the Freight Reliability
+                              measure) and it shall be computed to the nearest hundredth as follows <a
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-F/section-490.613#p-490.613(b)">(23
+                                 CFR 490.613(b))</a>:
+                              $$\text {Truck Travel Time Reliability} = \frac{\sum_{i=1}(SLi \times max TTTRi)
+                              }{\sum_{i=1}(SLi)} $$
                            </p>
                            <h5>Definitions</h5>
                            <p>
-                              Good = total number of mainline highway Interstate System sections where the overall
-                              condition is Good. <br>
-                              g = a section's overall condition is determined Good per <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)">
-                                 paragraphs
-                                 (b)</a> or <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(c)">(c)</a>
-                              of section <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
-                                 490.313</a>
-                              <br>
-                              t = an Interstate System section <br>
-                              Total = total number of mainline highway Interstate System sections excluding bridges,
-                              unpaved surface and “other” surface types, and missing data sections, described in <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(f)(1)">paragraph
-                                 (f)(1)</a>
-                              and <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)(4)(i)">(b)(4)(i)</a>
-                              of section <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
-                                 490.313</a> <br>
-                              Begin_Point = Begin Milepost of each section g or t <br>
-                              End Point = End Milepost of each section g or t; and <br>
-                              Through_lanes = the number of lanes designated for through-traffic represented by a
-                              section g
-                              or t. <br>
-                              Two separate sets of targets are provided for Texas and New Mexico, as per <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.209(d)(2)">§
-                                 490.209(d)(2)</a>
+                              i = an Interstate System reporting segment <br>
+                              maxTTTRi = the maximum TTTR of the five time periods in paragraphs <a
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-F/section-490.611#p-490.611(a)(1)(i)">(a)(1)(i)</a>
+                              through <a
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-F/section-490.611#p-490.611(a)(1)(v)">(v)</a>
+                              of <a href="https://www.ecfr.gov/current/title-23/section-490.611">§ 490.611</a>, to the
+                              nearest hundredth, of Interstate System reporting segment “i” <br>
+                              SLi = segment length, to the nearest thousandth of a mile, of Interstate System reporting
+                              segment “i” <br>
+                              T = total number of Interstate System reporting segments. <br>
+                              Two separate sets of targets are provided for Texas and New Mexico.
                            </p>
                         </div>
                      </div>
@@ -472,47 +430,19 @@
                         <div class="card card-body">
                            <p>
                               For <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.307#p-490.307(a)(1)">§
-                                 490.307(a)(1)</a> the measure for percentage of lane-miles of the Interstate System in
-                              Good condition shall be computed to the one tenth of a percent as follows <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(2)">(23
-                                 CFR
-                                 490.313(f)(2)):</a><br>
-                              $$\text{Percentage of Pavements on the Interestate System in Good Condition} = 100 \times
-                              \frac{\sum_{g=1}[(End Point - BeginPoint) \times Through Lanes]section_g}{\sum_{t=1}[(End
-                              Point - BeginPoint) \times Through Lanes]section_t} $$
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.707(b)">§
+                                 490.707(b)</a> the performance measure to assess CMAQ traffic congestion, percent of
+                              non-SOV travel, and shall be computed to the nearest tenth as follows <a
+                                 href="https://www.ecfr.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.713(d)(1)">(23
+                                 CFR 490.713(d)(1))</a>:
+                              $$\text {Percent of Non-SOV Travel} = 100\% - \% SOV $$
                            </p>
                            <h5>Definitions</h5>
                            <p>
-                              Good = total number of mainline highway Interstate System sections where the overall
-                              condition is Good. <br>
-                              g = a section's overall condition is determined Good per <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)">
-                                 paragraphs
-                                 (b)</a> or <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(c)">(c)</a>
-                              of section <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
-                                 490.313</a>
-                              <br>
-                              t = an Interstate System section <br>
-                              Total = total number of mainline highway Interstate System sections excluding bridges,
-                              unpaved surface and “other” surface types, and missing data sections, described in <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(f)(1)">paragraph
-                                 (f)(1)</a>
-                              and <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)(4)(i)">(b)(4)(i)</a>
-                              of section <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
-                                 490.313</a> <br>
-                              Begin_Point = Begin Milepost of each section g or t <br>
-                              End Point = End Milepost of each section g or t; and <br>
-                              Through_lanes = the number of lanes designated for through-traffic represented by a
-                              section g
-                              or t. <br>
-                              Two separate sets of targets are provided for Texas and New Mexico, as per <a
-                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.209(d)(2)">§
-                                 490.209(d)(2)</a>
+                              Percent of Non-SOV Travel = percent of commuting working population, to the nearest tenth
+                              of a percent, that predominantly do not commute by driving alone in a car, van, or truck,
+                              including travel avoided by telecommuting (using Method A - American Community Survey).<br>
+                              % SOV = percent estimate for “Car, truck, or van - drive alone”.
                            </p>
                         </div>
                      </div>
@@ -526,9 +456,9 @@
                            <br>
                            <h5>Annual: <b>19.3</b></h5>
                            <h5><b>El Paso MPO Target Statement: In the initial performance period (2017-2021), the rule
-                              applies to urbanized areas of more than 1 million people that are also in nonattainment
-                              or maintenance areas for ozone, carbon monoxide or particulate matter. At this time, El
-                              Paso is not such urbanized area.</b></h5>
+                                 applies to urbanized areas of more than 1 million people that are also in nonattainment
+                                 or maintenance areas for ozone, carbon monoxide or particulate matter. At this time, El
+                                 Paso is not such urbanized area.</b></h5>
                         </div>
                      </div>
                      <div class="collapse" id="PM3-5Graphs">
@@ -545,9 +475,9 @@
                            <br>
                            <h5>Annual: <b>11.4</b></h5>
                            <h5><b>El Paso MPO Target Statement: In the initial performance period (2017-2021), the rule
-                              applies to urbanized areas of more than 1 million people that are also in nonattainment
-                              or maintenance areas for ozone, carbon monoxide or particulate matter. At this time, El
-                              Paso is not such urbanized area.</b></h5>
+                                 applies to urbanized areas of more than 1 million people that are also in nonattainment
+                                 or maintenance areas for ozone, carbon monoxide or particulate matter. At this time, El
+                                 Paso is not such urbanized area.</b></h5>
                         </div>
                      </div>
                      <div class="collapse" id="PM3-5Graphs">
@@ -560,6 +490,7 @@
          </div>
       </div>
 </body>
+
 </html>
 
 <style>
