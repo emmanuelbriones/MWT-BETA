@@ -107,11 +107,11 @@ else if($key == "all_pm15_16_17"){
 }else if($key == "all_pm15_16_17g"){
 	$query = "select Station,year1,year2,year3,year4,year5,Pollutant from PM15_16_17_g";
 }else if($key == "all_pm20B"){
-	$query = "select count_bike,count_ped,address,on_st,at_strt, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
+	$query = "select count_bike,count_ped,St_astext(SHAPE) as shape from pm20bufferpedbike"; 
 }else if($key == "all_pm20P"){
-	$query = "select type,astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
+	$query = "select type, St_astext(SHAPE) as shape from pm20crashes"; 
 }else if($key == "all_pm20_bus"){
-	$query = "select astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; 
+	$query = "select St_astext(SHAPE) as shape from pm20busstops"; 
 }
 else{
 	$query = "select astext(SHAPE) as shape from $pm_table where corridor_key = '$key'"; // temporal note: find an elegant way to generalize this

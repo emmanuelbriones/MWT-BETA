@@ -288,9 +288,9 @@ function pm20DynamicText(corridor, data) {
             paragraphAdder("No pedestrian crashes in " + corridor +" corridor  occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         }
         else if (data.w_greatestCounter == 1) {
-            paragraphAdder(data.percentPed.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.w_greatest + " (on " + data.w_on_st + " at " + data.w_at_strt + ")", "paragraph", "summary-info");
+            paragraphAdder(data.percentPed.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         } else if (data.w_greatestCounter > 1)  {
-            paragraphAdder(data.percentPed.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.w_greatest + " (" + data.w_greatestCounter + " locations have the same number)", "paragraph", "summary-info");
+            paragraphAdder(data.percentPed.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         }
      
 
@@ -298,21 +298,21 @@ function pm20DynamicText(corridor, data) {
         headerAdder("Bicyclist crashes nearby bus stops", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
         if (data.b_greatest == 0) {
-            paragraphAdder("No bicyclists crashes in " + corridor +" corridor  occurred within 200 feet of transit stops. Majority of the crashes near bus stops occurred in downtown area.", "paragraph", "summary-info");
+            paragraphAdder("No bicyclists crashes in " + corridor +" corridor  occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         } else if (data.b_greatestCounter == 1) {
-            paragraphAdder(data.percentBike.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor  occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.b_greatest + " (on " + data.b_on_st + " at " + data.b_at_strt + ")", "paragraph", "summary-info");
+            paragraphAdder(data.percentBike.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor  occurred within 200 feet of transit stops.", "paragraph", "summary-info");
 
         } else if (data.b_greatestCounter > 1) {
-            paragraphAdder(data.percentBike.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor  occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.b_greatest + " (" + data.b_greatestCounter + " locations have the same number)", "paragraph", "summary-info");
+            paragraphAdder(data.percentBike.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor  occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         }
     
     }
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("Crashes 2013-2017, SunMetro bus stops as of 2019 ", "paragraph", "analysis-info");
+    paragraphAdder("Crashes 2015-2019, SunMetro bus stops as of 2019 ", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data from TxDOT, location of bus stops from Sun Metro ", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("A buffer of 200 ft. was created from the bus stops to identify how many crashes occurred within that distance. The crashes are from 2013 to 2017, and the bus stop locations are as of 2019.", "paragraph", "calc-info");
+    paragraphAdder("A buffer of 200 ft. was created from the bus stops to identify how many crashes occurred within that distance. The crashes are from 2015 to 2019, and the bus stop locations are as of 2019.", "paragraph", "calc-info");
     if (currentType == "walking") {
         //legend elements
         names = ['1', '2-3', '4-6', '7-10', 'No data'];
