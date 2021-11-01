@@ -96,14 +96,14 @@ function pm3DynamicText(corridor, data) {
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("Within " + corridor + " corridor, the total ridership is " + commafy(data.tot) + ". The route " + data.highRoute + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. The route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + "  (5 years average).", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2014-2018", "paragraph", "analysis-info");
+    paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Data provided by Sun Metro", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("The received data was separated by years and routes. The average of the 5 years was calculated to create the symbology; 2,777-107,272 (Green), 107,272-388,321 (Orange), 388,321-1,144,232 (Red). Since Sun Metro stopped using route 204 in 2014 data was not included. Route 205 from BRIO was included in the map. ", "paragraph", "calc-info");
     openNav();
-    names = ['2,777 - 107,272', '107,273 - 388,321', '388,321 - 1,144,232'];
-    colors = ['background:#8BC34A;', 'background:#FFCA28;', 'background:#f44336', 'background:#e53935;'];
+    names = ['2,777+', '107,273+', '388,321+'];
+    let colors = ['background:#FFEB3B;', 'background:#FF9800;', 'background:#2196F3'];
     legendMaker("Passengers", names, colors);
     openNav();
 }

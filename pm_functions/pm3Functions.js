@@ -26,9 +26,9 @@ function pm3Data(mode, ex) {
         data_for_php = {
             key: key
         };
-    } else if (mode == 3 || mode == 2) {
-        php_handler = "corridor_handlerB.php";
+    } else if (mode == 2 || mode == 3) {
         shape = 'ST_AsText(SHAPE)';
+        php_handler = "corridor_handlerB.php";
         data_for_php = {
             key: 3,
             corridors_selected: ex,
@@ -40,17 +40,17 @@ function pm3Data(mode, ex) {
     }
 
     $.get(php_handler, data_for_php, function (data) { // ajax call to populate pavement lines
+        console.log(data.shape_arr[0])
 
         let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
         for (index in data.shape_arr) { // iterates through every index in the returned element (data['shape_arr'])
-            let shp = data.shape_arr[index][shape]; // shape is LINESTRING or MULTILINESTRING 
+            let shp = data.shape_arr[index].shape; // shape is LINESTRING or MULTILINESTRING 
             let r = reader.read(shp); // r becomes an object from the 3rd party tool, for a single shp
             let to_visualize = []; // used to populate the map (latitude & longitude)
 
             //PMS Data/Columns
-            let route = parseInt(data.shape_arr[index].TotalRid_1); // used to color code line
-            let avg = parseFloat(data.shape_arr[index].TotalRid_7);
-
+            let route = parseInt(data.shape_arr[index].route_1); // used to color code line
+            let avg = parseFloat(data.shape_arr[index].avg_riders);
 
             pm3TextData.tot += avg;
             //Draw Line(s)
