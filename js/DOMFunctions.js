@@ -440,18 +440,18 @@ function toggleVisibilityCorr(mode) {
 function translateCorridor(corridors_selected) {
     let corr = "";
     if (corridors_selected == "alameda_buffer") corr = 'ALAMEDA';
-    else if (corridors_selected == "doniphan_buffer") corr = 'DONIPHAN';
-    else if (corridors_selected == "dyer_buffer") corr = 'DYER';
-    else if (corridors_selected == "horizon_buffer") corr = 'HORIZON';
-    else if (corridors_selected == "mesa_buffer") corr = 'MESA';
-    else if (corridors_selected == "montana_buffer") corr = 'MONTANA';
-    else if (corridors_selected == "montwood_buffer") corr = 'MONTWOOD';
-    else if (corridors_selected == "yarbrough_buffer") corr = 'YARBROUGH';
-    else if (corridors_selected == "zaragoza_buffer") corr = 'ZARAGOZA';
-    else if (corridors_selected == "socorro_buffer") corr = 'SOCORRO';
-    else if (corridors_selected == "mcnutt_buffer") corr = 'MCNUTT';
-    else if (corridors_selected == "eastlake_buffer") corr = 'EASTLAKE';
-    else if (corridors_selected == "artcraft_buffer") corr = 'Artcraft/Domenici';
+    else if (corridors_selected == "doniphancorridor_buffer") corr = 'DONIPHAN';
+    else if (corridors_selected == "dyercorridor_buffer") corr = 'DYER';
+    else if (corridors_selected == "horizoncorridor_buffer") corr = 'HORIZON';
+    else if (corridors_selected == "mesacorridor_buffer") corr = 'MESA';
+    else if (corridors_selected == "montanacorridor_buffer") corr = 'MONTANA';
+    else if (corridors_selected == "montwoodcorridor_buffer") corr = 'MONTWOOD';
+    else if (corridors_selected == "yarbroughcorridor_buffer") corr = 'YARBROUGH';
+    else if (corridors_selected == "zaragozacorridor_buffer") corr = 'ZARAGOZA';
+    else if (corridors_selected == "socorrocorridor_buffer") corr = 'SOCORRO';
+    else if (corridors_selected == "mcnuttcorridor_buffer") corr = 'MCNUTT';
+    else if (corridors_selected == "eastlakecorridor_buffer") corr = 'EASTLAKE';
+    else if (corridors_selected == "artcraft_domenicicorridor_buffer") corr = 'Artcraft/Domenici';
     return corr;
 }
 

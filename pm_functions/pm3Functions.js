@@ -40,8 +40,6 @@ function pm3Data(mode, ex) {
     }
 
     $.get(php_handler, data_for_php, function (data) { // ajax call to populate pavement lines
-        console.log(data.shape_arr[0])
-
         let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
         for (index in data.shape_arr) { // iterates through every index in the returned element (data['shape_arr'])
             let shp = data.shape_arr[index].shape; // shape is LINESTRING or MULTILINESTRING 
@@ -85,11 +83,8 @@ function pm3Data(mode, ex) {
 
                     line.setMap(map);
                     polylines.push(line);
-
                 }
-
             }
-
             //update highest average and Route
             if (avg > pm3TextData.highAvg) {
                 pm3TextData.highAvg = avg;
@@ -122,11 +117,7 @@ function pm3Data(mode, ex) {
         } else if (mode == 4) {
             dynamicCorridorText('AOI', pm3TextData);
         }
-
     });
-
-
-
 }
 
 function pm3_line_geojson_formatter(data) {
