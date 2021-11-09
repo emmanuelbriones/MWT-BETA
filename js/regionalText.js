@@ -236,13 +236,13 @@ function pm25R(data) {
 function pm3R(data) {
     headerAdder("Transit ridership", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within El Paso region, the total ridership is " + commafy(data.tot) + ". The route " + commafy(parseInt(data.highRoute)) + " has the highest ridership with an average of " + commafy(data.highAvg) + ". The route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + " (5 years average).", "paragraph", "summary-info");
+    paragraphAdder("Within El Paso region, the total ridership is " + commafy(data.tot) + " passengers. Route " + commafy(parseInt(data.highRoute)) + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. Route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + " passengers (5 years average).", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Data provided by Sun Metro", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("The received data was separated by years and routes. The average ridership over the 5 years is shown in the map based on geometric interval; 2,777-107,272 (Yellow), 107,272-388,321 (Orange), 388,321-1,144,232 (Blue). Since Sun Metro stopped using route 204 in 2014 data was not included. ", "paragraph", "calc-info");
+    paragraphAdder("The received data was separated by years and routes. The average ridership over the 5 years is shown in the map based on geometric interval; 2,777-107,272 (Yellow), 107,272-388,321 (Orange), 388,321-1,144,232 (Blue). ", "paragraph", "calc-info");
 
     if (detectmob() != true) {
         let names = ['2,777+', '107,273+', '388,321+'];
@@ -295,7 +295,7 @@ function pm11R(data) {
     paragraphAdder("City of El Paso", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Mileage of roadway network (stcent, without limited access roadways such as the Interstate 10, US 54, Loop 375, Cesar Chavez Memorial Highway, Spur 601) was compared with mileage of sidewalks. Only sidewalks with status 'complete', 'pre-existing', 'private' or 'scheduled' were included in the analysis. Sidewalks with no information about status, or status 'removed', 'unfeasible', or 'awaiting assessment' were not included in this performance measure. ", "paragraph", "calc-info");
-    paragraphAdder("Note: A GIS sidewalk layer was at the time of analysis available only from the City of El Paso. GIS data from other municipalities will be added as it becomes available.", "paragraph", "calc-info");
+    paragraphAdder("Note: Sidewalks shapefile for El Paso city limits + sidewalk from centerlines for other towns", "paragraph", "calc-info");
     openNav();
 }
 function pm12R(data) {
@@ -371,7 +371,7 @@ function pm26R(data) {
     chart_pm26(ctx, data);
     headerAdder("Bridge & Culvert Condition", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within the El Paso MPO area, there are " + data.good_count[4] + " bridges (" + data.good + "%) in Good condition, " + data.fair_count[4] + " bridges (" + data.fair + "%) in Fair condition, " + data.poor_count[4] + " bridges (" + data.poor + "%) in Poor condition.", "paragraph", "summary-info");
+    paragraphAdder("Within the El Paso MPO area, there are " + data.good_count[4] + " bridges (" + data.good[4] + "%) in Good condition, " + data.fair_count[4] + " bridges (" + data.fair[4] + "%) in Fair condition, " + data.poor_count[4] + " bridges (" + data.poor[4] + "%) in Poor condition.", "paragraph", "summary-info");
     paragraphAdder("Condition data was not available for " + data.tnodatabridges + " bridges within the El Paso MPO area.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Bridges condition data as of 2018", "paragraph", "analysis-info");
@@ -612,14 +612,14 @@ function pm20R(data) {
         if (detectmob() != true) {
             names = ['1', '2-3', '4-6', '7-10', 'No data'];
             colors = ['background:#4CAF50;', 'background:#8BC34A;', 'background:#CDDC39;', 'background:#f44336;', 'background:#9E9E9E'];
-            legendMaker("Legend", names, colors);
+            legendMaker("Number of accidents near bus stops", names, colors);
         }
     } else if (currentType == "biking") {
         if (detectmob() != true) {
             //legend elements
             names = ['1', '2'];
             colors = ['background:#8BC34A;', 'background:#f44336'];
-            legendMaker("Legend", names, colors);
+            legendMaker("Number of accidents near bus stops", names, colors);
         }
     }
     openNav();

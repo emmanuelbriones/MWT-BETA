@@ -17,10 +17,10 @@ function pm26Data(mode, ex) {
     let pm26Data = {
         years: [],
 
-        good: 0,
-        fair: 0,
-        poor: 0,
-        noData: 0,
+        good: [0,0,0,0,0],
+        fair: [0,0,0,0,0],
+        poor: [0,0,0,0,0],
+        noData: [0,0,0,0,0],
 
        good_count: [0,0,0,0,0],
        fair_count: [0,0,0,0,0],
@@ -190,18 +190,19 @@ function pm26Data(mode, ex) {
         pm26Data.dynamicTot = mpoArea;
         pm26Data.dynamicPoor = (((pm26Data.poor_count[4]) / pm26Data.dynamicTot) * 100).toFixed(2);
 
-        //formulas
-        if (pm26Data.good_count[4] != 0) {
-            pm26Data.good = ((pm26Data.good_count[4] / mpoArea) * 100).toFixed(2);
-        }
-        if (pm26Data.fair_count[4] != 0) {
-            pm26Data.fair = ((pm26Data.fair_count[4] / mpoArea) * 100).toFixed(2);
-        }
-        if (pm26Data.poor_count[4] != 0) {
-            pm26Data.poor = ((pm26Data.poor_count[4] / mpoArea) * 100).toFixed(2);
-        }
-        if (pm26Data.no_data_count[4] != 0) {
-            pm26Data.noData = ((pm26Data.no_data_count[4] / mpoArea) * 100).toFixed(2);
+        for(var i =0; i<=4; i++) {
+            if (pm26Data.good_count[i] != 0) {
+                pm26Data.good[i] = ((pm26Data.good_count[i] / mpoArea) * 100).toFixed(2);
+            }
+            if (pm26Data.fair_count[i] != 0) {
+                pm26Data.fair[i] = ((pm26Data.fair_count[i] / mpoArea) * 100).toFixed(2);
+            }
+            if (pm26Data.poor_count[i] != 0) {
+                pm26Data.poor[i] = ((pm26Data.poor_count[i] / mpoArea) * 100).toFixed(2);
+            }
+            if (pm26Data.no_data_count[i] != 0) {
+                pm26Data.noData[i] = ((pm26Data.no_data_count[i] / mpoArea) * 100).toFixed(2);
+            }
         }
 
         if (mode == 0) { // menu text, this is only done once
@@ -257,7 +258,7 @@ function chart_pm26(g1, data) {
             labels: data.years,
             datasets: [{
                     label: "Good Condition",
-                    data: data.good_count,
+                    data: data.good,
                     backgroundColor: 'green',
                     borderColor: 'green',
                     borderWidth: 1,
@@ -265,7 +266,7 @@ function chart_pm26(g1, data) {
                 },
                 {
                     label: 'Fair Condition',
-                    data: data.fair_count,
+                    data: data.fair,
                     backgroundColor:'rgba(247, 202, 24, 1)',
                     borderColor: 'rgba(247, 202, 24, 1)',
                     borderWidth: 1,
@@ -273,7 +274,7 @@ function chart_pm26(g1, data) {
                 },
                 {
                     label: 'Poor Condition',
-                    data: data.poor_count,
+                    data: data.poor,
                     backgroundColor:'rgba(242, 38, 19, 1)',
                     borderColor: 'rgba(242, 38, 19, 1)',
                     borderWidth: 1,
@@ -281,7 +282,7 @@ function chart_pm26(g1, data) {
                 },
                 {
                     label: 'No Data',
-                    data: data.no_data_count,
+                    data: data.noData,
                     backgroundColor: 'rgba(149, 165, 166, 1)',
                     borderColor: 'rgba(149, 165, 166, 1)',
                     borderWidth: 1,
@@ -305,7 +306,7 @@ function chart_pm26(g1, data) {
                 yAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Bridges',
+                        labelString: 'Percentage',
                     },
                 }, ],
             },
