@@ -10,7 +10,7 @@ $key = $_GET['key']; // key sent from front-end, from the object defined at the 
 //global array that will return requested data
 $toReturn = array();
 $temporal = 0;
-$shape = array();	
+$shape = array(); 
 
 if($key == "all_pm1" || $key == "all_pm2"){ 
 	$query = "select St_astext(SHAPE) as shape, ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2;";
@@ -109,7 +109,7 @@ else if($key == "all_pm15_16_17"){
 }else if($key == "all_pm20B"){
 	$query = "select count_bike,count_ped,St_astext(SHAPE) as shape from pm20bufferpedbike"; 
 }else if($key == "all_pm20P"){
-	$query = "select type, St_astext(SHAPE) as shape from pm20crashes"; 
+	$query = "select type, St_astext(SHAPE) as shape, w_i_buffer from pm20crashes"; 
 }else if($key == "all_pm20_bus"){
 	$query = "select St_astext(SHAPE) as shape from pm20busstops"; 
 }

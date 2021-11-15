@@ -47,7 +47,7 @@ else if($active_pm =="pm20_buffer"){
 	$query = "SELECT count_bike,count_ped,ST_AsText(SHAPE) as shape FROM pm20bufferpedbike as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
 }
 else if($active_pm =="pm20_crashes"){ 
-	$query = "SELECT type,ST_AsText(SHAPE) as shape FROM pm20crashes as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
+	$query = "SELECT type,ST_AsText(SHAPE) as shape, w_i_buffer FROM pm20crashes as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
 }
 else if($active_pm =="pm20_stationsbus"){ 
 	$query = "SELECT ST_AsText(SHAPE) FROM pm20busstops as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 

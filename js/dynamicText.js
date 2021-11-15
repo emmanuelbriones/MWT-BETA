@@ -94,7 +94,7 @@ function pm24DynamicText(corridor, data) {
 function pm3DynamicText(corridor, data) {
     headerAdder("Transit ridership", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within " + corridor + " corridor, the total ridership is " + commafy(data.tot) + ". The route " + data.highRoute + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. The route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + "  (5 years average).", "paragraph", "summary-info");
+    paragraphAdder("Within " + corridor + " corridor, the total ridership is " + commafy(data.tot) + " passengers. Route " + data.highRoute + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. Route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + " passengers (5 years average).", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -170,7 +170,7 @@ function pm11DynamicText(corridor, data) {
     paragraphAdder("City of El Paso", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Mileage of roadway network (stcent, without limited access roadways such as the Interstate 10, US 54, Loop 375, Cesar Chavez Memorial Highway, Spur 601) was compared with mileage of sidewalks. Only sidewalks with status ‘complete’, ‘pre-existing’, ‘private’ or ‘scheduled’ were included in the analysis. Sidewalks with no information about status, or status ‘removed’, ‘unfeasible’, or ‘awaiting assessment’ were not included in this performance measure. ", "paragraph", "calc-info");
-    paragraphAdder("Note: A GIS sidewalk layer was at the time of analysis available only from the City of El Paso. GIS data from other municipalities will be added as it becomes available.", "paragraph", "calc-info");
+    paragraphAdder("Note: Sidewalks shapefile for El Paso city limits + sidewalk from centerlines for other towns.", "paragraph", "calc-info");
     openNav();
 }
 function pm12DynamicText(corridor, data) {
@@ -317,12 +317,12 @@ function pm20DynamicText(corridor, data) {
         //legend elements
         names = ['1', '2-3', '4-6', '7-10', 'No data'];
         colors = ['background:#4CAF50;', 'background:#8BC34A;', 'background:#CDDC39;', 'background:#f44336;', 'background:#9E9E9E'];
-        legendMaker("Legend", names, colors);
+        legendMaker("Number of accidents near bus stops", names, colors);
     } else if (currentType == "biking") {
         //legend elements
         names = ['1', '2'];
         colors = ['background:#8BC34A;', 'background:#f44336'];
-        legendMaker("Legend", names, colors);
+        legendMaker("Number of accidents near bus stops", names, colors);
     }
     openNav();
 }
