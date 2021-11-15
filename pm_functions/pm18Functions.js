@@ -92,7 +92,6 @@ function pm18Data(mode, ex) {
         let crashCountW = 0;
         let crashCountB = 0;
 
-
         pm18data.latestYear = latestYear;
 
         for (index in data.shape_arr) {
@@ -127,8 +126,6 @@ function pm18Data(mode, ex) {
                     value: ogrID,
                     icon: image
                 });
-
-
 
                 //filter crashes/points
                 if (currentType == "walking") {
@@ -376,7 +373,6 @@ function pm18Data(mode, ex) {
         pm18data.wtot = pm18data.killed_walking.reduce((a, b) => a + b, 0);
         pm18data.btot = pm18data.killed_biking.reduce((a, b) => a + b, 0);
 
-
         if (mode == 0) { // menu text, this is only done once
             let drivingValue = {
                 name: "pm18DrivingText",
@@ -431,11 +427,7 @@ function pm18Data(mode, ex) {
         } else if (mode == 4) {
             dynamicCorridorText("AOI", pm18data); // Send graph data and current corridor to dynamic text for corridors
         }
-
-    }).fail(function (error) {
-        console.log(error);
-        alert("Error Fetching Data. Please Contact MPO.");
-    });;
+    });
 }
 
 function pm18chartLine(ctx, data) {
