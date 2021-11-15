@@ -170,7 +170,7 @@ function pm11DynamicText(corridor, data) {
     paragraphAdder("City of El Paso", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Mileage of roadway network (stcent, without limited access roadways such as the Interstate 10, US 54, Loop 375, Cesar Chavez Memorial Highway, Spur 601) was compared with mileage of sidewalks. Only sidewalks with status ‘complete’, ‘pre-existing’, ‘private’ or ‘scheduled’ were included in the analysis. Sidewalks with no information about status, or status ‘removed’, ‘unfeasible’, or ‘awaiting assessment’ were not included in this performance measure. ", "paragraph", "calc-info");
-    paragraphAdder("Note: Sidewalks shapefile for El Paso city limits + sidewalk from centerlines for other towns.", "paragraph", "calc-info");
+    paragraphAdder("Note: Only the sidewalks within El Paso City limits were considered for the analysis of this performance measure.", "paragraph", "calc-info");
     openNav();
 }
 function pm12DynamicText(corridor, data) {
