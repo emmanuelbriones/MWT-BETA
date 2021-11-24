@@ -29,7 +29,7 @@ function npm2_1tx() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2022',
+                label: 'TXDOT Target - 2022',
                 data: [null, null, null, null, null, null, null, 66.4],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -106,7 +106,7 @@ function npm2_1nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2019',
+                label: 'NMDOT Target - 2019',
                 data: [null, null, null, null, 57.3, null, null, null],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
@@ -114,7 +114,7 @@ function npm2_1nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2021',
+                label: 'NMDOT Target - 2021',
                 data: [null, null, null, null, null, null, 59.1],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -191,7 +191,7 @@ function npm2_2tx() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2022',
+                label: 'TXDOT Target - 2022',
                 data: [null, null, null, null, null, null, null, 0.3],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -268,7 +268,7 @@ function npm2_2nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2019',
+                label: 'NMDOT Target - 2019',
                 data: [null, null, null, null, 4.50, null, null, null],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
@@ -276,7 +276,7 @@ function npm2_2nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2021',
+                label: 'NMDOT Target - 2021',
                 data: [null, null, null, null, null, null, 5.00],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -353,7 +353,7 @@ function npm2_3tx() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2020',
+                label: 'TXDOT Target - 2020',
                 data: [null, null, null, null, null, 52],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
@@ -361,7 +361,7 @@ function npm2_3tx() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2022',
+                label: 'TXDOT Target - 2022',
                 data: [null, null, null, null, null, null, null, 52.3],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -438,7 +438,7 @@ function npm2_3nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2019',
+                label: 'NMDOT Target - 2019',
                 data: [null, null, null, null, 35.6],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
@@ -446,7 +446,7 @@ function npm2_3nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2021',
+                label: 'NMDOT Target - 2021',
                 data: [null, null, null, null, null, null, 34.2],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -523,7 +523,7 @@ function npm2_4tx() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2020',
+                label: 'TXDOT Target - 2020',
                 data: [null, null, null, null, null, 14.3],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
@@ -531,7 +531,7 @@ function npm2_4tx() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2022',
+                label: 'TXDOT Target - 2022',
                 data: [null, null, null, null, null, null, null, 14.3],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -608,7 +608,7 @@ function npm2_4nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2019',
+                label: 'NMDOT Target - 2019',
                 data: [null, null, null, null, 9],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
@@ -616,7 +616,7 @@ function npm2_4nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2021',
+                label: 'NMDOT Target - 2021',
                 data: [null, null, null, null, null, null, 12],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -693,14 +693,14 @@ function npm2_5tx() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2020',
+                label: 'TXDOT Target - 2020',
                 data: [null, null, null, null, 50.58],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'EPMPO Target - 2022',
+                label: 'TXDOT Target - 2022',
                 data: [null, null, null, null, null, null, 50.42],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -777,14 +777,14 @@ function npm2_5nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2019',
+                label: 'NMDOT Target - 2019',
                 data: [null, null, null, null, 36.00],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'EPMPO Target - 2021',
+                label: 'NMDOT Target - 2021',
                 data: [null, null, null, null, null, null, 30.00],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -858,14 +858,14 @@ function npm2_6tx() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2020',
+                label: 'TXDOT Target - 2020',
                 data: [null, null, null, null, 0.80],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'EPMPO Target - 2022',
+                label: 'TXDOT Target - 2022',
                 data: [null, null, null, null, null, null, 0.80],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -942,14 +942,14 @@ function npm2_6nm() {
             },
             {
                 type: 'scatter',
-                label: 'EPMPO Target - 2019',
+                label: 'NMDOT Target - 2019',
                 data: [null, null, null, null, 3.3],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'EPMPO Target - 2021',
+                label: 'NMDOT Target - 2021',
                 data: [null, null, null, null, null, null, 2.5],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
