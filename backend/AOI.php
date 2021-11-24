@@ -40,7 +40,7 @@ else if($active_pm =="pm15_16_17p"){
 
 }
 else if($active_pm =="pm18_19"){ 
-	$query = "SELECT OGR_FID,crash_year,type,killed,classA,classB,classC,classO,non_injuri,unknown_in,statefp, astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );";
+	$query = "SELECT OGR_FID,crash_year,type,killed,classA,classB,classC,classO,St_astext(SHAPE) as shape FROM pm18_19 as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );";
 
 }
 else if($active_pm =="pm20_buffer"){ 

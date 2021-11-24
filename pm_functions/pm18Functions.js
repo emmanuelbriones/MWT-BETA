@@ -13,9 +13,7 @@
  *  * Mode 4: AOI
  */
 function pm18Data(mode, ex) {
-
     let data_for_php = {};
-
     //stores graph values
     var pm18data = {
         //barGraph
@@ -23,8 +21,6 @@ function pm18Data(mode, ex) {
         classB: [0, 0, 0, 0, 0],
         classC: [0, 0, 0, 0, 0],
         classO: [0, 0, 0, 0, 0],
-        non_injuri: [0, 0, 0, 0, 0],
-        unknown_injuri: [0, 0, 0, 0, 0],
         //line graph
         killed: [0, 0, 0, 0, 0],
         killed_Driving: [0, 0, 0, 0, 0],
@@ -97,18 +93,12 @@ function pm18Data(mode, ex) {
         for (index in data.shape_arr) {
             let holder = [];
             let type = data.shape_arr[index]['type'];
-            let location = data.shape_arr[index]['statefp'];
             let crash_year = parseInt(data.shape_arr[index]['crash_year']);
-
             let killed = parseInt(data.shape_arr[index]['killed']);
-            let non_injuri = parseInt(data.shape_arr[index]['non_injuri']);
-            let unknown_injuri = parseInt(data.shape_arr[index]['unknown_in']);
             let classA = parseInt(data.shape_arr[index]['classA']);
             let classB = parseInt(data.shape_arr[index]['classB']);
             let classC = parseInt(data.shape_arr[index]['classC']);
             let classO = parseInt(data.shape_arr[index]['classO']);
-
-
             let ogrID = parseInt(data.shape_arr[index]['OGR_FID']);
 
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
@@ -122,7 +112,7 @@ function pm18Data(mode, ex) {
 
                 let point = new google.maps.Marker({
                     position: to_visualize,
-                    title: "Year: " + crash_year + " \nSerious Injuries " + classA + " \nNon-Incapacitating Injuries: " + classB + "\nPossible Injuries: " + classC + "\nNon-Injury: " + non_injuri + "\nkilled: " + killed,
+                    title: "Year: " + crash_year + " \nSerious Injuries " + classA + " \nNon-Incapacitating Injuries: " + classB + "\nPossible Injuries: " + classC + "\nkilled: " + killed,
                     value: ogrID,
                     icon: image
                 });
@@ -152,7 +142,7 @@ function pm18Data(mode, ex) {
 
             }
 
-            if (killed > 0 || classA > 0 || classB > 0 || classC > 0 || classO > 0 || non_injuri > 0 || unknown_injuri > 0) {
+            if (killed > 0 || classA > 0 || classB > 0 || classC > 0 || classO > 0) {
                 pm18data.crashCount++;
                 // crash counts
                 if (type == "Pedestrian" || type == "PED") {
@@ -178,8 +168,6 @@ function pm18Data(mode, ex) {
                     pm18data.classB[0] += classB;
                     pm18data.classC[0] += classC;
                     pm18data.classO[0] += classO;
-                    pm18data.non_injuri[0] += non_injuri;
-                    pm18data.unknown_injuri[0] += unknown_injuri;
 
                     if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
@@ -216,8 +204,6 @@ function pm18Data(mode, ex) {
                     pm18data.classB[1] += classB;
                     pm18data.classC[1] += classC;
                     pm18data.classO[1] += classO;
-                    pm18data.non_injuri[1] += non_injuri;
-                    pm18data.unknown_injuri[1] += unknown_injuri;
 
                     if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
@@ -254,9 +240,6 @@ function pm18Data(mode, ex) {
                     pm18data.classB[2] += classB;
                     pm18data.classC[2] += classC;
                     pm18data.classO[2] += classO;
-                    pm18data.non_injuri[2] += non_injuri;
-                    pm18data.unknown_injuri[2] += unknown_injuri;
-
 
                     if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
@@ -293,8 +276,6 @@ function pm18Data(mode, ex) {
                     pm18data.classB[3] += classB;
                     pm18data.classC[3] += classC;
                     pm18data.classO[3] += classO;
-                    pm18data.non_injuri[3] += non_injuri;
-                    pm18data.unknown_injuri[3] += unknown_injuri;
 
                     if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
@@ -331,8 +312,6 @@ function pm18Data(mode, ex) {
                     pm18data.classB[4] += classB;
                     pm18data.classC[4] += classC;
                     pm18data.classO[4] += classO;
-                    pm18data.non_injuri[4] += non_injuri;
-                    pm18data.unknown_injuri[4] += unknown_injuri;
 
                     if (killed > 0) { //for line graph
                         if (type == "Pedestrian" || type == "PED") {
@@ -435,35 +414,34 @@ function pm18chartLine(ctx, data) {
     var pm18_graphValues = [];
 
     //line chart data
-    if (currentType == 'driving') { // if Driving is click
+    if (currentType == 'driving') { // if Driving is clicked
         pm18_graphValues[0] = data.killed_Driving[0];
         pm18_graphValues[1] = data.killed_Driving[1];
         pm18_graphValues[2] = data.killed_Driving[2];
         pm18_graphValues[3] = data.killed_Driving[3];
         pm18_graphValues[4] = data.killed_Driving[4];
         pm18_graphTitle = 'Driving Fatalities';
-    } else if (currentType == 'freight') { // if Freight is click
+    } else if (currentType == 'freight') { // if Freight is clicked
         pm18_graphValues[0] = data.killed_freight[0];
         pm18_graphValues[1] = data.killed_freight[1];
         pm18_graphValues[2] = data.killed_freight[2];
         pm18_graphValues[3] = data.killed_freight[3];
         pm18_graphValues[4] = data.killed_freight[4];
         pm18_graphTitle = 'Freight Fatalities';
-
     } else if (currentType == 'walking') {
         pm18_graphValues[0] = data.killed_walking[0];
         pm18_graphValues[1] = data.killed_walking[1];
         pm18_graphValues[2] = data.killed_walking[2];
         pm18_graphValues[3] = data.killed_walking[3];
         pm18_graphValues[4] = data.killed_walking[4];
-        pm18_graphTitle = 'Walking Fatalities';
+        pm18_graphTitle = 'Pedestrian Fatalities';
     } else if (currentType == 'biking') {
         pm18_graphValues[0] = data.killed_biking[0];
         pm18_graphValues[1] = data.killed_biking[1];
         pm18_graphValues[2] = data.killed_biking[2];
         pm18_graphValues[3] = data.killed_biking[3];
         pm18_graphValues[4] = data.killed_biking[4];
-        pm18_graphTitle = 'Bycycle Fatalities';
+        pm18_graphTitle = 'Bicycle Fatalities';
     }
 
     var data = {
@@ -543,10 +521,6 @@ function pm18StackedChart(ctx, data) {
             label: 'Possible Injuries',
             backgroundColor: 'rgba(255,235,59,1)',
             data: data.classC
-        }, {
-            label: 'Non-Injury',
-            backgroundColor: 'rgb(255,0,255,0.5)',
-            data: data.non_injuri
         }]
 
     };

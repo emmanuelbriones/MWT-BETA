@@ -200,37 +200,36 @@ function pm18DynamicText(corridor, data) {
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
 	
-   ////http://ctis.utep.edu/MPO_Projects/merger/index-dev-b.php#pms-modal
     pm18StackedChart(ctx2,data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
     
     if (currentType == 'driving') {
 
         headerAdder("Number of Fatalities - Driving", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.dtot + " people were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " of those crashes resulted in fatalities. " + data.dtot + " people were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'freight') {
 
         headerAdder("Number of Fatalities - Freight", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a commercial motor vehicle (CMV) occurred in the " + corridor + " corridor and " + data.crashCountFK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.ftot +" people were killed in CMV-related crashes. ", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. " + data.ftot +" people were killed in CMV-related crashes. ", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'walking') {
 
         headerAdder("Number of Fatalities - Walking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a pedestrian occurred in the " + corridor + " corridor and " + data.crashCountWK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.wtot + " pedestrians were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountWK + " of those crashes resulted in fatalities involving pedestrians. " + data.wtot + " pedestrians were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'biking') {
 
         headerAdder("Number of Fatalities - Biking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a bicyclist occurred in the " + corridor + " corridor and " + data.crashCountBK + " (" + data.dtextPercent.toFixed(2) + "%)of those crashes resulted in fatalities. " + data.btot + " bicyclists were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountBK + " of those crashes resulted in fatalities involving bicyclists. " + data.btot + " bicyclists were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2013 - 2017", "paragraph", "analysis-info");
+    paragraphAdder("2015 - 2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
@@ -241,30 +240,28 @@ function pm18DynamicText(corridor, data) {
 function pm19DynamicText(corridor, data) {
     canvasMaker('chart1/2', 'myChart');
     canvasMaker('chart2/2', 'myChart2');
-
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
-
     pm19StackedChart(ctx2, data);
 
     if (currentType == "driving") {
         headerAdder("Number serious injuries - Driving", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.dtot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " of those crashes resulted in serious injuries. " + data.dtot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "freight") {
         headerAdder("Number serious injuries - Freight", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.ftot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " of those crashes resulted in serious injuries involving Commercial Vehicles. " + data.ftot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "walking") {
         headerAdder("Number serious injuries - Walking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountWK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.wtot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountWK + " of those crashes resulted in serious injuries involving pedestrians. " + data.wtot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "biking") {
         headerAdder("Number serious injuries - Biking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.btot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " of those crashes resulted in serious injuries involving bicyclists. " + data.btot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
 
@@ -272,7 +269,7 @@ function pm19DynamicText(corridor, data) {
 
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2013 – 2017", "paragraph", "analysis-info");
+    paragraphAdder("2015 – 2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
