@@ -53,11 +53,11 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm18_19"){
 	$query = "select OGR_FID,crash_year,type,killed,classA,classB,classC,classO, St_astext(SHAPE) as shape from pm18_19"; 
 }else if($key == "all_pm21_h"){ //
-	$query = "select pattern, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select pattern, St_astext(SHAPE) as shape from pm21_hotspot";
 }else if($key == "all_pm21_lines"){
-	$query = "select hotspot_ty,project_id,astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";// ! repetition
+	$query = "select hotspot_ty,project_id, St_astext(SHAPE) as shape from pm21_lines";// ! repetition
 }else if($key == "all_pm21P"){ // special case pm21 has points, lines, polygons 
-	$query = "select hotspot_ty,project_id, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";// ! repetition
+	$query = "select hotspot_ty,project_id, St_astext(SHAPE) as shape from pm21_points";// ! repetition
 }
 else if($key == "all_pm22"){ 
 	$query = "select crash_year, killed, classa, classb,classc, classo,total,crash_type,statefp,ST_astext(SHAPE) as shape from pm22 where corridor_key = '$key'";

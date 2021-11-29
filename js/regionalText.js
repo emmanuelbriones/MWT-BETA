@@ -670,7 +670,7 @@ function pm21R(data) {
     paragraphAdder("<span class=\"fa fa-play\"></span> Project I405X-CAP. Hot-spot type: Oscillating.", "paragraph", "summary-info");
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("Crash data from 2013-2017, safety projects identified from the Metropolitan Transportation Plan Destino 2045", "paragraph", "analysis-info");
+    paragraphAdder("Crash data from 2015-2019, safety projects identified from the Metropolitan Transportation Plan Destino 2045", "paragraph", "analysis-info");
 
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT. Destino 2045 projects identified by El Paso MPO.", "paragraph", "data-info");
