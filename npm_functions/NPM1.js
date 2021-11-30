@@ -11,6 +11,11 @@ const chartAreaBorder = {
       ctx.restore();
     }
   };
+
+  var label = "Estimated Regional Target *"
+  var label21 = "Estimated Regional Target - 2021 *"
+  var label20 = "Estimated Regional Target - 2020 *"
+
   
 function npm1_1tx() {
     Chart.defaults.font.size = 18;
@@ -36,14 +41,14 @@ function npm1_1tx() {
                 pointRadius: 5
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target',
+                label: label,
                 data: [null, null, 76.1, 70, 87.5],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target - 2021',
+                label: label21,
                 data: [null, null, null, null, null, 91.1],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -93,6 +98,11 @@ function npm1_1tx() {
                     padding: 1,
                     font: { weight: 'bold' }
                 },
+                subtitle: {
+                    text: "*Regional targets estimated following TXDOT methodology",
+                    display: true,
+                    position: 'bottom'
+                },
                 chartAreaBorder: {
                     borderColor: "black",
                     borderWidth: 2,
@@ -129,14 +139,14 @@ function npm1_1nm() {
 
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target',
+                label: label,
                 data: [null, null, null, 5.7, 6],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target - 2020',
+                label: label20,
                 data: [null, null, null, null, null, 6.6],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -183,6 +193,11 @@ function npm1_1nm() {
                     padding: 5,
                     font: { weight: 'bold' }
                 },
+                subtitle: {
+                    text: "*Regional targets estimated following NMDOT methodology",
+                    display: true,
+                    position: 'bottom'
+                },
                 chartAreaBorder: {
                     borderColor: "black",
                     borderWidth: 2,
@@ -217,14 +232,14 @@ function npm1_2tx() {
                 pointRadius: 5
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target',
+                label: label,
                 data: [null, null, 1.395, 1.283, 1.53],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target - 2021',
+                label: label21,
                 data: [null, null, null, null, null, 1.530],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -274,6 +289,11 @@ function npm1_2tx() {
                     padding: 1,
                     font: { weight: 'bold' }
                 },
+                subtitle: {
+                    text: "*Regional targets estimated following TXDOT methodology",
+                    display: true,
+                    position: 'bottom'
+                },
                 chartAreaBorder: {
                     borderColor: "black",
                     borderWidth: 2
@@ -310,14 +330,14 @@ function npm1_2nm() {
 
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target',
+                label: label,
                 data: [null, null, null, 2.746, 2.722],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target - 2020',
+                label: label20,
                 data: [null, null, null, null, null, 3.039],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -367,6 +387,11 @@ function npm1_2nm() {
                     padding: 5,
                     font: { weight: 'bold' }
                 },
+                subtitle: {
+                    text: "*Regional targets estimated following NMDOT methodology",
+                    display: true,
+                    position: 'bottom'
+                },
                 chartAreaBorder: {
                     borderColor: "black",
                     borderWidth: 2,
@@ -401,14 +426,14 @@ function npm1_3tx() {
                 pointRadius: 5
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target',
+                label: label,
                 data: [null, null, 282.3, 362.5, 296.6],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target - 2021',
+                label: label21,
                 data: [null, null, null, null, null, 241.2],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -458,6 +483,11 @@ function npm1_3tx() {
                     padding: 1,
                     font: { weight: 'bold' }
                 },
+                subtitle: {
+                    text: "*Regional targets estimated following TXDOT methodology",
+                    display: true,
+                    position: 'bottom'
+                },
                 chartAreaBorder: {
                     borderColor: "black",
                     borderWidth: 2,
@@ -493,14 +523,14 @@ function npm1_3nm() {
 
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target',
+                label: label,
                 data: [null, null, null, 18.9, 15.8],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target - 2020',
+                label: label20,
                 data: [null, null, null, null, null, 12],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -547,6 +577,11 @@ function npm1_3nm() {
                     padding: 5,
                     font: { weight: 'bold' }
                 },
+                subtitle: {
+                    text: "*Regional targets estimated following NMDOT methodology",
+                    display: true,
+                    position: 'bottom'
+                },
                 chartAreaBorder: {
                     borderColor: "black",
                     borderWidth: 2,
@@ -581,14 +616,14 @@ function npm1_4tx() {
                 pointRadius: 5
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target',
+                label: label,
                 data: [null, null, 5.184, 6.640, 5.260],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target - 2021',
+                label: label21,
                 data: [null, null, null, null, null, 3.901],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -638,6 +673,11 @@ function npm1_4tx() {
                     padding: 1,
                     font: { weight: 'bold' }
                 },
+                subtitle: {
+                    text: "*Regional targets estimated following TXDOT methodology",
+                    display: true,
+                    position: 'bottom'
+                },
                 chartAreaBorder: {
                     borderColor: "black",
                     borderWidth: 2,
@@ -673,14 +713,14 @@ function npm1_4nm() {
 
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target',
+                label: label,
                 data: [null, null, null, 9.036, 7.194],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target - 2020',
+                label: label20,
                 data: [null, null, null, null, null, 5.587],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -727,6 +767,11 @@ function npm1_4nm() {
                     padding: 5,
                     font: { weight: 'bold' }
                 },
+                subtitle: {
+                    text: "*Regional targets estimated following NMDOT methodology",
+                    display: true,
+                    position: 'bottom'
+                },
                 chartAreaBorder: {
                     borderColor: "black",
                     borderWidth: 2,
@@ -761,14 +806,14 @@ function npm1_5tx() {
                 pointRadius: 5
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target',
+                label: label,
                 data: [null, null, 52, 62.5, 70],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'TXDOT Target - 2021',
+                label: label21,
                 data: [null, null, null, null, null, 85.6],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -818,6 +863,11 @@ function npm1_5tx() {
                     padding: 1,
                     font: { weight: 'bold' }
                 },
+                subtitle: {
+                    text: "*Regional targets estimated following TXDOT methodology",
+                    display: true,
+                    position: 'bottom'
+                },
                 chartAreaBorder: {
                     borderColor: "black",
                     borderWidth: 2,
@@ -853,14 +903,14 @@ function npm1_5nm() {
 
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target',
+                label: label,
                 data: [null, null, null, 1.5, 1.9],
                 backgroundColor: 'black',
                 pointStyle: 'rectRot',
                 pointRadius: 7
             }, {
                 type: 'scatter',
-                label: 'NMDOT Target - 2020',
+                label: label20,
                 data: [null, null, null, null, null, 1.5],
                 backgroundColor: 'red',
                 pointStyle: 'rect',
@@ -909,6 +959,11 @@ function npm1_5nm() {
                     display: true,
                     padding: 5,
                     font: { weight: 'bold' }
+                },
+                subtitle: {
+                    text: "*Regional targets estimated following NMDOT methodology",
+                    display: true,
+                    position: 'bottom'
                 },
                 chartAreaBorder: {
                     borderColor: "black",
