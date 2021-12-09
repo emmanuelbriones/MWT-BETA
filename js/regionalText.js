@@ -149,7 +149,7 @@ function pm18R(data) {
     }
     else if (currentType == 'freight') {
         headerAdder("Number of Fatalities - Freight", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. " + data.ftot + " people were killed in CMV-related crashes. ", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. " + data.ftot + " people were killed in Commercial Vehicles-related crashes. ", "paragraph", "summary-info");
     }
     else if (currentType == 'walking') {
         headerAdder("Number of Fatalities - Walking", "title");
@@ -187,7 +187,7 @@ function pm19R(data) {
     }
     else if (currentType == 'walking') {
         headerAdder("Number serious injuries - Walking", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountWK + " of those crashes resulted in serious injuries involving pedestrians.. " + data.wtot + " pedestrians were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountWK + " of those crashes resulted in serious injuries involving pedestrians. " + data.wtot + " pedestrians were seriously injured.", "paragraph", "summary-info");
     }
     else if (currentType == 'biking') {
         headerAdder("Number serious injuries - Biking", "title");
@@ -678,7 +678,7 @@ function pm21R(data) {
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Most of the projects in the map were obtained from Alliance. ", "paragraph", "calc-info");
     paragraphAdder("Projects S301D, S301E, S301F, S301G and S301H, were not include in the map because the description was not precise and we did not know exactly where were located. ", "paragraph", "calc-info");
-    paragraphAdder("Most of the projects are represented as lanes in the maps, and three of them are represented as a point, those are: C035X, P333X and P334X.", "paragraph", "calc-info");
+    paragraphAdder("Most of the projects are represented as lanes in the maps, and two of them are represented as a point, those are: M025B and P334X.", "paragraph", "calc-info");
     paragraphAdder("There is no layer for safety projects in Dona Ana and Otero counties, just the crash hotspots was calculated. ", "paragraph", "calc-info");
     paragraphAdder("Space-Time Analysis was made to identify the crash hot spots which classified as follows:", "paragraph", "calc-info");
     paragraphAdder("<span class=\"fa fa-play\"></span><b> Consecutive:</b> “A location that has been a statistically significant hot spot for ninety percent of the time-step intervals with no discernible trend indicating an increase or decrease in the intensity of clustering over time” (ArcGIS). ", "paragraph", "calc-info");

@@ -212,7 +212,7 @@ function pm18DynamicText(corridor, data) {
     else if (currentType == 'freight') {
 
         headerAdder("Number of Fatalities - Freight", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. " + data.ftot +" people were killed in CMV-related crashes. ", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. " + data.ftot +" people were killed in Commercial Vehicle-related crashes. ", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'walking') {
