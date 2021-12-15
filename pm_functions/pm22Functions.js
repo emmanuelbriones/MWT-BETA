@@ -35,23 +35,41 @@ function pm22Data(mode, ex) {
         currentCorridor: 'Entire Region',
         dynamic_txt_val: 0,
         years: [],
+        // TX: {
+        //     years: [],
+        //     killed: [0, 0, 0, 0, 0],
+        //     classa: [0, 0, 0, 0, 0],
+        //     classb: [0, 0, 0, 0, 0],
+        //     classc: [0, 0, 0, 0, 0],
+        //     classo: [0, 0, 0, 0, 0],
+        //     crashes: [0, 0, 0, 0, 0]
+        // },
+        // NM: {
+        //     years: [],
+        //     killed: [0, 0, 0, 0, 0],
+        //     classa: [0, 0, 0, 0, 0],
+        //     classb: [0, 0, 0, 0, 0],
+        //     classc: [0, 0, 0, 0, 0],
+        //     classo: [0, 0, 0, 0, 0],
+        //     crashes: [0, 0, 0, 0, 0]
+        // }
         TX: {
             years: [],
-            killed: [0, 0, 0, 0, 0],
-            classa: [0, 0, 0, 0, 0],
-            classb: [0, 0, 0, 0, 0],
-            classc: [0, 0, 0, 0, 0],
-            classo: [0, 0, 0, 0, 0],
-            crashes: [0, 0, 0, 0, 0]
+            killed: [0, 0],
+            classa: [0, 0],
+            classb: [0, 0],
+            classc: [0, 0],
+            classo: [0, 0],
+            crashes: [0, 0]
         },
         NM: {
             years: [],
-            killed: [0, 0, 0, 0, 0],
-            classa: [0, 0, 0, 0, 0],
-            classb: [0, 0, 0, 0, 0],
-            classc: [0, 0, 0, 0, 0],
-            classo: [0, 0, 0, 0, 0],
-            crashes: [0, 0, 0, 0, 0]
+            killed: [0, 0],
+            classa: [0, 0],
+            classb: [0, 0],
+            classc: [0, 0],
+            classo: [0, 0],
+            crashes: [0, 0]
         }
 
     }
@@ -126,20 +144,25 @@ function pm22Data(mode, ex) {
             classc = parseInt(data.shape_arr[i].classc);
             classo = parseInt(data.shape_arr[i].classo);
 
-            if (year_found == latestYear - 4) {
+            // if (year_found == latestYear - 4) {
+            //     year_index = 0;
+
+            // } else if (year_found == latestYear - 3) {
+            //     year_index = 1;
+
+            // } else if (year_found == latestYear - 2) {
+            //     year_index = 2;
+
+            // } else if (year_found == latestYear - 1) {
+            //     year_index = 3;
+
+            // } else if (year_found == latestYear) {
+            //     year_index = 4;
+            // }
+            if(year_found == 2018) {
                 year_index = 0;
-
-            } else if (year_found == latestYear - 3) {
+            } else {
                 year_index = 1;
-
-            } else if (year_found == latestYear - 2) {
-                year_index = 2;
-
-            } else if (year_found == latestYear - 1) {
-                year_index = 3;
-
-            } else if (year_found == latestYear) {
-                year_index = 4;
             }
 
             if (state == 48) {
@@ -246,7 +269,8 @@ function pm22chartLine(ctx, data) {
     data_totInjuries = arraySum(data_totInjuries, b);
 
     var data = {
-        labels: data.years,
+        // labels: data.years,
+        labels: [2018, 2019],
         datasets: [{
                 label: "Total Crashes",
                 data: data_crashes,
@@ -304,7 +328,8 @@ function pm22StackedChart(ctx, data) {
         titleH = wordFix(titleH + " Corridor");
     }
     var barChartData = {
-        labels: data.years, //[0], data.TX.years[1], data.TX.years[2],data.TX.years[3], data.TX.years[4]],
+        // labels: data.years, //[0], data.TX.years[1], data.TX.years[2],data.TX.years[3], data.TX.years[4]],
+        labels: [2018, 2019],
         datasets: [{
             label: 'Killed',
             backgroundColor: 'rgba(255,82,0,0.5)',
