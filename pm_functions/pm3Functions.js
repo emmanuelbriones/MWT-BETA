@@ -55,11 +55,21 @@ function pm3Data(mode, ex) {
             if (mode == 1 || mode == 2 || mode == 4) {
                 to_visualize = pm3_polyline_geojson_formatter(r);
                 // filter colors 
-                if (avg > 2776.666667 && avg < 107271.682952) {
-                    color = '#FFEB3B';
-                } else if (avg > 107271.682951 && avg < 388321.351849) {
+                // 0 - 100K
+                // 100K - 400 K
+                // 400K 
+                // if (avg > 2776.666667 && avg < 107271.682952) {
+                //     color = '#FFEB3B';
+                // } else if (avg > 107271.682951 && avg < 388321.351849) {
+                //     color = '#FF9800';
+                // } else if (avg > 388321.351848 && avg < 1144232.200000) {
+                //     color = '#2196F3';
+                // }
+                if (avg > 0 && avg < 100000) {
+                    color = '#078a00';
+                } else if (avg > 100000 && avg < 400000) {
                     color = '#FF9800';
-                } else if (avg > 388321.351848 && avg < 1144232.200000) {
+                } else if (avg > 400000) {
                     color = '#2196F3';
                 }
                 for (i in to_visualize) {

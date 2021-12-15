@@ -100,10 +100,10 @@ function pm3DynamicText(corridor, data) {
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Data provided by Sun Metro", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("The received data was separated by years and routes. The average of the 5 years was calculated to create the symbology; 2,777-107,272 (Green), 107,272-388,321 (Orange), 388,321-1,144,232 (Red). Since Sun Metro stopped using route 204 in 2014 data was not included. Route 205 from BRIO was included in the map. ", "paragraph", "calc-info");
+    paragraphAdder("The received data was separated by years and routes. The average ridership over the 5 years is shown in the map based on geometric interval; 0-99,999 (Green), 100,000-399,999 (Orange), 400,000 +(Blue). ", "paragraph", "calc-info");
     openNav();
-    names = ['2,777+', '107,273+', '388,321+'];
-    let colors = ['background:#FFEB3B;', 'background:#FF9800;', 'background:#2196F3'];
+    names = ['0+', '100,000+', '400,000+'];
+    let colors = ['background:#078a00;', 'background:#FF9800;', 'background:#2196F3'];
     legendMaker("Passengers", names, colors);
     openNav();
 }

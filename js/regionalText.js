@@ -241,11 +241,11 @@ function pm3R(data) {
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Data provided by Sun Metro", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("The received data was separated by years and routes. The average ridership over the 5 years is shown in the map based on geometric interval; 2,777-107,272 (Yellow), 107,272-388,321 (Orange), 388,321-1,144,232 (Blue). ", "paragraph", "calc-info");
+    paragraphAdder("The received data was separated by years and routes. The average ridership over the 5 years is shown in the map based on geometric interval; 0-99,999 (Green), 100,000-399,999 (Orange), 400,000 +(Blue). ", "paragraph", "calc-info");
 
     if (detectmob() != true) {
-        let names = ['2,777+', '107,273+', '388,321+'];
-        let colors = ['background:#FFEB3B;', 'background:#FF9800;', 'background:#2196F3'];
+        let names = ['0+', '100,000+', '400,000+'];
+        let colors = ['background:#078a00;', 'background:#FF9800;', 'background:#2196F3'];
         legendMaker("Passengers", names, colors);
     }
     openNav();

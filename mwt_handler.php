@@ -21,7 +21,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm3"){
 	$query = "select avg_riders,route_1,St_astext(SHAPE) as shape from pm3"; // temporal note: find an elegant way to generalize this
 }else if($key == "all_pm4"){
-	$query = "select type,tactcnt, astext(SHAPE) as shape from $pm_table where corridor_key = '$key'";
+	$query = "select type,tactcnt, St_astext(SHAPE) as shape from pm4";
 }else if($key == "all_pm5"){ // Pm5 and PM9 share table both have all_pm9
 	$query = "select prcnt_prim,type,ratio_jobs, St_astext(SHAPE) as shape from pm5";
 }else if($key == "all_pm6"){ 
