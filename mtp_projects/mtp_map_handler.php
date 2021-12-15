@@ -1,7 +1,7 @@
 <?php
 
 $path = dirname(__FILE__);
-require_once "{$path}./mtp_login.php";
+require_once "{$path}/mtp_login.php";
 
 // for this rows we only care the order they are given not the name.
 $conn = mysqli_connect($host, $usr, $pw, $db);
@@ -23,12 +23,14 @@ function get_map_shapes($conn)
 {
     $data = array();
 
-    $tables = array('mtp_projects_lines','mtp_projects_points','mtp_projects_no_map');
+    // $tables = array('mtp_projects_lines','mtp_projects_points','mtp_projects_no_map');
+    $tables = array('destinolines','destinopoints');
 
-    $no_map_columns = array('project_id','csj','project_na','project_de');
+    // $no_map_columns = array('project_id','csj','project_na','project_de');
     $line_columns = array('project_id','csj','project_na','project_de','SHAPE','line');
-    $point_columns = array('project_id','csj','project_na','proj_des','SHAPE');
-    $columns = array($line_columns, $point_columns, $no_map_columns);
+    $point_columns = array('project_id','csj','project_na','project_de','SHAPE');
+    // $columns = array($line_columns, $point_columns, $no_map_columns);
+    $columns = array($line_columns, $point_columns);
 
     for ($i=0; $i < sizeof($tables) ; $i++) {
         $query = "SELECT
@@ -39,14 +41,13 @@ function get_map_shapes($conn)
                   {$columns[$i][3]} AS 'description' ";
 
         if ($tables[$i] !== 'mtp_projects_no_map') { // just because no map has no shape attribute
-            $query .= ", astext({$columns[$i][4]}) AS 'shape' ";
-            if ($tables[$i] === 'mtp_projects_lines') { // just because no map has no shape attribute
+            $query .= ", St_astext({$columns[$i][4]}) AS 'shape' ";
+            if ($tables[$i] === 'destinolines') { // just because no map has no shape attribute
                 $query .= ", {$columns[$i][5]} AS 'line_type' ";
             }
         }
 
         $query .= "FROM {$tables[$i]}";
-
         $result = $conn->query($query);
 
         if ($result -> num_rows >-1) {

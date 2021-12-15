@@ -334,8 +334,8 @@ mtp_comp_no_map.prototype.clean = function() {
 
 function point_geojson_formatter(data) {
   return {
-    lat: parseFloat(data[0].y),
-    lng: parseFloat(data[0].x),
+    lat: parseFloat(data[0].x),
+    lng: parseFloat(data[0].y),
   };
 }
 
