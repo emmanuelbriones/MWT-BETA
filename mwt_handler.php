@@ -19,7 +19,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm26"){ 
 	$query = "select mode,deck_cond_,superstruc,substruc_c,region, ST_astext(SHAPE) as shape, year from pm26";
 }else if($key == "all_pm3"){
-	$query = "select avg_riders,route_1,St_astext(SHAPE) as shape from pm3"; // temporal note: find an elegant way to generalize this
+	$query = "select avg_riders,route_1,St_astext(SHAPE) as shape, f2015, f2016, f2017, f2018, f2019 from pm3"; // temporal note: find an elegant way to generalize this
 }else if($key == "all_pm4"){
 	$query = "select type,tactcnt, St_astext(SHAPE) as shape from pm4";
 }else if($key == "all_pm5"){ // Pm5 and PM9 share table both have all_pm9
@@ -60,7 +60,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 	$query = "select hotspot_ty,project_id, St_astext(SHAPE) as shape from pm21_points";// ! repetition
 }
 else if($key == "all_pm22"){ 
-	$query = "select crash_year, killed, classa, classb,classc, classo,total,crash_type,statefp,ST_astext(SHAPE) as shape from pm22 where corridor_key = '$key'";
+	$query = "select crash_year, killed, classa, classb,classc, classo,total,statefp,ST_astext(SHAPE) as shape from pm22_new";
 	/*
    //constraints:
     //1. Shape data has to be from the last 5 years stored in database

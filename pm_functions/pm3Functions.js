@@ -14,7 +14,9 @@ function pm3Data(mode, ex) {
         lowAvg: 1000000000,
         highRoute: 0,
         lowRoute: 0,
-        tot: 0
+        tot: 0,
+        yearly_data: [0,0,0,0,0]
+
     }
     let data_for_php = {};
     let color = '#03A9F4'; // default
@@ -49,15 +51,17 @@ function pm3Data(mode, ex) {
             //PMS Data/Columns
             let route = parseInt(data.shape_arr[index].route_1); // used to color code line
             let avg = parseFloat(data.shape_arr[index].avg_riders);
+    
+            pm3TextData.yearly_data[0] += parseInt(data.shape_arr[index].f2015)
+            pm3TextData.yearly_data[1] += parseInt(data.shape_arr[index].f2016)
+            pm3TextData.yearly_data[2] += parseInt(data.shape_arr[index].f2017)
+            pm3TextData.yearly_data[3] += parseInt(data.shape_arr[index].f2018)
+            pm3TextData.yearly_data[4] += parseInt(data.shape_arr[index].f2019)
 
             pm3TextData.tot += avg;
             //Draw Line(s)
             if (mode == 1 || mode == 2 || mode == 4) {
                 to_visualize = pm3_polyline_geojson_formatter(r);
-                // filter colors 
-                // 0 - 100K
-                // 100K - 400 K
-                // 400K 
                 // if (avg > 2776.666667 && avg < 107271.682952) {
                 //     color = '#FFEB3B';
                 // } else if (avg > 107271.682951 && avg < 388321.351849) {
@@ -151,4 +155,63 @@ function pm3_polyline_geojson_formatter(data) {
         res.push(segment);
     }
     return res;
+}
+
+function chart_pm3 (ctx, data) {
+    var barChartData = {
+        labels: [2015, 2016, 2017, 2018, 2019],
+        datasets: [{
+            label: 'Ridership',
+            backgroundColor: ['#03A9F4', '#CDDC39', '#FFEB3B', '#FFAB40', '#d50000'],
+            data: data.yearly_data
+        }]
+    };
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+            tooltips: {
+                callbacks: {
+                    /**
+                     * Assigns a comma to the axis for better readability.
+                     */
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[0].data[tooltipItem.index];
+                        value = value.toString();
+                        value = value.split(/(?=(?:...)*$)/);
+                        value = value.join(',');
+                        return value;
+                    }
+                }
+            },
+            legend: {
+                display: false,
+            },
+            title:{
+                display: true,
+                text: "Annual Ridership",
+                fontSize: 10
+            },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                    ticks: {}
+                }],
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        userCallback: function(value, index, values) {
+                            value = value.toString();
+                            value = value.split(/(?=(?:...)*$)/);
+                            value = value.join(',');
+                            return value;
+                        }
+                    }               
+                }],
+
+            }
+        }
+    })
 }

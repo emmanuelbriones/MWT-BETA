@@ -93,6 +93,9 @@ function pm24DynamicText(corridor, data) {
 }
 function pm3DynamicText(corridor, data) {
     headerAdder("Transit ridership", "title");
+    canvasMaker('chart1', 'myChart');
+    var ctx = document.getElementById('myChart').getContext("2d")
+    chart_pm3(ctx, data)
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("Within " + corridor + " corridor, the total ridership is " + commafy(data.tot) + " passengers. Route " + data.highRoute + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. Route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + " passengers (5 years average).", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");

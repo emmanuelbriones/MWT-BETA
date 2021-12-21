@@ -234,8 +234,11 @@ function pm25R(data) {
 }
 function pm3R(data) {
     headerAdder("Transit ridership", "title");
+    canvasMaker('chart1', 'myChart');
+    var ctx = document.getElementById('myChart').getContext("2d")
+    chart_pm3(ctx, data)
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within El Paso region, the total ridership is " + commafy(data.tot) + " passengers. Route " + commafy(parseInt(data.highRoute)) + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. Route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + " passengers (5 years average).", "paragraph", "summary-info");
+    paragraphAdder("Transit ridership decreased at a rate of 5.3% for the period of 2015-2019. Route " + commafy(parseInt(data.highRoute)) + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. Route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + " passengers (5 years average).", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");

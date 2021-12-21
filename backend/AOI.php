@@ -106,7 +106,7 @@ else if($active_pm =="pm4"){
 	$query = "SELECT type,tactcnt, astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),7), p.SHAPE );";
 }
 else if($active_pm =="pm3"){ 
-	$query = "SELECT avg_riders,route_1,St_astext(SHAPE) as shape from pm3 as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4326), p.SHAPE );";
+	$query = "SELECT avg_riders,route_1,St_astext(SHAPE) as shape, f2015, f2016, f2017, f2018, f2019 from pm3 as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4326), p.SHAPE );";
 }
 else if($active_pm == "pm11"){
 	$query = "SELECT Sidewalk_4, Roads_LA_3, Roads_LA_6, ST_astext(SHAPE) as shape FROM pm11 as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4326), p.SHAPE );"; 
