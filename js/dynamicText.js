@@ -63,10 +63,9 @@ function pm1DynamicText(corridor, data) {
 }
 
 function pm2DynamicText(corridor, data) {
-    let text = "During 2012-2016 " + data.Walking.toFixed(2)+ "% of workers living in the El Paso MPO area reported to walk to work, "+data.Biking.toFixed(2)+"% of workers bike, and "+data.Transit.toFixed(2)+"% of workers reported to commute by public transit.";
+    let text = " During 2014-2018 " + data.Transit.toFixed(1)+"% of workers reported to commute by public transit, " + data.Biking.toFixed(2)+"% of workers bike, " + data.Walking.toFixed(1)+ "% of workers living in the El Paso MPO area reported to walk to work, and " + data.Non_SOV.toFixed(1) + "% of workers used other means.";
     pm2Text(text, data);
 }
-
 
 function pm24DynamicText(corridor, data) {
     canvasMaker('chart1', 'myChart');
@@ -94,17 +93,20 @@ function pm24DynamicText(corridor, data) {
 }
 function pm3DynamicText(corridor, data) {
     headerAdder("Transit ridership", "title");
+    canvasMaker('chart1', 'myChart');
+    var ctx = document.getElementById('myChart').getContext("2d")
+    chart_pm3(ctx, data)
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within " + corridor + " corridor, the total ridership is " + commafy(data.tot) + ". The route " + data.highRoute + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. The route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + "  (5 years average).", "paragraph", "summary-info");
+    paragraphAdder("Within " + corridor + " corridor, the total ridership is " + commafy(data.tot) + " passengers. Route " + data.highRoute + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. Route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + " passengers (5 years average).", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2014-2018", "paragraph", "analysis-info");
+    paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Data provided by Sun Metro", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("The received data was separated by years and routes. The average of the 5 years was calculated to create the symbology; 2,777-107,272 (Green), 107,272-388,321 (Orange), 388,321-1,144,232 (Red). Since Sun Metro stopped using route 204 in 2014 data was not included. Route 205 from BRIO was included in the map. ", "paragraph", "calc-info");
+    paragraphAdder("The received data was separated by years and routes. The average ridership over the 5 years is shown in the map based on geometric interval; 0-99,999 (Green), 100,000-399,999 (Orange), 400,000 +(Blue). ", "paragraph", "calc-info");
     openNav();
-    names = ['2,777 - 107,272', '107,273 - 388,321', '388,321 - 1,144,232'];
-    colors = ['background:#8BC34A;', 'background:#FFCA28;', 'background:#f44336', 'background:#e53935;'];
+    names = ['0+', '100,000+', '400,000+'];
+    let colors = ['background:#078a00;', 'background:#FF9800;', 'background:#2196F3'];
     legendMaker("Passengers", names, colors);
     openNav();
 }
@@ -171,7 +173,7 @@ function pm11DynamicText(corridor, data) {
     paragraphAdder("City of El Paso", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Mileage of roadway network (stcent, without limited access roadways such as the Interstate 10, US 54, Loop 375, Cesar Chavez Memorial Highway, Spur 601) was compared with mileage of sidewalks. Only sidewalks with status ‘complete’, ‘pre-existing’, ‘private’ or ‘scheduled’ were included in the analysis. Sidewalks with no information about status, or status ‘removed’, ‘unfeasible’, or ‘awaiting assessment’ were not included in this performance measure. ", "paragraph", "calc-info");
-    paragraphAdder("Note: A GIS sidewalk layer was at the time of analysis available only from the City of El Paso. GIS data from other municipalities will be added as it becomes available.", "paragraph", "calc-info");
+    paragraphAdder("Note: Only the sidewalks within El Paso City limits were considered for the analysis of this performance measure.", "paragraph", "calc-info");
     openNav();
 }
 function pm12DynamicText(corridor, data) {
@@ -181,13 +183,13 @@ function pm12DynamicText(corridor, data) {
     pm12StackedChart(ctx,data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
     if(corridor == "AOI"){
-        paragraphAdder("In the AOI corridor, there are a total of  " + data.pm12existing.toFixed(2) + " miles of existing bikeways. There are " + data.proposedMiles.toFixed(2) + " miles of proposed bikeways. If all proposed bikeways are completed, there would be a total of  " + data.tot.toFixed(2) + " miles in the AOI.", "paragraph", "summary-info");
+        paragraphAdder("In the AOI, there are a total of " + data.pm12existing.toFixed(1) + " miles of existing bikeways and " + data.proposedMiles.toFixed(1) + " miles of proposed bikeways. If all proposed bikeways are completed, there would be a total of " + data.tot.toFixed(1) + " miles in the AOI.", "paragraph", "summary-info");
     }
     else {
-        paragraphAdder("In the " + corridor + " corridor, there are a total of " + data.pm12existing.toFixed(2) + " miles of existing bikeways. There are " + data.proposedMiles.toFixed(2) + " miles of proposed bikeways. If all proposed bikeways are completed, there would be a total of  " + data.tot.toFixed(2) + " miles in the " + corridor + " corridor.", "paragraph", "summary-info");
+        paragraphAdder("In the " + corridor + " corridor, there are a total of " + data.pm12existing.toFixed(1) + " miles of existing bikeways and " + data.proposedMiles.toFixed(1) + " miles of proposed bikeways. If all proposed bikeways are completed, there would be a total of " + data.tot.toFixed(1) + " miles in the " + corridor + " corridor.", "paragraph", "summary-info");
     }   
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2018 bikeway data provided.", "paragraph", "analysis-info");
+    paragraphAdder("2021 bikeway data provided.", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Bikeway data was provided by the municipalities: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario and the City of El Paso. ", "paragraph", "data-info");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
@@ -201,37 +203,36 @@ function pm18DynamicText(corridor, data) {
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
 	
-   ////http://ctis.utep.edu/MPO_Projects/merger/index-dev-b.php#pms-modal
     pm18StackedChart(ctx2,data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
     
     if (currentType == 'driving') {
 
         headerAdder("Number of Fatalities - Driving", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.dtot + " people were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " of those crashes resulted in fatalities. " + data.dtot + " people were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'freight') {
 
         headerAdder("Number of Fatalities - Freight", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a commercial motor vehicle (CMV) occurred in the " + corridor + " corridor and " + data.crashCountFK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.ftot +" people were killed in CMV-related crashes. ", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. " + data.ftot +" people were killed in Commercial Vehicle-related crashes. ", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'walking') {
 
         headerAdder("Number of Fatalities - Walking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a pedestrian occurred in the " + corridor + " corridor and " + data.crashCountWK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in fatalities. " + data.wtot + " pedestrians were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountWK + " of those crashes resulted in fatalities involving pedestrians. " + data.wtot + " pedestrians were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'biking') {
 
         headerAdder("Number of Fatalities - Biking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes that involved a bicyclist occurred in the " + corridor + " corridor and " + data.crashCountBK + " (" + data.dtextPercent.toFixed(2) + "%)of those crashes resulted in fatalities. " + data.btot + " bicyclists were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountBK + " of those crashes resulted in fatalities involving bicyclists. " + data.btot + " bicyclists were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2013 - 2017", "paragraph", "analysis-info");
+    paragraphAdder("2015 - 2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
@@ -242,30 +243,28 @@ function pm18DynamicText(corridor, data) {
 function pm19DynamicText(corridor, data) {
     canvasMaker('chart1/2', 'myChart');
     canvasMaker('chart2/2', 'myChart2');
-
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
-
     pm19StackedChart(ctx2, data);
 
     if (currentType == "driving") {
         headerAdder("Number serious injuries - Driving", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.dtot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " of those crashes resulted in serious injuries. " + data.dtot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "freight") {
         headerAdder("Number serious injuries - Freight", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.ftot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " of those crashes resulted in serious injuries involving Commercial Vehicles. " + data.ftot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "walking") {
         headerAdder("Number serious injuries - Walking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountWK + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.wtot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountWK + " of those crashes resulted in serious injuries involving pedestrians. " + data.wtot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "biking") {
         headerAdder("Number serious injuries - Biking", "title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " (" + data.dtextPercent.toFixed(2) + "%) of those crashes resulted in serious injuries. " + data.btot + " people were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " of those crashes resulted in serious injuries involving bicyclists. " + data.btot + " people were seriously injured.", "paragraph", "summary-info");
   
     }
 
@@ -273,7 +272,7 @@ function pm19DynamicText(corridor, data) {
 
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2013 – 2017", "paragraph", "analysis-info");
+    paragraphAdder("2015 – 2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
@@ -289,9 +288,9 @@ function pm20DynamicText(corridor, data) {
             paragraphAdder("No pedestrian crashes in " + corridor +" corridor  occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         }
         else if (data.w_greatestCounter == 1) {
-            paragraphAdder(data.percentPed.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.w_greatest + " (on " + data.w_on_st + " at " + data.w_at_strt + ")", "paragraph", "summary-info");
+            paragraphAdder(data.percentPed.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         } else if (data.w_greatestCounter > 1)  {
-            paragraphAdder(data.percentPed.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.w_greatest + " (" + data.w_greatestCounter + " locations have the same number)", "paragraph", "summary-info");
+            paragraphAdder(data.percentPed.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         }
      
 
@@ -299,31 +298,31 @@ function pm20DynamicText(corridor, data) {
         headerAdder("Bicyclist crashes nearby bus stops", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
         if (data.b_greatest == 0) {
-            paragraphAdder("No bicyclists crashes in " + corridor +" corridor  occurred within 200 feet of transit stops. Majority of the crashes near bus stops occurred in downtown area.", "paragraph", "summary-info");
+            paragraphAdder("No bicyclists crashes in " + corridor +" corridor  occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         } else if (data.b_greatestCounter == 1) {
-            paragraphAdder(data.percentBike.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor  occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.b_greatest + " (on " + data.b_on_st + " at " + data.b_at_strt + ")", "paragraph", "summary-info");
+            paragraphAdder(data.percentBike.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor  occurred within 200 feet of transit stops.", "paragraph", "summary-info");
 
         } else if (data.b_greatestCounter > 1) {
-            paragraphAdder(data.percentBike.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor  occurred within 200 feet of transit stops. The highest observed number of crashes within 200 ft. from a bus stop is " + data.b_greatest + " (" + data.b_greatestCounter + " locations have the same number)", "paragraph", "summary-info");
+            paragraphAdder(data.percentBike.toFixed(2) + "% of all pedestrian crashes in " + corridor + " corridor  occurred within 200 feet of transit stops.", "paragraph", "summary-info");
         }
     
     }
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("Crashes 2013-2017, SunMetro bus stops as of 2019 ", "paragraph", "analysis-info");
+    paragraphAdder("Crashes 2015-2019, SunMetro bus stops as of 2019 ", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data from TxDOT, location of bus stops from Sun Metro ", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("A buffer of 200 ft. was created from the bus stops to identify how many crashes occurred within that distance. The crashes are from 2013 to 2017, and the bus stop locations are as of 2019.", "paragraph", "calc-info");
+    paragraphAdder("A buffer of 200 ft. was created from the bus stops to identify how many crashes occurred within that distance. The crashes are from 2015 to 2019, and the bus stop locations are as of 2019.", "paragraph", "calc-info");
     if (currentType == "walking") {
         //legend elements
         names = ['1', '2-3', '4-6', '7-10', 'No data'];
         colors = ['background:#4CAF50;', 'background:#8BC34A;', 'background:#CDDC39;', 'background:#f44336;', 'background:#9E9E9E'];
-        legendMaker("Legend", names, colors);
+        legendMaker("Number of accidents near bus stops", names, colors);
     } else if (currentType == "biking") {
         //legend elements
         names = ['1', '2'];
         colors = ['background:#8BC34A;', 'background:#f44336'];
-        legendMaker("Legend", names, colors);
+        legendMaker("Number of accidents near bus stops", names, colors);
     }
     openNav();
 }
@@ -337,18 +336,17 @@ function pm25DynamicText(corridor, data) {
     pm25chartLine(ctx2,data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
     if(corridor == "AOI"){
-        paragraphAdder("HPMS reports 2017 pavement condition for " + data.tot_poor_mi + " miles within the AOI, out of that " + data.poor_mi_perc + "% is in poor condition. ", "paragraph", "summary-info");
+        paragraphAdder("HPMS reports 2019 pavement condition for " + data.tot_miles.toFixed(1) + " miles within the AOI, out of those, " + data.poor_mi_perc.toFixed(1) + "% are in poor condition. ", "paragraph", "summary-info");
 
     }
     else{
-        paragraphAdder("HPMS reports 2017 pavement condition for " + data.tot_poor_mi + " miles within the " + corridor + " corridor, out of that " + data.poor_mi_perc + "% is in poor condition. ", "paragraph", "summary-info");
+        paragraphAdder("HPMS reports 2019 pavement condition for " + data.tot_miles.toFixed(1) + " miles within the " + corridor + " corridor, out of those, " + data.poor_mi_perc.toFixed(1) + "% are in poor condition. ", "paragraph", "summary-info");
     }
     
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2013-2017", "paragraph", "analysis-info");
+    paragraphAdder("2015-2019", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("Highway Performance Monitoring System (HPMS) Public Release of Geospatial Data in Shapefile Format", "https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm");
-    //anchorAdder("https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm ","https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Pavement condition was based on International Roughness Index (IRI) as defined by:", "paragraph", "calc-info");
     anchorAdder("Federal Highway Administration", "https://www.fhwa.dot.gov/policy/2013cpr/chap3.cfm#1");
@@ -361,14 +359,10 @@ function pm25DynamicText(corridor, data) {
     openNav();
 }
 function pm26DynamicText(corridor, data) {
-    canvasMaker('chart1/2', 'myChart');
-    canvasMaker('chart2/2', 'myChart2');
-
+    canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
-    var ctx2 = document.getElementById('myChart2').getContext('2d');
 
     chart_pm26(ctx, data);
-    chart_pm26_2(ctx2, data);
 
     headerAdder("Bridge & Culvert Condition", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
@@ -381,8 +375,6 @@ function pm26DynamicText(corridor, data) {
     paragraphAdder("Condition data was not available for " + data.tnodatabridges + " bridges within " + corridor + " corridor.", "paragraph", "summary-info");
 
 }
-    //  paragraphAdder("Within the Texas portion of the El Paso MPO area, there are " + data.tx_good_count + " bridges(" + data.goodTX + "%) in Good condition, " + data.tx_fair_count + " bridges(" + data.fairTX + "%) in Fair condition, " + data.tx_poor_count + " bridges(" + data.poorTX + "%) in Poor condition.", "paragraph", "summary-info");
-    //  paragraphAdder("Within the New Mexico portion of the El Paso MPO area, there are " + data.nm_good_count + " bridges(" + data.goodNM + "%) in Good conditions, " + data.nm_fair_count + " bridges(" + data.fairNM + "%) in Fair condition, " + data.nm_poor_count + " bridge(" + data.poorNM + "%) in Poor condition.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Bridges condition data as of 2018", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -390,8 +382,8 @@ function pm26DynamicText(corridor, data) {
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Bridge condition rating is based on the lowest condition rating from the following components: deck, substructure, superstructure or culvert.", "paragraph", "calc-info");
     paragraphAdder("Following the FHWA guidance, bridges with lowest rating between 7 and 9 are classified as Good, those rated 6 or 5 are classified as Fair and bridges with lowest rating 4 or below are classified as Poor.", "paragraph", "calc-info");
-    paragraphAdder("More information about Bridge Condition Performance can be found at this FHWA website: ", "paragraph", "calc-info");
-    anchorAdder(1, "https://www.fhwa.dot.gov/bridge/britab.cfm");
+    paragraphAdder("More information about Bridge Condition Performance can be found at this TxDOT website: ", "paragraph", "calc-info");
+    anchorAdder(1, "https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659");
     openNav();
 }
 

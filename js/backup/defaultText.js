@@ -18,7 +18,7 @@ function buttonSwitch(var1) {
         paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
         paragraphAdder("2012-2016 5-year average estimates", "paragraph", "analysis-info");
         paragraphAdder("Data Source:", "subtitle", "data-title");
-        anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
+        anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
         anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files ","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
         paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
         paragraphAdder("PM1 is calculated as:", "paragraph", "calc-info");
@@ -40,7 +40,7 @@ function buttonSwitch(var1) {
         paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
         paragraphAdder("2012-2016 5-year average estimates", "paragraph", "analysis-info");
         paragraphAdder("Data Source:", "subtitle", "data-title");
-        anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
+        anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
         anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files ","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
         paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
         paragraphAdder("PM1 is calculated as:", "paragraph", "calc-info");
@@ -70,7 +70,7 @@ function buttonSwitch(var1) {
         paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
         paragraphAdder(" 2012-2016 5-year average estimates ", "paragraph", "analysis-info");
         paragraphAdder("Data Source:", "subtitle", "data-title");
-        anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
+        anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
         anchorAdder("TIGER/Line Shapefiles","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
         paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
         imageAdder('./img/performance_measures/pm2/transEqn.PNG','calc-title');
@@ -108,8 +108,8 @@ function buttonSwitch(var1) {
         paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
         paragraphAdder("Bridge condition rating is based on the lowest condition rating from the following components: deck, substructure, superstructure or culvert.", "paragraph", "calc-info");
         paragraphAdder("Following the FHWA guidance, bridges with lowest rating between 7 and 9 are classified as Good, those rated 6 or 5 are classified as Fair and bridges with lowest rating 4 or below are classified as Poor.", "paragraph", "calc-info");
-        paragraphAdder("More information about Bridge Condition Performance can be found at this FHWA website: ", "paragraph", "calc-info");
-        anchorAdder(1,"https://www.fhwa.dot.gov/bridge/britab.cfm");
+        paragraphAdder("More information about Bridge Condition Performance can be found at this TxDOT website: ", "paragraph", "calc-info");
+        anchorAdder(1,"https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659");
         openNav();
     }else if(buttonValue == 'pm18Driving' || buttonValue == 'pm18Freight' || buttonValue == 'pm18Walking' || buttonValue == 'pm18Biking'){
         clean();
@@ -204,9 +204,9 @@ function buttonSwitch(var1) {
 
         headerAdder("Number of crashes on the CMP network", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
-        paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(pm22Text) + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(pm22Text) + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
         paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-        paragraphAdder("2013 – 2017", "paragraph", "analysis-info");
+        paragraphAdder("2015 – 2019", "paragraph", "analysis-info");
         paragraphAdder("Data Source:", "subtitle", "data-title");
         paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
         paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");

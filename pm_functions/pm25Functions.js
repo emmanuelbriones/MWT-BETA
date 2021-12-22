@@ -85,7 +85,11 @@ function pm25Data(mode, ex) {
             let year = parseInt(data.shape_arr[index].year_recor);
             let miles = parseFloat(data.shape_arr[index].miles);
             let state = data.shape_arr[index].state_code;
-            let type = (data.shape_arr[index].type).toLowerCase();
+            let type;
+            if(data.shape_arr[index].type != null) {
+                type = (data.shape_arr[index].type).toLowerCase();
+            }
+            
 
             // makes sure to only calculate the current mode
             if (type == currentType || ex == type) {
@@ -163,8 +167,8 @@ function pm25Data(mode, ex) {
                     if (mode == 1 || mode == 2 || mode == 4) {
                         for (let i = 0; i < ln.length; i++) {
                             coord = {
-                                lat: ln[i]['y'],
-                                lng: ln[i]['x']
+                                lat: ln[i]['x'],
+                                lng: ln[i]['y']
                             }; // this is how lat & lng is interpreted by the tool
                             to_visualize.push(coord); // pushing the interpretation to our to_visualize array
                         }

@@ -2,24 +2,14 @@ function pm20Data(mode, corr) {
     pm20_buffers(mode, corr);
 }
 
-
 function pm20_buffers(mode, corr) {
     let pm20data = {
         countSumB: 0,
         countSumP: 0,
-
         b_greatest: 0,
         b_greatestCounter: 1,
-        b_address: 'beto',
-        b_on_st: '',
-        b_at_strt: 0,
-
         w_greatest: 0,
         w_greatestCounter: 1,
-        w_address: '',
-        w_on_st: '',
-        w_at_strt: 0,
-
         percentPed: 0,
         percentBike: 0
     };
@@ -49,7 +39,6 @@ function pm20_buffers(mode, corr) {
         php_handler = "./backend/AOI.php"
     }
 
-
     $.get(php_handler, data_for_php, function (data) {
         let color = "#1A237E"; // Blue
         let currentCount = 0;
@@ -57,9 +46,6 @@ function pm20_buffers(mode, corr) {
         for (index in data.shape_arr) {
             let temp = wktFormatter(data.shape_arr[index][shape]);
             let to_visualize = [];
-            let address = data.shape_arr[index]['address'];
-            let on_st = data.shape_arr[index]['on_st'];
-            let at_strt = data.shape_arr[index]['at_strt'];
             let count_bike = parseInt(data.shape_arr[index]['count_bike']);
             let count_ped = parseInt(data.shape_arr[index]['count_ped']);
 
@@ -73,9 +59,6 @@ function pm20_buffers(mode, corr) {
                 if (count_bike > pm20data.b_greatest) {
                     pm20data.b_greatest = count_bike;
                     pm20data.b_greatestCounter = 1;
-                    pm20data.b_address = address;
-                    pm20data.b_on_st = on_st;
-                    pm20data.b_at_strt = at_strt;
                     pm20data.b_count = count_bike;
                 }
             }
@@ -88,9 +71,6 @@ function pm20_buffers(mode, corr) {
                 if (count_ped > pm20data.w_greatest) {
                     pm20data.w_greatest = count_ped;
                     pm20data.w_greatestCounter = 1;
-                    pm20data.w_address = address;
-                    pm20data.w_on_st = on_st;
-                    pm20data.w_at_strt = at_strt;
                     pm20data.w_count = count_ped;
                 }
             }
@@ -100,7 +80,6 @@ function pm20_buffers(mode, corr) {
             } else if (currentType == "walking") {
                 currentCount = count_ped;
             }
-
             if (mode == 1 || mode == 2 || mode == 4) {
                 if (currentType == "walking") {
                     if (currentCount == 1) {
@@ -115,7 +94,6 @@ function pm20_buffers(mode, corr) {
                         color = "#9E9E9E"; //gray
                     }
                 } else if (currentType == "biking") {
-                    console.log(currentCount);
                     if (currentCount == 0) {
                         color = "#9E9E9E"; //gray
                     } else if (currentCount == 1) {
@@ -124,8 +102,6 @@ function pm20_buffers(mode, corr) {
                         color = "#f44336"; //red
                     }
                 }
-
-
                 for (let i = 0; i < temp.length; i++) {
                     to_visualize.push(temp[i]);
                     polyToErase.exist.push();
@@ -142,21 +118,22 @@ function pm20_buffers(mode, corr) {
                     fillOpacity: 0.40,
                     zIndex: -1,
                     title: "",
-
                 });
 
                 if (currentType == "biking") {
                     polyToErase.exist.push(polygon);
-                    polygon.setMap(map);
-                    polygons.push(polygon);
+                    if (count_bike > 0) {
+                        polygon.setMap(map);
+                        polygons.push(polygon);
+                    }
                 } else if (currentType == "walking") {
                     polyToErase.exist.push(polygon);
+                    if (count_ped > 0) {
                     polygon.setMap(map);
                     polygons.push(polygon);
+                    }
                 }
             }
-
-
         }
         loadpm20P(mode, corr, pm20data);
     });
@@ -200,6 +177,7 @@ function loadpm20P(mode, corr, pm20data) {
         for (index in data.shape_arr) {
             let holder = [];
             let type = data.shape_arr[index]['type'];
+            let buffer = data.shape_arr[index]['w_i_buffer'];
 
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to store points
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
@@ -209,24 +187,22 @@ function loadpm20P(mode, corr, pm20data) {
                     lng: parseFloat(holder[0].lng)
                 };
 
-
                 let point = new google.maps.Marker({
                     position: to_visualize,
                     title: '',
                     value: '',
                     icon: image
                 });
-                if (currentType == "biking" && type == "Pedcyclists") {
+                if (currentType == "biking" && type == "Pedalcyclist" && buffer == 1) {
                     point.setMap(map);
                     points.push(point);
-                } else if (currentType == "walking" && type == "Pedestrian") {
+                } else if (currentType == "walking" && type == "Pedestrian" && buffer == 1) {
                     point.setMap(map);
                     points.push(point);
                 }
-
             }
 
-            if (type == "Pedcyclists") {
+            if (type == "Pedalcyclist") {
                 bikeCrash++;
             } else if (type == "Pedestrian") {
                 pedCrash++;
@@ -266,7 +242,7 @@ function loadpm20Bus(mode, corr) {
     let data_for_php = 0;
     let shape = "shape";
     let php_handler = "mwt_handler.php";
-    let image = "./img/markers/yellow_small.png";
+    // let image = "./img/markers/yellow_small.png";
     let key = "all_pm20_bus";
 
     if (mode == 0 || mode == 1) {
@@ -292,32 +268,24 @@ function loadpm20Bus(mode, corr) {
     }
 
     $.get(php_handler, data_for_php, function (data) {
-        console.log(6);
         for (index in data.shape_arr) {
             let holder = [];
-
-
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to store points
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
-                let to_visualize = {
-                    lat: parseFloat(holder[0].lat),
-                    lng: parseFloat(holder[0].lng)
-                };
-
-                let point = new google.maps.Marker({
-                    position: to_visualize,
-                    title: '',
-                    value: '',
-                    icon: image
-                });
-                point.setMap(map);
-                points.push(point);
-
+                // let to_visualize = {
+                //     lat: parseFloat(holder[0].lat),
+                //     lng: parseFloat(holder[0].lng)
+                // };
+                // let point = new google.maps.Marker({
+                //     position: to_visualize,
+                //     title: '',
+                //     value: '',
+                //     // icon: image
+                // });
+                // point.setMap(map);
+                // points.push(point);
             }
         }
-
-
     });
-
 }

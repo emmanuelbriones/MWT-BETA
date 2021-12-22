@@ -21,7 +21,7 @@ function mtpProjects() {
   <div id="mtp" class=" sidenav rounded-left mb-2 bg-light text-dark" ondblclick="openNavMTP()" data-toggle="tooltip" data-placement="left" title="Double click to Open">
     <a href="javascript:void(0)" href="javascript:void(0)" class="closebtn" onclick="closeNavMTP();"><span class="fa fa-times"></span></a>
     <div id="mtp-title" class="row container-fluid">
-      <h1 class="col-lg-6 text-center">MTP Projects</h1>
+      <h3 class="col-lg-6 text-center">MTP Projects (Destino 2045)</h3>
       <button id="locate-project-btn" type="button" class="col-lg-5 btn btn-outline-info btn-lg">Locate</button>
     </div>
     <div id="mtp-content"></div>
@@ -192,6 +192,7 @@ function openNavMTP() {
     // resizing for the table
     $(nav).tooltip('disable');
     $(nav).css('overflow-y', 'hidden');
+    $(nav).css('overflow-x', 'scroll');
     nav.style.height = '40vh';
     $(nav).css('margin-top', '');
     $(nav).css('top', '60vh');
@@ -207,7 +208,7 @@ function closeNavMTP() {
     // document.getElementById("mySidenav").style.width = "0%";
     nav.style.width = '1%';
     nav.style.height = '2%';
-    nav.style.overflow = 'hidden';
+    nav.style.overflow = 'scroll';
     nav.className = 'sidenav rounded-left mb-2 bg-info text-dark';
     $(nav).tooltip('enable');
 

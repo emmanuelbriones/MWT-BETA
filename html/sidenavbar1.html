@@ -1,108 +1,200 @@
 <div class="container-fluid">
-    <div class="row">
-       <!-- Sidenavbar -->
-       <div id="mySidenav" class="sidenav rounded-left mb-2 bg-light text-dark" ondblclick="openNav()" data-toggle="tooltip" data-placement="left" title="Double click to Open" >
-          <!-- <div class="ld ld-ring ld-spin"></div> -->
-          <div class="p-2" id = "colorChanger" >
-             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span class="fa fa-times"></span></a>
-             <!-- Main Title for PM -->
-             <div id="title"></div>
-             <!-- Google Chart for PM  -->
-             <div class="row">
-                <div id='chart1/2' class="col-lg-6 col-md-12 col-sm-12 col-xs-12"></div>
-                <div id='chart2/2' class="col-lg-6 col-md-12 col-sm-12 col-xs-12"></div>
-             </div>
-             <div class="row">
-                <div id='chart1' class="col-md-12 col-sm-12 col-xs-12"></div>
-             </div>
-             <div class="row">
-                <div id='chart2' class="col-md-12 col-sm-12 col-xs-12"></div>
-             </div>
-			
-             <!--  Radio Button Section -->
-             <div id = "radioH" class = "d-flex justify-content-center">
-                <div id = "rad1" class="form-check-inline" style="display: block;">
-                   <label  class="form-check-label" for="radio1" >
-                   <input type="radio" onclick="turnOn_Switch('REGIONAL'); toggleVisibilityCorr('off'); deleteUserShapes();switch_AOI('off')"  class="form-check-input" id="radio1" name="optradio" value="option1" checked>Regional
-                   </label>
-                </div>
-                <div id = "rad2" class="form-check-inline" style="display: block;">
-                   <label class="form-check-label" for="radio2">
-                   <input type="radio" onclick="toggleVisibilityCorr('on'); deleteUserShapes();switch_AOI('off')" class="form-check-input" id="radio2" name="optradio" value="option2" >Corridors
-                   </label>
-                </div>
-                <div id = "rad3" class="form-check-inline" style="display: block;">
-                   <label class="form-check-label" for="radio3">
-                   <input type="radio"  onclick="toggleVisibilityCorr('off');switch_AOI('on')" class="form-check-input" id="radio3" name="optradio" value="option3">AOI
-                   </label>
-                </div>
-             </div>
-			               <!-- Toggle holder -->
-             <div id="ToggleHolder">
-                <b>Status</b>
-                <div class="row">
-                   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-                   <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                       <h6 id="toggleName1">Existing Stations</h6>
-                   </div>
-                   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
-                      <label class="switch">
-                      <input type="checkbox" id="toggle1">
-                      <span class="slider round" id = "sliderSpan"></span>
-                      </label>
-                   </div>
-                   <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                       <h6 id="toggleName2">Planned Stations</h6>
-                   </div>
-                   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
-                      <label class="switch">
-                      <input type="checkbox" id="toggle2">
-                      <span class="slider round"></span>
-                      </label>
-                   </div>
-                </div>
-             </div>
-			 <!-- toggle holder end-->
-             <!-- Drop Down Menu -->
-             <div class = "d-flex justify-content-center">
-                <div  class="dropdown">
-                   <button id="dropdownMenuButton"  class="btn btn-secondary dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" style="display: none;" aria-expanded="false">
-                   Corridor
-                   </button>
-                   <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" onclick="turnOn_Switch('ALAMEDA')"   href="#">ALAMEDA</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('ARTCRAFT')"href="#">ARTCRAFT/DOMENICI</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('DONIPHAN')"href="#">DONIPHAN</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('DYER')"href="#">DYER</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('EASTLAKE')"href="#">EASTLAKE</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('HORIZON')"href="#">HORIZON</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('MCNUTT')"href="#">MCNUTT</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('MESA')"href="#">MESA</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('MONTANA')"href="#">MONTANA</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('MONTWOOD')"href="#">MONTWOOD</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('SOCORRO')"href="#">SOCORRO</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('YARBROUGH')"href="#">YARBROUGH</a>
-                      <a class="dropdown-item" onclick="turnOn_Switch('ZARAGOZA')"href="#">ZARAGOZA</a>
-                   </div>
-                </div>
-             </div>
-             <!-- Subtitles and Information for PM -->
-             <div>
-                <div id="summary-title" class="border-top border-dark"></div>
-                <div id="summary-info"></div>
-                <div id="analysis-title" class="border-top border-dark"></div>
-                <div id="analysis-info"></div>
-                <div id="data-title" class="border-top border-dark"></div>
-                <div id="data-info"></div>
-                <div id="calc-title" class="border-top border-dark"></div>
-                <div id="calc-info"></div>
-                <div class = "d-flex justify-content-center">
-                   <img id="spinner" class="img-responsive center-block" src="./img/loading.gif" alt="Flowers in Chania" width="200" height="200"  style="display: none;">
-                </div>
-             </div>
-             <!-- Toggle holder -->
-          
-          </div>
-       </div>
-    </div>
- </div>
+   <div class="row">
+      <!-- Sidenavbar -->
+      <div id="mySidenav" class="sidenav rounded-left mb-2 bg-light text-dark" ondblclick="openNav()"
+         data-toggle="tooltip" data-placement="left" title="Double click to Open">
+         <!-- <div class="ld ld-ring ld-spin"></div> -->
+         <div class="p-2" id="colorChanger">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span class="fa fa-times"></span></a>
+            <!-- Main Title for PM -->
+            <div id="title"></div>
+            <!-- Google Chart for PM  -->
+            <div class="row">
+               <div id='chart1/2' class="col-lg-6 col-md-12 col-sm-12 col-xs-12"></div>
+               <div id='chart2/2' class="col-lg-6 col-md-12 col-sm-12 col-xs-12"></div>
+            </div>
+            <div class="row">
+               <div id='chart1' class="col-md-12 col-sm-12 col-xs-12"></div>
+            </div>
+            <div class="row">
+               <div id='chart2' class="col-md-12 col-sm-12 col-xs-12"></div>
+            </div>
+            <div class="row">
+               <div id='chartG' class="col-md-12 col-sm-12 col-xs-12"></div>
+            </div>
+
+
+            <!--  Radio Button Section -->
+            <div id="radioH" class="d-flex justify-content-center">
+               <div id="rad1" class="form-check-inline" style="display: block;">
+                  <label class="form-check-label" for="radio1">
+                     <input type="radio"
+                        onclick="turnOn_Switch('REGIONAL'); toggleVisibilityCorr('off'); deleteUserShapes();switch_AOI('off')"
+                        class="form-check-input" id="radio1" name="optradio" value="option1" checked>Regional
+                  </label>
+               </div>
+               <div id="rad2" class="form-check-inline" style="display: block;">
+                  <label class="form-check-label" for="radio2">
+                     <input type="radio" onclick="toggleVisibilityCorr('on'); deleteUserShapes();switch_AOI('off')"
+                        class="form-check-input" id="radio2" name="optradio" value="option2">Corridors
+                  </label>
+               </div>
+               <div id="rad3" class="form-check-inline" style="display: block;">
+                  <label class="form-check-label" for="radio3">
+                     <input type="radio" onclick="toggleVisibilityCorr('off');switch_AOI('on')" class="form-check-input"
+                        id="radio3" name="optradio" value="option3">AOI
+                  </label>
+               </div>
+            </div>
+            <!-- Toggle holder -->
+            <div id="ToggleHolder">
+               <b>Status</b>
+               <div class="row">
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                     <h6 id="toggleName1">Existing Stations</h6>
+                  </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                     <label class="switch">
+                        <input type="checkbox" id="toggle1">
+                        <span class="slider round" id="sliderSpan"></span>
+                     </label>
+                  </div>
+                  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                     <h6 id="toggleName2">Planned Stations</h6>
+                  </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                     <label class="switch">
+                        <input type="checkbox" id="toggle2">
+                        <span class="slider round"></span>
+                     </label>
+                  </div>
+               </div>
+            </div>
+            <!-- Toggle Biking -->
+            <div id="ToggleBiking">
+               <b>Status</b>
+               <div class="row">
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                     <h6 id="toggleName1">Existing Bikeways</h6>
+                  </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                     <label class="switch">
+                        <input type="checkbox" id="toggle3">
+                        <span class="slider round" id="sliderSpan"></span>
+                     </label>
+                  </div>
+                  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                     <h6 id="toggleName2">Proposed Bikeways</h6>
+                  </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                     <label class="switch">
+                        <input type="checkbox" id="toggle4">
+                        <span class="slider round"></span>
+                     </label>
+                  </div>
+               </div>
+            </div>
+            <!-- toggle holder end-->
+            <!-- Toggle Key Destinations -->
+            <div id="ToggleKeyDestinations">
+               <b>Status</b>
+               <div class="row">
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                     <h6 id="toggleName1">Key Destinations within 1/2 mile of Existing Bikeways</h6>
+                  </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                     <label class="switch">
+                        <input type="checkbox" id="toggle5">
+                        <span class="slider round" id="sliderSpan"></span>
+                     </label>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                     <h6 id="toggleName2">Key Destinations within 1/2 mile of Proposed Bikeways</h6>
+                  </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                     <label class="switch">
+                        <input type="checkbox" id="toggle6">
+                        <span class="slider round"></span>
+                     </label>
+                  </div>
+               </div>
+            </div>
+            <!-- toggle holder end-->
+            <!-- Toggle Stations -->
+            <div id="ToggleKeyStations">
+               <b>Status</b>
+               <div class="row">
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                     <h6 id="toggleName1">Key Destinations within 1/2 mile of Existing BRT Stations</h6>
+                  </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                     <label class="switch">
+                        <input type="checkbox" id="toggle7">
+                        <span class="slider round" id="sliderSpan"></span>
+                     </label>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                     <h6 id="toggleName2">Key Destinations within 1/2 mile of Proposed BRT Stations</h6>
+                  </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                     <label class="switch">
+                        <input type="checkbox" id="toggle8">
+                        <span class="slider round"></span>
+                     </label>
+                  </div>
+               </div>
+            </div>
+            <!-- toggle holder end-->
+            <!-- Drop Down Menu -->
+            <div class="d-flex justify-content-center">
+               <div class="dropdown">
+                  <button id="dropdownMenuButton" class="btn btn-secondary dropdown-toggle" type="button"
+                     data-toggle="dropdown" aria-haspopup="true" style="display: none;" aria-expanded="false">
+                     Corridor
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     <a class="dropdown-item" onclick="turnOn_Switch('ALAMEDA')" href="#">ALAMEDA</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('ARTCRAFT')" href="#">ARTCRAFT/DOMENICI</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('DONIPHAN')" href="#">DONIPHAN</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('DYER')" href="#">DYER</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('EASTLAKE')" href="#">EASTLAKE</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('HORIZON')" href="#">HORIZON</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('MCNUTT')" href="#">MCNUTT</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('MESA')" href="#">MESA</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('MONTANA')" href="#">MONTANA</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('MONTWOOD')" href="#">MONTWOOD</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('SOCORRO')" href="#">SOCORRO</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('YARBROUGH')" href="#">YARBROUGH</a>
+                     <a class="dropdown-item" onclick="turnOn_Switch('ZARAGOZA')" href="#">ZARAGOZA</a>
+                  </div>
+               </div>
+            </div>
+            <!-- Subtitles and Information for PM -->
+            <div>
+               <div id="summary-title" class="border-top border-dark"></div>
+               <div id="summary-info"></div>
+               <div id="analysis-title" class="border-top border-dark"></div>
+               <div id="analysis-info"></div>
+               <div id="data-title" class="border-top border-dark"></div>
+               <div id="data-info"></div>
+               <div id="calc-title" class="border-top border-dark"></div>
+               <div id="calc-info"></div>
+               <div id="ref-title" class="border-top border-dark"></div>
+               <div id="ref-info"></div>
+               <div id="extra-title" class="border-top border-dark"></div>
+               <div id="extra-info"></div>
+               <div class="d-flex justify-content-center">
+                  <img id="spinner" class="img-responsive center-block" src="./img/loading.gif" alt="Flowers in Chania"
+                     width="200" height="200" style="display: none;">
+               </div>
+            </div>
+            <!-- Toggle holder -->
+
+         </div>
+      </div>
+   </div>
+</div>

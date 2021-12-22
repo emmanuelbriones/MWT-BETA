@@ -35,19 +35,6 @@
          <?php include("inject-sidenavbar_PMs.php");?>
       </div>
       <!-- Sidenavbar2 -->
-      <!--! I removed it because it was already handled inside the non-pm-content div-->
-      <!--
-      <div id="mtp" class=" sidenav rounded-left mb-2 bg-light text-dark" ondblclick="openNavMTP()" data-toggle="tooltip" data-placement="left" title="Double click to Open" >
-         <a href="javascript:void(0)" class=" col-lg-1 closebtn" onclick="closeNavMTP()">&times;</a>
-         <div id="mtp-title" class="row container">
-            <h1 class="col-lg-6 text-center">MTP Projects</h1>
-            <button id="locate-project-btn" type="button" class="col-lg-6 btn btn-outline-info btn-lg">Locate</button>
-         </div>
-         <div  id="mtp-content" >
-         </div>
-      </div>
-      -->
-      <!-- Legend -->
       <div id="legendHolder" class="legend">
          <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">

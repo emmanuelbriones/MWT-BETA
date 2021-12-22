@@ -4,8 +4,7 @@
  *  
  */
 
-function pm22Data(mode, ex) {
-    console.log("here 1");
+ function pm22Data(mode, ex) {
     let shape = "shape";
     let php_handler = "mwt_handler.php";
     let key = "";
@@ -142,7 +141,7 @@ function pm22Data(mode, ex) {
                 year_index = 4;
             }
 
-            if (state == 48) {
+            if (state === 'Texas') {
                 pm22_data.TX.crashes[year_index]++; //= killed + classa + classb + classc + classo;
                 pm22_data.TX.killed[year_index] += killed;
                 pm22_data.TX.classb[year_index] += classb;
@@ -150,7 +149,7 @@ function pm22Data(mode, ex) {
                 pm22_data.TX.classa[year_index] += classa;
                 pm22_data.TX.classo[year_index] += classo;
 
-            } else if (state == 35) {
+            } else if (state === 'New Mexico') {
                 pm22_data.NM.crashes[year_index]++ //= killed + classa + classb + classc + classo;
                 pm22_data.NM.killed[year_index] += killed;
                 pm22_data.NM.classb[year_index] += classb;
@@ -166,16 +165,16 @@ function pm22Data(mode, ex) {
             let image = "./icons/crash_red.png";
             let cluster_markers = [];
 
-            for (index in data.shape_arr) {
-                let holder = [];
-                holder.push(wktFormatterPoint(data.shape_arr[index]['shape']));
-                holder = holder[0][0]; // Fixes BLOB
-                cluster_points = {
-                    lat: parseFloat(holder[0].lat),
-                    lng: parseFloat(holder[0].lng)
-                };
-                cluster_markers.push(cluster_points);
-            }
+            // for (index in data.shape_arr) {
+            //     let holder = [];
+            //     holder.push(wktFormatterPoint(data.shape_arr[index]['shape']));
+            //     holder = holder[0][0]; // Fixes BLOB
+            //     cluster_points = {
+            //         lat: parseFloat(holder[0].lat),
+            //         lng: parseFloat(holder[0].lng)
+            //     };
+            //     cluster_markers.push(cluster_points);
+            // }
             for (index in data.shape_arr) {
                 let holder = [];
                 holder.push(wktFormatterPoint(data.shape_arr[index]['shape']));

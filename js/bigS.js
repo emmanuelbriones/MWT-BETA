@@ -697,7 +697,7 @@ var polyToErase = { // keeps track what polygons to erase
     var high_num = 0;
 
     // link for bridge condition
-    var txt = "https://www.fhwa.dot.gov/bridge/britab.cfm";
+    var txt = "https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659";
 
     type="text/javascript"
 

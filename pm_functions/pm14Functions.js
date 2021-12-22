@@ -1,10 +1,10 @@
 // Colors for Graphs/
-let pdnC = "#FDD835";
-let pdnC2 = "#FFEB3B"
-let ysC = "#FF9800";
-let ysC2 = '#FFB74D';
+let pdnC = "#FF0000";
+let pdnC2 = "#FFABAB"
+let ysC = "#006118";
+let ysC2 = '#03ff41';
 let botaC = "#304FFE";
-let botaC2 = "#2196F3";
+let botaC2 = "#8103ff";
 
 function pm14Data(mode) {
     let php_handler = 'mwt_handler.php';
@@ -132,9 +132,10 @@ function pm14Data(mode) {
                 data_by_mode_pm14.walking.ysleta.push(parseFloat(ysleta_found));
                 // calculations for highest wait time    
                 if (year == recentYear) {
+                    console.log(bota_found);
+                    station.walking.wait_time.push(parseFloat(pdn_found));
+                    station.walking.wait_time.push(parseFloat(pdn_r_found));
                     station.walking.wait_time.push(parseFloat(bota_found));
-                    station.walking.wait_time.push(parseFloat(bota_f_found));
-                    station.walking.wait_time.push(parseFloat(ysleta_found));
                     station.walking.wait_time.push(parseFloat(ysleta_f_found));
                     //names - - - - - -  NOTE: If more stations are added to walking then add extra stations here as well 
                     station.walking.name.push("PDN");
@@ -155,6 +156,7 @@ function pm14Data(mode) {
         data_by_mode_pm14.text.driving_highest_wait_time = pm14_highest_wait_time(station.driving);
         data_by_mode_pm14.text.walking_highest_wait_time = pm14_highest_wait_time(station.walking);
         data_by_mode_pm14.text.freight_highest_wait_time = pm14_highest_wait_time(station.freight);
+
 
 
         if (mode == 0) {
@@ -230,6 +232,7 @@ function draw_points_pm14() {
 }
 
 function pm14_highest_wait_time(array) {
+    console.log(array);
     h_wait_time = 0;
     h_name = "";
 
@@ -267,7 +270,7 @@ function pm14DrivingChart(ctx, data14) {
                 radius: 5
             },
             {
-                label: "PND Ready Personal Vehicles",
+                label: "PDN Ready Personal Vehicles",
                 data: data14.driving.pdn_ready,
                 backgroundColor: pdnC2,
                 borderColor: pdnC2,

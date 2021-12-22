@@ -14,7 +14,9 @@ function pm3Data(mode, ex) {
         lowAvg: 1000000000,
         highRoute: 0,
         lowRoute: 0,
-        tot: 0
+        tot: 0,
+        yearly_data: [0,0,0,0,0]
+
     }
     let data_for_php = {};
     let color = '#03A9F4'; // default
@@ -26,9 +28,9 @@ function pm3Data(mode, ex) {
         data_for_php = {
             key: key
         };
-    } else if (mode == 3 || mode == 2) {
-        php_handler = "corridor_handlerB.php";
+    } else if (mode == 2 || mode == 3) {
         shape = 'ST_AsText(SHAPE)';
+        php_handler = "corridor_handlerB.php";
         data_for_php = {
             key: 3,
             corridors_selected: ex,
@@ -40,28 +42,38 @@ function pm3Data(mode, ex) {
     }
 
     $.get(php_handler, data_for_php, function (data) { // ajax call to populate pavement lines
-
         let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
         for (index in data.shape_arr) { // iterates through every index in the returned element (data['shape_arr'])
-            let shp = data.shape_arr[index][shape]; // shape is LINESTRING or MULTILINESTRING 
+            let shp = data.shape_arr[index].shape; // shape is LINESTRING or MULTILINESTRING 
             let r = reader.read(shp); // r becomes an object from the 3rd party tool, for a single shp
             let to_visualize = []; // used to populate the map (latitude & longitude)
 
             //PMS Data/Columns
-            let route = parseInt(data.shape_arr[index].TotalRid_1); // used to color code line
-            let avg = parseFloat(data.shape_arr[index].TotalRid_7);
-
+            let route = parseInt(data.shape_arr[index].route_1); // used to color code line
+            let avg = parseFloat(data.shape_arr[index].avg_riders);
+    
+            pm3TextData.yearly_data[0] += parseInt(data.shape_arr[index].f2015)
+            pm3TextData.yearly_data[1] += parseInt(data.shape_arr[index].f2016)
+            pm3TextData.yearly_data[2] += parseInt(data.shape_arr[index].f2017)
+            pm3TextData.yearly_data[3] += parseInt(data.shape_arr[index].f2018)
+            pm3TextData.yearly_data[4] += parseInt(data.shape_arr[index].f2019)
 
             pm3TextData.tot += avg;
             //Draw Line(s)
             if (mode == 1 || mode == 2 || mode == 4) {
                 to_visualize = pm3_polyline_geojson_formatter(r);
-                // filter colors 
-                if (avg > 2776.666667 && avg < 107271.682952) {
-                    color = '#FFEB3B';
-                } else if (avg > 107271.682951 && avg < 388321.351849) {
+                // if (avg > 2776.666667 && avg < 107271.682952) {
+                //     color = '#FFEB3B';
+                // } else if (avg > 107271.682951 && avg < 388321.351849) {
+                //     color = '#FF9800';
+                // } else if (avg > 388321.351848 && avg < 1144232.200000) {
+                //     color = '#2196F3';
+                // }
+                if (avg > 0 && avg < 100000) {
+                    color = '#078a00';
+                } else if (avg > 100000 && avg < 400000) {
                     color = '#FF9800';
-                } else if (avg > 388321.351848 && avg < 1144232.200000) {
+                } else if (avg > 400000) {
                     color = '#2196F3';
                 }
                 for (i in to_visualize) {
@@ -85,11 +97,8 @@ function pm3Data(mode, ex) {
 
                     line.setMap(map);
                     polylines.push(line);
-
                 }
-
             }
-
             //update highest average and Route
             if (avg > pm3TextData.highAvg) {
                 pm3TextData.highAvg = avg;
@@ -122,11 +131,7 @@ function pm3Data(mode, ex) {
         } else if (mode == 4) {
             dynamicCorridorText('AOI', pm3TextData);
         }
-
     });
-
-
-
 }
 
 function pm3_line_geojson_formatter(data) {
@@ -134,8 +139,8 @@ function pm3_line_geojson_formatter(data) {
     let shape = data.points.coordinates; //reduced to the array of points.
     for (let point in shape) {
         let formatted_point = {
-            lat: parseFloat(shape[point].y),
-            lng: parseFloat(shape[point].x),
+            lat: parseFloat(shape[point].x),
+            lng: parseFloat(shape[point].y),
         };
         res.push(formatted_point);
     }
@@ -150,4 +155,63 @@ function pm3_polyline_geojson_formatter(data) {
         res.push(segment);
     }
     return res;
+}
+
+function chart_pm3 (ctx, data) {
+    var barChartData = {
+        labels: [2015, 2016, 2017, 2018, 2019],
+        datasets: [{
+            label: 'Ridership',
+            backgroundColor: ['#03A9F4', '#CDDC39', '#FFEB3B', '#FFAB40', '#d50000'],
+            data: data.yearly_data
+        }]
+    };
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+            tooltips: {
+                callbacks: {
+                    /**
+                     * Assigns a comma to the axis for better readability.
+                     */
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[0].data[tooltipItem.index];
+                        value = value.toString();
+                        value = value.split(/(?=(?:...)*$)/);
+                        value = value.join(',');
+                        return value;
+                    }
+                }
+            },
+            legend: {
+                display: false,
+            },
+            title:{
+                display: true,
+                text: "Annual Ridership",
+                fontSize: 10
+            },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                    ticks: {}
+                }],
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        userCallback: function(value, index, values) {
+                            value = value.toString();
+                            value = value.split(/(?=(?:...)*$)/);
+                            value = value.join(',');
+                            return value;
+                        }
+                    }               
+                }],
+
+            }
+        }
+    })
 }

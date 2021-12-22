@@ -26,7 +26,7 @@ $result = mysqli_query($conn, $query);
  * Select query to be run in database
  */
 if($active_pm == "pm_1_2"){
-	$query = "SELECT  ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike,ST_AsText(SHAPE) as shape FROM $active_pm  WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 5), shape );";
+	$query = "SELECT ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike,ST_AsText(SHAPE) as shape FROM pm_1_2 WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), shape );";
 }
 
 else if($active_pm == "pm22txpoints" || $active_pm == "pm22nmpoints"){
@@ -40,17 +40,17 @@ else if($active_pm =="pm15_16_17p"){
 
 }
 else if($active_pm =="pm18_19"){ 
-	$query = "SELECT OGR_FID,crash_year,type,killed,classA,classB,classC,classO,non_injuri,unknown_in,statefp, astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );";
+	$query = "SELECT OGR_FID,crash_year,type,killed,classA,classB,classC,classO,St_astext(SHAPE) as shape FROM pm18_19 as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );";
 
 }
 else if($active_pm =="pm20_buffer"){ 
-	$query = "SELECT  count_bike,count_ped,address,on_st,at_strt,ST_AsText(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
+	$query = "SELECT count_bike,count_ped,ST_AsText(SHAPE) as shape FROM pm20bufferpedbike as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
 }
 else if($active_pm =="pm20_crashes"){ 
-	$query = "SELECT type,ST_AsText(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
+	$query = "SELECT type,ST_AsText(SHAPE) as shape, w_i_buffer FROM pm20crashes as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
 }
 else if($active_pm =="pm20_stationsbus"){ 
-	$query = "SELECT ST_AsText(SHAPE)  FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
+	$query = "SELECT ST_AsText(SHAPE) FROM pm20busstops as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
 }
 else if($active_pm == "pm22_allpoints_final"){
     $pm22_data = Array();// return this will all points
@@ -84,24 +84,20 @@ else if($active_pm == "pm22_allpoints_final"){
 
 }
 else if($active_pm =="pm24"){ 
-	$query = "SELECT leng_cal,miles,tti,trktti, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
+	$query = "SELECT leng_cal,miles,tti,trktti, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
 }
 else if($active_pm =="pm25"){ 
-	$query = "SELECT type,state_code,year_recor,iri, miles, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );"; 
+	$query = "SELECT type,state_code,year_recor,iri, miles, ST_AsText(SHAPE)  as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );"; 
 }
 
-else if($active_pm =="pm26"){ 
-	
-	$query = "SELECT mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );";
-		/**
-	 *Run selected query
-	 */
+else if($active_pm =="pm26"){
+	$query = "SELECT mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) as shape, year FROM $active_pm as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );";
 	$result = mysqli_query($conn, $query); 
 	if(!$result){
-		$query = "SELECT mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 9), p.SHAPE );";
+		$query = "SELECT mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) as shape, year FROM $active_pm as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );";
 		$result = mysqli_query($conn, $query); 
 		if($result != true){
-			$query = "SELECT mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4), p.SHAPE );";
+			$query = "SELECT mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) as shape, year FROM $active_pm as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@poly), 4326), p.SHAPE );";
 		}
 	}
 
@@ -110,14 +106,14 @@ else if($active_pm =="pm4"){
 	$query = "SELECT type,tactcnt, astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),7), p.SHAPE );";
 }
 else if($active_pm =="pm3"){ 
-	$query = "SELECT  TotalRid_7 , TotalRid_1 , astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4), p.SHAPE );";
+	$query = "SELECT avg_riders,route_1,St_astext(SHAPE) as shape, f2015, f2016, f2017, f2018, f2019 from pm3 as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4326), p.SHAPE );";
 }
 else if($active_pm == "pm11"){
-	$query = "SELECT Sidewalk_4, Roads_LA_3, Roads_LA_6, astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4), p.SHAPE );"; 
+	$query = "SELECT Sidewalk_4, Roads_LA_3, Roads_LA_6, ST_astext(SHAPE) as shape FROM pm11 as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4326), p.SHAPE );"; 
 }
 
 else if($active_pm == "pm12"){
-	$query = "SELECT  status, bikepath, mile, astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4), p.SHAPE );"; 
+	$query = "SELECT status, bikepath, mile, St_astext(SHAPE) as shape FROM $active_pm as p WHERE  ST_INTERSECTS( st_geomfromtext( st_astext(@poly),4326), p.SHAPE );"; 
 	
 }
 else{

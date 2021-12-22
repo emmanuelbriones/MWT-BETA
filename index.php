@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <!-- Custom styles from CSS folder -->
       <link href="css/sidebar.css" rel="stylesheet" type="text/css">
       <link href="css/legend.css" rel="stylesheet" type="text/css">
@@ -36,16 +36,6 @@
 
       <style>
       </style>
-	  <!-- Global site tag (gtag.js) - Google Analytics 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158227326-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-158227326-1');
-</script> -->
-
    </head>
    <body>
    <!-- spinner  -B -->
@@ -56,19 +46,6 @@
       <div>
          <?php include("inject-sidenavbar_PMs.php");?>
       </div>
-      <!-- Sidenavbar2 -->
-      <!--! I removed it because it was already handled inside the non-pm-content div-->
-      <!--
-      <div id="mtp" class=" sidenav rounded-left mb-2 bg-light text-dark" ondblclick="openNavMTP()" data-toggle="tooltip" data-placement="left" title="Double click to Open" >
-         <a href="javascript:void(0)" class=" col-lg-1 closebtn" onclick="closeNavMTP()">&times;</a>
-         <div id="mtp-title" class="row container">
-            <h1 class="col-lg-6 text-center">MTP Projects</h1>
-            <button id="locate-project-btn" type="button" class="col-lg-6 btn btn-outline-info btn-lg">Locate</button>
-         </div>
-         <div  id="mtp-content" >
-         </div>
-      </div>
-      -->
       <!-- Legend -->
       <div id="legendHolder" class="legend">
          <div class="row">
@@ -81,6 +58,10 @@
                </div>
             </div>
          </div>
+      </div>
+      <div>
+      <!-- National Measures -->
+         <?php include("inject-national-measures.php");?>
       </div>
       <!-- Performance Measures Section in Multimodal Corridors -->
       <div>
@@ -122,7 +103,7 @@
                               <h5>Research Team</h5><br>
                            </li>
                            <div class="row">
-							  <li>Sara Rivera </li>
+							         <li>Sara Rivera </li>
                               <li>Adolfo Cordova</li>
                               <li>Marketa Vavrova</li>
                               <li>Imad Abdallah</li>
@@ -135,6 +116,7 @@
                               <h5>Developing Team</h5><br>
                            </li>
                            <div class="row">
+                              <li>Alan Licerio</li>
                               <li>Brian Cardiel</li>
                               <li>Sebastian Gonzalez</li>
                               <li>Christopher Santos</li>
@@ -145,7 +127,7 @@
                      <div class="col-lg-6 col-sm-6">
                         <ul>
                            <li>
-                                 <h5>Tutorial Team</h5><br>
+                              <h5>Tutorial Team</h5><br>
                            </li>
                            <div class = "row">
                               <li>Isabel Gonzalez</li>
@@ -170,32 +152,20 @@
                   <div class="list-group border-0 card text-center text-md-left">
                      <a href="http://www.elpasompo.org/" target="#" class="d-none d-md-inline"><img src="./img/elmpologo.png" class="img-responsive"></a>
                      <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class=""></i><span class="d-none d-md-inline"></span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#npm" data-toggle="modal"><i class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">National Measures</span></a>
                      <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#pms-modal" data-toggle="modal"><i class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">Regional Performance</span></a>
-                     <!-- <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#corridors-modal" data-toggle="modal"><i class="fa fa-toggle-on"></i> <span class="d-none d-md-inline">Corridor Performance</span></a> -->
                      <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#benchmark"  data-toggle="modal" id="benchmarking"><i class="fa fa-tachometer"></i> <span class="d-none d-md-inline">Benchmarking</span></a>
-
-                     <!-- <a onclick="switch_AOI()"class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="#" ><i class="fa fa-map"></i> <span class="d-none d-md-inline">Interactive AOI</span></a> -->
-                     
-                     <a class="list-group-item d-inline-block collapsed" data-target="#sidebar" href="#mtp-projects"                  id="mtp-projects"   ><i class="fa fa-pencil-square-o"></i> <span class="d-none d-md-inline">MTP Projects</span></a>
+                     <a class="list-group-item d-inline-block collapsed" data-target="#sidebar" href="#mtp-projects" id="mtp-projects"><i class="fa fa-pencil-square-o"></i> <span class="d-none d-md-inline">MTP Projects</span></a>
                      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#data-repo" data-toggle="modal" id="data-repository"><i class="fa fa-database"></i> <span class="d-none d-md-inline">Regional Data Repository</span></a>
-                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#studies" data-toggle="modal" id="studies-matrix" ><i class="fa fa-th-list"></i> <span class="d-none d-md-inline">Exisiting Studies</span></a>
-
-                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"                                                   ><i class=""></i><span class="d-none d-md-inline"></span></a>
-                     
-                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#tutorial"  data-toggle="modal" id="tut"            ><i class="fa fa-certificate"></i> <span class="d-none d-md-inline">Tutorial</span></a>   
-                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#aboutmodal"data-toggle="modal"                     ><i class="fa fa-info"></i> <span class="d-none d-md-inline">About</span></a>
-                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"                                                   ><i class=""></i><span class="d-none d-md-inline"></span></a>
+                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#studies" data-toggle="modal" id="studies-matrix" ><i class="fa fa-th-list"></i> <span class="d-none d-md-inline">Existing Studies</span></a>
+                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"><i class=""></i><span class="d-none d-md-inline"></span></a>
+                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="tutorial/tutorial.html" id="tut"><i class="fa fa-certificate"></i> <span class="d-none d-md-inline">Tutorial</span></a>   
+                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#aboutmodal"data-toggle="modal"><i class="fa fa-info"></i> <span class="d-none d-md-inline">About</span></a>
+                     <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"><i class=""></i><span class="d-none d-md-inline"></span></a>
                      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#" onclick="clearMetadata(); closeNav();   switch_AOI('off');  removeAllElementsLegend();  toggleNav('off');deleteUserShapes();removeNonPMContent();"><i class="fa fa-trash-o"></i> <span class="d-none d-md-inline">Clear</span></a>
                      <a onclick="pdf()" href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-print"></i> <span class="d-none d-md-inline">Print</span></a>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-
-					<a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"                                                   ><i class=""></i><span class="d-none d-md-inline">Version: 1.0.0</span></a>
+                     <br><br><br><br><br> <br><br>
+					      <a class="list-group-item d-inline-block collapsed" data-parent="#sidebar" href="#"><i class=""></i><span class="d-none d-md-inline">Version: 1.0.0</span></a>
                   </div>
                </div>
                <!-- Main Banner/Google Map -->
