@@ -628,66 +628,41 @@ function pm20R(data) {
 }
 function pm21R(data) {
     headerAdder("Safety projects near crash hotspots", "title");
-    paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("The Metropolitan Transportation Plan Destino 2045 identifies " + data + " safety projects:", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project C035X. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P402X-05A. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P464X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F057X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F405X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project A136X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F059X-CAP-1. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F058X-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F407A-CAP. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F407B-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F058X-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F407C. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I061X-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P002X-CAP. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P533X. Hot-spot type: Consecutive.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P333X. Hot-spot type: Consecutive. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project T069X. Hot-spot type: Consecutive, New, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P428X-MOD. Hot-spot type: Consecutive, New, Oscillating. ", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P428X-CAP-2. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M087B. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project R307D. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I063X-CAP. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P530X-MOD. Hot-spot type: Consecutive, Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M025B. Hot-spot type: Consecutive, Intensifying, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M087A. Hot-spot type: Consecutive, Intensifying, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M090X. Hot-spot type: Consecutive, Intensifying, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F056X-CAP. Hot-spot type: Consecutive, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I406X-CAP. Hot-spot type: Consecutive, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P410X-15A. Hot-spot type: Consecutive, Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project E304X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project E303X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project M089A. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project B300X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project B301X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project E302X-1. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project E302X-2. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project F060X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project P334X. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I006X-15A. Hot-spot type: Intensifying.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project A434X-CAP. Hot-spot type: Oscillating.", "paragraph", "summary-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span> Project I405X-CAP. Hot-spot type: Oscillating.", "paragraph", "summary-info");
 
+    paragraphAdder("Summary", "subtitle", "summary-title");
+    paragraphAdder("This performance measures identifies 71 projects that include safety enhancements near crash hotspots. Most of these projects are included in the Metropolitan Transportation Plan Destino 2045. The location of each of the projects identified is shown on top of the regional vehicle-crash hot spot map for the period of 2015-2019. Hot spot analysis uses statistical analysis in order to define areas of high occurrence versus areas of low occurrence, in this case of traffic-related crashes (including crashes involving transit vehicles, pedestrians, and pedalcyclists).", "paragraph", "summary-info");
+    
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("Crash data from 2015-2019, safety projects identified from the Metropolitan Transportation Plan Destino 2045", "paragraph", "analysis-info");
+    paragraphAdder("Time-step interval = 16 weeks.", "paragraph", "analysis-info");
 
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT. Destino 2045 projects identified by El Paso MPO.", "paragraph", "data-info");
 
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("Most of the projects in the map were obtained from Alliance. ", "paragraph", "calc-info");
-    paragraphAdder("Projects S301D, S301E, S301F, S301G and S301H, were not include in the map because the description was not precise and we did not know exactly where were located. ", "paragraph", "calc-info");
-    paragraphAdder("Most of the projects are represented as lanes in the maps, and two of them are represented as a point, those are: M025B and P334X.", "paragraph", "calc-info");
-    paragraphAdder("There is no layer for safety projects in Dona Ana and Otero counties, just the crash hotspots was calculated. ", "paragraph", "calc-info");
-    paragraphAdder("Space-Time Analysis was made to identify the crash hot spots which classified as follows:", "paragraph", "calc-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span><b> Consecutive:</b> “A location that has been a statistically significant hot spot for ninety percent of the time-step intervals with no discernible trend indicating an increase or decrease in the intensity of clustering over time” (ArcGIS). ", "paragraph", "calc-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span><b> New:</b> “A location that is a statistically significant hot spot for the final time step and has never been a statistically significant hot spot before” (ArcGIS). ", "paragraph", "calc-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span><b> Intensifying:</b> “A location that has been a statistically significant hot spot for ninety percent of the time-step intervals, including the final time step. In addition, the intensity of clustering of high counts in each time step is increasing overall and that increase is statistically significant” (ArcGIS).", "paragraph", "calc-info");
-    paragraphAdder("<span class=\"fa fa-play\"></span><b> Oscillating:</b> “A statistically significant hot spot for the final time-step interval that has a history of also being a statistically significant cold spot during a prior time step. Less than ninety percent of the time-step intervals have been statistically significant hot spots” (ArcGIS). ", "paragraph", "calc-info");
+    paragraphAdder("A list of projects identified with safety enhancements has been created and georeferenced. In addition, a hot spots analysis was conducted to identify areas with significant crashes. The hot spot map shows bins color-coded to associated to historical data of crashes and their density. Each bin has a distance interval of 1 mi. by 1 mi. and it is analysed within the context of neighboring bins to measure how intense clustering is for both high and low values. The analysis detects 8 specific hot or cold spot trends. The safety projects identified are categorized with one or several hot spot trends.", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> No Pattern:</b> “Does not fall into any of the hot or cold spot patterns defined below.", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> New hot spot:</b> “A location that is a statistically significant hot spot for the final time step and has never been a statistically significant hot spot before.", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Consecutive hot spot:</b> “A location with a single uninterrupted run of statistically significant hot spot bins in the final time step intervals. The location has never been a statistically significant hot spot prior to the final hot spot run and less than 90% of all bins are statistically significant hot spots", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Intensifying hot spot:</b> “A location that has been a statistically significant hot spot for 90% of the time-step intervals, including the final time step. In addition, the intensity of clustering of high counts in each time step is increasing overall and that increase is statistically significant.", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Oscillating hot spot:</b> “A statistically significant hot spot for the final time-step interval that has a history of also being a statistically significant cold spot during a prior time step. Less than ninety percent of the time-step intervals have been statistically significant hot spots.", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Persistent cold spot:</b> “A location that has been a statistically significant cold spot for 90% of the time-step intervals with no discernible trend indicating an increase or decrease in the intensity of clustering over time.", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Diminishing cold spot:</b> “A location that has been a statistically significant cold spot for 90% of the time-step intervals, including the final time step. In addition, the intensity of clustering of low counts in each time step is decreasing overall and that decrease is statistically significant.", "paragraph", "calc-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Sporadic cold spot:</b> “A location that is an on-again then off-again cold spot. Less than 90% of the time-step intervals have been statistically significant cold spots and none of the time-step intervals have been statistically significant hot spots.", "paragraph", "calc-info");
+
+    paragraphAdder("References", "subtitle", "ref-title");
+    anchorAdder('Emerging Hot Spot Analysis', 'https://desktop.arcgis.com/en/arcmap/10.7/tools/space-time-pattern-mining-toolbox/emerginghotspots.htm');
+    anchorAdder('Aggregating Points', 'https://pro.arcgis.com/en/pro-app/2.8/tool-reference/space-time-pattern-mining/create-space-time-cube.htm')
+
+    paragraphAdder("Extra", "subtitle", "extra-title");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Persistent hot spot:</b> “A location that has been a statistically significant hot spot for ninety percent of the time-step intervals with no discernible trend indicating an increase or decrease in the intensity of clustering over time.", "paragraph", "extra-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Diminishing hot spot:</b> “A location that has been a statistically significant hot spot for ninety percent of the time-step intervals, including the final time step. In addition, the intensity of clustering in each time step is decreasing overall and that decrease is statistically significant.", "paragraph", "extra-info");
+    paragraphAdder("<span class=\"fa fa-play\"></span><b> Sporadic hot spot:</b> “A location that is an on-again then off-again hot spot. Less than ninety percent of the time-step intervals have been statistically significant hot spots and none of the time-step intervals have been statistically significant cold spots.", "paragraph", "extra-info");
+
+    
+    names = ['No pattern', 'New Hot Spot', 'Consecutive Hot Spot', 'Oscillating Hot Spot', 'Diminishing Cold Spot', 'Persistent Cold Spot', 'Sporadic Cold Spot', 'Intensifying Hot Spot', 'Not Emerging', 'Sporadic Hot Spot'];
+    colors = ['background:#8BC34A;', 'background:#FFA726', 'background:#FF4081;', 'background:#FF5722','background:#80D8FF;', 'background:#9C27B0', 'background:#1A237E;', 'background:#d50000;', 'background:#9E9E9E', 'background:#3F51B5'];
+    legendMaker("Legend", names, colors);
     openNav();
 }
 

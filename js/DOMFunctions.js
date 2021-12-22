@@ -24,7 +24,11 @@ function openLegend() {
         document.getElementById("legendHolder").style.width = "60%";
     } else if (currentType == "repo") {
         document.getElementById("legendHolder").style.width = "50%";
-    } else {
+    } else if(currentPM == 21) {
+        document.getElementById("legendHolder").style.width = "53%";
+        document.getElementById("legendHolder").style.height = "15%";
+    }
+    else {
         document.getElementById("legendHolder").style.width = "30%"; //length of legend
     }
 }

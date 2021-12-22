@@ -57,7 +57,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm21_lines"){
 	$query = "select hotspot_ty,project_id, St_astext(SHAPE) as shape from pm21_lines";// ! repetition
 }else if($key == "all_pm21P"){ // special case pm21 has points, lines, polygons 
-	$query = "select hotspot_ty,project_id, St_astext(SHAPE) as shape from pm21_points";// ! repetition
+	$query = "select hotspot_ty,project_id, proj_name, St_astext(SHAPE) as shape from pm21_points";// ! repetition
 }
 else if($key == "all_pm22"){ 
 	$query = "select crash_year, killed, classa, classb,classc, classo,total,statefp,ST_astext(SHAPE) as shape from pm22_new";
