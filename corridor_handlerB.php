@@ -158,7 +158,7 @@ else if($key == 3){ //lines
 else if($key == 4 ){ //lines 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT type,tactcnt, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 7), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT type,tactcnt, ST_astext(SHAPE) as shape FROM pm4 as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 

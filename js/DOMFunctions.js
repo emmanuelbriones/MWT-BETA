@@ -62,7 +62,7 @@ function openNav() {
     }
 
     // toggle on radio buttons for corridor mode, regional, and AOI
-    if (currentPM == 5 || currentPM == 6 || currentPM == 7 || currentPM == 8 || currentPM == 9 || currentPM == 10  ||currentPM == 13 || currentPM ==14 
+    if (currentPM == 4 || currentPM == 5 || currentPM == 6 || currentPM == 7 || currentPM == 8 || currentPM == 9 || currentPM == 10  ||currentPM == 13 || currentPM ==14 
         || currentPM == 15||currentPM == 16 || currentPM == 17 || currentPM == 21 || currentPM == 22) {
         toggleRadio("off");
     } else {

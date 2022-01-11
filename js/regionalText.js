@@ -259,26 +259,26 @@ function pm4R(data) {
 
         headerAdder("Biking trips recorded by Strava", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
-        paragraphAdder("In 2018, a total of " + commafy(data.dataB) + " bike trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
+        paragraphAdder("In 2020, a total of " + commafy(data.dataB) + " bike trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
         paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-        paragraphAdder("2018 data licensed by Strava.", "paragraph", "analysis-info");
+        paragraphAdder("2020 data licensed by Strava.", "paragraph", "analysis-info");
         paragraphAdder("Data Source:", "subtitle", "data-title");
         paragraphAdder("Strava Metro data provided via a sublicense from the Texas Department of Transportation.", "paragraph", "data-info");
         paragraphAdder("How Performancep Measure was Calculated:", "subtitle", "calc-title");
-        paragraphAdder("This performance measure reflects the total number of bike trips on the street regardless of the direction (column TACTCNT) recorded by Strava in 2018. Trips recorded on Interstate 10 were removed from this dataset, since I-10 is a limited access facility. The legend shows the data in a geometric interval, which provides the best viewing distribution.", "paragraph", "calc-info");
+        paragraphAdder("This performance measure reflects the total number of bike trips on the street regardless of the direction (column TACTCNT) recorded by Strava in 2020. Trips recorded on Interstate 10 were removed from this dataset, since I-10 is a limited access facility. The legend shows the data in a geometric interval, which provides the best viewing distribution.", "paragraph", "calc-info");
         names = ['5 - 30', '30 - 479', '479 - 6,460'];
 
     }
     else if (currentType == 'walking') {
         headerAdder("Walking trips recorded by Strava", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
-        paragraphAdder("In 2017, a total of " + commafy(data.dataW) + " walk trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
+        paragraphAdder("In 2020, a total of " + commafy(data.dataW) + " walk trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
         paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-        paragraphAdder("2017 data from Strava Metro.", "paragraph", "analysis-info");
+        paragraphAdder("2020 data from Strava Metro.", "paragraph", "analysis-info");
         paragraphAdder("Data Source:", "subtitle", "data-title");
-        paragraphAdder("Strava Metro (2017) provided via a sublicense from the Texas Department of Transportation.", "paragraph", "data-info");
+        paragraphAdder("Strava Metro (2020) provided via a sublicense from the Texas Department of Transportation.", "paragraph", "data-info");
         paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-        paragraphAdder("This performance measure reflects the total number of walk trips on the street regardless of the direction (column TACTCNT) recorded by Strava in 2017. Trips recorded on the Interstate 10 were removed from this dataset, since I-10 is a limited access facility. The legend shows the data in a geometric interval, which provides the best viewing distribution.", "paragraph", "calc-info");
+        paragraphAdder("This performance measure reflects the total number of walk trips on the street regardless of the direction (column TACTCNT) recorded by Strava in 2020. Trips recorded on the Interstate 10 were removed from this dataset, since I-10 is a limited access facility. The legend shows the data in a geometric interval, which provides the best viewing distribution.", "paragraph", "calc-info");
         names = ['5.00 - 15', '16 - 129', '130 - 1,305'];
     }
     if (detectmob() != true) {
