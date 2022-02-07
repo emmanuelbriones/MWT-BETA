@@ -21,17 +21,18 @@ $('#benchmarking').click(() => {
     // console.log('table children length: '+table.children().length);
 
     if (table.children().length === 1 && containers.is(':empty')) { //* prevents duplicates
+
         if ((benchmark_layout === undefined || null) || (benchmark_data === undefined || null)) { //* prevents redundant requests
             get_benchmark_data('benchmark/benchmark_layout.json')
                 .then(res => { //* fetch layout data.
-                    console.log(res);
+                    // //console.log(res);
                     benchmark_layout = res;
                     create_benchmark_categories(res.pm_categories);
                 })
                 .then(res => {
                     get_benchmark_data('benchmark/benchmark_data_sr.json')
                         .then(res => { //* get results data
-                            console.log(res);
+                            // //console.log(res);
                             benchmark_data = res;
                             create_benchmark_column(benchmark_layout.corridors, res);
                         })
@@ -120,14 +121,14 @@ function create_benchmark_categories(categories) {
         let content = `
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 class="panel-title">
+                            <h5 class="panel-title">
                                 <a 
                                     class = "text-capitalize"
                                     data-toggle="collapse" 
                                     href=".${category}"> 
                                 ${category}
                                 </a>
-                            </h2>
+                            </h5>
                         </div>
                         <div
                             class=" ${category} panel-collapse collapse"
@@ -220,14 +221,14 @@ function update_benchmark_column(id, corridor) {
         let content = `
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 class="panel-title">
+                            <h5 class="panel-title">
                                 <a  
                                     class= "text-capitalize"
                                     data-toggle="collapse" 
                                     href=".${category}"> 
                                 ${category}
                                 </a>
-                            </h2>
+                            </h5>
                         </div>`;
 
         if ($('.' + category).hasClass('show')) { //* check if the other columns has the categories expanded.
@@ -256,7 +257,7 @@ function update_benchmark_column(id, corridor) {
 
 function benchmark_activate_pm(id) { //* the function will click on the id that triggers the performance measures.
     // //console.log(id);
-       $('#'+id).trigger('click');   /* this is the part where buttons get triggered. */
+    //   $('#'+id).trigger('click');   /* this is the part where buttons get triggered.
 }
 
 function remove_benchmark_column(id) { //* deletes any of the benchmark columns being clicked.
