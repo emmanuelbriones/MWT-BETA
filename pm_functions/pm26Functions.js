@@ -149,7 +149,6 @@ function pm26Data(mode, ex) {
                 }
             }
 
-
             let holder = [];
             if(year_index == 4) {
                 if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 

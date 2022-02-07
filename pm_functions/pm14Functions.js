@@ -132,7 +132,6 @@ function pm14Data(mode) {
                 data_by_mode_pm14.walking.ysleta.push(parseFloat(ysleta_found));
                 // calculations for highest wait time    
                 if (year == recentYear) {
-                    console.log(bota_found);
                     station.walking.wait_time.push(parseFloat(pdn_found));
                     station.walking.wait_time.push(parseFloat(pdn_r_found));
                     station.walking.wait_time.push(parseFloat(bota_found));
@@ -232,7 +231,6 @@ function draw_points_pm14() {
 }
 
 function pm14_highest_wait_time(array) {
-    console.log(array);
     h_wait_time = 0;
     h_name = "";
 
