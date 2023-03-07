@@ -658,6 +658,24 @@ function initMap() {
         center: new google.maps.LatLng(31.837465, -106.2851078)
 
     }); // * End Map
+	
+	// Hide labels from map
+	const styles = {
+        default: [],
+        hide: [
+            {
+            featureType: "transit",
+            elementType: "labels.icon",
+            stylers: [{ visibility: "off" }],
+            },
+            {
+                featureType: "poi",
+                elementType: "labels",
+                stylers: [{ visibility: "off" }],
+            },
+        ],
+    };
+    map.setOptions({ styles: styles["hide"] });
 
     // ! do not remove -> for AOI
     // TODO: Get shapes from UI and send to DB to extract intersection
@@ -714,7 +732,7 @@ function initMap() {
       //  console.log(AOI_STRING);
         AOI(AOI_STRING); // send AOI string
     });
-
+	set_boundries();
 
 
 } // End Init Map
@@ -883,4 +901,37 @@ function clearMetadata() {
     components = {};
   //  currentPM = 0;
     markerClusterSafeDelete();
+}
+
+//this function draws the boundries of El Paso
+function set_boundries() {
+    fetch('./epBoundries.json').then(function (response) {
+        return response.json();
+    }).then(function (myJson) {
+        let active_corr = myJson["ELPASO"];
+        for (index in active_corr) {
+            let shp = active_corr[index]['shape']; // shape is LINESTRING or MULTILINESTRING
+            let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
+            let r = reader.read(shp); // r becomes an object from the 3rd party tool, for a single shp
+            let to_visualize = []; // used to populate the map (latitude & longitude)
+            let coord; // will be an object to push coordinates to populate the map
+            let ln = r.getCoordinates(); // parses the shape into lat & lng
+            for (let i = 0; i < ln.length; i++) {
+                coord = {
+                    lat: ln[i]['y'],
+                    lng: ln[i]['x']
+                };
+                to_visualize.push(coord);
+            }
+            let line = new google.maps.Polyline({ // it is a POLYLINE
+                path: to_visualize, // polyline has a path, defined by lat & lng
+                // value: data.corridor_data[index]['value'], // iri (attribute for the pavement condition score)
+                strokeColor: 'gray',
+                strokeOpacity: 0.75,
+                strokeWeight: 5,
+                zIndex: 99 // on top of every other shape
+            });
+            line.setMap(map);
+        }
+    });
 }

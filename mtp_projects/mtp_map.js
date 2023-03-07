@@ -31,8 +31,8 @@ the system will retrieve teh name, mpo id, csj id, the description, an the shape
 let components = [];
 
 const thin_path = 5;
-const thick_path = 10;
-const normal_color = '#FF800080';
+const thick_path = 6;
+const normal_color = '#0047AB';
 const highlight_color = '#FF0000A0';
 
 /*Start Here --------------------------------------------------------*/
@@ -225,11 +225,13 @@ let mtp_comp_point = function(info, point) {
 mtp_comp_point.prototype = Object.create(mtp_comp.prototype);
 mtp_comp_point.prototype.constructor = mtp_comp;
 
+let image = "./img/markers/red.png";
 mtp_comp_point.prototype.createPoint = function(point) {
   return new google.maps.Marker({
     position: point,
     id: this.id,
     mpo_id: this.mpo_id,
+    icon: image
   });
 
 };
