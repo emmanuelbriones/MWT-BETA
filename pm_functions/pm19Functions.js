@@ -313,8 +313,6 @@ function pm19chartLine(ctx, data) {
         pm19_graphValuesNM = data.injured_drivingNM;
         pm19_graphValuesTX = data.injured_drivingTX;
         pm19_graphTitle = 'Driving Serious Injuries';
-        console.log(pm19_graphValuesNM);
-        console.log(pm19_graphValuesTX);
     } else if (currentType == 'freight') { // if Freight is click
         pm19_graphValues = data.injured_freight;
         pm19_graphValuesNM = data.injured_freightNM;

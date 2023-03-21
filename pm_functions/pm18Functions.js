@@ -99,7 +99,6 @@ function pm18Data(mode, ex) {
         let crashCountB = 0;
 
         pm18data.latestYear = latestYear;
-        console.log(data.shape_arr[0]);
         for (index in data.shape_arr) {
             let holder = [];
             let type = data.shape_arr[index]['type'];
@@ -306,8 +305,6 @@ function pm18chartLine(ctx, data) {
         pm18_graphValuesNM = data.killed_DrivingNM;
         pm18_graphValuesTX = data.killed_DrivingTX;
         pm18_graphTitle = 'Driving Fatalities';
-        console.log(pm18_graphValuesNM);
-        console.log(pm18_graphValuesTX);
     } else if (currentType == 'freight') { // if Freight is clicked
         pm18_graphValues = data.killed_freight;
         pm18_graphValuesNM = data.killed_freightNM;
