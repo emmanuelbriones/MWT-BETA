@@ -27,6 +27,16 @@ function pm18Data(mode, ex) {
         killed_walking: [0, 0, 0, 0, 0],
         killed_freight: [0, 0, 0, 0, 0],
         killed_biking: [0, 0, 0, 0, 0],
+        //line graph New Mexico State
+        killed_DrivingNM: [0, 0, 0, 0, 0],
+        killed_walkingNM: [0, 0, 0, 0, 0],
+        killed_freightNM: [0, 0, 0, 0, 0],
+        killed_bikingNM: [0, 0, 0, 0, 0],
+        //line graph Texas State
+        killed_DrivingTX: [0, 0, 0, 0, 0],
+        killed_walkingTX: [0, 0, 0, 0, 0],
+        killed_freightTX: [0, 0, 0, 0, 0],
+        killed_bikingTX: [0, 0, 0, 0, 0],
         //Dynamic Variables
         crashCount: 0,
         crashCountDK: 0,
@@ -89,7 +99,7 @@ function pm18Data(mode, ex) {
         let crashCountB = 0;
 
         pm18data.latestYear = latestYear;
-
+        console.log(data.shape_arr[0]);
         for (index in data.shape_arr) {
             let holder = [];
             let type = data.shape_arr[index]['type'];
@@ -100,6 +110,7 @@ function pm18Data(mode, ex) {
             let classC = parseInt(data.shape_arr[index]['classC']);
             let classO = parseInt(data.shape_arr[index]['classO']);
             let ogrID = parseInt(data.shape_arr[index]['OGR_FID']);
+            let state = data.shape_arr[index]['state'];
 
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
@@ -112,7 +123,7 @@ function pm18Data(mode, ex) {
 
                 let point = new google.maps.Marker({
                     position: to_visualize,
-                    title: "Year: " + crash_year + " \nSerious Injuries " + classA + " \nNon-Incapacitating Injuries: " + classB + "\nPossible Injuries: " + classC + "\nkilled: " + killed,
+                    title: "Year: " + crash_year + " \nSerious Injuries " + classA + " \nNon-Incapacitating Injuries: " + classB + "\nPossible Injuries: " + classC + "\nKilled: " + killed,
                     value: ogrID,
                     icon: image
                 });
@@ -160,190 +171,64 @@ function pm18Data(mode, ex) {
                     crashCountF++;
                     crashCountW++;
                 }
-
-                if (crash_year == latestYear - 4) {
-                    //for bar graph
-                    pm18data.killed[0] += killed;
-                    pm18data.classA[0] += classA;
-                    pm18data.classB[0] += classB;
-                    pm18data.classC[0] += classC;
-                    pm18data.classO[0] += classO;
-
-                    if (killed > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm18data.killed_walking[0] += killed;
-                            pm18data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm18data.killed_freight[0] += killed;
-                            pm18data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm18data.killed_Driving[0] += killed;
-                            pm18data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm18data.killed_biking[0] += killed;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm18data.killed_biking[0] += killed;
-                            pm18data.killed_freight[0] += killed;
-                            pm18data.crashCountBK++; //count crash
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm18data.killed_walking[0] += killed;
-                            pm18data.killed_freight[0] += killed;
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountWK++;
-                        } else {
-                            console.log(type);
-                        }
-                    }
-                } else if (crash_year == latestYear - 3) {
-                    //for bar graph
-                    pm18data.killed[1] += killed;
-                    pm18data.classA[1] += classA;
-                    pm18data.classB[1] += classB;
-                    pm18data.classC[1] += classC;
-                    pm18data.classO[1] += classO;
-
-                    if (killed > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm18data.killed_walking[1] += killed;
-                            pm18data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm18data.killed_freight[1] += killed;
-                            pm18data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm18data.killed_Driving[1] += killed;
-                            pm18data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm18data.killed_biking[1] += killed;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm18data.killed_biking[1] += killed;
-                            pm18data.killed_freight[1] += killed;
-                            pm18data.crashCountBK++; //count crash
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm18data.killed_walking[1] += killed;
-                            pm18data.killed_freight[1] += killed;
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountWK++;
-                        } else {
-                            console.log(type);
-                        }
-                    }
-                } else if (crash_year == latestYear - 2) {
-                    //for bar graph
-                    pm18data.killed[2] += killed;
-                    pm18data.classA[2] += classA;
-                    pm18data.classB[2] += classB;
-                    pm18data.classC[2] += classC;
-                    pm18data.classO[2] += classO;
-
-                    if (killed > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm18data.killed_walking[2] += killed;
-                            pm18data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm18data.killed_freight[2] += killed;
-                            pm18data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm18data.killed_Driving[2] += killed;
-                            pm18data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm18data.killed_biking[2] += killed;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm18data.killed_biking[2] += killed;
-                            pm18data.killed_freight[2] += killed;
-                            pm18data.crashCountBK++; //count crash
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm18data.killed_walking[2] += killed;
-                            pm18data.killed_freight[2] += killed;
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountWK++;
-                        } else {
-                            console.log(type);
-                        }
-                    }
-                } else if (crash_year == latestYear - 1) {
-                    //for bar graph
-                    pm18data.killed[3] += killed;
-                    pm18data.classA[3] += classA;
-                    pm18data.classB[3] += classB;
-                    pm18data.classC[3] += classC;
-                    pm18data.classO[3] += classO;
-
-                    if (killed > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm18data.killed_walking[3] += killed;
-                            pm18data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm18data.killed_freight[3] += killed;
-                            pm18data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm18data.killed_Driving[3] += killed;
-                            pm18data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm18data.killed_biking[3] += killed;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm18data.killed_biking[3] += killed;
-                            pm18data.killed_freight[3] += killed;
-                            pm18data.crashCountBK++; //count crash
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm18data.killed_walking[3] += killed;
-                            pm18data.killed_freight[3] += killed;
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountWK++;
-                        } else {
-                            console.log(type);
-                        }
-                    }
-                } else if (crash_year == latestYear) {
-                    //for bar graph
-                    pm18data.killed[4] += killed;
-                    pm18data.classA[4] += classA;
-                    pm18data.classB[4] += classB;
-                    pm18data.classC[4] += classC;
-                    pm18data.classO[4] += classO;
-
-                    if (killed > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm18data.killed_walking[4] += killed;
-                            pm18data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm18data.killed_freight[4] += killed;
-                            pm18data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm18data.killed_Driving[4] += killed;
-                            pm18data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm18data.killed_biking[4] += killed;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm18data.killed_biking[4] += killed;
-                            pm18data.killed_freight[4] += killed;
-                            pm18data.crashCountBK++; //count crash
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm18data.killed_walking[4] += killed;
-                            pm18data.killed_freight[4] += killed;
-                            pm18data.crashCountFK++;
-                            pm18data.crashCountWK++;
-                        } else {
-                            console.log(type);
-                        }
-                    }
+                let i = -1; //variable for indexing
+                if(crash_year == latestYear - 4){
+                    i = 0;
+                }else if (crash_year == latestYear - 3){
+                    i = 1;
+                }else if (crash_year == latestYear - 2){
+                    i = 2;
+                }else if (crash_year == latestYear - 1){
+                    i = 3;
+                }else if (crash_year == latestYear){
+                    i = 4;
+                }
+                if(i != -1){
+                     //for bar graph
+                     pm18data.killed[i] += killed;
+                     pm18data.classA[i] += classA;
+                     pm18data.classB[i] += classB;
+                     pm18data.classC[i] += classC;
+                     pm18data.classO[i] += classO;
+ 
+                     if (killed > 0) { //for line graph
+                         if (type == "Pedestrian" || type == "PED") {
+                             pm18data.killed_walking[i] += killed;
+                             pm18data.crashCountWK++; //count crash
+                             (state == "NM") ? pm18data.killed_walkingNM[i] += killed  : pm18data.killed_walkingTX[i] += killed; 
+                         } else if (type == "Commerical_Vehicles" || type == "COMV") {
+                             pm18data.killed_freight[0] += killed;
+                             pm18data.crashCountFK++; //count crash
+                             (state == "NM") ? pm18data.killed_freightNM[i] += killed  : pm18data.killed_freightTX[i] += killed; 
+                         } else if (type == "GEN") {
+                             pm18data.killed_Driving[i] += killed;
+                             pm18data.crashCountDK++; //count crash
+                             (state == "NM") ? pm18data.killed_DrivingNM[i] += killed  : pm18data.killed_DrivingTX[i] += killed; 
+                         } else if (type == "Pedcyclists" || type == "BIKE") {
+                             pm18data.killed_biking[i] += killed;
+                             pm18data.crashCountBK++; //count crash
+                             (state == "NM") ? pm18data.killed_bikingNM[i] += killed  : pm18data.killed_bikingTX[i] += killed; 
+                         } else if (type == "BIKE_COMV") {
+                             pm18data.killed_biking[i] += killed;
+                             pm18data.killed_freight[i] += killed;
+                             pm18data.crashCountBK++; //count crash
+                             pm18data.crashCountFK++;
+                             pm18data.crashCountBK++; //count crash
+                             (state == "NM") ? pm18data.killed_bikingNM[i] += killed  : pm18data.killed_bikingTX[i] += killed; 
+                             (state == "NM") ? pm18data.killed_freightNM[i] += killed  : pm18data.killed_freightTX[i] += killed; 
+                         } else if (type == "PED_COMV") {
+                             pm18data.killed_walking[i] += killed;
+                             pm18data.killed_freight[i] += killed;
+                             pm18data.crashCountFK++;
+                             pm18data.crashCountWK++;
+                             (state == "NM") ? pm18data.killed_walkingNM[i] += killed  : pm18data.killed_walkingTX[i] += killed; 
+                             (state == "NM") ? pm18data.killed_freightNM[i] += killed  : pm18data.killed_freightTX[i] += killed; 
+                         } else {
+                             console.log(type);
+                         }
+                     }
                 }
             }
-
         }
 
         //calculations for menu Text, summations
@@ -412,35 +297,31 @@ function pm18Data(mode, ex) {
 function pm18chartLine(ctx, data) {
     var pm18_graphTitle;
     var pm18_graphValues = [];
+    var pm18_graphValuesNM = [];
+    var pm18_graphValuesTX = [];
 
     //line chart data
     if (currentType == 'driving') { // if Driving is clicked
-        pm18_graphValues[0] = data.killed_Driving[0];
-        pm18_graphValues[1] = data.killed_Driving[1];
-        pm18_graphValues[2] = data.killed_Driving[2];
-        pm18_graphValues[3] = data.killed_Driving[3];
-        pm18_graphValues[4] = data.killed_Driving[4];
+        pm18_graphValues = data.killed_Driving;
+        pm18_graphValuesNM = data.killed_DrivingNM;
+        pm18_graphValuesTX = data.killed_DrivingTX;
         pm18_graphTitle = 'Driving Fatalities';
+        console.log(pm18_graphValuesNM);
+        console.log(pm18_graphValuesTX);
     } else if (currentType == 'freight') { // if Freight is clicked
-        pm18_graphValues[0] = data.killed_freight[0];
-        pm18_graphValues[1] = data.killed_freight[1];
-        pm18_graphValues[2] = data.killed_freight[2];
-        pm18_graphValues[3] = data.killed_freight[3];
-        pm18_graphValues[4] = data.killed_freight[4];
+        pm18_graphValues = data.killed_freight;
+        pm18_graphValuesNM = data.killed_freightNM;
+        pm18_graphValuesTX = data.killed_freightTX;
         pm18_graphTitle = 'Freight Fatalities';
     } else if (currentType == 'walking') {
-        pm18_graphValues[0] = data.killed_walking[0];
-        pm18_graphValues[1] = data.killed_walking[1];
-        pm18_graphValues[2] = data.killed_walking[2];
-        pm18_graphValues[3] = data.killed_walking[3];
-        pm18_graphValues[4] = data.killed_walking[4];
+        pm18_graphValues = data.killed_walking;
+        pm18_graphValuesNM = data.killed_walkingNM;
+        pm18_graphValuesTX = data.killed_walkingTX;
         pm18_graphTitle = 'Pedestrian Fatalities';
     } else if (currentType == 'biking') {
-        pm18_graphValues[0] = data.killed_biking[0];
-        pm18_graphValues[1] = data.killed_biking[1];
-        pm18_graphValues[2] = data.killed_biking[2];
-        pm18_graphValues[3] = data.killed_biking[3];
-        pm18_graphValues[4] = data.killed_biking[4];
+        pm18_graphValues = data.killed_biking;
+        pm18_graphValuesNM = data.killed_bikingTX;
+        pm18_graphValuesTX = data.killed_bikingNM;
         pm18_graphTitle = 'Bicycle Fatalities';
     }
 
@@ -464,6 +345,28 @@ function pm18chartLine(ctx, data) {
             fill: false,
             lineTension: 0,
             radius: 5
+        },
+        {
+            label: pm18_graphTitle + " NM",
+            data: pm18_graphValuesNM,
+            //data: [data.tot13, data.tot14, data.tot15, data.tot16, data.tot17],
+            backgroundColor: "orange",
+            borderColor: "grey",
+            fill: false,
+            lineTension: 0,
+            radius: 5,
+            hidden: true
+        },
+        {
+            label: pm18_graphTitle + " TX",
+            data: pm18_graphValuesTX,
+            //data: [data.tot13, data.tot14, data.tot15, data.tot16, data.tot17],
+            backgroundColor: "blue",
+            borderColor: "lightblue",
+            fill: false,
+            lineTension: 0,
+            radius: 5,
+            hidden: true
         }
         ]
     };

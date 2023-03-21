@@ -99,7 +99,7 @@ function pm3DynamicText(corridor, data) {
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("Within " + corridor + " corridor, the total ridership is " + commafy(data.tot) + " passengers. Route " + data.highRoute + " has the highest ridership with an average of " + commafy(data.highAvg) + " passengers. Route " + data.lowRoute + " has the lowest ridership with an average of " + commafy(data.lowAvg) + " passengers (5 years average).", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2015-2019", "paragraph", "analysis-info");
+    paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Data provided by Sun Metro", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
@@ -209,35 +209,48 @@ function pm18DynamicText(corridor, data) {
     if (currentType == 'driving') {
 
         headerAdder("Number of Fatalities - Driving", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " of those crashes resulted in fatalities. " + data.dtot + " people were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountDK + " of those crashes* resulted in fatalities. A total of " + data.dtot + " fatalities resulted from these crashes*.", "paragraph", "summary-info");
+        paragraphAdder("* Excluding crashes involving truck vehicles, pedestrians and pedalcyclists", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'freight') {
 
         headerAdder("Number of Fatalities - Freight", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. " + data.ftot +" people were killed in Commercial Vehicle-related crashes. ", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. A total of " + data.ftot + " fatalities resulted from these crashes.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'walking') {
 
         headerAdder("Number of Fatalities - Walking", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountWK + " of those crashes resulted in fatalities involving pedestrians. " + data.wtot + " pedestrians were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountWK + " of those crashes resulted in fatalities involving pedestrians. " + data.wtot + " pedestrians were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
     else if (currentType == 'biking') {
-
         headerAdder("Number of Fatalities - Biking", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountBK + " of those crashes resulted in fatalities involving bicyclists. " + data.btot + " bicyclists were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountBK + " of those crashes resulted in fatalities involving bicyclists. " + data.btot + " bicyclists were killed.", "paragraph", "summary-info");
         pm18chartLine(ctx, data);
     }
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2015 - 2019", "paragraph", "analysis-info");
+    paragraphAdder("2018 - 2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
-    paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("The total number of crashes includes crashes of all severities: fatal, suspected serious injury, non-incapacitating injury, possible injury, and non-injury*. ", "paragraph", "calc-info");
-    paragraphAdder("*Note: Crash severities classified by TxDOT as 'non-injury' or 'unknown injury' are here shown as 'non-injury'. Crash severity classified by NMDOT as 'unhurt' is shown here as 'non-injury'. ", "paragraph", "calc-info");
+    paragraphAdder("Note: Data not yet reported by NMDOT for year 2022", "paragraph", "data-info");
+    paragraphAdder("Performance Measure Description:", "subtitle", "calc-title");
+
+    if (currentType == 'driving') {
+        paragraphAdder("This performance measure provides the total number of fatalities resulting from motor vehicle crashes excluding crashes involving commercial truck vehicles, pedestrians and pedalcyclists.", "paragraph", "calc-info");
+    }
+    else if (currentType == 'freight') {
+        paragraphAdder("This performance measure provides the total number of fatalities resulting from motor vehicle crashes involving commercial truck vehicles.", "paragraph", "calc-info");
+    }
+    else if (currentType == 'walking') {
+        paragraphAdder("This performance measure provides the total number of pedestrian fatalities resulting from pedestrian-vehicle crashes.", "paragraph", "calc-info");
+    }
+    else if (currentType == 'biking') {
+        paragraphAdder("This performance measure provides the total number of pedalcyclists fatalities resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
+    }
+    paragraphAdder("The total number of fatalities reflects the total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "calc-info");
     openNav();
 }
 function pm19DynamicText(corridor, data) {
@@ -248,36 +261,49 @@ function pm19DynamicText(corridor, data) {
     pm19StackedChart(ctx2, data);
 
     if (currentType == "driving") {
-        headerAdder("Number serious injuries - Driving", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountDK + " of those crashes resulted in serious injuries. " + data.dtot + " people were seriously injured.", "paragraph", "summary-info");
+        headerAdder("Number Serious Injuries - Driving", "title");
+        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountDK + " of those crashes* resulted in serious injuries. A total of " + data.dtot + " persons sustained serious injuries resulting from these crashes*.", "paragraph", "summary-info");
+        paragraphAdder("* Excluding crashes involving truck vehicles, pedestrians and pedalcyclists", "paragraph", "summary-info");
   
     }
     else if (currentType == "freight") {
-        headerAdder("Number serious injuries - Freight", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountFK + " of those crashes resulted in serious injuries involving Commercial Vehicles. " + data.ftot + " people were seriously injured.", "paragraph", "summary-info");
+        headerAdder("Number Serious Injuries - Freight", "title");
+        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountFK + " of those crashes resulted in serious injuries involving Commercial Vehicles. A total of " + data.ftot + " persons sustained serious injuries in resulting from these crashes.", "paragraph", "summary-info");
   
     }
     else if (currentType == "walking") {
-        headerAdder("Number serious injuries - Walking", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + data.crashCountWK + " of those crashes resulted in serious injuries involving pedestrians. " + data.wtot + " people were seriously injured.", "paragraph", "summary-info");
+        headerAdder("Number Serious Injuries- Walking", "title");
+        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountWK + " of those crashes resulted in serious injuries involving pedestrians. " + data.wtot + " pedestrians were seriously injured.", "paragraph", "summary-info");
   
     }
     else if (currentType == "biking") {
-        headerAdder("Number serious injuries - Biking", "title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(data.crashCount) + " crashes occurred in the " + corridor + " corridor and " + commafy(data.crashCount) + " of those crashes resulted in serious injuries involving bicyclists. " + data.btot + " people were seriously injured.", "paragraph", "summary-info");
+        headerAdder("Number Serious Injuries - Biking", "title");
+        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountBK + " of those crashes resulted in serious injuries involving bicyclists. " + data.btot + " bicyclits were seriously injured.", "paragraph", "summary-info");
   
     }
 
     pm19chartLine(ctx, data);
-
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2015 – 2019", "paragraph", "analysis-info");
+    paragraphAdder("2018 - 2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
-    paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("The total number of crashes includes crashes of all severities: fatal, suspected serious injury, non-incapacitating injury, possible injury, and non-injury*.", "paragraph", "calc-info");
-    paragraphAdder("*Note: Crash severities classified by TxDOT as ‘non-injury’ or ‘unknown injury’ are here shown as ‘non-injury’. Crash severity classified by NMDOT as ‘unhurt’ is shown here as ‘non-injury’. ", "paragraph", "calc-info");
+    paragraphAdder("Note: Data not yet reported by NMDOT for year 2022", "paragraph", "data-info");
+    paragraphAdder("Performance Measure Description:", "subtitle", "calc-title");
+
+    if (currentType == 'driving') {
+        paragraphAdder("This performance measure provides the total number of persons sustaining serious injuries resulting from motor vehicle crashes excluding crashes involving truck vehicles, pedestrians and pedalcyclists.", "paragraph", "calc-info");
+    }
+    else if (currentType == 'freight') {
+        paragraphAdder("This performance measure provides the total number of persons sustaining serious injuries resulting from motor vehicle crashes involving commercial truck vehicles.", "paragraph", "calc-info");
+    }
+    else if (currentType == 'walking') {
+        paragraphAdder("This performance measure provides the total number of pedestrians sustaining serious injuries resulting from pedestrian-vehicle crashes.", "paragraph", "calc-info");
+    }
+    else if (currentType == 'biking') {
+        paragraphAdder("This performance measure provides the total number of pedalcyclists sustaining serious injuries resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
+    }
+    paragraphAdder("The total number of fatalities reflects the total number of persons sustaining serious injuries in crashes involving all types of transportation modes.", "paragraph", "calc-info");
     openNav();
 }
 function pm20DynamicText(corridor, data) {
@@ -308,11 +334,11 @@ function pm20DynamicText(corridor, data) {
     
     }
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("Crashes 2015-2019, SunMetro bus stops as of 2019 ", "paragraph", "analysis-info");
+    paragraphAdder("Crashes 2018-2022, SunMetro bus stops as of 2019 ", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data from TxDOT, location of bus stops from Sun Metro ", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("A buffer of 200 ft. was created from the bus stops to identify how many crashes occurred within that distance. The crashes are from 2015 to 2019, and the bus stop locations are as of 2019.", "paragraph", "calc-info");
+    paragraphAdder("A buffer of 200 ft. was created from the bus stops to identify how many crashes occurred within that distance. The crashes are from 2018 to 2022, and the bus stop locations are as of 2019.", "paragraph", "calc-info");
     if (currentType == "walking") {
         //legend elements
         names = ['1', '2-3', '4-6', '7-10', 'No data'];
@@ -344,7 +370,7 @@ function pm25DynamicText(corridor, data) {
     }
     
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2015-2019", "paragraph", "analysis-info");
+    paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("Highway Performance Monitoring System (HPMS) Public Release of Geospatial Data in Shapefile Format", "https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");

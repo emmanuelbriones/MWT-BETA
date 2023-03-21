@@ -51,7 +51,7 @@ if($key == "all_pm1" || $key == "all_pm2"){
 }else if($key == "all_pm13_14"){
 	$query = "select port_of_en as title, St_astext(SHAPE) as shape from pm13_14";
 }else if($key == "all_pm18_19"){
-	$query = "select OGR_FID,crash_year,type,killed,classA,classB,classC,classO, St_astext(SHAPE) as shape from pm18_19"; 
+	$query = "select OGR_FID,crash_year,type,killed,classA,classB,classC,classO,state,St_astext(SHAPE) as shape from pm18_19"; 
 }else if($key == "all_pm21_h"){ //
 	$query = "select pattern, St_astext(SHAPE) as shape from pm21_hotspot";
 }else if($key == "all_pm21_lines"){
