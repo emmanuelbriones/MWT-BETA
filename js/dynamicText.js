@@ -250,7 +250,7 @@ function pm18DynamicText(corridor, data) {
     else if (currentType == 'biking') {
         paragraphAdder("This performance measure provides the total number of pedalcyclists fatalities resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
-    paragraphAdder("The total number of fatalities reflects the total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "calc-info");
+    paragraphAdder("\u00B9Total Fatalities: The total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "calc-info");
     openNav();
 }
 function pm19DynamicText(corridor, data) {
@@ -303,7 +303,7 @@ function pm19DynamicText(corridor, data) {
     else if (currentType == 'biking') {
         paragraphAdder("This performance measure provides the total number of pedalcyclists sustaining serious injuries resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
-    paragraphAdder("The total number of fatalities reflects the total number of persons sustaining serious injuries in crashes involving all types of transportation modes.", "paragraph", "calc-info");
+    paragraphAdder("\u00B9Total Serious Injuries: The total number of persons sustaining serious injuries in crashes involving all types of transportation modes.", "paragraph", "calc-info");
     openNav();
 }
 function pm20DynamicText(corridor, data) {

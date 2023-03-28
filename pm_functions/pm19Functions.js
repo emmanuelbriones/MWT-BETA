@@ -343,7 +343,7 @@ function pm19chartLine(ctx, data) {
             radius: 5
         },
         {
-            label: "Total Serious Injuries",
+            label: "Total Serious Injuries"+ "\u00B9",
             data: data.injured,
             backgroundColor: "green",
             borderColor: "lightgreen",

@@ -334,7 +334,7 @@ function pm18chartLine(ctx, data) {
             radius: 5
         },
         {
-            label: "Total Fatalities",
+            label: "Total Fatalities"+ "\u00B9",
             data: data.killed,
             //data: [data.tot13, data.tot14, data.tot15, data.tot16, data.tot17],
             backgroundColor: "green",
