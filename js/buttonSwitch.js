@@ -371,13 +371,13 @@ function buttonSwitch(var1) {
 
         headerAdder("Number of crashes on the CMP network", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
-        paragraphAdder("During a 5-year period (2015-2019), a total of " + commafy(pm22Text) + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(pm22Text) + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
         paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-        paragraphAdder("2015 – 2019", "paragraph", "analysis-info");
+        paragraphAdder("2018 – 2022", "paragraph", "analysis-info");
         paragraphAdder("Data Source:", "subtitle", "data-title");
         paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
         paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-        paragraphAdder("This performance measures includes all crashes that occurred within 150 ft. of the CMP network adopted by the MPO in 2019.  ", "paragraph", "calc-info");
+        paragraphAdder("This performance measures includes all crashes that occurred within 150 ft. of the CMP network adopted by the MPO in 2023.  ", "paragraph", "calc-info");
         openNav();
 
     } else if (buttonValue == 'pm8Biking') {

@@ -39,7 +39,7 @@ function pm19chartLine(ctx, Button){
         pm19_graphValues[2] = Texas2015Info.Bike_ClassA;
         pm19_graphValues[3] = Texas2016Info.Bike_ClassA;
         pm19_graphValues[4] = Texas2017Info.Bike_ClassA;
-        pm19_graphTitle = 'Bycycle  Serious Injuries';
+        pm19_graphTitle = 'Bicycle  Serious Injuries';
 
     }
 

@@ -21,7 +21,7 @@ function mtpProjects() {
   <div id="mtp" class=" sidenav rounded-left mb-2 bg-light text-dark" ondblclick="openNavMTP()" data-toggle="tooltip" data-placement="left" title="Double click to Open">
     <a href="javascript:void(0)" href="javascript:void(0)" class="closebtn" onclick="closeNavMTP();"><span class="fa fa-times"></span></a>
     <div id="mtp-title" class="row container-fluid">
-      <h3 class="col-lg-6 text-center">MTP Projects (Destino 2045)</h3>
+      <h3 class="col-lg-6 text-center">MTP Projects (RMS 2050)</h3>
       <button id="locate-project-btn" type="button" class="col-lg-5 btn btn-outline-info btn-lg">Locate</button>
     </div>
     <div id="mtp-content"></div>

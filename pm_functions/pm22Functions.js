@@ -106,7 +106,7 @@
         pm22_data.years.push(latestYear - 1);
         pm22_data.years.push(latestYear);
 
-        let killed = 0;
+        let killed = 0; 
         let classa = 0; // Class A SUspected Serious Injuries
         let classb = 0; // Class B Non - Incapacitating Injuries
         let classc = 0; // Class C = possible injuries
@@ -141,7 +141,7 @@
                 year_index = 4;
             }
 
-            if (state === 'Texas') {
+            if (state === 'TX') {
                 pm22_data.TX.crashes[year_index]++; //= killed + classa + classb + classc + classo;
                 pm22_data.TX.killed[year_index] += killed;
                 pm22_data.TX.classb[year_index] += classb;
@@ -149,7 +149,7 @@
                 pm22_data.TX.classa[year_index] += classa;
                 pm22_data.TX.classo[year_index] += classo;
 
-            } else if (state === 'New Mexico') {
+            } else if (state === 'NM') {
                 pm22_data.NM.crashes[year_index]++ //= killed + classa + classb + classc + classo;
                 pm22_data.NM.killed[year_index] += killed;
                 pm22_data.NM.classb[year_index] += classb;
@@ -164,24 +164,13 @@
             let shape = 'shape';
             let image = "./icons/crash_red.png";
             let cluster_markers = [];
-
-            // for (index in data.shape_arr) {
-            //     let holder = [];
-            //     holder.push(wktFormatterPoint(data.shape_arr[index]['shape']));
-            //     holder = holder[0][0]; // Fixes BLOB
-            //     cluster_points = {
-            //         lat: parseFloat(holder[0].lat),
-            //         lng: parseFloat(holder[0].lng)
-            //     };
-            //     cluster_markers.push(cluster_points);
-            // }
             for (index in data.shape_arr) {
-                let holder = [];
-                holder.push(wktFormatterPoint(data.shape_arr[index]['shape']));
-                holder = holder[0][0]; // Fixes BLOB
+                // let holder = [];
+                // holder.push(wktFormatterPoint(data.shape_arr[index]['shape']));
+                // holder = holder[0][0]; // Fixes BLOB
                 cluster_points = {
-                    lat: parseFloat(holder[0].lat),
-                    lng: parseFloat(holder[0].lng)
+                    lat: parseFloat(data.shape_arr[index].lat),
+                    lng: parseFloat(data.shape_arr[index].lng)
                 };
                 cluster_markers.push(cluster_points);
             }
@@ -263,6 +252,26 @@ function pm22chartLine(ctx, data) {
                 fill: false,
                 lineTension: 0,
                 radius: 5
+            },
+            {
+                label: "Crashes NM",
+                data: data.NM.crashes,
+                backgroundColor: "orange",
+                borderColor: "grey",
+                fill: false,
+                lineTension: 0,
+                radius: 5,
+                hidden: true
+            },
+            {
+                label: "Crashes TX",
+                data: data.TX.crashes,
+                backgroundColor: "blue",
+                borderColor: "lightblue",
+                fill: false,
+                lineTension: 0,
+                radius: 5,
+                hidden: true
             }
         ]
     };
@@ -305,7 +314,7 @@ function pm22StackedChart(ctx, data) {
     var barChartData = {
         labels: data.years, //[0], data.TX.years[1], data.TX.years[2],data.TX.years[3], data.TX.years[4]],
         datasets: [{
-            label: 'Killed',
+            label: 'Fatalities',
             backgroundColor: 'rgba(255,82,0,0.5)',
             data: arraySum(data.TX.killed, data.NM.killed)
         }, {
@@ -315,15 +324,18 @@ function pm22StackedChart(ctx, data) {
         }, {
             label: 'Non-Incapacitating Injuries',
             backgroundColor: 'rgba(117,36,221,0.5)',
-            data: arraySum(data.TX.classb, data.NM.classb)
+            data: arraySum(data.TX.classb, data.NM.classb),
+            hidden: true
         }, {
             label: 'Possible Injuries',
             backgroundColor: 'rgba(255,235,59,1)',
-            data: arraySum(data.TX.classc, data.NM.classc)
+            data: arraySum(data.TX.classc, data.NM.classc),
+            hidden: true
         }, {
             label: 'Non-Injury',
             backgroundColor: 'rgb(255,0,255,0.5)',
-            data: arraySum(data.TX.classo, data.NM.classo)
+            data: arraySum(data.TX.classo, data.NM.classo),
+            hidden: true
         }]
 
     };

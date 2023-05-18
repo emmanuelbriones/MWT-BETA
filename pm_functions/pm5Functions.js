@@ -96,9 +96,6 @@ function pm5Calculations(pm5Data, mode) {
         pm5Data.jobsPercent = ((pm5Data.existing_ratio_sum / pm5Data.totJobs) * 100);
         pm5Data.totalJobsPercent = ((pm5Data.all_ratio_sum / pm5Data.totJobs) * 100);
 
-        console.log(pm5Data.existing_ratio_sum);
-        console.log(pm5Data.totJobs);
-        console.log(pm5Data.totalJobsPercent);
         if (mode == 0) {
             let value = {
                 name: "pm5Text",
