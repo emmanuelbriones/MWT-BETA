@@ -43,12 +43,13 @@ function pm24Data(mode, ex) {
             let miles = parseFloat(data.shape_arr[index].leng_cal);
             let tti = 0;
             if (currentType == 'driving' || identifier == 'd') {
-                tti = parseFloat(data.shape_arr[index].tti);
+                tti = parseFloat(data.shape_arr[index].tti).toFixed(2);
             } else if (currentType == 'freight' || identifier == 'f') {
-                tti = parseFloat(data.shape_arr[index].trktti);
+                tti = parseFloat(data.shape_arr[index].trktti).toFixed(2);
             }
 
-            ttiSum += tti;
+            newtti = parseFloat(tti);
+            ttiSum += newtti;
 
             if (tti > 1.5) {
                 pm24data.sumGreater += miles;
@@ -81,8 +82,8 @@ function pm24Data(mode, ex) {
             if (mode == 1 || mode == 2 || mode == 4) {
                 for (let i = 0; i < ln.length; i++) {
                     coord = {
-                        lat: ln[i]['y'],
-                        lng: ln[i]['x']
+                        lat: ln[i]['x'],
+                        lng: ln[i]['y']
                     };
                     to_visualize.push(coord);
                 }
@@ -107,8 +108,12 @@ function pm24Data(mode, ex) {
 
                 line.setMap(map);
                 polylines.push(line);
+                
             }
         }
+
+       // console.log(ttiSum);
+
         //calculations
         pm24data.ttiAvg = (ttiSum / ttiLength).toFixed(2);
         pm24data.percentGreater = (pm24data.sumGreater / totalMiles) * 100;
@@ -148,13 +153,12 @@ function pm24Data(mode, ex) {
 }
 
 function pm24BarGraph(ctx, data) {
-    let label1 = "1-1.1";
-    let label2 = "1.11-1.2";
-    let label3 = "1.21-1.3";
-    let label4 = "1.31-1.5";
+    let label1 = "1-1.10";
+    let label2 = "1.11-1.20";
+    let label3 = "1.21-1.30";
+    let label4 = "1.31-1.50";
     let label5 = "1.51 >";
     let title = '';
-    // console.log(data);
     if (currentType == 'driving') {
         title = 'TTI(driving)';
     } else if (currentType == 'freight') {

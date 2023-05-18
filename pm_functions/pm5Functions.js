@@ -17,29 +17,29 @@ function pm5Data(mode, status) {
     let color = "#039BE5";
 
     $.get('mwt_handler.php', example, function (data) {
-        console.log(data);
         for (index in data.shape_arr) {
             let temp = wktFormatter(data.shape_arr[index]['shape']);
             let to_visualize = [];
             let type = data.shape_arr[index].type;
-            let ratio_prim = parseFloat(data.shape_arr[index].ratio_prim); //filter values on polygons
+            let ratio_prim = parseFloat(data.shape_arr[index].ratio_jobs); //filter values on polygons
             let prcnt_Prim = parseFloat(data.shape_arr[index].prcnt_prim); //filter values on polygons
 
             //update Dynamic Data
-            if (type == "existing") {
+            if (type == "Existing") {
                 pm5Data.existing_ratio_sum += ratio_prim;
-            } else if (type == "all") {
+            } else {
                 pm5Data.all_ratio_sum += ratio_prim;
             }
+            
 
             if (mode == 1) {
                 // if the status of a shape exists, push to visualize
                 for (let i = 0; i < temp.length; i++) {
-                    if (type == "existing" && status == "e") {
+                    if (type == "Existing" && status == "e") {
                         color = "#039BE5"; //blue
                         to_visualize.push(temp[i]);
                         polyToErase.exist.push();
-                    } else if (type == "planned" && status == "p") {
+                    } else if (type == "Planned" && status == "p") {
                         color = "#9E9E9E"; //gray
                         to_visualize.push(temp[i]);
                         polyToErase.plan.push();
@@ -89,7 +89,7 @@ function pm5Calculations(pm5Data, mode) {
     $.get('mwt_handler.php', example, function (data) {
         let totJobs = 0;
         for (index in data.shape_arr) {
-            totJobs += parseInt(data.shape_arr[index].primjobsc0);
+            totJobs += parseInt(data.shape_arr[index].prim_jobs);
         }
         //calculations
         pm5Data.totJobs = totJobs;

@@ -23,22 +23,22 @@ function pm6Data(mode, condition) {
             let to_visualize = [];
             let type = data.shape_arr[index].type;
             let ratio_prim = parseFloat(data.shape_arr[index].ratio_prim);
-
+            let prcnt_prim = parseFloat(data.shape_arr[index].prcnt_prim);
             //update Dynamic Data
-            if (type == "existing") {
+            if (type == "Existing") {
                 pm6Data.existing_ratio_sum += ratio_prim;
-            } else if (type == "all") {
+            } else if (type == "Proposed") {
                 pm6Data.all_ratio_sum += ratio_prim;
             }
 
             if (mode == 1) {
                 // if the status of a shape exists, push to visualize
                 for (let i = 0; i < temp.length; i++) {
-                    if (type == "existing" && condition == "e") {
+                    if (type == "Existing" && condition == "e") {
                         color = "#039BE5"; //blue
                         to_visualize.push(temp[i]);
                         polyToErase.exist.push();
-                    } else if (type == "all" && condition == "p") {
+                    } else if (type == "Proposed" && condition == "p") {
                         color = "#9E9E9E"; //gray
                         to_visualize.push(temp[i]);
                         polyToErase.plan.push();
@@ -55,7 +55,7 @@ function pm6Data(mode, condition) {
                     fillColor: color,
                     fillOpacity: 0.60,
                     zIndex: -1,
-                    title: ratio_prim.toFixed(2) + "%",
+                    title: prcnt_prim.toFixed(1) + "%",
                 });
 
                 if (condition == "e") polyToErase.exist.push(polygon);
@@ -81,7 +81,9 @@ function pm6Data(mode, condition) {
 }
 
 function pm6Calculations(pm6Data, mode) {
-    let key = 'all_pm5_6';
+    // TODO: Fix keys for this PM
+    // let key = "all_pm5_6"
+    let key = 'all_pm6';
     let example = {
         key: key
     };
@@ -125,8 +127,8 @@ function pm6chart(g2, data) {
                 label: 'Dataset 1'
             }],
             labels: [
-                'Total Jobs in the El Paso MPO region',
-                'Percent of jobs 0.5 mi from existing high-quality rapid transit',
+                'Percent of jobs not-within 0.5 mi from existing bikeways',
+                'Percent of jobs within 0.5 mi from existing bikeways',
             ]
         },
         options: {

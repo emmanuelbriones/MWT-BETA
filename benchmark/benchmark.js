@@ -121,14 +121,14 @@ function create_benchmark_categories(categories) {
         let content = `
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 class="panel-title">
+                            <h5 class="panel-title">
                                 <a 
                                     class = "text-capitalize"
                                     data-toggle="collapse" 
                                     href=".${category}"> 
                                 ${category}
                                 </a>
-                            </h2>
+                            </h5>
                         </div>
                         <div
                             class=" ${category} panel-collapse collapse"
@@ -221,14 +221,14 @@ function update_benchmark_column(id, corridor) {
         let content = `
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 class="panel-title">
+                            <h5 class="panel-title">
                                 <a  
                                     class= "text-capitalize"
                                     data-toggle="collapse" 
                                     href=".${category}"> 
                                 ${category}
                                 </a>
-                            </h2>
+                            </h5>
                         </div>`;
 
         if ($('.' + category).hasClass('show')) { //* check if the other columns has the categories expanded.

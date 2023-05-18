@@ -59,7 +59,7 @@
                 year5 = null;
             }
 
-            if (category == "PM 10 ") {
+            if (category == "PM 10") {
 
                 pm17Data[i] = {
                     name: stationName,
@@ -70,27 +70,27 @@
 
                 if (greathestNum < year1) {
                     greathestNum = year1;
-                    year = 2014;
+                    year = 2015;
                     greathestStat = stationName;
                 }
                 if (greathestNum < year2) {
                     greathestNum = year2;
-                    year = 2015;
+                    year = 2016;
                     greathestStat = stationName;
                 }
                 if (greathestNum < year3) {
                     greathestNum = year3;
-                    year = 2016;
+                    year = 2017;
                     greathestStat = stationName;
                 }
                 if (greathestNum < year4) {
                     greathestNum = year4;
-                    year = 2017;
+                    year = 2018;
                     greathestStat = stationName;
                 }
                 if (greathestNum < year5) {
                     greathestNum = year5;
-                    year = 2018;
+                    year = 2019;
                     greathestStat = stationName;
                 }
                 //store greatest on current station
@@ -180,7 +180,7 @@ function pm17chartLine(ctx, data) {
     //modify values
 
     var data = {
-        labels: ['2014', '2015', '2016', '2017', '2018'],
+        labels: ['2015', '2016', '2017', '2018', '2019'],
         datasets: [{
                 label: data[0].name,
                 data: data[0].graphData,

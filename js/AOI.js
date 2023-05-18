@@ -124,8 +124,6 @@ function AOI(AOI_STRING) {
         else if (active_pm_for_AOI == 'all_pm2'){
             pm2Data(4,to_php);
         }
-
-
     }
     else if (table_wanted == 'pm26') {
         pm26Data(4, to_php);

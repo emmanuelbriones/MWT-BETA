@@ -14,8 +14,7 @@ $shape = array(); // for the data that will be returned, shape and value
 if($key == 1) {
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	//$query = "SELECT OGR_FID,ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2,ST_AsText(SHAPE) FROM " . $active_pm ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 5), p.SHAPE ) and OGR_FID >0;";
-	$query = "SELECT ST_AsText(SHAPE), ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike  FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 5), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT ST_AsText(SHAPE),ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -24,7 +23,7 @@ if($key == 1) {
 }else if($key == 18 || $key ==19) {
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT OGR_FID,crash_year,type,killed,classA,classB,classC,classO,non_injuri,unknown_in,statefp, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT OGR_FID,crash_year,type,killed,classA,classB,classC,classO,state,ST_AsText(SHAPE) FROM pm18_19 as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -34,7 +33,7 @@ if($key == 1) {
 else if($key == 24){
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "select leng_cal,miles,tti,trktti,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "select leng_cal,miles,tti,trktti,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 	while($temporal = mysqli_fetch_assoc($result)){ 
 		array_push($shape, $temporal);
@@ -125,11 +124,9 @@ else if($key == 22){
 }
 else if($key == 26){ 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
-	
 	$result = mysqli_query($conn, $query); 
-	$query = "select mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
-	
 
+	$query = "select mode,deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE), year FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -139,8 +136,8 @@ else if($key == 26){
 else if($key == 26.1){ 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "select deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
 
+	$query = "select deck_cond_,superstruc,substruc_c,region,ST_AsText(SHAPE) FROM ". $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -150,7 +147,7 @@ else if($key == 26.1){
 else if($key == 3){ //lines 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT TotalRid_7 , TotalRid_1 , ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "select avg_riders,route_1,St_astext(SHAPE) as shape, f2015, f2016, f2017, f2018, f2019 from pm3 as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -161,7 +158,7 @@ else if($key == 3){ //lines
 else if($key == 4 ){ //lines 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT type,tactcnt, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 7), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT type,tactcnt, ST_astext(SHAPE) as shape FROM pm4 as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -172,7 +169,7 @@ else if($key == 4 ){ //lines
 else if($key == 25){ //lines 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT type,state_code,year_recor,iri, miles, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT type,state_code,year_recor,iri, miles, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -182,7 +179,7 @@ else if($key == 25){ //lines
 else if($key == 11){ //lines 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT Sidewalk_4, Roads_LA_3, Roads_LA_6,ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT Sidewalk_4, Roads_LA_3, Roads_LA_6,ST_AsText(SHAPE) FROM pm11 as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -191,7 +188,7 @@ else if($key == 11){ //lines
 }else if($key == 12){ //lines 
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT status, bikepath, mile, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT status, bikepath, mile, ST_AsText(SHAPE) FROM pm12 as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -200,7 +197,7 @@ else if($key == 11){ //lines
 }else if($key == 20){ //POINTS
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT  type, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT type, ST_AsText(SHAPE), w_i_buffer FROM pm20crashes as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -209,7 +206,7 @@ else if($key == 11){ //lines
 }else if($key == 20.1){ //buffer
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT count_bike,count_ped,address,on_st,at_strt, ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT count_bike,count_ped,ST_AsText(SHAPE) FROM pm20bufferpedbike as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 
@@ -218,7 +215,7 @@ else if($key == 11){ //lines
 }else if($key == 20.2){ //bus
 	$query = "SET @buff = (SELECT ST_GeomFromText(ST_AsText(SHAPE)) FROM ". $corridors_selected . " WHERE OGR_FID = 1);";
 	$result = mysqli_query($conn, $query); 
-	$query = "SELECT ST_AsText(SHAPE) FROM " . $tableName ." as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4), p.SHAPE ) and OGR_FID >0;";
+	$query = "SELECT ST_AsText(SHAPE) FROM pm20busstops as p WHERE ST_INTERSECTS( st_geomfromtext( st_astext(@buff), 4326), p.SHAPE ) and OGR_FID >0;";
 	$result = mysqli_query($conn, $query); 
 
 	while($temporal = mysqli_fetch_assoc($result)){ 

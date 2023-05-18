@@ -31,8 +31,8 @@ the system will retrieve teh name, mpo id, csj id, the description, an the shape
 let components = [];
 
 const thin_path = 5;
-const thick_path = 10;
-const normal_color = '#FF800080';
+const thick_path = 6;
+const normal_color = '#0047AB';
 const highlight_color = '#FF0000A0';
 
 /*Start Here --------------------------------------------------------*/
@@ -225,11 +225,13 @@ let mtp_comp_point = function(info, point) {
 mtp_comp_point.prototype = Object.create(mtp_comp.prototype);
 mtp_comp_point.prototype.constructor = mtp_comp;
 
+let image = "./img/markers/red.png";
 mtp_comp_point.prototype.createPoint = function(point) {
   return new google.maps.Marker({
     position: point,
     id: this.id,
     mpo_id: this.mpo_id,
+    icon: image
   });
 
 };
@@ -334,8 +336,8 @@ mtp_comp_no_map.prototype.clean = function() {
 
 function point_geojson_formatter(data) {
   return {
-    lat: parseFloat(data[0].y),
-    lng: parseFloat(data[0].x),
+    lat: parseFloat(data[0].x),
+    lng: parseFloat(data[0].y),
   };
 }
 
@@ -345,8 +347,8 @@ function line_geojson_formatter(data) {
   for (let point in shape) {
     //console.log(point);
     let formatted_point = {
-      lat: parseFloat(shape[point].y),
-      lng: parseFloat(shape[point].x),
+      lat: parseFloat(shape[point].x),
+      lng: parseFloat(shape[point].y),
     };
     //console.log(formatted_point);
     res.push(formatted_point);

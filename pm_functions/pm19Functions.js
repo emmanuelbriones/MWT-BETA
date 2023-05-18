@@ -23,14 +23,22 @@ function pm19Data(mode, ex) {
         classB: [0, 0, 0, 0, 0],
         classC: [0, 0, 0, 0, 0],
         classO: [0, 0, 0, 0, 0],
-        non_injuri: [0, 0, 0, 0, 0],
-        unknown_injuri: [0, 0, 0, 0, 0],
         //line graph
         injured: [0, 0, 0, 0, 0],
         injured_driving: [0, 0, 0, 0, 0],
         injured_walking: [0, 0, 0, 0, 0],
         injured_freight: [0, 0, 0, 0, 0],
         injured_biking: [0, 0, 0, 0, 0],
+        //line graph New Mexico State
+        injured_drivingNM: [0, 0, 0, 0, 0],
+        injured_walkingNM: [0, 0, 0, 0, 0],
+        injured_freightNM: [0, 0, 0, 0, 0],
+        injured_bikingNM: [0, 0, 0, 0, 0],
+        //line graph Texas State
+        injured_drivingTX: [0, 0, 0, 0, 0],
+        injured_walkingTX: [0, 0, 0, 0, 0],
+        injured_freightTX: [0, 0, 0, 0, 0],
+        injured_bikingTX: [0, 0, 0, 0, 0],
         //Dynamic Variables
         crashCount: 0,
         crashCountDK: 0,
@@ -99,32 +107,25 @@ function pm19Data(mode, ex) {
         for (index in data.shape_arr) {
             let holder = [];
             let type = data.shape_arr[index]['type'];
-            let location = data.shape_arr[index]['location'];
             let crash_year = parseInt(data.shape_arr[index]['crash_year']);
-
             let killed = parseInt(data.shape_arr[index]['killed']);
-            let non_injuri = parseInt(data.shape_arr[index]['non_injuri']);
-            let unknown_injuri = parseInt(data.shape_arr[index]['unknown_in']);
             let classA = parseInt(data.shape_arr[index]['classA']);
             let classB = parseInt(data.shape_arr[index]['classB']);
             let classC = parseInt(data.shape_arr[index]['classC']);
-            let classO = parseInt(data.shape_arr[index]['classO']); //
-
-
+            let classO = parseInt(data.shape_arr[index]['classO']); 
             let ogrID = parseInt(data.shape_arr[index]['OGR_FID']);
+            let state = data.shape_arr[index]['state'];
 
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
-                holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
-                holder = holder[0][0]; // Fixes BLOBs
 
                 let to_visualize = {
-                    lat: parseFloat(holder[0].lat),
-                    lng: parseFloat(holder[0].lng)
+                    lng: parseFloat(data.shape_arr[index].lng),
+                    lat: parseFloat(data.shape_arr[index].lat)
                 };
 
                 let point = new google.maps.Marker({
                     position: to_visualize,
-                    title: "Year: " + crash_year + " \nSerious Injuries " + classA + " \nNon-Incapacitating Injuries: " + classB + "\nPossible Injuries: " + classC + "\nNon-Injury: " + non_injuri + "\nkilled: " + killed,
+                    title: "Year: " + crash_year + " \nSerious Injuries " + classA + " \nNon-Incapacitating Injuries: " + classB + "\nPossible Injuries: " + classC + "\nKilled: " + killed,
                     value: ogrID,
                     icon: image
                 });
@@ -156,7 +157,7 @@ function pm19Data(mode, ex) {
 
             }
 
-            if (killed > 0 || classA > 0 || classB > 0 || classC > 0 || classO > 0 || non_injuri > 0 || unknown_injuri > 0) {
+            if (killed > 0 || classA > 0 || classB > 0 || classC > 0 || classO > 0) {
                 pm19data.crashCount++;
                 // crash counts
                 if (type == "Pedestrian" || type == "PED") {
@@ -175,198 +176,64 @@ function pm19Data(mode, ex) {
                     crashCountW++;
                 }
 
-                if (crash_year == latestYear - 4) {
-                    //for bar graph
-                    pm19data.injured[0] += classA;
-                    pm19data.classA[0] += classA;
-                    pm19data.classB[0] += classB;
-                    pm19data.classC[0] += classC;
-                    pm19data.classO[0] += classO;
-                    pm19data.non_injuri[0] += non_injuri;
-                    pm19data.unknown_injuri[0] += unknown_injuri;
-
-                    if (classA > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm19data.injured_walking[0] += classA;
-                            pm19data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm19data.injured_freight[0] += classA;
-                            pm19data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm19data.injured_driving[0] += classA;
-                            pm19data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm19data.injured_biking[0] += classA;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm19data.injured_biking[0] += classA;
-                            pm19data.injured_freight[0] += classA;
-                            pm19data.crashCountBK++; //count crash
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm19data.injured_walking[0] += classA;
-                            pm19data.injured_freight[0] += classA;
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountWK++;
-                        } else {
-                            //console.log(type);
-                        }
-                    }
-                } else if (crash_year == latestYear - 3) {
-                    //for bar graph
-                    pm19data.injured[1] += classA;
-                    pm19data.classA[1] += classA;
-                    pm19data.classB[1] += classB;
-                    pm19data.classC[1] += classC;
-                    pm19data.classO[1] += classO;
-                    pm19data.non_injuri[1] += non_injuri;
-                    pm19data.unknown_injuri[1] += unknown_injuri;
-
-                    if (classA > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm19data.injured_walking[1] += classA;
-                            pm19data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm19data.injured_freight[1] += classA;
-                            pm19data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm19data.injured_driving[1] += classA;
-                            pm19data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm19data.injured_biking[1] += classA;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm19data.injured_biking[1] += classA;
-                            pm19data.injured_freight[1] += classA;
-                            pm19data.crashCountBK++; //count crash
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm19data.injured_walking[1] += classA;
-                            pm19data.injured_freight[1] += classA;
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountWK++;
-                        } else {
-                            // console.log(type);
-                        }
-                    }
-                } else if (crash_year == latestYear - 2) {
-                    //for bar graph
-                    pm19data.injured[2] += classA;
-                    pm19data.classA[2] += classA;
-                    pm19data.classB[2] += classB;
-                    pm19data.classC[2] += classC;
-                    pm19data.classO[2] += classO;
-                    pm19data.non_injuri[2] += non_injuri;
-                    pm19data.unknown_injuri[2] += unknown_injuri;
-
-
-                    if (classA > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm19data.injured_walking[2] += classA;
-                            pm19data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm19data.injured_freight[2] += classA;
-                            pm19data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm19data.injured_driving[2] += classA;
-                            pm19data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm19data.injured_biking[2] += classA;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm19data.injured_biking[2] += classA;
-                            pm19data.injured_freight[2] += classA;
-                            pm19data.crashCountBK++; //count crash
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm19data.injured_walking[2] += classA;
-                            pm19data.injured_freight[2] += classA;
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountWK++;
-                        } else {
-                            //  console.log(type);
-                        }
-                    }
-                } else if (crash_year == latestYear - 1) {
-                    //for bar graph
-                    pm19data.injured[3] += classA;
-                    pm19data.classA[3] += classA;
-                    pm19data.classB[3] += classB;
-                    pm19data.classC[3] += classC;
-                    pm19data.classO[3] += classO;
-                    pm19data.non_injuri[3] += non_injuri;
-                    pm19data.unknown_injuri[3] += unknown_injuri;
-
-                    if (classA > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm19data.injured_walking[3] += classA;
-                            pm19data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm19data.injured_freight[3] += classA;
-                            pm19data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm19data.injured_driving[3] += classA;
-                            pm19data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm19data.injured_biking[3] += classA;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm19data.injured_biking[3] += classA;
-                            pm19data.injured_freight[3] += classA;
-                            pm19data.crashCountBK++; //count crash
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm19data.injured_walking[3] += classA;
-                            pm19data.injured_freight[3] += classA;
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountWK++;
-                        } else {
-                            //  console.log(type);
-                        }
-                    }
-                } else if (crash_year == latestYear) {
-                    //for bar graph
-                    pm19data.injured[4] += classA;
-                    pm19data.classA[4] += classA;
-                    pm19data.classB[4] += classB;
-                    pm19data.classC[4] += classC;
-                    pm19data.classO[4] += classO;
-                    pm19data.non_injuri[4] += non_injuri;
-                    pm19data.unknown_injuri[4] += unknown_injuri;
-
-                    if (classA > 0) { //for line graph
-                        if (type == "Pedestrian" || type == "PED") {
-                            pm19data.injured_walking[4] += classA;
-                            pm19data.crashCountWK++; //count crash
-                        } else if (type == "Commerical_Vehicles" || type == "COMV") {
-                            pm19data.injured_freight[4] += classA;
-                            pm19data.crashCountFK++; //count crash
-                        } else if (type == "GEN") {
-                            pm19data.injured_driving[4] += classA;
-                            pm19data.crashCountDK++; //count crash
-                        } else if (type == "Pedcyclists" || type == "BIKE") {
-                            pm19data.injured_biking[4] += classA;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "BIKE_COMV") {
-                            pm19data.injured_biking[4] += classA;
-                            pm19data.injured_freight[4] += classA;
-                            pm19data.crashCountBK++; //count crash
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountBK++; //count crash
-                        } else if (type == "PED_COMV") {
-                            pm19data.injured_walking[4] += classA;
-                            pm19data.injured_freight[4] += classA;
-                            pm19data.crashCountFK++;
-                            pm19data.crashCountWK++;
-                        } else {
-                            //    console.log(type);
-                        }
-                    }
+                let i = -1; //variable for indexing
+                if(crash_year == latestYear - 4){
+                    i = 0;
+                }else if (crash_year == latestYear - 3){
+                    i = 1;
+                }else if (crash_year == latestYear - 2){
+                    i = 2;
+                }else if (crash_year == latestYear - 1){
+                    i = 3;
+                }else if (crash_year == latestYear){
+                    i = 4;
                 }
+
+                if(i != -1){
+                     //for bar graph
+                     pm19data.injured[i] += classA;
+                     pm19data.classA[i] += classA;
+                     pm19data.classB[i] += classB;
+                     pm19data.classC[i] += classC;
+                     pm19data.classO[i] += classO;
+ 
+                     if (classA > 0) { //for line graph
+                         if (type == "Pedestrian" || type == "PED") {
+                             pm19data.injured_walking[i] += classA;
+                             pm19data.crashCountWK++; //count crash
+                             (state == "NM") ? pm19data.injured_walkingNM[i] += classA  : pm19data.injured_walkingTX[i] += classA; 
+                         } else if (type == "Commerical_Vehicles" || type == "COMV") {
+                             pm19data.injured_freight[i] += classA;
+                             pm19data.crashCountFK++; //count crash
+                             (state == "NM") ? pm19data.injured_freightNM[i] += classA  : pm19data.injured_freightTX[i] += classA; 
+                         } else if (type == "GEN") {
+                             pm19data.injured_driving[i] += classA;
+                             pm19data.crashCountDK++; //count crash
+                             (state == "NM") ? pm19data.injured_drivingNM[i] += classA  : pm19data.injured_drivingTX[i] += classA; 
+                         } else if (type == "Pedcyclists" || type == "BIKE") {
+                             pm19data.injured_biking[i] += classA;
+                             pm19data.crashCountBK++; //count crash
+                             (state == "NM") ? pm19data.injured_bikingNM[i] += classA  : pm19data.injured_bikingTX[i] += classA; 
+                         } else if (type == "BIKE_COMV") {
+                             pm19data.injured_biking[i] += classA;
+                             pm19data.injured_freight[i] += classA;
+                             pm19data.crashCountBK++; //count crash
+                             pm19data.crashCountFK++;
+                             pm19data.crashCountBK++; //count crash
+                             (state == "NM") ? pm19data.injured_bikingNM[i] += classA  : pm19data.injured_bikingTX[i] += classA; 
+                             (state == "NM") ? pm19data.injured_freightNM[i] += classA  : pm19data.injured_freightTX[i] += classA; 
+                         } else if (type == "PED_COMV") {
+                             pm19data.injured_walking[i] += classA;
+                             pm19data.injured_freight[i] += classA;
+                             pm19data.crashCountFK++;
+                             pm19data.crashCountWK++;
+                             (state == "NM") ? pm19data.injured_walkingNM[i] += classA  : pm19data.injured_walkingTX[i] += classA; 
+                             (state == "NM") ? pm19data.injured_freightNM[i] += classA  : pm19data.injured_freightTX[i] += classA; 
+                         } else {
+                             //    console.log(type);
+                         }
+                     }
+                 }
             }
 
         }
@@ -435,59 +302,73 @@ function pm19Data(mode, ex) {
 function pm19chartLine(ctx, data) {
     var pm19_graphTitle;
     var pm19_graphValues = [];
+    var pm19_graphValuesNM = [];
+    var pm19_graphValuesTX = [];
 
     //line chart data
     if (currentType == 'driving') { // if Driving is click
-        pm19_graphValues[0] = data.injured_driving[0];
-        pm19_graphValues[1] = data.injured_driving[1];
-        pm19_graphValues[2] = data.injured_driving[2];
-        pm19_graphValues[3] = data.injured_driving[3];
-        pm19_graphValues[4] = data.injured_driving[4];
+        pm19_graphValues = data.injured_driving;
+        pm19_graphValuesNM = data.injured_drivingNM;
+        pm19_graphValuesTX = data.injured_drivingTX;
         pm19_graphTitle = 'Driving Serious Injuries';
     } else if (currentType == 'freight') { // if Freight is click
-        pm19_graphValues[0] = data.injured_freight[0];
-        pm19_graphValues[1] = data.injured_freight[1];
-        pm19_graphValues[2] = data.injured_freight[2];
-        pm19_graphValues[3] = data.injured_freight[3];
-        pm19_graphValues[4] = data.injured_freight[4];
+        pm19_graphValues = data.injured_freight;
+        pm19_graphValuesNM = data.injured_freightNM;
+        pm19_graphValuesTX = data.injured_freightTX;
         pm19_graphTitle = 'Freight Serious Injuries';
 
     } else if (currentType == 'walking') {
-        pm19_graphValues[0] = data.injured_walking[0];
-        pm19_graphValues[1] = data.injured_walking[1];
-        pm19_graphValues[2] = data.injured_walking[2];
-        pm19_graphValues[3] = data.injured_walking[3];
-        pm19_graphValues[4] = data.injured_walking[4];
+        pm19_graphValues = data.injured_walking;
+        pm19_graphValuesNM = data.injured_walkingNM;
+        pm19_graphValuesTX = data.injured_walkingTX;
         pm19_graphTitle = 'Walking Serious Injuries';
     } else if (currentType == 'biking') {
-        pm19_graphValues[0] = data.injured_biking[0];
-        pm19_graphValues[1] = data.injured_biking[1];
-        pm19_graphValues[2] = data.injured_biking[2];
-        pm19_graphValues[3] = data.injured_biking[3];
-        pm19_graphValues[4] = data.injured_biking[4];
-        pm19_graphTitle = 'Bycycle Serious Injuries';
+        pm19_graphValues = data.injured_biking;
+        pm19_graphValuesNM = data.injured_bikingNM;
+        pm19_graphValuesTX = data.injured_bikingTX;
+        pm19_graphTitle = 'Bicycle Serious Injuries';
     }
 
     var data = {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
         datasets: [{
-                label: pm19_graphTitle,
-                data: pm19_graphValues,
-                backgroundColor: "purple",
-                borderColor: "lightblue",
-                fill: false,
-                lineTension: 0,
-                radius: 5
-            },
-            {
-                label: "Total Serious Injuries",
-                data: data.injured,
-                backgroundColor: "green",
-                borderColor: "lightgreen",
-                fill: false,
-                lineTension: 0,
-                radius: 5
-            }
+            label: pm19_graphTitle,
+            data: pm19_graphValues,
+            backgroundColor: "purple",
+            borderColor: "lightblue",
+            fill: false,
+            lineTension: 0,
+            radius: 5
+        },
+        {
+            label: "Total Serious Injuries"+ "\u00B9",
+            data: data.injured,
+            backgroundColor: "green",
+            borderColor: "lightgreen",
+            fill: false,
+            lineTension: 0,
+            radius: 5
+        },
+        {
+            label: pm19_graphTitle + " NM",
+            data: pm19_graphValuesNM,
+            backgroundColor: "orange",
+            borderColor: "grey",
+            fill: false,
+            lineTension: 0,
+            radius: 5,
+            hidden: true
+        },
+        {
+            label: pm19_graphTitle + " TX",
+            data: pm19_graphValuesTX,
+            backgroundColor: "blue",
+            borderColor: "lightblue",
+            fill: false,
+            lineTension: 0,
+            radius: 5,
+            hidden: true
+        }
         ]
     };
 
@@ -544,10 +425,6 @@ function pm19StackedChart(ctx, data) {
             label: 'Possible Injuries',
             backgroundColor: 'rgba(255,235,59,1)',
             data: data.classC
-        }, {
-            label: 'Non-Injury',
-            backgroundColor: 'rgb(255,0,255,0.5)',
-            data: data.non_injuri
         }]
 
     };

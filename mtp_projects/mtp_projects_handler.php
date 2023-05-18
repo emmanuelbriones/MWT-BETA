@@ -1,6 +1,6 @@
 <?php
 $path = dirname(__FILE__);
-require_once "{$path}./mtp_login.php";
+require_once "{$path}/mtp_login.php";
 $conn = mysqli_connect($host, $usr, $pw, $db);
 $conn->set_charset("utf8");
 
@@ -14,10 +14,6 @@ $conn-> close();
 //print_r($data);
 echo $data;
 
-
-
-
-
 function setupTable($conn)
 {
     $data = "";
@@ -25,21 +21,22 @@ function setupTable($conn)
 
 #TODO: ADD line types and  make splitted lines become SL_#  
     $line_columns = ['project_id', 'csj', 'project_na', 'project_mo', 'func_class',
-  'cmp_strate', 'from_', 'to_', 'city_area', 'network_ye', 'project_co',
-  'funding_so','yoe_fy','line'];
+    'cmp_strate', 'from_', 'to_', 'city_area', 'network_ye', 'project_co', 'sponsor',
+    'yoe_fy','line'];
 
-    $point_columns = ['project_id', 'csj', 'project_na', 'project_mo', 'functional',
-  'cmp_strate', 'from_', 'to_', 'city_area', 'network_ye', 'total_proj',
-  'sponsor','yoe__fy_'];
+    $point_columns = ['project_id', 'csj', 'project_na', 'project_mo', 'func_class',
+    'cmp_strate', 'from_', 'to_', 'city_area', 'network_ye', 'total_proj', 'sponsor',
+    'yoe_fy'];
 
     $no_map_columns = ['project_id', 'csj', 'project_na', 'project_mo', 'func_class',
-  'cmp_strate', 'from_', 'to_', 'city_area', 'network_ye', 'project_co',
-  'funding_so','yoe_fy'];
+    'cmp_strate', 'from_', 'to_', 'city_area', 'network_ye', 'project_co',
+    'funding_so','yoe_fy'];
 
-    $columns= array($line_columns,$point_columns, $no_map_columns);
-    //$columns= array($no_map_columns);
-    $tables = array("mtp_projects_lines","mtp_projects_points",'mtp_projects_no_map');
-    //$tables = array('mtp_projects_no_map');
+    // $columns= array($line_columns,$point_columns, $no_map_columns);
+    $columns= array($line_columns, $point_columns);
+
+    // $tables = array("mtp_projects_lines","mtp_projects_points",'mtp_projects_no_map');
+    $tables = array('destinolines', 'destinopoints',);
 
     for ($i=0 ; $i < sizeof($tables) ; $i++) {
         $query = "SELECT
@@ -59,17 +56,16 @@ function setupTable($conn)
                 {$columns[$i][12]} AS 'yoe_fy'
             ";
         
-        if ($tables[$i] === 'mtp_projects_lines') { // used for distinguishing the type of line for the id.
-            $query .= ", {$columns[$i][13]} AS 'line_type' ";
+        if ($tables[$i] === 'destinolines') { // used for distinguishing the type of line for the id.
+            $query .= ", {$columns[$i][12]} AS 'line_type' ";
         }
         
-
         $query .= "FROM {$tables[$i]}";
         $result = $conn->query($query);
         if ($result -> num_rows > -1) {
             while ($row = $result-> fetch_assoc()) {
                 $data .= setTableData(setIdentifier($i, $row));
-                //$data .= setTableData($row);
+                // $data .= setTableData($row);
         //array_push($data, $row);
             }
             $result-> close();

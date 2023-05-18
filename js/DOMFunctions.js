@@ -24,7 +24,11 @@ function openLegend() {
         document.getElementById("legendHolder").style.width = "60%";
     } else if (currentType == "repo") {
         document.getElementById("legendHolder").style.width = "50%";
-    } else {
+    } else if(currentPM == 21) {
+        document.getElementById("legendHolder").style.width = "53%";
+        document.getElementById("legendHolder").style.height = "15%";
+    }
+    else {
         document.getElementById("legendHolder").style.width = "30%"; //length of legend
     }
 }
@@ -58,7 +62,8 @@ function openNav() {
     }
 
     // toggle on radio buttons for corridor mode, regional, and AOI
-    if (currentPM == 5 || currentPM == 6 || currentPM == 7 || currentPM == 8 || currentPM == 9 || currentPM == 10  ||currentPM == 13 || currentPM ==14 ||currentPM == 22 || currentPM == 22) {
+    if (currentPM == 4 || currentPM == 5 || currentPM == 6 || currentPM == 7 || currentPM == 8 || currentPM == 9 || currentPM == 10  ||currentPM == 13 || currentPM ==14 
+        || currentPM == 15||currentPM == 16 || currentPM == 17 || currentPM == 21 || currentPM == 22) {
         toggleRadio("off");
     } else {
         toggleRadio("on");
@@ -373,10 +378,38 @@ function toggleHolderSwitch(state) {
 
     } else if (state == "off") {
         document.getElementById("ToggleHolder").style.display = "none";
-
     }
 }
 
+function toggleHolderBiking(state) {
+    if (state == "on") {
+        document.getElementById("ToggleBiking").style.display  = "block";
+        toggleElements("off", "dropdownMenuButton"); 
+
+    } else if (state == "off") {
+        document.getElementById("ToggleBiking").style.display = "none";
+    }
+}
+
+function toggleHolderKeyDestinations(state) {
+    if (state == "on") {
+        document.getElementById("ToggleKeyDestinations").style.display  = "block";
+        toggleElements("off", "dropdownMenuButton"); 
+
+    } else if (state == "off") {
+        document.getElementById("ToggleKeyDestinations").style.display = "none";
+    }
+}
+
+function toggleHolderKeyStations(state) {
+    if (state == "on") {
+        document.getElementById("ToggleKeyStations").style.display  = "block";
+        toggleElements("off", "dropdownMenuButton"); 
+
+    } else if (state == "off") {
+        document.getElementById("ToggleKeyStations").style.display = "none";
+    }
+}
 
 // detects if user is on mobile
 function detectmob() {
@@ -411,18 +444,18 @@ function toggleVisibilityCorr(mode) {
 function translateCorridor(corridors_selected) {
     let corr = "";
     if (corridors_selected == "alameda_buffer") corr = 'ALAMEDA';
-    else if (corridors_selected == "doniphan_buffer") corr = 'DONIPHAN';
-    else if (corridors_selected == "dyer_buffer") corr = 'DYER';
-    else if (corridors_selected == "horizon_buffer") corr = 'HORIZON';
-    else if (corridors_selected == "mesa_buffer") corr = 'MESA';
-    else if (corridors_selected == "montana_buffer") corr = 'MONTANA';
-    else if (corridors_selected == "montwood_buffer") corr = 'MONTWOOD';
-    else if (corridors_selected == "yarbrough_buffer") corr = 'YARBROUGH';
-    else if (corridors_selected == "zaragoza_buffer") corr = 'ZARAGOZA';
-    else if (corridors_selected == "socorro_buffer") corr = 'SOCORRO';
-    else if (corridors_selected == "mcnutt_buffer") corr = 'MCNUTT';
-    else if (corridors_selected == "eastlake_buffer") corr = 'EASTLAKE';
-    else if (corridors_selected == "artcraft_buffer") corr = 'Artcraft/Domenici';
+    else if (corridors_selected == "doniphancorridor_buffer") corr = 'DONIPHAN';
+    else if (corridors_selected == "dyercorridor_buffer") corr = 'DYER';
+    else if (corridors_selected == "horizoncorridor_buffer") corr = 'HORIZON';
+    else if (corridors_selected == "mesacorridor_buffer") corr = 'MESA';
+    else if (corridors_selected == "montanacorridor_buffer") corr = 'MONTANA';
+    else if (corridors_selected == "montwoodcorridor_buffer") corr = 'MONTWOOD';
+    else if (corridors_selected == "yarbroughcorridor_buffer") corr = 'YARBROUGH';
+    else if (corridors_selected == "zaragozacorridor_buffer") corr = 'ZARAGOZA';
+    else if (corridors_selected == "socorrocorridor_buffer") corr = 'SOCORRO';
+    else if (corridors_selected == "mcnuttcorridor_buffer") corr = 'MCNUTT';
+    else if (corridors_selected == "eastlakecorridor_buffer") corr = 'EASTLAKE';
+    else if (corridors_selected == "artcraft_domenicicorridor_buffer") corr = 'Artcraft/Domenici';
     return corr;
 }
 

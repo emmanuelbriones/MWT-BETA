@@ -25,8 +25,9 @@ function loadpm21P(mode, ex) {
         let image = "./img/markers/yellow.png";
         for (index in data.shape_arr) {
             let holder = [];
-            let project_name = data.shape_arr[index]['project_id'];
+            let project_id = data.shape_arr[index]['project_id'];
             let hotspot_ty = data.shape_arr[index]['hotspot_ty'];
+            let project_name = data.shape_arr[index]['proj_name'];
 
             if (hotspot_ty != "N/A") {
                 pm21dataCount++;
@@ -36,24 +37,48 @@ function loadpm21P(mode, ex) {
                 holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
                 holder = holder[0][0]; // Fixes BLOBs
 
+                let infowincontent = document.createElement('div');
+                infowincontent.class = 'containter';
+                infowincontent.innerHTML = `
+                <div class="container-fluid">
+                    <div class="row bg-info">
+                    <div class="col-sm-8  text-center text-black-85"><h6>ID: ${project_id}</h6></div>
+                    </div>
+                    <div class="row text-center" >
+                    <div class="col-sm-12"><h6>Project Name</h6></div>
+                    </div>
+                    <div class="row">
+                    <div class="col-xs-12"><p>${project_name}</p></div>
+                    </div>
+                </div>
+                `;
+
                 let to_visualize = {
                     lat: parseFloat(holder[0].lat),
                     lng: parseFloat(holder[0].lng)
                 };
 
+                let infoWindow = new google.maps.InfoWindow({
+                    content: infowincontent
+                });
+
                 let point = new google.maps.Marker({
                     position: to_visualize,
-                    title: project_name,
-                    value: project_name,
+                    value: project_id,
                     icon: image
+                });
+                point.addListener("mouseover", () => {
+                    infoWindow.open({
+                        anchor: point
+                    });
+                });
+                point.addListener("mouseout", () => {
+                    infoWindow.close();
                 });
                 point.setMap(map);
                 points.push(point);
-
             }
         }
-
-
         loadpm21Lines(mode, ex, pm21dataCount);
     });
 
@@ -91,7 +116,7 @@ function loadpm21H(mode, ex) {
                 }
 
                 if (pattern == "Intensifying Hot Spot") {
-                    color = '#d50000';
+                    color = '#D50000';
                 } else if (pattern == "New Hot Spot") {
                     color = '#FFA726';
                 } else if (pattern == "Not Emerging") {

@@ -57,7 +57,7 @@ var low_num = 0;
 var high_num = 0;
 
 // link for bridge condition
-var txt = "https://www.fhwa.dot.gov/bridge/britab.cfm";
+var txt = "https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659";
 
 type = "text/javascript"
 
@@ -197,51 +197,51 @@ function turnOn_Switch(selected) {
         } else if (selected == "DONIPHAN") {
             corridors_selected.DONIPHAN = true;
             corridors_T.DONIPHAN = true;
-            sendCurrentCorridor("doniphan_buffer");
+            sendCurrentCorridor("doniphancorridor_buffer");
         } else if (selected == "DYER") {
             corridors_selected.DYER = true;
             corridors_T.DYER = true;
-            sendCurrentCorridor("dyer_buffer");
+            sendCurrentCorridor("dyercorridor_buffer");
         } else if (selected == "HORIZON") {
             corridors_selected.HORIZON = true;
             corridors_T.HORIZON = true;
-            sendCurrentCorridor("horizon_buffer");
+            sendCurrentCorridor("horizoncorridor_buffer");
         } else if (selected == "MESA") {
             corridors_selected.MESA = true;
             corridors_T.MESA = true;
-            sendCurrentCorridor("mesa_buffer");
+            sendCurrentCorridor("mesacorridor_buffer");
         } else if (selected == "MONTANA") {
             corridors_selected.MONTANA = true;
             corridors_T.MONTANA = true;
-            sendCurrentCorridor("montana_buffer");
+            sendCurrentCorridor("montanacorridor_buffer");
         } else if (selected == "MONTWOOD") {
             corridors_selected.MONTWOOD = true;
             corridors_T.MONTWOOD = true;
-            sendCurrentCorridor("montwood_buffer");
+            sendCurrentCorridor("montwoodcorridor_buffer"); // pending
         } else if (selected == "YARBROUGH") {
             corridors_selected.YARBROUGH = true;
             corridors_T.YARBROUGH = true;
-            sendCurrentCorridor("yarbrough_buffer");
+            sendCurrentCorridor("yarbroughcorridor_buffer");
         } else if (selected == "ZARAGOZA") {
             corridors_selected.ZARAGOZA = true;
             corridors_T.ZARAGOZA = true;
-            sendCurrentCorridor("zaragoza_buffer");
+            sendCurrentCorridor("zaragozacorridor_buffer");
         } else if (selected == "EASTLAKE") {
             corridors_selected.EASTLAKE = true;
             corridors_T.EASTLAKE = true;
-            sendCurrentCorridor("eastlake_buffer");
+            sendCurrentCorridor("eastlakecorridor_buffer");
         } else if (selected == "SOCORRO") {
             corridors_selected.SOCORRO = true;
             corridors_T.SOCORRO = true;
-            sendCurrentCorridor("socorro_buffer");
+            sendCurrentCorridor("socorrocorridor_buffer");
         } else if (selected == "ARTCRAFT") {
             corridors_selected.ARTCRAFT = true;
             corridors_T.ARTCRAFT = true;
-            sendCurrentCorridor("artcraft_buffer");
+            sendCurrentCorridor("artcraft_domenicicorridor_buffer");
         } else if (selected == "MCNUTT") {
             corridors_selected.MCNUTT = true;
             corridors_T.MCNUTT = true;
-            sendCurrentCorridor("mcnutt_buffer");
+            sendCurrentCorridor("mcnuttcorridor_buffer");
         }
 
         //call these methods to populate corridor
@@ -658,6 +658,24 @@ function initMap() {
         center: new google.maps.LatLng(31.837465, -106.2851078)
 
     }); // * End Map
+	
+	// Hide labels from map
+	const styles = {
+        default: [],
+        hide: [
+            {
+            featureType: "transit",
+            elementType: "labels.icon",
+            stylers: [{ visibility: "off" }],
+            },
+            {
+                featureType: "poi",
+                elementType: "labels",
+                stylers: [{ visibility: "off" }],
+            },
+        ],
+    };
+    map.setOptions({ styles: styles["hide"] });
 
     // ! do not remove -> for AOI
     // TODO: Get shapes from UI and send to DB to extract intersection
@@ -714,7 +732,7 @@ function initMap() {
       //  console.log(AOI_STRING);
         AOI(AOI_STRING); // send AOI string
     });
-
+	set_boundries();
 
 
 } // End Init Map
@@ -733,71 +751,6 @@ function pdf() {
 }
 
 
-// function cmp_lines() {
-//     fetch('./results.json').then(function (response) {
-//         return response.json();
-//     }).then(function (myJson) {
-//         console.log("CMP NETWORK LINES");
-//         for (var index in myJson.PM22_Lines) {
-//             for (var county in myJson.PM22_Lines[index]) {
-//                 let shp = myJson.PM22_Lines[index][county]["shape"];
-
-//                 let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
-//                 let r = reader.read(shp); // r becomes an object from the 3rd party tool, for a single shp
-//                 let to_visualize = []; // used to populate the map (latitude & longitude)
-//                 let coord; // will be an object to push coordinates to populate the map
-//                 let ln = r.getCoordinates(); // parses the shape into lat & lng
-//                 for (let i = 0; i < ln.length; i++) {
-//                     coord = {
-//                         lat: ln[i]['y'],
-//                         lng: ln[i]['x']
-//                     };
-//                     to_visualize.push(coord);
-//                 }
-//                 let line = new google.maps.Polyline({ // it is a POLYLINE
-//                     path: to_visualize, // polyline has a path, defined by lat & lng
-//                     // value: data.corridor_data[index]['value'], // iri (attribute for the pavement condition score)
-//                     strokeColor: 'pink',
-//                     strokeOpacity: 0.80,
-//                     strokeWeight: 5,
-//                     zIndex: 99 // on top of every other shape
-//                 });
-//                 line.setMap(map);
-//                 polylines.push(line);
-//             }
-
-//         }
-
-//         // for (var index in myJson.PM22_Lines.TX_CMP_LINES) {
-//         //     let shp =  myJson.PM22_Lines[index]['shape']; // shape is LINESTRING or MULTILINESTRING
-//         //     let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
-//         //     let r = reader.read(shp); // r becomes an object from the 3rd party tool, for a single shp
-//         //     let to_visualize = []; // used to populate the map (latitude & longitude)
-//         //     let coord; // will be an object to push coordinates to populate the map
-//         //     let ln = r.getCoordinates(); // parses the shape into lat & lng
-//         //     for (let i = 0; i < ln.length; i++) {
-//         //         coord = {
-//         //             lat: ln[i]['y'],
-//         //             lng: ln[i]['x']
-//         //         };
-//         //         to_visualize.push(coord);
-//         //     }
-//         //     let line = new google.maps.Polyline({ // it is a POLYLINE
-//         //         path: to_visualize, // polyline has a path, defined by lat & lng
-//         //         // value: data.corridor_data[index]['value'], // iri (attribute for the pavement condition score)
-//         //         strokeColor: 'teal',
-//         //         strokeOpacity: 0.70,
-//         //         strokeWeight: 5,
-//         //         zIndex: 99 // on top of every other shape
-//         //     });
-//         //     line.setMap(map);
-//         //     corridors_shown[_key].push(line);
-
-
-//         // }
-//     });
-// }
-
 function wktFormatter(poly) {
     let name = poly.slice(0, 7);
     let shape_s = [];
@@ -811,8 +764,8 @@ function wktFormatter(poly) {
             for (i = 0; i < polyTemp.length; i++) {
                 let temp = polyTemp[i].split(" ");
                 polyCoordi.push({
-                    lat: parseFloat(temp[1]),
-                    lng: parseFloat(temp[0])
+                    lat: parseFloat(temp[0]),
+                    lng: parseFloat(temp[1])
                 });
             }
             shape_s[j] = polyCoordi;
@@ -828,8 +781,8 @@ function wktFormatter(poly) {
             for (i = 0; i < polyTemp.length; i++) {
                 let temp = polyTemp[i].split(" ");
                 polyCoordi.push({
-                    lat: parseFloat(temp[1]),
-                    lng: parseFloat(temp[0])
+                    lat: parseFloat(temp[0]),
+                    lng: parseFloat(temp[1])
                 });
             }
             shape_s[j] = polyCoordi;
@@ -838,18 +791,6 @@ function wktFormatter(poly) {
     return shape_s;
 }
 
-// function wkt_points(blob){
-//     console.log("1 " + blob);
-//     var point = new Wkt.Wkt();
-//     point =  point.read(blob);
-//     console.log("3 " + point.components );
-//     point.toObject();
-//     console.log("4");
-//     point.toJson();
-//     console.log("5");
-//     return point;
-
-// }
 function wktFormatterPoint(point) {
     // let name = point.slice(0,5);
     // console.log(name);
@@ -866,8 +807,8 @@ function wktFormatterPoint(point) {
         for (i = 0; i < pointTemp.length; i++) {
             let temp = pointTemp[i].split(" ");
             pointCoordi.push({
-                lat: parseFloat(temp[1]),
-                lng: parseFloat(temp[0])
+                lat: parseFloat(temp[0]),
+                lng: parseFloat(temp[1])
             });
         }
         shape_s[j] = pointCoordi;
@@ -962,24 +903,35 @@ function clearMetadata() {
     markerClusterSafeDelete();
 }
 
-/** Get SUM of array
- * | Input: array
- * | Output: integer || float*/
-// function arrSum(list){
-//   let sum= 0;
-//   for(let i = 0; i < list.length; i++){
-//     sum = sum + list[i];
-//   }
-//   return sum;
-// }
-
-
-/** Get AVG of array
-* | Input: array
-* | Output: integer || float*/
-// function arrAvg(list){
-//   let avg = 0;
-//   let sum = arrSum(list);
-//   avg = sum / list.length;
-//   return avg;
-// }
+//this function draws the boundries of El Paso
+function set_boundries() {
+    fetch('./epBoundries.json').then(function (response) {
+        return response.json();
+    }).then(function (myJson) {
+        let active_corr = myJson["ELPASO"];
+        for (index in active_corr) {
+            let shp = active_corr[index]['shape']; // shape is LINESTRING or MULTILINESTRING
+            let reader = new jsts.io.WKTReader(); // 3rd party tool to handle multiple shapes
+            let r = reader.read(shp); // r becomes an object from the 3rd party tool, for a single shp
+            let to_visualize = []; // used to populate the map (latitude & longitude)
+            let coord; // will be an object to push coordinates to populate the map
+            let ln = r.getCoordinates(); // parses the shape into lat & lng
+            for (let i = 0; i < ln.length; i++) {
+                coord = {
+                    lat: ln[i]['y'],
+                    lng: ln[i]['x']
+                };
+                to_visualize.push(coord);
+            }
+            let line = new google.maps.Polyline({ // it is a POLYLINE
+                path: to_visualize, // polyline has a path, defined by lat & lng
+                // value: data.corridor_data[index]['value'], // iri (attribute for the pavement condition score)
+                strokeColor: 'gray',
+                strokeOpacity: 0.75,
+                strokeWeight: 5,
+                zIndex: 99 // on top of every other shape
+            });
+            line.setMap(map);
+        }
+    });
+}

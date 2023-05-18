@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+   <title>National Measures</title>
+</head>
+
+<body>
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"></script>
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script type="text/javascript" src="npm_functions/NPM2.js"></script>
+
+   <!-- Mathjax -->
+   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+   <div class="main">
+      <div id="legendHolder" class="legend">
+         <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">
+               <div class='my-legend'>
+                  <div id='legend_title'></div>
+                  <div class='legend-scale'>
+                     <ul id="legendList" class='legend-labels'></ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="wrapper">
+         <div class="container-fluid">
+            <div class="row d-md-block flex-nowrap wrapper">
+               <div class="col-md-2 float-left col-1 pl-0 pr-0 show width" id="sidebar">
+                  <div class="list-group border-0 card text-center text-md-left">
+                     <a class="logo" href="http://www.elpasompo.org/" target="#" class="d-none d-md-inline"><img
+                           src="./img/elmpologo.png" class="img-responsive"></a>
+                     <br>
+                     <a class="list-group-item d-inline-block collapsed"  href="NPM1.html"><span
+                        class="d-none d-md-inline">PM 1 - Safety</span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="NPM2.html">
+                        <span class="d-none d-md-inline">PM 2 - Infrastructure</span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="NPM3.html"
+                        id="benchmarking"><span class="d-none d-md-inline">PM 3 - System Performance</span></a>
+                     <a class="list-group-item d-inline-block collapsed " data-parent="#sidebar" href="index.php"><i
+                        class="fa fa-bar-chart"></i> <span class="d-none d-md-inline">Main Menu</span></a>
+
+                  </div>
+               </div>
+               <div class="col-md-10 float-left" style="background-color: white;"><br><br>
+                  <div id=info>
+                     <h2 class=sub-header>
+                        What is Transportation Performance Management?
+                     </h2>
+                     <p class=paragraph>Between 2016 and 2017, the Federal Highway Administration (FHWA) and the Federal
+                        Transit Administration
+                        (FTA) published several rules establishing performance measures and reporting
+                        requirements for State Departments of Transportation (DOTs), Metropolitan
+                        Planning Organizations (MPOs), and transit agencies. Among other changes, the
+                        rules require State DOTs and MPOs to take a performance-based approach to planning for mobility
+                        needs and programming transportation funding.                        
+                     </p>
+                  </div>
+                  <div id="pm2">
+                     <h2 class="pm-header" id="test">
+                        <strong>PM 2 - Infrastructure</strong>
+                     </h2>
+                     <p class="paragraph">
+                        Infrastructure performance is measured by six performance measures. The Bridge and Pavement
+                        Performance Management (PM 2) Final Rule, which is codified in <a
+                           href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490">23
+                           Code of Federal Regulations (CFR) Part 490</a>
+                        defines the following national performance measures for pavement and bridges.
+                     </p>
+                     <h4>Data Sources</h4>
+                     <p class="paragraph">
+                        The latest <a href="https://www.fhwa.dot.gov/policyinformation/hpms.cfm">Federal Highway
+                           Performance Monitoring System (HPMS) public release</a> of pavement
+                        condition data was available for year 2018 for El Paso, Dona Ana, and Otero counties. <br>
+                        The latest National Bridge Inventory (NBI) condition data available at the <a
+                           href="https://infobridge.fhwa.dot.gov">HWA InfoBridge Long-Term Bridge
+                           Performance (LTBP)</a> portal was available for year 2020 for El Paso, Dona Ana, and Otero
+                        counties. <br>
+                        El Paso MPO adopted TxDOT 2020 and 2022 targets for El Paso County PMs, and NMDOT 2019 and 2021
+                        NMDOT targets for Doña Ana and Otero counties. <br>
+                        The Bridge and Pavement Performance Management (PM 2) Final Rule, which is codified in <a
+                           href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490">23
+                           Code of
+                           Federal Regulations (CFR) Part 490</a>, defines the following national performance measures
+                        for
+                        pavement and bridges.
+                     </p>
+                     <!-- 2-1 -->
+                     <h3 class="pm-header">
+                        <strong>PM 2-1 Percentage of Pavements on the Interstate System in Good Condition</strong>
+                     </h3>
+                     <p class="paragraph">
+                     </p>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-1" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Methodology
+                     </a>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-1Graphs" role="button"
+                        onclick="npm2_1tx();npm2_1nm()" aria-expanded="false" aria-controls="collapseExample">
+                        Show Graphs
+                     </a>
+                     <br><br>
+                     <div class="collapse" id="PM2-1">
+                        <div class="card card-body">
+                           <p>
+                              For <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.307#p-490.307(a)(1)">§
+                                 490.307(a)(1)</a> the measure for percentage of lane-miles of the Interstate System in
+                              Good condition shall be computed to the one tenth of a percent as follows <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(2)">(23
+                                 CFR
+                                 490.313(f)(2)):</a><br>
+                                 $$\text{Percentage of Pavements on the Interestate System in Good Condition} = 100 \times \frac{\sum_{g=1}[(End Point - BeginPoint) \times Through Lanes]section_g}{\sum_{t=1}[(End Point - BeginPoint) \times Through Lanes]section_t} $$
+                           </p>
+                           <h5>Definitions</h5>
+                           <p>
+                              Good = total number of mainline highway Interstate System sections where the overall
+                              condition is Good. <br>
+                              g = a section's overall condition is determined Good per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)">
+                                 paragraphs
+                                 (b)</a> or <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(c)">(c)</a>
+                              of section <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
+                                 490.313</a>
+                              <br>
+                              t = an Interstate System section <br>
+                              Total = total number of mainline highway Interstate System sections excluding bridges,
+                              unpaved surface and “other” surface types, and missing data sections, described in <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(f)(1)">paragraph
+                                 (f)(1)</a>
+                              and <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)(4)(i)">(b)(4)(i)</a>
+                              of section <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
+                                 490.313</a> <br>
+                              Begin_Point = Begin Milepost of each section g or t <br>
+                              End Point = End Milepost of each section g or t; and <br>
+                              Through_lanes = the number of lanes designated for through-traffic represented by a
+                              section g
+                              or t. <br>
+                              Two separate sets of targets are provided for Texas and New Mexico, as per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.209(d)(2)">§
+                                 490.209(d)(2)</a>
+                           </p>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:red">
+                              <h4>Pavements in Good Condition</h4>
+                              <h4>El Paso Area MPO - El Paso County, TX - 2018</h4>
+                           </div>
+                           <br>
+                           <h5>Annual: <b>47.71%</b></h5>
+                           <h5>Baseline: <b>N/A</b></h5>
+                           <h5>Target 2020: <b>N/A</b></h5>
+                           <h5>Better than Target 2020?: <b>N/A</b></h5>
+                           <h5>Target 2022: <b>66.40%</b></h5>
+                           <h5>Better than Target 2022?: <b>No</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:red; color: white;">Off Target</h2>
+                           <img class="cross" src="img/cross.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-1Graphs">
+                        <canvas class="NPMGraphs" id="Tx_NPM2-1"></canvas>
+                     </div>
+                     <br><br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <br>
+                              <h4>Pavements in Good Condition</h4>
+                              <h4>El Paso Area MPO - Dona Ana / Otero, NM - 2018</h4>
+                           </div>
+                           <br>
+                           <h5>Annual: <b>100%</b></h5>
+                           <h5>Baseline: <b>N/A</b></h5>
+                           <h5>Target 2019: <b>57.3%</b></h5>
+                           <h5>Better than Target 2019?: <b>Yes</b></h5>
+                           <h5>Target 2021: <b>59.1%</b></h5>
+                           <h5>Better than Target 2021?: <b>Yes</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green; color: white;">On Target</h2>
+                           <img class="check" src="img/check.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-1Graphs">
+                        <canvas class="NPMGraphs" id="Nm_NPM2-1"></canvas>
+                     </div>
+                     <br>
+
+                     <!-- 2-2 -->
+                     <h3 class="pm-header">
+                        <strong>PM 2-2 Percentage of Pavements on the Interstate System in Poor Condition</strong>
+                     </h3>
+                     <p class="paragraph">
+                     </p>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-2" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Methodology
+                     </a>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-2Graphs" role="button"
+                        onclick="npm2_2tx();npm2_2nm()" aria-expanded="false" aria-controls="collapseExample">
+                        Show Graphs
+                     </a>
+                     <br><br>
+                     <div class="collapse" id="PM2-2">
+                        <div class="card card-body">
+                           <p>
+                              For <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.307#p-490.307(a)(2)">§
+                                 490.307(a)(2)</a> the measure for percentage of lane-miles of the Interstate System in
+                              Poor condition shall be computed to the one tenth of a percent as follows <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(3)">(23
+                                 CFR 490.313(f)(3)):</a><br>
+                                 $$\text{Percentage of Pavements on the Interestate System in Poor Condition} = 100 \times \frac{\sum_{g=1}[(End Point - BeginPoint) \times Through Lanes]section_p}{\sum_{t=1}[(End Point - BeginPoint) \times Through Lanes]section_t} $$
+                           </p>
+                           <h5>Definitions</h5>
+                           <p>
+                              Poor = total number of mainline highway Interstate System sections where the overall
+                              condition is Poor <br>
+                              p = a section's overall condition is determined Poor per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)">paragraphs
+                                 (b)</a> or <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(c)">(c)</a>
+                              of section <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§490.313</a>
+                              <br>
+                              t = an Interstate System section;
+                              Total = total number of mainline highway Interstate System sections excluding bridges,
+                              unpaved surface and “other” surface types, and missing data sections, described in <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(f)(1)">paragraph
+                                 (f)(1) </a>
+                              and <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)(4)(i)">(b)(4)(i)</a>
+                              of section <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
+                                 490.313</a> <br>
+                              Begin_Point = Begin Milepost of each section p or t <br>
+                              End Point = End Milepost of each section p or t<br>
+                              Through_lanes = the number of lanes designated for through-traffic represented by a
+                              section p or t <br>
+                              Two separate sets of targets are provided for Texas and New Mexico, as per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.209(d)(2)">§
+                                 490.209(d)(2)</a>
+                           </p>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:red">
+                              <h4>Pavements in Poor Condition</h4>
+                              <h4>El Paso Area MPO - El Paso County, TX - 2018</h4>
+                           </div>
+                           <br>
+                           <h5>Annual: <b>4.75%</b></h5>
+                           <h5>Baseline: <b>N/A</b></h5>
+                           <h5>Target 2020: <b>N/A</b></h5>
+                           <h5>Better than Target 2020?: <b>N/A</b></h5>
+                           <h5>Target 2022: <b>0.3%</b></h5>
+                           <h5>Better than Target 2022?: <b>No</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:red; color: white;">Off Target</h2>
+                           <img class="cross" src="img/cross.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-2Graphs">
+                        <canvas class="NPMGraphs" id="Tx_NPM2-2"></canvas>
+                     </div>
+                     <br><br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <br>
+                              <h4>Pavements in Poor Condition</h4>
+                              <h4>El Paso Area MPO - Dona Ana / Otero, NM - 2018</h4>
+                           </div>
+                           <br>
+                           <h5>Annual: <b>0%</b></h5>
+                           <h5>Baseline: <b>N/A</b></h5>
+                           <h5>Target 2019: <b>4.5%</b></h5>
+                           <h5>Better than Target 2019?: <b>Yes</b></h5>
+                           <h5>Target 2021: <b>5.0%</b></h5>
+                           <h5>Better than Target 2021?: <b>Yes</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green; color: white;">On Target</h2>
+                           <img class="check" src="img/check.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-2Graphs">
+                        <canvas class="NPMGraphs" id="Nm_NPM2-2"></canvas>
+                     </div>
+                     <br>
+
+                     <!-- 2-3 -->
+                     <h3 class="pm-header">
+                        <strong>PM 2-3 Percentage of Pavements on the Non-Interstate NHS in Good Condition</strong>
+                     </h3>
+                     <p class="paragraph">
+                     </p>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-3" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Methodology
+                     </a>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-3Graphs" role="button"
+                        onclick="npm2_3tx();npm2_3nm()" aria-expanded="false" aria-controls="collapseExample">
+                        Show Graphs
+                     </a>
+                     <br><br>
+                     <div class="collapse" id="PM2-3">
+                        <div class="card card-body">
+                           <p>
+                              For <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.307#p-490.307(a)(3)">§
+                                 490.307(a)(3)</a> the measure for percentage of lane-miles of the non-Interstate NHS in
+                              Good condition in <a href="§ 490.307(a)(3)">§ 490.307(a)(3)</a> shall be computed to the
+                              one tenth of a percent as
+                              follows <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(4)">(23
+                                 CFR 490.313(f)(4))</a><br>
+                              $$\text{Percentage of Pavements on the Non-Interestate NHS in Good Condition} = 100 \times \frac{\sum_{g=1}[(End Point - BeginPoint) \times Through Lanes]section_g}{\sum_{t=1}[(End Point - BeginPoint) \times Through Lanes]section_t} $$
+                           </p>
+                           <h5>Definitions</h5>
+                           <p>
+                              Good = total number of mainline highway non-Interstate NHS sections where the overall
+                              condition is Good <br>
+                              g = a section's overall condition is determined Good per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)">paragraphs
+                                 (b)</a>, <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(c)">(c)</a>
+                              or <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(d)">(d)</a>
+                              of section <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
+                                 490.313</a><br>
+                              t = a non-Interstate NHS section <br>
+                              Total = total number of mainline highway non-Interstate NHS sections excluding bridges,
+                              unpaved surface and “other” surface types, and missing data sections, described in
+                              <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(f)(1)">paragraph
+                                 (f)(1)</a> and <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)(4)(i)">(b)(4)(i)</a>
+                              of section <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
+                                 490.313</a><br>
+                              Begin_Point = Begin Milepost of each section g or t <br>
+                              End Point = End Milepost of each section g or t <br>
+                              Through_lanes = the number of lanes designated for through-traffic represented by a
+                              section g or t <br>
+                              Two separate sets of targets are provided for Texas and New Mexico, as per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.209(d)(2)">§
+                                 490.209(d)(2)</a>
+                           </p>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:red">
+                              <h4>Pavements in Good Condition</h4>
+                              <h4>El Paso Area MPO - El Paso County, TX - 2018</h4>
+                           </div>
+                           <br>
+                           <h5>Annual: <b>29.28%</b></h5>
+                           <h5>Baseline: <b>54.4%</b></h5>
+                           <h5>Target 2020: <b>52.0%</b></h5>
+                           <h5>Better than Target 2020?: <b>No</b></h5>
+                           <h5>Target 2022: <b>52.3%</b></h5>
+                           <h5>Better than Target 2022?: <b>No</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:red; color: white;">Off Target</h2>
+                           <img class="cross" src="img/cross.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-3Graphs">
+                        <canvas class="NPMGraphs" id="Tx_NPM2-3"></canvas>
+                     </div>
+                     <br><br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <br>
+                              <h4>Pavements in Good Condition</h4>
+                              <h4>El Paso Area MPO - Dona Ana / Otero, NM - 2018</h4>
+                           </div>
+                           <br>
+                           <h5>Annual: <b>72.16%</b></h5>
+                           <h5>Baseline: <b>N/A</b></h5>
+                           <h5>Target 2019: <b>35.6%</b></h5>
+                           <h5>Better than Target 2019?: <b>Yes</b></h5>
+                           <h5>Target 2021: <b>34.2%</b></h5>
+                           <h5>Better than Target 2021?: <b>Yes</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green; color: white;">On Target</h2>
+                           <img class="check" src="img/check.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-3Graphs">
+                        <canvas class="NPMGraphs" id="Nm_NPM2-3"></canvas>
+                     </div>
+                     <br>
+
+                     <!-- 2-4 -->
+                     <h3 class="pm-header">
+                        <strong>PM 2-4 Percentage of Pavements on the Non-Interstate NHS in Poor Condition</strong>
+                     </h3>
+                     <p class="paragraph">
+                     </p>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-4" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Methodology
+                     </a>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-4Graphs" role="button"
+                        onclick="npm2_4tx();npm2_4nm()" aria-expanded="false" aria-controls="collapseExample">
+                        Show Graphs
+                     </a>
+                     <br><br>
+                     <div class="collapse" id="PM2-4">
+                        <div class="card card-body">
+                           <p>
+                              For <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.307#p-490.307(a)(4)">§
+                                 490.307(a)(4)</a> the measure for percentage of lane-miles of the non-Interstate NHS in
+                              Poor condition in <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.307#p-490.307(a)(4)">§
+                                 490.307(a)(4)</a> shall be computed to the one tenth of a percent as
+                              follows <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.313(f)(5)">(23
+                                 CFR 490.313(f)(5))</a>:  
+                              $$\text{Percentage of Pavements on The Non-Interestate NHS in Poor Condition} = 100 \times \frac{\sum_{g=1}[(End Point - BeginPoint) \times Through Lanes]section_p}{\sum_{t=1}[(End Point - BeginPoint) \times Through Lanes]section_t} $$
+                           </p>
+                           <h5>Definitions</h5>
+                           <p>
+                              Poor = total number of mainline highway non-Interstate NHS sections where the overall
+                              condition is Poor <br>
+                              p = a section's overall condition is determined Poor per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)">paragraphs
+                                 (b)</a>, <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(c)">(c)</a>
+                              or <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(d)">(d)</a>
+                              of
+                              section <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
+                                 490.313</a><br>
+                              t = a non-Interstate NHS section <br>
+                              Total = total number of mainline highway non-Interstate NHS sections excluding bridges,
+                              unpaved surface and “other” surface types, and missing data sections, described in
+                              <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(f)(1)">paragraph
+                                 (f)(1)</a> and <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.313#p-490.313(b)(4)(i)">(b)(4)(i)</a>
+                              of section <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-C/section-490.313">§
+                                 490.313</a><br>
+                              Begin_Point = Begin Milepost of each section p or t <br>
+                              End Point = End Milepost of each section p or t <br>
+                              Through_lanes = the number of lanes designated for through-traffic represented by a
+                              section p or t.
+                              Two separate sets of targets are provided for Texas and New Mexico, as per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.209(d)(2)">§
+                                 490.209(d)(2).</a>
+                           </p>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:red">
+                              <h4>Pavements in Poor Condition</h4>
+                              <h4>El Paso Area MPO - El Paso County, TX - 2018</h4>
+                           </div>
+                           <br>
+                           <h5>Annual: <b>25.55%</b></h5>
+                           <h5>Baseline: <b>13.8%</b></h5>
+                           <h5>Target 2020: <b>14.3%</b></h5>
+                           <h5>Better than Target 2020?: <b>No</b></h5>
+                           <h5>Target 2022: <b>14.3%</b></h5>
+                           <h5>Better than Target 2022?: <b>No</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:red; color: white;">Off Target</h2>
+                           <img class="cross" src="img/cross.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-4Graphs">
+                        <canvas class="NPMGraphs" id="Tx_NPM2-4"></canvas>
+                     </div>
+                     <br><br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <br>
+                              <h4>Pavements in Poor Condition</h4>
+                              <h4>El Paso Area MPO - Dona Ana / Otero, NM - 2018</h4>
+                           </div>
+                           <p class="paragraph" style="color:black">
+                              <!-- The number of fatalities is the total number of deaths in
+                              reportable motor vehicle traffic crashes in a calendar year. -->
+                           </p>
+                           <h5>Annual: <b>7.58%</b></h5>
+                           <h5>Baseline: <b>N/A</b></h5>
+                           <h5>Target 2019: <b>9.0%</b></h5>
+                           <h5>Better than Target 2019?: <b>Yes</b></h5>
+                           <h5>Target 2021: <b>12.0%</b></h5>
+                           <h5>Better than Target 2021?: <b>Yes</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green; color: white;">On Target</h2>
+                           <img class="check" src="img/check.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-4Graphs">
+                        <canvas class="NPMGraphs" id="Nm_NPM2-4"></canvas>
+                     </div>
+                     <br>
+
+                     <!-- 2-5 -->
+                     <h3 class="pm-header">
+                        <strong>PM 2-5 Percentage of NHS Bridges classified as in Good Condition</strong>
+                     </h3>
+                     <p class="paragraph">
+
+                     </p>
+
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-5" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Methodology
+                     </a>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-5Graphs" role="button"
+                        onclick="npm2_5tx();npm2_5nm()" aria-expanded="false" aria-controls="collapseExample">
+                        Show Graphs
+                     </a>
+                     <br><br>
+                     <div class="collapse" id="PM2-5">
+                        <div class="card card-body">
+                           <p>
+                              The performance measure for the percentage of NHS bridges classified as in Good condition
+                              shall be calculated as per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-D/section-490.409">§
+                                 490.409</a>. The bridges carrying the NHS which includes on- and
+                              off-ramps connected to the NHS will be classified as Good based on the following criterion
+                              <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-D/section-490.409#p-490.409(b)(1)">(§
+                                 23 CFR 490.409(b)(1))</a>:
+                              When the lowest rating of the 3 NBI items for a bridge (Items 58 -
+                              Deck, 59 - Superstructure, 60 - Substructure) is 7, 8, or 9, the bridge will be classified
+                              as
+                              Good. When the rating of NBI item for a culvert (Item 62 - Culverts) is 7, 8, or 9, the
+                              culvert will be classified as Good. Two separate sets of targets are provided for Texas
+                              and
+                              New Mexico, as per <a href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490#p-490.209(d)(2)">§ 490.209(d)(2)</a>. <br>
+                              For <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-D/section-490.409#p-490.409(c)(1)">§
+                                 490.407(c)(1)</a>, the measure for the percentage of bridges classified as in Good
+                              condition shall be computed and reported to the one tenth of a percent as follows <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-D/section-490.409#p-490.409(c)(1)">(§
+                                 23 CFR
+                                 490.409(c)(1))</a>:
+                              $$\text{Percentage of Bridges Classified in Good Condition} = 100 \times \frac{\sum_{g=1}[Length \times Width]Bridge_g}{\sum_{s=1}[Length \times Width]Bridge_s} $$
+                              The measures identified in <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.407#p-490.407(c)">§
+                                 490.407(c)</a> shall be used to establish targets in accordance with
+                              <a href="https://ecfr.federalregister.gov/current/title-23/section-490.105">§ 490.105</a>
+                              and
+                              report targets and conditions described in <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.107">§ 490.107</a>.
+
+                           </p>
+                           <h5>Definitions</h5>
+                           <p>
+                              - GOOD = total number of the applicable bridges, where their condition is Good per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.409#p-490.409(b)(1)">paragraph
+                                 (b)(1)</a>
+                              of this section. <br>
+                              - g = a bridge determined to be in Good condition per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.409#p-490.409(b)(1)">paragraph
+                                 (b)(1)</a> of this section;
+                              - Length = corresponding value of NBI Item 49 - Structure Length for every applicable
+                              bridge
+                              <br>
+                              - Width = corresponding value of NBI Item 52 - Deck Width or value of Item 32 Approach
+                              Roadway Width for culverts where the roadway is on a fill [i.e., traffic does not directly
+                              run on the top slab (or wearing surface) of the culvert] and the headwalls do not affect
+                              the
+                              flow of traffic for every applicable bridge <br>
+                              - s = an applicable bridge <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.409#p-490.409(b)">per
+                                 paragraph (b)</a> of this section. <br>
+                              - TOTAL = total number of the applicable bridges specified in <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.409#p-490.409(b)">paragraph
+                                 (b)</a> of this section.
+                           </p>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <h4>Bridges in Good Condition</h4>
+                              <h4>El Paso Area MPO - El Paso County, TX - 2020</h4>
+                           </div>
+                           <p class="paragraph" style="color:black">
+                              <!-- The number of fatalities is the total number of deaths in
+                           reportable motor vehicle traffic crashes in a calendar year. -->
+                           </p>
+                           <h5>Annual: <b>51.79%</b></h5>
+                           <h5>Baseline: <b>50.63%</b></h5>
+                           <h5>Target 2020: <b>50.58%</b></h5>
+                           <h5>Better than Target 2020?: <b>Yes</b></h5>
+                           <h5>Target 2022: <b>50.42%</b></h5>
+                           <h5>Better than Target 2020?: <b>Yes</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green; color: white;">On Target</h2>
+                           <img class="check" src="img/check.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-5Graphs">
+                        <canvas class="NPMGraphs" id="Tx_NPM2-5"></canvas>
+                     </div>
+                     <br><br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <br>
+                              <h4>Bridges in Good Condition</h4>
+                              <h4>El Paso Area MPO - Dona Ana / Otero, NM - 2019</h4>
+                           </div>
+                           <p class="paragraph" style="color:black">
+                              <!-- The number of fatalities is the total number of deaths in
+                           reportable motor vehicle traffic crashes in a calendar year. -->
+                           </p>
+                           <h5>Annual: <b>39.86%</b></h5>
+                           <h5>Baseline: <b>N/A</b></h5>
+                           <h5>Target 2019: <b>36.00%</b></h5>
+                           <h5>Better than Target 2019?: <b>Yes</b></h5>
+                           <h5>Target 2021: <b>30.00%</b></h5>
+                           <h5>Better than Target 2022?: <b>Yes</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green; color: white;">On Target</h2>
+                           <img class="check" src="img/check.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-5Graphs">
+                        <canvas class="NPMGraphs" id="Nm_NPM2-5"></canvas>
+                     </div>
+                     <br>
+
+                     <!-- 2-6 -->
+
+                     <h3 class="pm-header">
+                        <strong>PM 2-6 Percentage of NHS Bridges classified as in Poor Condition</strong>
+                     </h3>
+                     <p class="paragraph">
+                     </p>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-6" role="button" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Methodology
+                     </a>
+                     <a class="btn btn-primary" data-toggle="collapse" href="#PM2-6Graphs" role="button"
+                        onclick="npm2_6tx();npm2_6nm()" aria-expanded="false" aria-controls="collapseExample">
+                        Show Graphs
+                     </a>
+                     <br><br>
+                     <div class="collapse" id="PM2-6">
+                        <div class="card card-body">
+                           <p>
+                              The performance measure for the percentage of NHS bridges classified as in Poor condition
+                              shall be calculated as per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-D/section-490.409">§
+                                 490.409</a>. The bridges carrying the NHS which includes on- and
+                              off-ramps connected to the NHS will be classified as Poor based on the following criterion
+                              <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-D/section-490.409#p-490.409(b)(3)">(§
+                                 23 CFR 490.409(b)(3))</a> : When the lowest rating of the 3 NBI items for a bridge is
+                              4,
+                              3, 2, 1,
+                              or 0, the bridge will be classified as Poor. When the rating of NBI item for a culvert is
+                              4,
+                              3, 2, 1, or 0, the culvert will be classified as Poor. <br>
+                              For <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.407#p-490.407(c)(2)">§
+                                 490.407(c)(2)</a>, the measure for the percentage of bridges classified as in Poor
+                              condition shall be computed and reported to the one tenth of a percent as follows <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/chapter-I/subchapter-E/part-490/subpart-D/section-490.409#p-490.409(c)(2)">(§
+                                 23 CFR
+                                 490.409(c)(2))</a>:
+                              $$\text{Percentage of Bridges Classified in Poor Condition} = 100 \times \frac{\sum_{p=1}[Length \times Width]Bridge_p}{\sum_{s=1}[Length \times Width]Bridge_s} $$
+                              The measures identified in <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.407#p-490.407(c)">§
+                                 490.407(c)</a> shall be used to establish targets in accordance with
+                              <a href="https://ecfr.federalregister.gov/current/title-23/section-490.105">§ 490.105</a>
+                              and
+                              report targets and conditions described in <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.107">§ 490.107</a>.
+                           </p>
+                           <h5>Definitions</h5>
+                           <p>
+                              Poor = total number of the applicable bridges, where their condition is Poor per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.409#p-490.409(b)(3)">paragraph
+                                 (b)(3)</a> of this section. <br>
+                              p = a bridge determined to be in Poor condition per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.409#p-490.409(b)(3)">paragraph
+                                 (b)(3)</a> of this section. <br>
+                              Length = corresponding value of NBI Item 49 - Structure Length for every applicable
+                              bridge.
+                              <br>
+                              Width = corresponding value of NBI Item 52 - Deck Width or value of Item 32 Approach
+                              Roadway
+                              Width for culverts where the roadway is on a fill [i.e., traffic does not directly run on
+                              the
+                              top slab (or wearing surface) of the culvert] and the headwalls do not affect the flow of
+                              traffic for every applicable bridge.
+                              s = an applicable bridge per <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.409#p-490.409(b)">paragraph
+                                 (b)</a> of this section. <br>
+                              TOTAL = total number of the applicable bridges specified in <a
+                                 href="https://ecfr.federalregister.gov/current/title-23/section-490.409#p-490.409(b)">paragraph
+                                 (b)</a> of this section.
+                           </p>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <h4>Bridges in Poor Condition</h4>
+                              <h4>El Paso Area MPO - El Paso County, TX - 2020</h4>
+                           </div>
+                           <p class="paragraph" style="color:black">
+                              <!-- The number of fatalities is the total number of deaths in
+                           reportable motor vehicle traffic crashes in a calendar year. -->
+                           </p>
+                           <h5>Annual: <b>0.21%</b></h5>
+                           <h5>Baseline: <b>0.88%</b></h5>
+                           <h5>Target 2020: <b>0.80%</b></h5>
+                           <h5>Better than Target 2020?: <b>Yes</b></h5>
+                           <h5>Target 2022: <b>0.80%</b></h5>
+                           <h5>Better than Target 2022?: <b>Yes</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green; color: white;">On Target</h2>
+                           <img class="check" src="img/check.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-6Graphs">
+                        <canvas class="NPMGraphs" id="Tx_NPM2-6"></canvas>
+                     </div>
+                     <br><br>
+                     <div class="row" style="background-color:#F5F5F5">
+                        <div class="col-6">
+                           <div style="color:green">
+                              <br>
+                              <h4>Bridges in Poor Condition</h4>
+                              <h4>El Paso Area MPO - Dona Ana / Otero, NM - 2019</h4>
+                           </div>
+                           <p class="paragraph" style="color:black">
+                              <!-- The number of fatalities is the total number of deaths in
+                           reportable motor vehicle traffic crashes in a calendar year. -->
+                           </p>
+                           <h5>Annual: <b>N/A</b></h5>
+                           <h5>Baseline: <b>N/A</b></h5>
+                           <h5>Target 2019: <b>3.30%</b></h5>
+                           <h5>Better than Target 2019?: <b>Yes</b></h5>
+                           <h5>Target 2021: <b>2.50%</b></h5>
+                           <h5>Better than Target 2021?: <b>Yes</b></h5>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-3" style="text-align:center">
+                           <h2 style="background-color:green; color: white;">On Target</h2>
+                           <img class="check" src="img/check.png">
+                        </div>
+                     </div>
+                     <div class="collapse" id="PM2-6Graphs">
+                        <canvas class="NPMGraphs" id="Nm_NPM2-6"></canvas>
+                     </div>
+                     <br>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+
+</html>
+
+<style>
+   .sub-header {
+      font-weight: bold;
+      color: blue;
+   }
+
+   .paragraph {
+      color: black;
+      font-size: 20px;
+   }
+
+   .pm-header {
+      color: blue;
+      font-weight: bold;
+   }
+
+   html {
+      overflow: scroll;
+   }
+
+   .cross,
+   .check {
+      height: auto;
+      width: 100px;
+   }
+
+   .NPMGraphs {
+      margin-top: 30px;
+   }
+</style>
+<!-- Custom styles from CSS folder -->
+<link href="css/sidebar.css" rel="stylesheet" type="text/css">
+<link href="css/corridorDropdown.css" rel="stylesheet" type="text/css">
+<link href="css/legend.css" rel="stylesheet" type="text/css">
+<link href="css/custom.css" rel="stylesheet" type="text/css">
+<link href="css/mwt.css" rel="stylesheet" type="text/css">
+<!-- load all functions -->

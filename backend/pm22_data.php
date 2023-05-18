@@ -89,28 +89,4 @@ if($key == "all_pm22"){
     exit(0);
 }
 
-
-/*
-                                                 ,  ,
-                                               / \/ \
-                                              (/ //_ \_
-     .-._                                      \||  .  \
-      \  '-._                            _,:__.-"/---\_ \
- ______/___  '.    .--------------------'~-'--.)__( , )\ \
-`'--.___  _\  /    |             Here        ,'    \)|\ `\|
-     /_.-' _\ \ _:,_          Be Dragons           " ||   (
-   .'__ _.' \'-/,`-~`                                |/
-       '. ___.> /=,|  Abandon hope all ye who enter  |
-        / .-'/_ )  '---------------------------------'
-        )'  ( /(/
-             \\ "
-              '=='
-
-This horrible monstrosity takes a medicare monstrosity and mangles it
-into a data structure that can easily be used to create a medicare feed.
-It's bloated, confusing, and pretty awful by necessity(for the most part).
-
-May the force be with you both,
-Chris S.
-*/
 ?>

@@ -76,8 +76,6 @@ function pm13Data(mode) {
                 let title = data.shape_arr[index].title;
                 let to_visualize_points = 0;
                 // filter points by type
-
-
                 if (title == "PDN") {
                     image = "./icons/yellowPin.png";
                 } else if (title == "Ysleta") {
@@ -130,7 +128,7 @@ function pm13Data(mode) {
             let tornillo = parseFloat(data.shape_arr[index]['Tornillo'].replace(/,/g, ''));
 
             let period = parseFloat(data.shape_arr[index]['period'].replace(/,/g, ''));
-            let total = parseFloat(data.shape_arr[index]['Total'].replace(/,/g, ''));
+            let total = parseFloat(data.shape_arr[index]['total'].replace(/,/g, ''));
 
             //********** calculations
 
@@ -393,8 +391,8 @@ function pm13Chart(ctx, data) {
             {
                 label: "Ysleta DCL",
                 data: dataH.ysleta_dcl,
-                backgroundColor: "#FFB74D",
-                borderColor: "#FFB74D",
+                backgroundColor: "#4fe81c",
+                borderColor: "#4fe81c",
                 fill: false,
                 lineTension: 0,
                 radius: 5

@@ -68,53 +68,53 @@ function pm15Data(mode) {
                 if (category == "Ozone 1 hr") {
                     if (greathestNum1 < gfirst) {
                         greathestNum1 = gfirst;
-                        year1 = 2014;
+                        year1 = 2015;
                         greathestStat1 = stationName;
                     }
                     if (greathestNum1 < year2) {
                         greathestNum1 = year2;
-                        year1 = 2015;
+                        year1 = 2016;
                         greathestStat1 = stationName;
                     }
                     if (greathestNum1 < year3) {
                         greathestNum1 = year3;
-                        year1 = 2016;
+                        year1 = 2017;
                         greathestStat1 = stationName;
                     }
                     if (greathestNum1 < year4) {
                         greathestNum1 = year4;
-                        year1 = 2017;
+                        year1 = 2018;
                         greathestStat1 = stationName;
                     }
                     if (greathestNum1 < year5) {
                         greathestNum1 = year5;
-                        year1 = 2018;
+                        year1 = 2019;
                         greathestStat1 = stationName;
                     }
                 } else if (category == "Ozone 8 hr") {
                     if (greathestNum8 < gfirst) {
                         greathestNum8 = gfirst;
-                        year8 = 2014;
+                        year8 = 2015;
                         greathestStat8 = stationName;
                     }
                     if (greathestNum8 < year2) {
                         greathestNum8 = year2;
-                        year8 = 2015;
+                        year8 = 2016;
                         greathestStat8 = stationName;
                     }
                     if (greathestNum8 < year3) {
                         greathestNum8 = year3;
-                        year8 = 2016;
+                        year8 = 2017;
                         greathestStat8 = stationName;
                     }
                     if (greathestNum8 < year4) {
                         greathestNum8 = year4;
-                        year8 = 2017;
+                        year8 = 2018;
                         greathestStat8 = stationName;
                     }
                     if (greathestNum8 < year5) {
                         greathestNum8 = year5;
-                        year8 = 2018;
+                        year8 = 2019;
                         greathestStat8 = stationName;
                     }
                 }
@@ -156,6 +156,7 @@ function pm15Data(mode) {
                         title: stationName,
                         value: '0',
                         icon: images[index]
+
                     });
 
                     point.setMap(map);
@@ -182,7 +183,7 @@ function pm15Data(mode) {
 
 function pm15chartLine(ctx, data) {
     var data = {
-        labels: ['2014', '2015', '2016', '2017', '2018'],
+        labels: ['2015', '2016', '2017', '2018', '2019'],
         datasets: [{
                 label: data[5].name,
                 data: data[5].graphData,
@@ -254,7 +255,7 @@ function pm15chartLine(ctx, data) {
         title: {
             display: true,
             position: 'top',
-            text: 'Ozone 8hr Emissions (2014-2018)'
+            text: 'Ozone 8hr Emissions (2015-2019)'
         },
         legend: {
             display: true,
@@ -278,7 +279,7 @@ function pm15chartLine(ctx, data) {
 
 function pm15chartLine2(ctx, data) {
     var data = {
-        labels: ['2014', '2015', '2016', '2017', '2018'],
+        labels: ['2015', '2016', '2017', '2018', '2019'],
         datasets: [{
                 label: data[0].name,
                 data: data[0].graphData,
@@ -341,7 +342,7 @@ function pm15chartLine2(ctx, data) {
         responsive: true,
         title: {
             display: true,
-            text: 'Ozone 1hr Emissions (2014-2018)'
+            text: 'Ozone 1hr Emissions (2015-2019)'
         },
         legend: {
             display: true,

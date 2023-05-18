@@ -230,7 +230,7 @@ function get_corridors_buffer() {
     var high_num = 0;
 
     // link for bridge condition
-    var txt = "https://www.fhwa.dot.gov/bridge/britab.cfm";
+    var txt = "https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659";
 
     $(document).ready(function() { // when the document loads
         let map; // global variable for map 
@@ -1616,7 +1616,7 @@ function wkt_points(blob){
         //     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
         //     paragraphAdder("2012-2016 5-year average estimates", "paragraph", "analysis-info");
         //     paragraphAdder("Data Source:", "subtitle", "data-title");
-        //     anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
+        //     anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
         //     anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files ","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
 		// 	paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
         //     paragraphAdder("PM1 is calculated as:", "paragraph", "calc-info");
@@ -1638,7 +1638,7 @@ function wkt_points(blob){
             paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
             paragraphAdder("2012-2016 5-year average estimates", "paragraph", "analysis-info");
             paragraphAdder("Data Source:", "subtitle", "data-title");
-            anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
+            anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
             anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files ","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
 			paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
             paragraphAdder("PM1 is calculated as:", "paragraph", "calc-info");
@@ -1670,7 +1670,7 @@ function wkt_points(blob){
             paragraphAdder("2012-2016 5-year average estimates", "paragraph", "analysis-info");
             paragraphAdder("Data Source:", "subtitle", "data-title");
             anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
-            anchorAdder("TIGER/Line Shapefiles","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
+            anchorAdder("TIGER/Line Shapefiles","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
 			paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
             imageAdder('./img/performance_measures/pm2/transEqn.PNG','calc-title');
             imageAdder('./img/performance_measures/pm2/walkEqn.PNG','calc-title');
@@ -1708,8 +1708,8 @@ function wkt_points(blob){
             paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
             paragraphAdder("Bridge condition rating is based on the lowest condition rating from the following components: deck, substructure, superstructure or culvert.", "paragraph", "calc-info");
             paragraphAdder("Following the FHWA guidance, bridges with lowest rating between 7 and 9 are classified as Good, those rated 6 or 5 are classified as Fair and bridges with lowest rating 4 or below are classified as Poor.", "paragraph", "calc-info");
-            paragraphAdder("More information about Bridge Condition Performance can be found at this FHWA website: ", "paragraph", "calc-info");
-            anchorAdder(1,"https://www.fhwa.dot.gov/bridge/britab.cfm");
+            paragraphAdder("More information about Bridge Condition Performance can be found at this TxDOT website: ", "paragraph", "calc-info");
+            anchorAdder(1,"https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659");
             openNav();
 	    }else if(buttonValue == 'PM5'){
             clean();
@@ -1722,7 +1722,7 @@ function wkt_points(blob){
             paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
             paragraphAdder("Data from 2015 LEHD files, 2017 Tigerline shapefile, bikeway data from 2018. ", "paragraph", "analysis-info");
             paragraphAdder("Data Source:", "subtitle", "data-title");
-            anchorAdder(1,"https://www.fhwa.dot.gov/bridge/britab.cfm");
+            anchorAdder(1,"https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659");
             paragraphAdder("TIGER/Line Shapefiles & Longitudinal Employer-Household Dynamics (LEHD) files.", "paragraph", "data-info");
             paragraphAdder("The layer of the high-quality transit stations was provided by Sun Metro.  ", "paragraph", "data-info");
             paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
@@ -1791,7 +1791,7 @@ function wkt_points(blob){
             paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
             paragraphAdder("Data from 2015 LEHD files, 2017 Tigerline shapefile, bikeway data from 2018. ", "paragraph", "analysis-info");
             paragraphAdder("Data Source:", "subtitle", "data-title");
-            anchorAdder("TIGER/Line Shapefiles","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
+            anchorAdder("TIGER/Line Shapefiles","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
             anchorAdder("Longitudinal Employer-Household Dynamics (LEHD) files","https://lehd.ces.census.gov/data/");
             paragraphAdder("Bikeway data was provided by the following entities in January 2019: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario, and the City of El Paso.", "paragraph", "data-info");
             paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
@@ -1809,7 +1809,7 @@ function wkt_points(blob){
             paragraphAdder("Data from 2015 LEHD files, 2012-2016 ACS data, bikeway data from 2018.", "paragraph", "analysis-info");
             paragraphAdder("Data Source:", "subtitle", "data-title");
             anchorAdder("American Community Survey 5-Year Estimates","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2016.html");
-            anchorAdder("TIGER/Line Shapefiles ","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2017.html");
+            anchorAdder("TIGER/Line Shapefiles ","https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
             paragraphAdder("Bikeway data was provided by the municipalities: Paso del Norte Health foundation, City of Sunland Park, City of San Elizario, and the City of El Paso.  ", "paragraph", "data-info");
             paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
             paragraphAdder("American Community Survey data was analysed on a census block group-level in order to estimate the number of jobs within a ½ mile from a bikeway, assuming a homogenous distribution of jobs each the block group. ", "paragraph", "calc-info");
@@ -1908,13 +1908,13 @@ function wkt_points(blob){
 
             headerAdder("Number of crashes on the CMP network", "title");
 	        paragraphAdder("Summary:", "subtitle", "summary-title");
-            paragraphAdder("During a 5-year period (2013-2017), a total of " + commafy(pm22Text) + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
+            paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(pm22Text) + " crashes occurred on the El Paso MPO Congestion Management Process (CMP) network.", "paragraph", "summary-info");
             paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-            paragraphAdder("2013 – 2017", "paragraph", "analysis-info");
+            paragraphAdder("2018 – 2022", "paragraph", "analysis-info");
             paragraphAdder("Data Source:", "subtitle", "data-title");
             paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
             paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-            paragraphAdder("This performance measures includes all crashes that occurred within 150 ft. of the CMP network adopted by the MPO in 2019.  ", "paragraph", "calc-info");
+            paragraphAdder("This performance measures includes all crashes that occurred within 150 ft. of the CMP network adopted by the MPO in 20203.  ", "paragraph", "calc-info");
             openNav();
 
         }else if(buttonValue == 'pm8Biking'){
