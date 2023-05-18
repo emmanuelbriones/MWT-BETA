@@ -842,7 +842,7 @@ function pm18chartLine(ctx, Button){
         pm18_graphValues[2] = Texas2015Info.BikeTotFatalities;
         pm18_graphValues[3] = Texas2016Info.BikeTotFatalities;
         pm18_graphValues[4] = Texas2017Info.BikeTotFatalities;
-        pm18_graphTitle = 'Bycycle Fatalities';
+        pm18_graphTitle = 'Bicycle Fatalities';
 
     }
     var data = {
