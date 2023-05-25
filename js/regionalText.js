@@ -142,6 +142,7 @@ function pm18R(data) {
     pm18StackedChart(ctx2, data);
     pm18chartLine(ctx, data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
+    paragraphAdder("\u00B9Total Fatalities: The total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "summary-info");
 
     if (currentType == 'driving') {
         headerAdder("Number of Fatalities - Driving", "title");
@@ -180,7 +181,6 @@ function pm18R(data) {
     else if (currentType == 'biking') {
         paragraphAdder("This performance measure provides the total number of pedalcyclists fatalities resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
-    paragraphAdder("\u00B9Total Fatalities: The total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "calc-info");
     openNav();
 }
 function pm19R(data) {
