@@ -205,6 +205,7 @@ function pm18DynamicText(corridor, data) {
 	
     pm18StackedChart(ctx2,data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
+    paragraphAdder("\u00B9Total Fatalities: The total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "summary-info");
     
     if (currentType == 'driving') {
 
@@ -250,7 +251,6 @@ function pm18DynamicText(corridor, data) {
     else if (currentType == 'biking') {
         paragraphAdder("This performance measure provides the total number of pedalcyclists fatalities resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
-    paragraphAdder("\u00B9Total Fatalities: The total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "calc-info");
     openNav();
 }
 function pm19DynamicText(corridor, data) {
