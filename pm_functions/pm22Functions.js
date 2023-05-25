@@ -223,15 +223,9 @@ function arraySum(array1, array2) {
 
 function pm22chartLine(ctx, data) {
     let data_crashes = [];
-    let data_totInjuries = [];
 
     data_crashes = arraySum(data.TX.crashes, data.NM.crashes);
 
-    data_totInjuries = arraySum(data.TX.classa, data.NM.classa);
-    let dummy = arraySum(data.TX.classc, data.NM.classc);
-    let b = arraySum(data.TX.classb, data.NM.classb);
-    data_totInjuries = arraySum(data_totInjuries, dummy);
-    data_totInjuries = arraySum(data_totInjuries, b);
 
     var data = {
         labels: data.years,
@@ -240,15 +234,6 @@ function pm22chartLine(ctx, data) {
                 data: data_crashes,
                 backgroundColor: "purple",
                 borderColor: "lightblue",
-                fill: false,
-                lineTension: 0,
-                radius: 5
-            },
-            {
-                label: "Injuries",
-                data: data_totInjuries,
-                backgroundColor: "green",
-                borderColor: "lightgreen",
                 fill: false,
                 lineTension: 0,
                 radius: 5
