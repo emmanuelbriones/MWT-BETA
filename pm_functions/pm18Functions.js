@@ -79,7 +79,7 @@ function pm18Data(mode, ex) {
         };
     }
 
-    let image = "./img/markers/red.png";
+    let image = "./img/markers/bullet.png";
 
     $.get(php_handler, data_for_php, function (data) {
         let latestYear = 0;
