@@ -433,6 +433,12 @@ function pm22R(data) {
     paragraphAdder("Note: Data not yet reported by NMDOT for year 2022", "paragraph", "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("This performance measures includes all crashes that occurred within 150 ft. of the CMP network adopted by the MPO in 2019.  ", "paragraph", "calc-info");
+    if (detectmob() != true) {
+        let names = ['Very High', 'High', 'Moderate', 'Low', 'Very Low'];
+        let colors = ['background:#8A2BE2;', 'background:#FF00FF;', 'background:#FF0000;', 'background:#FFBF00;', 'background:#1E90FF;'];
+
+        legendMaker("Legend", names, colors);
+    }
     openNav();
 }
 function pm5R(data) {
