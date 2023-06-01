@@ -181,7 +181,14 @@ function pm18R(data) {
     else if (currentType == 'biking') {
         paragraphAdder("This performance measure provides the total number of pedalcyclists fatalities resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
+    // if (currentType == 'driving') {
+    //     if (detectmob() != true) {
+    //         let names = ['Location of Crash With Fatality'];
+    //         let images = ["./img/markers/bullet.png"];
     
+    //         legendMakerImage("Legend", names, images);
+    //     }
+    // }
     openNav();
 }
 function pm19R(data) {
