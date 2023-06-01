@@ -149,8 +149,8 @@ function pieChartpm1(ctx,data){
                 label: 'Dataset 1'
             }],
             labels: [
-                'Non SOV',
-                'SOV',
+                'Carpooled',
+                'Single Occupancy Vehicle',
             ]
         },
         options: {
