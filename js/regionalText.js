@@ -238,7 +238,7 @@ function pm19R(data) {
     else if (currentType == 'biking') {
         paragraphAdder("This performance measure provides the total number of pedalcyclists sustaining serious injuries resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
-    paragraphAdder("\u00B9Total Serious Injuries: The total number of persons sustaining serious injuries in crashes involving all types of transportation modes.", "paragraph", "calc-info");
+    paragraphAdder("\u00B9Total Serious Injuries: The total number of persons sustaining serious injuries in crashes involving all types of transportation modes.", "paragraph", "legend-info");
     openNav();
 }
 function pm25R(data) {
