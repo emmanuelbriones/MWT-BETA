@@ -142,7 +142,7 @@ function pm18R(data) {
     pm18StackedChart(ctx2, data);
     pm18chartLine(ctx, data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("\u00B9Total Fatalities: The total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "summary-info");
+    paragraphAdder("\u00B9Total Fatalities: The total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "legend-info");
 
     if (currentType == 'driving') {
         headerAdder("Number of Fatalities - Driving", "title");
@@ -181,6 +181,14 @@ function pm18R(data) {
     else if (currentType == 'biking') {
         paragraphAdder("This performance measure provides the total number of pedalcyclists fatalities resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
+    // if (currentType == 'driving') {
+    //     if (detectmob() != true) {
+    //         let names = ['Location of Crash With Fatality'];
+    //         let images = ["./img/markers/bullet.png"];
+    
+    //         legendMakerImage("Legend", names, images);
+    //     }
+    // }
     openNav();
 }
 function pm19R(data) {
@@ -230,7 +238,7 @@ function pm19R(data) {
     else if (currentType == 'biking') {
         paragraphAdder("This performance measure provides the total number of pedalcyclists sustaining serious injuries resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
-    paragraphAdder("\u00B9Total Serious Injuries: The total number of persons sustaining serious injuries in crashes involving all types of transportation modes.", "paragraph", "calc-info");
+    paragraphAdder("\u00B9Total Serious Injuries: The total number of persons sustaining serious injuries in crashes involving all types of transportation modes.", "paragraph", "legend-info");
     openNav();
 }
 function pm25R(data) {
@@ -433,10 +441,10 @@ function pm22R(data) {
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("This performance measures includes all crashes that occurred within 150 ft. of the CMP network adopted by the MPO in 2023.  ", "paragraph", "calc-info");
     if (detectmob() != true) {
-        let names = ['Very High', 'High', 'Moderate', 'Low', 'Very Low'];
+        let names = ['> 10,000', '1,000-10,000', '100-1,000', '10-100', '1-10'];
         let colors = ['background:#8A2BE2;', 'background:#FF00FF;', 'background:#FF0000;', 'background:#FFBF00;', 'background:#1E90FF;'];
 
-        legendMaker("Legend", names, colors);
+        legendMaker("Total Number Crashes", names, colors);
     }
     openNav();
 }

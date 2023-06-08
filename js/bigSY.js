@@ -1509,6 +1509,19 @@ function listForLegend(text, color) {
   holder.appendChild(node);
 }
 
+function listForLegendImage(text, imageSrc) {
+  var node = document.createElement("LI");
+  //var x = document.createElement("SPAN");
+  var image = document.createElement("img");
+  image.src = imageSrc;
+  //x.appendChild(image);
+  node.appendChild(image);
+  var textnode = document.createTextNode(text);
+  node.appendChild(textnode);
+  var holder = document.getElementById("temp_list");
+  holder.appendChild(node);
+}
+
 //Creates a temporal div to hold list for PM2,  so it can be deleted. Method(2/3) for legend
 function createTempList() {
   var newDiv = document.createElement("div");
@@ -1527,6 +1540,16 @@ function legendMaker(title, names, colors) {
   }
   openLegend();
 }
+
+function legendMakerImage(title, names, images) {
+  createTempList();
+  headerAdder(title, "legend_title");
+  for (let i = 0; i < names.length; i++) {
+    listForLegendImage(names[i], images[i]);
+  }
+  openLegend();
+}
+
 //changes id name from old to new
 function idChanger(old, newId) {
   var holder = document.getElementById(old);
