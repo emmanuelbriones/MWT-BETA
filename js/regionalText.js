@@ -142,7 +142,7 @@ function pm18R(data) {
     pm18StackedChart(ctx2, data);
     pm18chartLine(ctx, data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("\u00B9Total Fatalities: The total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "summary-info");
+    paragraphAdder("\u00B9Total Fatalities: The total number of fatalities in crashes involving all types of transportation modes.", "paragraph", "legend-info");
 
     if (currentType == 'driving') {
         headerAdder("Number of Fatalities - Driving", "title");
