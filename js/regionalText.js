@@ -441,7 +441,7 @@ function pm22R(data) {
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("This performance measures includes all crashes that occurred within 150 ft. of the CMP network adopted by the MPO in 2019.  ", "paragraph", "calc-info");
     if (detectmob() != true) {
-        let names = ['> 10,000', '1,000-10,000', '100-1,000', '10-100', '1-10'];
+        let names = ['>10,000', '1,000-10,000', '100-1,000', '10-100', '1-10'];
         let colors = ['background:#8A2BE2;', 'background:#FF00FF;', 'background:#FF0000;', 'background:#FFBF00;', 'background:#1E90FF;'];
 
         legendMaker("Total Number Crashes", names, colors);
