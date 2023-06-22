@@ -181,6 +181,12 @@ function pm18R(data) {
     else if (currentType == 'biking') {
         paragraphAdder("This performance measure provides the total number of pedalcyclists fatalities resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
+    if (detectmob() != true) {
+        //legend elements
+        names = ['Location of Crash With Fatality'];
+        colors = ['background:#000000;'];
+        legendMaker("Fatalities", names, colors);
+    }
     // if (currentType == 'driving') {
     //     if (detectmob() != true) {
     //         let names = ['Location of Crash With Fatality'];
@@ -239,6 +245,12 @@ function pm19R(data) {
         paragraphAdder("This performance measure provides the total number of pedalcyclists sustaining serious injuries resulting from pedalcyclists-vehicle crashes.", "paragraph", "calc-info");
     }
     paragraphAdder("\u00B9Total Serious Injuries: The total number of persons sustaining serious injuries in crashes involving all types of transportation modes.", "paragraph", "legend-info");
+    if (detectmob() != true) {
+        //legend elements
+        names = ['Location of Crash With Serious Injuries'];
+        colors = ['background:#000000;'];
+        legendMaker("Serious Injuries", names, colors);
+    }
     openNav();
 }
 function pm25R(data) {
