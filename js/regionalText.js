@@ -183,7 +183,7 @@ function pm18R(data) {
     }
     if (detectmob() != true) {
         //legend elements
-        names = ['Location of Crash With Fatality'];
+        names = ['5 Year Period Crash With Fatality'];
         colors = ['background:#000000;'];
         legendMaker("Fatalities", names, colors);
     }
@@ -247,7 +247,7 @@ function pm19R(data) {
     paragraphAdder("\u00B9Total Serious Injuries: The total number of persons sustaining serious injuries in crashes involving all types of transportation modes.", "paragraph", "legend-info");
     if (detectmob() != true) {
         //legend elements
-        names = ['Location of Crash With Serious Injuries'];
+        names = ['5 Year Period Crash With Serious Injuries'];
         colors = ['background:#000000;'];
         legendMaker("Serious Injuries", names, colors);
     }

@@ -397,28 +397,29 @@ function pm18chartLine(ctx, data) {
 }
 
 function pm18StackedChart(ctx, data) {
-    let titleH = data.currentCorridor;
-    if (titleH != 'Entire Region') { //if corridor, fix wording
-        titleH = wordFix(titleH + " Corridor");
-    }
+    let titleH = 'Fatalities By Mode';
+    // let titleH = data.currentCorridor;
+    // if (titleH != 'Entire Region') { //if corridor, fix wording
+    //     titleH = wordFix(titleH + " Corridor");
+    // }
     var barChartData = {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
         datasets: [{
-            label: 'Fatalities',
+            label: 'Driving',
             backgroundColor: 'rgba(255,82,0,0.5)',
-            data: data.killed
+            data: data.killed_Driving
         }, {
-            label: 'Serious Injuries',
+            label: 'Walking',
             backgroundColor: 'rgba(92,187,3,0.5)rgba(92,187,3,0.5)',
-            data: data.classA
+            data: data.killed_walking
         }, {
-            label: 'Non-Incapacitating Injuries',
+            label: 'Freight',
             backgroundColor: 'rgba(117,36,221,0.5)',
-            data: data.classB
+            data: data.killed_freight
         }, {
-            label: 'Possible Injuries',
+            label: 'Biking',
             backgroundColor: 'rgba(255,235,59,1)',
-            data: data.classC
+            data: data.killed_biking
         }]
 
     };
