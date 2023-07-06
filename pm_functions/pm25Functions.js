@@ -313,7 +313,7 @@ function pm25StackedChart(ctx, data) {
                     stacked: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Miles in all conditions'
+                        labelString: 'Lane-miles in all conditions'
                     }
                 }]
             }
@@ -356,7 +356,7 @@ function pm25chartLine(ctx, data) {
             yAxes: [{
                 scaleLabel: {
                     display: true,
-                    labelString: 'Number of miles on poor condition'
+                    labelString: 'Number of lane-miles in poor condition'
                 }
             }]
         }

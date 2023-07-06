@@ -361,6 +361,8 @@ function pm25DynamicText(corridor, data) {
     pm25StackedChart(ctx,data);
     pm25chartLine(ctx2,data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
+    paragraphAdder("\u00B9As of May 31, 2023, latest available shapefiles: 2021 for Texas and 2020 for New Mexico. Figures only shows lane-milage condition for Texas for year 2021.", "paragraph", "summary-info");
+    paragraphAdder("\u0032Performance Measures for years 2017 and 2018 were calculated based on the IRI threshold only. As per FHWA requirements, starting in 2019, the new metric for assessing this performance measure requires the calculation of an overall performance measure depending the type of pavement that is based on IRI, percent cracking, rutting, and faulting thresholds. See How this Performance Measure was Calculated section for more information.", "paragraph", "summary-info");
     if(corridor == "AOI"){
         paragraphAdder("HPMS reports 2019 pavement condition for " + data.tot_miles.toFixed(1) + " miles within the AOI, out of those, " + data.poor_mi_perc.toFixed(1) + "% are in poor condition. ", "paragraph", "summary-info");
 
