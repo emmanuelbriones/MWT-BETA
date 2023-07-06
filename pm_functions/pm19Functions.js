@@ -410,10 +410,6 @@ function pm19StackedChart(ctx, data) {
     var barChartData = {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
         datasets: [{
-            label: 'Fatalities',
-            backgroundColor: 'rgba(255,82,0,0.5)',
-            data: data.killed
-        }, {
             label: 'Serious Injuries',
             backgroundColor: 'rgba(92,187,3,0.5)',
             data: data.classA
