@@ -261,7 +261,7 @@ function pm25R(data) {
     var ctx2 = document.getElementById('myChart2').getContext('2d');
     pm25StackedChart(ctx, data);
     pm25chartLine(ctx2, data);
-    paragraphAdder("\u00B9As of May 31, 2023, latest available shapefiles: 2021 for Texas and 2020 for New Mexico. Figures only shows lane-milage condition for Texas for year 2021.", "paragraph", "legend-info");
+    paragraphAdder("\u00B9As of May 31, 2023, latest available shapefiles: 2021 for Texas and 2020 for New Mexico. For year 2021, bar chart figure only shows lane-milage condition for El Paso, Texas.", "paragraph", "legend-info");
     paragraphAdder("\u00B2Performance Measures for years 2017 and 2018 were calculated based on the IRI threshold only. As per FHWA requirements, starting in 2019, the new metric for assessing this performance measure requires the calculation of an overall performance measure depending the type of pavement that is based on IRI, percent cracking, rutting, and faulting thresholds. See How this Performance Measure was Calculated section for more information.", "paragraph", "legend-info");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("HPMS reports 2019 pavement condition for " + data.tot_miles.toFixed(1) + " miles within the El Paso MPO area. Out of those,  " + data.poor_mi_perc + "% are in poor condition. " + data.tx_poor_mi.toFixed(1) + " miles (" + data.tx_poor_mi_perc + "%) of pavement in poor condition are located in Texas and " + data.nm_poor_mi.toFixed(1) + " miles (" + data.nm_poor_mi_perc + "%) are in New Mexico.", "paragraph", "summary-info");
