@@ -618,7 +618,7 @@ function pm17R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm17chartLine(ctx, data);
-    headerAdder("Particulate matter emissions", "title");
+    headerAdder("PM 10", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("According to the data available, Particulate Matter pollution has been increasing and decreasing depending of the station in the last 5 years.", "paragraph", "summary-info");
     paragraphAdder("Stations with the highest annual readings for Particulate Matter are:  ", "paragraph", "summary-info");
