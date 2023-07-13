@@ -590,10 +590,10 @@ function pm17R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm17chartLine(ctx, data);
-    headerAdder("PM 10", "title");
+    headerAdder("Particulate matter emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("According to the data available, Particulate Matter pollution has been increasing and decreasing depending of the station in the last 5 years.", "paragraph", "summary-info");
-    paragraphAdder("  If there is no information for a particular year is because no reading was taken for that particular years. ", "paragraph", "summary-info");
+    paragraphAdder("Stations with the highest annual readings for Particulate Matter are:  ", "paragraph", "summary-info");
     paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year + ".", "paragraph", "summary-info");
     paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 + ".", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
