@@ -3,18 +3,18 @@ function pm15Data(mode) {
     let images = [];
 
     //store all colors for points
+    images.push("./icons/greenPin.png");
     images.push("./icons/redPin.png");
-    images.push("./icons/orangePin.png");
-    images.push("./icons/lightPink.png");
-    images.push("./icons/lightbluePin.png");
-    images.push("./icons/grayPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
     images.push("./icons/greenPin.png");
 
-    images.push("./icons/yellowPin.png");
-    images.push("./icons/pinkPin.png");
-    images.push("./icons/darkbluePin.png");
-    images.push("./icons/lightgreenPin.png");
-    images.push("./icons/lightgrayPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
 
 
     let key = 'all_pm15_16_17g';

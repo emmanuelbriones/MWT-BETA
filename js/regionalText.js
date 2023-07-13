@@ -591,6 +591,12 @@ function pm15R(data) {
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Annual readings are reported exactly as they appear at  <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539\" target=\"_blank\">Texas Commission on Environmental Quality website</a> and <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"http://nmaqinow.net/\" target=\"_blank\">New Mexico Environment Department website</a> In Texas 8-hour ozone standard is reported, in NM only 1-hour ozone standard was available. Carbon monoxide and particulate matter (PM10) are also reported.", "paragraph", "calc-info");
     paragraphAdder("*Note: Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "calc-info");
+    if (detectmob() != true) {
+        let names = ['Attainment', 'Non-attainment'];
+        let colors = ['background:#008000;', 'background:#FF0000;'];
+    
+        legendMaker("Attainment Status", names, colors);
+    }
     openNav();
 }
 
@@ -600,9 +606,8 @@ function pm16R(data) {
     pm16chartLine(ctx, data);
     headerAdder("Carbon monoxide emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Stations with the highest annual readings for Carbon Monoxide are:  ", "paragraph", "summary-info");
-    paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year + ".", "paragraph", "summary-info"); ///////////////////////////////////////////////////////**************
-    paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 + ".", "paragraph", "summary-info");
+    paragraphAdder("If there is an absence of information for a specific year, it indicates that no measurements were recorded during that particular time period.  ", "paragraph", "summary-info");
+   
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
@@ -618,13 +623,12 @@ function pm17R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm17chartLine(ctx, data);
-    headerAdder("PM 10", "title");
-    subtitleAdder("Highest Annual Rating", "subtitle");
+    headerAdder("PM 10 Highest Annual Rating", "title");
+
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("According to the data available, Particulate Matter pollution has been increasing and decreasing depending of the station in the last 5 years.", "paragraph", "summary-info");
-    paragraphAdder("Stations with the highest annual readings for Particulate Matter are:  ", "paragraph", "summary-info");
-    paragraphAdder(data[data.length - 1].station + " in " + data[data.length - 1].year + ".", "paragraph", "summary-info");
-    paragraphAdder(data[data.length - 1].station2 + " in " + data[data.length - 1].year2 + ".", "paragraph", "summary-info");
+    paragraphAdder("If there is an absence of information for a specific year, it indicates that no measurements were recorded during that particular time period.  ", "paragraph", "summary-info");
+
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
