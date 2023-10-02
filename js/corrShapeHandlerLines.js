@@ -20,6 +20,7 @@ function corrShape_handlerL(found, example) {
             let pm4tct = data.shape_arr[index].tactcnt; // works for both walking and Biking
             let pm3Ridership = data.shape_arr[index].AVG_ridership;
             let pm12Status = data.shape_arr[index].status; // used to color code lines
+            let pm25PavRating = data.shape_arr[index].PAV_RATING;
 
             for (let i = 0; i < ln.length; i++) {
                 coord = { lat: ln[i]['y'], lng: ln[i]['x'] }; // this is how lat & lng is interpreted by the tool
@@ -28,11 +29,11 @@ function corrShape_handlerL(found, example) {
             // filter colors 
             if (found == "pm25") {
                 color = '#558B2F';
-                if (pm25Iri < 95) {
+                if(pm25PavRating == 'GOOD'){
                     color = '#8BC34A';
-                } else if (pm25Iri > 94 && pm25Iri < 171) {
-                    color = '#F57C00';
-                } else if (pm25Iri > 170) {
+                }else if(pm25PavRating == 'FAIR'){
+                    color = '#FFEA00'; 
+                }else if(pm25PavRating == 'POOR'){
                     color = '#d50000';
                 }
 

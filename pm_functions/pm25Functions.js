@@ -85,53 +85,54 @@ function pm25Data(mode, ex) {
             let year = parseInt(data.shape_arr[index].year_recor);
             let miles = parseFloat(data.shape_arr[index].miles);
             let state = data.shape_arr[index].state_code;
+            let pm25PavRating = data.shape_arr[index].PAV_RATING;
+
             let type;
             if(data.shape_arr[index].type != null) {
                 type = (data.shape_arr[index].type).toLowerCase();
             }
-            
 
             // makes sure to only calculate the current mode
             if (type == currentType || ex == type) {
                 //filter graph Data by Year, add counts on 3 conditions
                 if (year == latestYear - 4) {
-                    if (iri > 0 && iri < 95) { // good condition
+                    if (pm25PavRating == 'GOOD') { // good condition
                         pm25Data.good[0] += miles;
-                    } else if (iri > 94 && iri < 171) { // Fair condition
+                    } else if (pm25PavRating == 'FAIR') { // Fair condition
                         pm25Data.fair[0] += miles;
-                    } else if (iri > 170) { // Poor condition
+                    } else if (pm25PavRating == 'POOR') { // Poor condition
                         pm25Data.poor[0] += miles;
                     }
                 } else if (year == latestYear - 3) {
-                    if (iri > 0 && iri < 95) {
+                    if (pm25PavRating == 'GOOD') { // good condition
                         pm25Data.good[1] += miles;
-                    } else if (iri > 94 && iri < 171) {
+                    } else if (pm25PavRating == 'FAIR') { // Fair condition
                         pm25Data.fair[1] += miles;
-                    } else if (iri > 170) {
+                    } else if (pm25PavRating == 'POOR') { // Poor condition
                         pm25Data.poor[1] += miles;
                     }
                 } else if (year == latestYear - 2) {
-                    if (iri > 0 && iri < 95) {
+                    if (pm25PavRating == 'GOOD') { // good condition
                         pm25Data.good[2] += miles;
-                    } else if (iri > 94 && iri < 171) {
+                    } else if (pm25PavRating == 'FAIR') { // Fair condition
                         pm25Data.fair[2] += miles;
-                    } else if (iri > 170) {
+                    } else if (pm25PavRating == 'POOR') { // Poor condition
                         pm25Data.poor[2] += miles;
                     }
                 } else if (year == latestYear - 1) {
-                    if (iri > 0 && iri < 95) {
+                    if (pm25PavRating == 'GOOD') { // good condition
                         pm25Data.good[3] += miles;
-                    } else if (iri > 94 && iri < 171) {
+                    } else if (pm25PavRating == 'FAIR') { // Fair condition
                         pm25Data.fair[3] += miles;
-                    } else if (iri > 170) {
+                    } else if (pm25PavRating == 'POOR') { // Poor condition
                         pm25Data.poor[3] += miles;
                     }
                 } else if (year == latestYear) {
-                    if (iri > 0 && iri < 95) {
+                    if (pm25PavRating == 'GOOD') { // good condition
                         pm25Data.good[4] += miles;
-                    } else if (iri > 94 && iri < 171) {
+                    } else if (pm25PavRating == 'FAIR') { // Fair condition
                         pm25Data.fair[4] += miles;
-                    } else if (iri > 170) {
+                    } else if (pm25PavRating == 'POOR') { // Poor condition
                         pm25Data.poor[4] += miles;
                     }
                 }
@@ -172,15 +173,13 @@ function pm25Data(mode, ex) {
                             }; // this is how lat & lng is interpreted by the tool
                             to_visualize.push(coord); // pushing the interpretation to our to_visualize array
                         }
-                        // filter colors 
-                        if (iri > 0 && iri < 95) {
+                         // filter colors 
+                        if (pm25PavRating == 'GOOD') { // good condition
                             color = '#8BC34A'; //green
-                        } else if (iri > 94 && iri < 171) {
-                            color = '#F57C00'; //orange
-                        } else if (iri > 170) {
+                        } else if (pm25PavRating == 'FAIR') { // Fair condition
+                            color = '#FFEA00'; //yellow
+                        } else if (pm25PavRating == 'POOR') { // Poor condition
                             color = '#d50000'; //red
-                        } else if (iri == 0) { // No data
-                            color = '#9E9E9E';
                         }
                         let line = new google.maps.Polyline({ // it is a POLYLINE
                             path: to_visualize, // polyline has a path, defined by lat & lng 
@@ -190,9 +189,6 @@ function pm25Data(mode, ex) {
                             zIndex: 99 // on top of every other shape
                         });
                         // Hover Effect for Google API Polygons
-                        google.maps.event.addListener(line, 'mouseover', function (event) {
-                            injectTooltip(event, commafy(parseInt(iri)));
-                        });
                         google.maps.event.addListener(line, 'mousemove', function (event) {
                             moveTooltip(event);
                         });
@@ -273,7 +269,7 @@ function pm25StackedChart(ctx, data) {
             data: data.good
         }, {
             label: 'Fair',
-            backgroundColor: 'rgba(239,108,0 ,1)',
+            backgroundColor: 'rgb(255, 234, 0)',
             data: data.fair
         }, {
             label: 'Poor',

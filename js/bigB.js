@@ -439,6 +439,7 @@ function get_corridors_buffer() {
                         let pm3Ridership = data.shape_arr[index].AVG_ridership;
                         let pm4tct = data.shape_arr[index].tactcnt; // works for both walking and Biking
                         let pm25Iri = data.shape_arr[index].iri;
+                        let pm25PavRating = data.shape_arr[index].PAV_RATING;
 
                         for (let i = 0; i < ln.length; i++) {
                             coord = {lat: ln[i]['y'], lng: ln[i]['x']}; // this is how lat & lng is interpreted by the tool
@@ -548,11 +549,11 @@ function get_corridors_buffer() {
                             polylines.push(line);
                         } else if(found == "pm25"){
                             color = '#558B2F'; 
-                            if(pm25Iri < 95){
+                            if(pm25PavRating == 'GOOD'){
                                 color = '#8BC34A';
-                            }else if(pm25Iri > 94 && pm25Iri < 171){
-                                color = '#F57C00'; 
-                            }else if(pm25Iri > 170){
+                            }else if(pm25PavRating == 'FAIR'){
+                                color = '#FFEA00'; 
+                            }else if(pm25PavRating == 'POOR'){
                                 color = '#d50000';
                             }
                             let line = new google.maps.Polyline({ // it is a POLYLINE
@@ -1959,7 +1960,7 @@ function wkt_points(blob){
             paragraphAdder("According to the data available, ozone, carbon monoxide, and particulate matter pollution has been increasing in the last 5 years.", "paragraph", "summary-info");
             paragraphAdder("Stations with the highest annual readings for each pollutant are:" ,"paragraph", "summary-info");
             paragraphAdder("Ozone 8hr – El Paso Chamizal in 2018,", "paragraph", "summary-info");
-            paragraphAdder("Ozone 1hr – Santa Teresa in 2017,", "paragraph", "summary-info"); 
+            paragraphAdder("Ozone 8hr – Santa Teresa in 2017,", "paragraph", "summary-info"); 
             paragraphAdder("Particulate Matter – Desert View in 2016", "paragraph", "summary-info"); 
             paragraphAdder("Carbon Monoxide – El Paso UTEP in 2018.", "paragraph", "summary-info");
             paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
@@ -2333,6 +2334,27 @@ function wkt_points(blob){
         universal++;
     }
 
+    function tableAdder(tableHTML, elemtype, infotype) {
+        var elem = document.createElement("DIV");
+        elem.innerHTML = tableHTML;
+        elem.classList.add('table-container'); // You can add custom CSS classes for styling
+        elem.id = universal;
+    
+        var holder = document.getElementById(infotype);
+        holder.appendChild(elem);
+    
+        if (elemtype == "subtitle") {
+            // styles
+            holder.style.fontSize = "large"; // xx-small, x-small, small, medium, large, x-large, xx-large
+            holder.style.fontWeight = 'bold';
+        } else {
+            // styles
+            holder.style.fontSize = "medium"; // xx-small, x-small, small, medium, large, x-large, xx-large
+        }
+    
+        universal++;
+    }    
+    
     // creates canvas so graph can be loaded
     function canvasMaker(id, name){
         var holder = document.getElementById(id); 

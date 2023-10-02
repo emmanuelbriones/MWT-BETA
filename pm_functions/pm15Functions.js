@@ -42,7 +42,7 @@ function pm15Data(mode) {
             year4 = data.shape_arr[index].year4;
             year5 = data.shape_arr[index].year5;
 
-            if (category == "Ozone 1 hr" || category == "Ozone 8 hr") {
+            if (category == "Ozone 8 hr" || category == "Ozone 8 hr") {
                 if (gfirst == '0') {
                     gfirst = null;
                 }
@@ -65,7 +65,7 @@ function pm15Data(mode) {
                     graphData: [gfirst, year2, year3, year4, year5]
                 };
 
-                if (category == "Ozone 1 hr") {
+                if (category == "Ozone 8 hr") {
                     if (greathestNum1 < gfirst) {
                         greathestNum1 = gfirst;
                         year1 = 2015;
@@ -183,7 +183,7 @@ function pm15Data(mode) {
 
 function pm15chartLine(ctx, data) {
     var data = {
-        labels: ['2015', '2016', '2017', '2018', '2019'],
+        labels: ['2016-2018', '2017-2019', '2018-2020', '2019-2021', '2020-2022',],
         datasets: [{
                 label: data[5].name,
                 data: data[5].graphData,
@@ -247,7 +247,7 @@ function pm15chartLine(ctx, data) {
             yAxes: [{
                 scaleLabel: {
                     display: true,
-                    labelString: 'Parts per Billion (ppb)'
+                    labelString: 'Parts per Million (ppm)'
                 }
             }]
         },
@@ -255,7 +255,7 @@ function pm15chartLine(ctx, data) {
         title: {
             display: true,
             position: 'top',
-            text: 'Ozone 8hr Emissions (2015-2019)'
+            text: ['8-hr Average Emissions (Texas)', 'Airshed Quality System (AQS) Site']
         },
         legend: {
             display: true,
@@ -279,10 +279,10 @@ function pm15chartLine(ctx, data) {
 
 function pm15chartLine2(ctx, data) {
     var data = {
-        labels: ['2015', '2016', '2017', '2018', '2019'],
+        labels: ['2018', '2019', '2020', '2021', '2022'],
         datasets: [{
-                label: data[0].name,
-                data: data[0].graphData,
+                label: data[1].name,
+                data: data[1].graphData,
                 backgroundColor: "yellow",
                 borderColor: "yellow",
                 fill: false,
@@ -342,7 +342,7 @@ function pm15chartLine2(ctx, data) {
         responsive: true,
         title: {
             display: true,
-            text: 'Ozone 1hr Emissions (2015-2019)'
+            text: '8-hr Average Emissions (New Mexico'
         },
         legend: {
             display: true,

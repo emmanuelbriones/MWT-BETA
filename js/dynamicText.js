@@ -382,7 +382,7 @@ function pm25DynamicText(corridor, data) {
     openNav();
     //legend elements
     names = ['Good Condition', 'Fair Condition', 'Poor Condition'];
-    colors = ['background:#8BC34A;', 'background:#F57C00;', 'background:#d50000'];
+    colors = ['background:#8BC34A;', 'background:#FFEA00;', 'background:#d50000'];
     legendMaker("Legend", names, colors);
     openNav();
 }

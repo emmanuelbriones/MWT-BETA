@@ -253,7 +253,7 @@ function buttonSwitch(var1) {
         }
         paragraphAdder("Summary:", "subtitle", "summary-title");
         paragraphAdder("According to the data available, ozone, carbon monoxide, and particulate matter pollution has been increasing in the last 5 years.", "paragraph", "summary-info");
-        paragraphAdder("Stations with the highest annual readings for each pollutant are:" ,"paragraph", "summary-info");
+        paragraphAdder("The Air Quality System (AQS) contains ambient air pollution data collected by air pollution control monitors." ,"paragraph", "summary-info");
         paragraphAdder("Ozone 8hr – El Paso Chamizal in 2018,", "paragraph", "summary-info");
         paragraphAdder("Ozone 1hr – Santa Teresa in 2017,", "paragraph", "summary-info"); 
         paragraphAdder("Particulate Matter – Desert View in 2016", "paragraph", "summary-info"); 

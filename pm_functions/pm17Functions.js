@@ -4,11 +4,11 @@
     let images = [];
 
     //store all colors for points
-    images.push("./icons/redPin.png");
-    images.push("./icons/orangePin.png");
-    images.push("./icons/lightPink.png");
-    images.push("./icons/lightbluePin.png");
-    images.push("./icons/redPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
     images.push("./icons/greenPin.png");
 
     images.push("./icons/redPin.png");

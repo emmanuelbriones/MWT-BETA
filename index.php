@@ -190,5 +190,5 @@
    <div>
       <?php include("inject-imports.php");?>
    </div>
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY0B3_Fr1vRpgJDdbvNmrVyXmoOOtiq64&libraries=visualization&libraries=drawing&callback=initMap"></script>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFD_J87U4PcV-gyJnt2UuzQc_xL7GGg5Y&libraries=visualization&libraries=drawing&callback=initMap"></script>
 </html>

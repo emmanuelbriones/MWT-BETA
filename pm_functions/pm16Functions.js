@@ -6,13 +6,13 @@ function pm16Data(mode) {
     //store all colors for points
     images.push("./icons/redPin.png");
     images.push("./icons/orangePin.png");
-    images.push("./icons/lightPink.png");
+    images.push("./icons/greenPin.png");
     images.push("./icons/lightbluePin.png");
     images.push("./icons/grayPin.png");
     images.push("./icons/greenPin.png");
 
     images.push("./icons/yellowPin.png");
-    images.push("./icons/pinkPin.png");
+    images.push("./icons/greenPin.png");
     images.push("./icons/darkbluePin.png");
     images.push("./icons/lightgreenPin.png");
     images.push("./icons/lightgrayPin.png");
@@ -175,7 +175,7 @@ function pm16Data(mode) {
 
 function pm16chartLine(ctx, data) {
     var data = {
-        labels: ['2015', '2016', '2017', '2018', '2019'],
+        labels: ['2016-2018', '2017-2019', '2018-2020', '2019-2021', '2020-2022'],
         datasets: [{
                 label: data[0].name,
                 data: data[0].graphData,
