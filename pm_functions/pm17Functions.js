@@ -8,14 +8,14 @@
     images.push("./icons/orangePin.png");
     images.push("./icons/lightPink.png");
     images.push("./icons/lightbluePin.png");
-    images.push("./icons/grayPin.png");
+    images.push("./icons/redPin.png");
     images.push("./icons/greenPin.png");
 
-    images.push("./icons/yellowPin.png");
-    images.push("./icons/pinkPin.png");
-    images.push("./icons/darkbluePin.png");
-    images.push("./icons/lightgreenPin.png");
-    images.push("./icons/lightgrayPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
 
 
     let key = 'all_pm15_16_17g';
@@ -60,7 +60,7 @@
             }
 
             if (category == "PM 10") {
-
+				
                 pm17Data[i] = {
                     name: stationName,
                     graphData: [year1, year2, year3, year4, year5]
@@ -180,7 +180,7 @@ function pm17chartLine(ctx, data) {
     //modify values
 
     var data = {
-        labels: ['2015', '2016', '2017', '2018', '2019'],
+        labels: ['2016-2018', '2017-2019', '2018-2020', '2019-2021', '2020-2022'],
         datasets: [{
                 label: data[0].name,
                 data: data[0].graphData,
@@ -235,7 +235,7 @@ function pm17chartLine(ctx, data) {
             yAxes: [{
                 scaleLabel: {
                     display: true,
-                    labelString: 'Micrograms per Cubic Meter (ug/cu meter)'
+                    labelString: 'Annual Estimated Number of Exceedances (ENE)'
                 }
             }]
         },

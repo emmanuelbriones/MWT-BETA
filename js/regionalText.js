@@ -578,19 +578,25 @@ function pm15R(data) {
     var ctx2 = document.getElementById('myChart2').getContext('2d');
     pm15chartLine(ctx, data);
     pm15chartLine2(ctx2, data);
-    headerAdder("Ozone emissions", "title");
+    headerAdder("Ozone emissions ", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Stations with the highest annual readings for each pollutant are:", "paragraph", "summary-info");
-    paragraphAdder("Ozone 8hr - " + data[data.length - 1].station8 + " in " + data[data.length - 1].year_8 + ".", "paragraph", "summary-info");
-    paragraphAdder("Ozone 1hr - " + data[data.length - 1].station1 + " in " + data[data.length - 1].year_1 + ".", "paragraph", "summary-info");
+    paragraphAdder("The Air Quality System (AQS) contains ambient air pollution data collected by air pollution control monitors. Stations with the highest annual readings for each pollutant are:", "paragraph", "summary-info");
+    paragraphAdder("Texas: Skyline Park in 2019. " , "paragraph", "summary-info");
+    paragraphAdder("New Mexico: Santa Teresa in 2017." , "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("Texas Commission on Environmental Quality website", "https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539");
-    anchorAdder("New Mexico Environment Department website ", "http://nmaqinow.net/");
+
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("Annual readings are reported exactly as they appear at  <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539\" target=\"_blank\">Texas Commission on Environmental Quality website</a> and <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"http://nmaqinow.net/\" target=\"_blank\">New Mexico Environment Department website</a> In Texas 8-hour ozone standard is reported, in NM only 1-hour ozone standard was available. Carbon monoxide and particulate matter (PM10) are also reported.", "paragraph", "calc-info");
-    paragraphAdder("*Note: Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "calc-info");
+    paragraphAdder("Annual readings are reported exactly as they appear at the EPA’s National Air Quality: Status and Trends of Key Air Pollutants website.\n\
+    The design value is the 3-year average of the annual 4th highest daily maximum 8-hour ozone concentration.  Only valid design values are shown.\n\
+    The level of the 2015 8-hour ozone NAAQS is 0.070 parts per million (ppm).\n\
+    The design values shown here are computed using Federal Reference Method or equivalent data reported to EPA's Air Quality System (AQS) as of May 22, 2023.\n\
+    Concentrations flagged by State, Tribal, or Local monitoring agencies as having been affected by an exceptional event (e.g., wildfire, volcanic eruption) and concurred by the associated EPA Regional Office are not included in these calculations.", "paragraph", "calc-info");
+    
+    // Add the note paragraph
+    paragraphAdder("Disclaimer: The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period. ", "paragraph", "calc-info");
     if (detectmob() != true) {
         let names = ['Attainment', 'Non-attainment'];
         let colors = ['background:#008000;', 'background:#FF0000;'];
@@ -609,13 +615,15 @@ function pm16R(data) {
     paragraphAdder("If there is an absence of information for a specific year, it indicates that no measurements were recorded during that particular time period.  ", "paragraph", "summary-info");
    
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2018-2022", "paragraph", "analysis-info");
-    paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("Texas Commission on Environmental Quality website", "https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539");
-    anchorAdder("New Mexico Environment Department website ", "http://nmaqinow.net/");
+    paragraphAdder("2016-2022", "paragraph", "analysis-info");
+   
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("Annual readings are reported exactly as they appear at  <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539\" target=\"_blank\">Texas Commission on Environmental Quality website</a> and <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"http://nmaqinow.net/\" target=\"_blank\">New Mexico Environment Department website</a> In Texas 8-hour ozone standard is reported, in NM only 1-hour ozone standard was available. Carbon monoxide and particulate matter (PM10) are also reported.", "paragraph", "calc-info");
-    paragraphAdder("*Note: Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "calc-info");
+    paragraphAdder("1971 8-hour NAAQS for carbon monoxide is 9 parts per million (ppm).\n\
+    1: The level of the 1971 8-hour NAAQS for carbon monoxide is 9 parts per million (ppm) not to be exceeded more than once per year. The design value is evaluated over a two-year period. Specifically, the design value is the higher of each year's annual second maximum, non-overlapping 8-hour average. Only valid design values are shown\n\. 2: The design values shown here are computed using Federal Reference Method or equivalent data reported by State, Tribal, and Local monitoring agencies to EPA's Air Quality System (AQS) as of May 2, 2023. Concentrations flagged by State, Tribal, or Local.", "paragraph", "calc-info");
+    paragraphAdder("*Disclaimer: The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS.", "paragraph", "calc-info");
+    paragraphAdder("Data Source:", "subtitle", "data-title");
+    
+    anchorAdder("https://www.epa.gov/air-trends/air-quality-design-values#report Last Updated on May 22, 2023");
     openNav();
 }
 
@@ -623,21 +631,40 @@ function pm17R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm17chartLine(ctx, data);
-    headerAdder("PM 10 Highest Annual Rating", "title");
+    headerAdder("24-Hr PM¹⁰ Annual Estimated Exceedances Under Update", "title");
 
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("According to the data available, Particulate Matter pollution has been increasing and decreasing depending of the station in the last 5 years.", "paragraph", "summary-info");
-    paragraphAdder("If there is an absence of information for a specific year, it indicates that no measurements were recorded during that particular time period.  ", "paragraph", "summary-info");
+    paragraphAdder("The Air Quality System (AQS) contains ambient air pollution data collected by air pollution control monitors.  In 1987, EPA set the NAAQS coarse particulate matter (PM¹⁰), at a level of 150 µg/m³. ", "paragraph", "summary-info");
+    paragraphAdder(" The design value is the 24-hr average not to be exceeded more than once per year on average over 3 years. Stations with the highest estimated number of exceedances:", "paragraph", "summary-info");
+    paragraphAdder("•Texas: El Paso Mimosa in period 2020-2022. ", "paragraph", "summary-info");
+    paragraphAdder("•New Mexico: 6ZM Desert View in period 2020-2022. ", "paragraph", "summary-info");
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("Texas Commission on Environmental Quality website", "https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539");
-    anchorAdder("New Mexico Environment Department website ", "http://nmaqinow.net/");
+    anchorAdder("https://www.epa.gov/air-trends/air-quality-design-values#report", "https://www.epa.gov/air-trends/air-quality-design-values#report", );
+    anchorAdder("Last Updated May 2023" );
+    
+
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("Annual readings are reported exactly as they appear at  <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539\" target=\"_blank\">Texas Commission on Environmental Quality website</a> and <a style=\"display: contents; font-size: 100%;color: blue;\"href=\"http://nmaqinow.net/\" target=\"_blank\">New Mexico Environment Department website</a> In Texas 8-hour ozone standard is reported, in NM only 1-hour ozone standard was available. Carbon monoxide and particulate matter (PM10) are also reported.", "paragraph", "calc-info");
-    paragraphAdder("*Note: Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "calc-info");
-    openNav();
+paragraphAdder("Annual readings are reported exactly as they appear at the EPA’s National Air Quality: Status and Trends of Key Air Pollutants website.", "paragraph", "calc-info");
+paragraphAdder("•The NAAQS metric is the annual estimated number of exceedances (ENE), averaged over three consecutive years. Only valid average estimated exceedance values are shown.", "paragraph", "calc-info");
+paragraphAdder("•The level of the 1987 24-hour PM¹⁰ NAAQS is 150 micrograms per cubic meter (µg/m3).", "paragraph", "calc-info");
+paragraphAdder("•The design values shown here are computed using Federal Reference Method or equivalent data reported to EPA's Air Quality System (AQS) as of May 23, 2023.", "paragraph", "calc-info");
+paragraphAdder("•Concentrations flagged by State, Tribal, or Local monitoring agencies as having been affected by an exceptional event (e.g., wildfire, volcanic eruption) and concurred by the associated EPA Regional Office are not included in these calculations.", "paragraph", "calc-info");
+
+// Add the note paragraph
+paragraphAdder("Disclaimer: The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period. ", "paragraph", "calc-info");
+if (detectmob() != true) {
+    let names = ['Attainment', 'Non-attainment'];
+    let colors = ['background:#008000;', 'background:#FF0000;'];
+
+    legendMaker("Attainment Status", names, colors);
+}
+
+
+openNav();
+
 }
 
 function pm20R(data) {
