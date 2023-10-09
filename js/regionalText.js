@@ -613,17 +613,19 @@ function pm16R(data) {
     pm16chartLine(ctx, data);
     headerAdder("Carbon monoxide emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("If there is an absence of information for a specific year, it indicates that no measurements were recorded during that particular time period.  ", "paragraph", "summary-info");
+    paragraphAdder("The level of the 1971 8-hour NAAQS for carbon monoxide is 9 parts per million (ppm) not to be exceeded more than once per year. The design value is evaluated over a two-year period. Specifically, the design value is the higher of each year's annual second maximum, non-overlapping 8-hour average.  The design value listed for each area is the highest among monitors with valid design values.  ", "paragraph", "summary-info");
    
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2016-2022", "paragraph", "analysis-info");
+    paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     
-    anchorAdder("https://www.epa.gov/air-trends/air-quality-design-values#report Last Updated on May 22, 2023");
+    anchorAdder(" EPA Air Quality Design Values ", "https://www.epa.gov/air-trends/air-quality-design-values#report");
+    paragraphAdder("Last Updated on May 23,2023", "paragraph" , "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("1971 8-hour NAAQS for carbon monoxide is 9 parts per million (ppm).\n\
-    1: The level of the 1971 8-hour NAAQS for carbon monoxide is 9 parts per million (ppm) not to be exceeded more than once per year. The design value is evaluated over a two-year period. Specifically, the design value is the higher of each year's annual second maximum, non-overlapping 8-hour average. Only valid design values are shown\n\. 2: The design values shown here are computed using Federal Reference Method or equivalent data reported by State, Tribal, and Local monitoring agencies to EPA's Air Quality System (AQS) as of May 2, 2023. Concentrations flagged by State, Tribal, or Local.", "paragraph", "calc-info");
-    paragraphAdder("*Disclaimer: The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS.", "paragraph", "calc-info");
+    paragraphAdder("The design values shown here are computed using Federal Reference Method or equivalent data reported by State, Tribal, and Local monitoring agencies to EPA's Air Quality System (AQS) as of May 2, 2023. Concentrations flagged by State, Tribal, or Local monitoring agencies as having been affected by an exceptional event (e.g., wildfire, volcanic eruption) and concurred by the associated EPA Regional Office are not included in these calculations. ", "paragraph", "calc-info");
+    paragraphAdder("Disclaimer:", "subtitle", "extra-title");
+    paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "extra-info");
+
     openNav();
 }
 
@@ -631,19 +633,30 @@ function pm17R(data) {
     canvasMaker('chart1', 'myChart');
     var ctx = document.getElementById('myChart').getContext('2d');
     pm17chartLine(ctx, data);
-    headerAdder("PM 10 Highest Annual Rating", "title");
+    headerAdder(" PM₁₀ Average Annual Estimated Exceedances", "title");
 
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("According to the data available, Particulate Matter pollution has been increasing and decreasing depending of the station in the last 5 years.", "paragraph", "summary-info");
-    paragraphAdder("If there is an absence of information for a specific year, it indicates that no measurements were recorded during that particular time period.  ", "paragraph", "summary-info");
+    paragraphAdder("The Air Quality System (AQS) contains ambient air pollution data collected by air pollution control monitors. In 1987, EPA set the NAAQS coarse particulate matter (PM₁₀), at a level of 150 μg/m3.", "paragraph", "summary-info");
+    paragraphAdder("The design value is the 24-hr average not to be exceeded more than once per year on average over 3 years. Stations with the highest estimated number of exceedances:  ", "paragraph", "summary-info");
+    paragraphAdder("Stations with the highest estimated number of exceedances:", "paragraph", "summary-info");
+    paragraphAdder("•Texas: El Paso Mimosa in period 2020-2022.", "paragraph", "summary-info");
+    paragraphAdder("•New Mexico: 6ZM Desert View in period 2020-2022.", "paragraph", "summary-info");
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("Texas Commission on Environmental Quality website", "https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539");
+    anchorAdder(" EPA Air Quality Design Values ", "https://www.epa.gov/air-trends/air-quality-design-values#report");
+    paragraphAdder("Last Updated on May 23,2023", "paragraph" , "data-info");
 
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("The performance measure for particulate matter (PM10) pollution is derived from annual readings collected from official sources: <a style=\"display: contents; font-size: 100%;color: blue;\" href=\"https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539\" target=\"_blank\">Texas Commission on Environmental Quality website</a> and <a style=\"display: contents; font-size: 100%;color: blue;\" href=\"http://nmaqinow.net/\" target=\"_blank\">New Mexico Environment Department website</a>. The data encompasses yearly PM10 readings. It's important to note that not all monitoring stations provide data for the entire 5-year duration. To calculate the performance measure, we analyze the trends in PM10 levels over time, considering factors such as concentration levels, compliance with air quality standards, and the distribution of monitors across the region.", "paragraph", "calc-info");
+    paragraphAdder("•Annual readings are reported exactly as they appear at the EPA’s National Air Quality: Status and Trends of Key Air Pollutants website.", "paragraph", "calc-info");
+    paragraphAdder("•The NAAQS metric is the annual estimated number of exceedances (ENE), averaged over three consecutive years. Only valid average estimated exceedance values are shown.", "paragraph", "calc-info");
+    paragraphAdder("•The level of the 1987 24-hour PM₁₀ NAAQS is 150 micrograms per cubic meter (μg/m³).", "paragraph", "calc-info");
+    paragraphAdder("•The design values shown here are computed using Federal Reference Method or equivalent data reported to EPA's Air Quality System (AQS) as of May 23, 2023.", "paragraph", "calc-info");
+    paragraphAdder("•Concentrations flagged by State, Tribal, or Local monitoring agencies as having beenaffected by an exceptional event (e.g., wildfire, volcanic eruption) and concurred by the associated EPA Regional Office are not included in these calculations.", "paragraph", "calc-info");
+    paragraphAdder("Disclaimer:", "subtitle", "extra-title");
+    paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "extra-info");
+
     openNav();
 
 }
