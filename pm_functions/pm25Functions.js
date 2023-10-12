@@ -3,6 +3,7 @@ function pm25Data(mode, ex) {
         good: [0, 0, 0, 0, 0],
         fair: [0, 0, 0, 0, 0],
         poor: [0, 0, 0, 0, 0],
+        percentage_poor: [0, 0, 0, 0, 0],
 
         tot_miles: 0,
         poor_mi_perc: 0,
@@ -43,7 +44,6 @@ function pm25Data(mode, ex) {
             tableName: tableName
         };
     }
-
 
     $.get(php_handler, data_for_php, function (data) { // ajax call to populate pavement lines
         let poorconditionMiles = 0;
@@ -94,75 +94,6 @@ function pm25Data(mode, ex) {
 
             // makes sure to only calculate the current mode
             if (type == currentType || ex == type) {
-                //filter graph Data by Year, add counts on 3 conditions
-                if (year == latestYear - 4) {
-                    if (pm25PavRating == 'GOOD') { // good condition
-                        pm25Data.good[0] += miles;
-                    } else if (pm25PavRating == 'FAIR') { // Fair condition
-                        pm25Data.fair[0] += miles;
-                    } else if (pm25PavRating == 'POOR') { // Poor condition
-                        pm25Data.poor[0] += miles;
-                    }
-                } else if (year == latestYear - 3) {
-                    if (pm25PavRating == 'GOOD') { // good condition
-                        pm25Data.good[1] += miles;
-                    } else if (pm25PavRating == 'FAIR') { // Fair condition
-                        pm25Data.fair[1] += miles;
-                    } else if (pm25PavRating == 'POOR') { // Poor condition
-                        pm25Data.poor[1] += miles;
-                    }
-                } else if (year == latestYear - 2) {
-                    if (pm25PavRating == 'GOOD') { // good condition
-                        pm25Data.good[2] += miles;
-                    } else if (pm25PavRating == 'FAIR') { // Fair condition
-                        pm25Data.fair[2] += miles;
-                    } else if (pm25PavRating == 'POOR') { // Poor condition
-                        pm25Data.poor[2] += miles;
-                    }
-                } else if (year == latestYear - 1) {
-                    if (pm25PavRating == 'GOOD') { // good condition
-                        pm25Data.good[3] += miles;
-                    } else if (pm25PavRating == 'FAIR') { // Fair condition
-                        pm25Data.fair[3] += miles;
-                    } else if (pm25PavRating == 'POOR') { // Poor condition
-                        pm25Data.poor[3] += miles;
-                    }
-                } else if (year == latestYear) {
-                    if (pm25PavRating == 'GOOD') { // good condition
-                        pm25Data.good[4] += miles;
-                    } else if (pm25PavRating == 'FAIR') { // Fair condition
-                        pm25Data.fair[4] += miles;
-                    } else if (pm25PavRating == 'POOR') { // Poor condition
-                        pm25Data.poor[4] += miles;
-                    }
-                }
-
-                if (year == latestYear) {
-                    if (iri > 170) { // total poor condition miles
-                        poorconditionMiles += miles;
-                    }
-                    //Texas 
-                    if (state == 48 || state == "Texas") {
-                        //total in tx
-                        if (iri != 0) {
-                            pm25Data.tx_miles += miles;
-                        }
-
-                        //poor in tx
-                        if (iri > 170) {
-                            pm25Data.tx_poor_mi += miles;
-                        }
-
-                    } else if (state == 35 || state == "New Mexico") {
-                        if (iri != 0) {
-                            pm25Data.nm_miles += miles;
-                        }
-
-                        if (iri > 170) {
-                            pm25Data.nm_poor_mi += miles;
-                        }
-                    }
-                }
                 //Draw latest year
                 if (year == latestYear) {
                     if (mode == 1 || mode == 2 || mode == 4) {
@@ -203,35 +134,6 @@ function pm25Data(mode, ex) {
                 }
             }
         }
-
-        //totals
-        pm25Data.tot_poor_mi = (pm25Data.nm_poor_mi + pm25Data.tx_poor_mi).toFixed(2);
-        pm25Data.tot_miles = pm25Data.tx_miles + pm25Data.nm_miles;
-
-        // Dynamic Text Calculations Percentages
-        pm25Data.poor_mi_perc = ((pm25Data.tot_poor_mi / pm25Data.tot_miles) * 100).toFixed(2);
-        pm25Data.tx_poor_mi_perc = ((pm25Data.tx_poor_mi / pm25Data.tx_miles) * 100).toFixed(2);
-        pm25Data.nm_poor_mi_perc = ((pm25Data.nm_poor_mi / pm25Data.nm_miles) * 100).toFixed(2);
-
-        // If we fixed used 'toFixed(2)' earlier it cause a bug. Estimating here worked
-        pm25Data.good[0] = (pm25Data.good[0]).toFixed(2);
-        pm25Data.good[1] = (pm25Data.good[1]).toFixed(2);
-        pm25Data.good[2] = (pm25Data.good[2]).toFixed(2);
-        pm25Data.good[3] = (pm25Data.good[3]).toFixed(2);
-        pm25Data.good[4] = (pm25Data.good[4]).toFixed(2);
-
-        pm25Data.fair[0] = (pm25Data.fair[0]).toFixed(2);
-        pm25Data.fair[1] = (pm25Data.fair[1]).toFixed(2);
-        pm25Data.fair[2] = (pm25Data.fair[2]).toFixed(2);
-        pm25Data.fair[3] = (pm25Data.fair[3]).toFixed(2);
-        pm25Data.fair[4] = (pm25Data.fair[4]).toFixed(2);
-
-        pm25Data.poor[0] = (pm25Data.poor[0]).toFixed(2);
-        pm25Data.poor[1] = (pm25Data.poor[1]).toFixed(2);
-        pm25Data.poor[2] = (pm25Data.poor[2]).toFixed(2);
-        pm25Data.poor[3] = (pm25Data.poor[3]).toFixed(2);
-        pm25Data.poor[4] = (pm25Data.poor[4]).toFixed(2);
-
         let corr = translateCorridor(ex); // what corridor are we on?
 
         if (mode == 0) {
@@ -255,6 +157,21 @@ function pm25Data(mode, ex) {
             dynamicCorridorText(corr, pm25Data);
         } else if (mode == 4) {
             dynamicCorridorText("AOI", pm25Data);
+        }
+    });
+
+    data_for_php = {
+        key: "pm25_data",
+        type: currentType
+    };
+
+    //get information from new table
+    $.get("mwt_handler.php", data_for_php, function (data) {
+        for (index in data.shape_arr) {
+            pm25Data.good[index] = data.shape_arr[index].good;
+            pm25Data.fair[index] = data.shape_arr[index].fair;
+            pm25Data.poor[index] = data.shape_arr[index].poor;
+            pm25Data.percentage_poor[index] = data.shape_arr[index].percentage_bad;
         }
     });
 
@@ -323,7 +240,7 @@ function pm25chartLine(ctx, data) {
         labels: [data.latestYear - 4, data.latestYear - 3, data.latestYear - 2, data.latestYear - 1, data.latestYear],
         datasets: [{
             label: "Poor Condition",
-            data: data.poor,
+            data: data.percentage_poor,
             backgroundColor: "blue",
             borderColor: "lightblue",
             fill: false,
@@ -337,7 +254,7 @@ function pm25chartLine(ctx, data) {
         responsive: true,
         title: {
             display: true,
-            text: 'Pavements in poor condition'
+            text: 'Percentage of pavements in poor condition'
         },
         legend: {
             display: true,
@@ -352,7 +269,7 @@ function pm25chartLine(ctx, data) {
             yAxes: [{
                 scaleLabel: {
                     display: true,
-                    labelString: 'Number of lane-miles in poor condition'
+                    labelString: 'Percentage based 100%'
                 }
             }]
         }

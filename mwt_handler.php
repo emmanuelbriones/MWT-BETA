@@ -77,6 +77,9 @@ else if($key == "all_pm24"){
 	$query = "select leng_cal,miles,tti,trktti,st_astext(SHAPE) as shape from pm24";
 }else if($key == "all_pm25"){
 	$query = "select type,state_code,year_recor,iri, miles, PAV_RATING, st_astext(SHAPE) as shape from pm25";
+}else if($key == "pm25_data"){
+	$type = $_GET['type']; // type sent from front-end, from the object defined at the ajax call
+	$query = "SELECT * FROM pm25_data WHERE type = '$type'";
 }else if($key == "all_pm13"){ 
 	$query = "SET @year_ = (SELECT Max(Period) FROM mwt.pm13);";
 	$result = mysqli_query($conn, $query); 
