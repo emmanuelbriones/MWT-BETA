@@ -274,6 +274,7 @@ function pm25R(data) {
 
     paragraphAdder("How this Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("As per 23 CFR Part § 490.313, the pavement condition for each of the four measures is calculated as per the thresholds provided in Table 1.", "paragraph", "calc-info");
+    paragraphAdder("*For year 2021, the data displayed is only for the state of Texas", "paragraph", "calc-info");
 
     if (detectmob() != true) {
         //legend elements
