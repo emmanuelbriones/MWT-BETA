@@ -264,23 +264,32 @@ function pm25R(data) {
     paragraphAdder("\u00B9As of May 31, 2023, latest available shapefiles: 2021 for Texas and 2020 for New Mexico. For year 2021, bar chart figure only shows lane-milage condition for El Paso, Texas.", "paragraph", "legend-info");
     paragraphAdder("\u00B2Performance Measures for years 2017 and 2018 were calculated based on the IRI threshold only. As per FHWA requirements, starting in 2019, the new metric for assessing this performance measure requires the calculation of an overall performance measure depending the type of pavement that is based on IRI, percent cracking, rutting, and faulting thresholds. See How this Performance Measure was Calculated section for more information.", "paragraph", "legend-info");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("HPMS reports 2019 pavement condition for " + data.tot_miles.toFixed(1) + " miles within the El Paso MPO area. Out of those,  " + data.poor_mi_perc + "% are in poor condition. " + data.tx_poor_mi.toFixed(1) + " miles (" + data.tx_poor_mi_perc + "%) of pavement in poor condition are located in Texas and " + data.nm_poor_mi.toFixed(1) + " miles (" + data.nm_poor_mi_perc + "%) are in New Mexico.", "paragraph", "summary-info");
+    if (currentType == 'driving') {
+        paragraphAdder("For year 2021, the HPMS reports 1667.8 lane-miles within the El Paso MPO area in Texas, which out of these 2.7% are in poor condition. For year 2020, the HPMS reports 28.7 lane-miles within the El Paso MPO area in New Mexico; out of these 0.0% are in poor condition", "paragraph", "summary-info");
+    }
+    else if (currentType == 'freight') {
+        paragraphAdder("For year 2021, the HPMS reports 1594.1 lane-miles within the El Paso MPO area in Texas, which out of these 1.2% are in poor condition. For year 2020, the HPMS reports 27.8 lane-miles within the El Paso MPO area in New Mexico; out of these 0.0% are in poor condition.", "paragraph", "summary-info");
+    }
+    else if (currentType == 'transit') {
+        paragraphAdder("For year 2021, the HPMS reports 1310.8 lane-miles within the El Paso MPO area in Texas, which out of these 5.4% are in poor condition. For year 2020, the HPMS reports 55.6 lane-miles within the El Paso MPO area in New Mexico; out of these 0.0% are in poor condition.", "paragraph", "summary-info");
+    }
+    paragraphAdder("Note: As of May 31, 2023, latest available shapefiles: 2021 for Texas and 2020 for New Mexico.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2018-2022", "paragraph", "analysis-info");
+    paragraphAdder("2017-2021", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Databases obtained from the latest Highway Performance Monitoring System (HPMS) shapefiles publicly available by the FHWA Office of Highway Policy Information hosted at:", "paragraph", "data-info");
     anchorAdder("https://geo.dot.gov/server/rest/services/Hosted", "https://geo.dot.gov/server/rest/services/Hosted");
     paragraphAdder("The HPMS is a national level highway information system that includes data on the extent, condition, performance, use and operating characteristics of the nation's highways.", "paragraph", "data-info");
 
     paragraphAdder("How this Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("As per 23 CFR Part § 490.313, the pavement condition for each of the four measures is calculated as per the thresholds provided in Table 1.", "paragraph", "calc-info");
-    paragraphAdder("*For year 2021, the data displayed is only for the state of Texas", "paragraph", "calc-info");
-
+    paragraphAdder("Pavement condition is calculated as per 23 CFR Part § 490.313.  For additional information on how this performance measure was calculated is available in the following link.", "paragraph", "calc-info");
+    anchorAdder("23 CFR § 490.313 - Calculation of performance measures for assessing pavements", "./tutorial/Pavement Condition Measures.pdf");
+    openNav();
     if (detectmob() != true) {
         //legend elements
         names = ['Good Condition', 'Fair Condition', 'Poor Condition'];
-        colors = ['background:#8BC34A;', 'background:#F57C00;', 'background:#d50000'];
-        legendMaker("Legend", names, colors);
+        colors = ['background:#8BC34A;', 'background:#FFEA00;', 'background:#d50000'];
+        legendMaker("Latest Annual Pavement Condition", names, colors);
     }
     openNav();
 }
@@ -626,7 +635,12 @@ function pm16R(data) {
     paragraphAdder("The design values shown here are computed using Federal Reference Method or equivalent data reported by State, Tribal, and Local monitoring agencies to EPA's Air Quality System (AQS) as of May 2, 2023. Concentrations flagged by State, Tribal, or Local monitoring agencies as having been affected by an exceptional event (e.g., wildfire, volcanic eruption) and concurred by the associated EPA Regional Office are not included in these calculations. ", "paragraph", "calc-info");
     paragraphAdder("Disclaimer:", "subtitle", "extra-title");
     paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "extra-info");
-
+    if (detectmob() != true) {
+        let names = ['Attainment', 'Non-attainment'];
+        let colors = ['background:#008000;', 'background:#FF0000;'];
+    
+        legendMaker("Attainment Status", names, colors);
+    }
     openNav();
 }
 
@@ -657,7 +671,12 @@ function pm17R(data) {
     paragraphAdder("•Concentrations flagged by State, Tribal, or Local monitoring agencies as having beenaffected by an exceptional event (e.g., wildfire, volcanic eruption) and concurred by the associated EPA Regional Office are not included in these calculations.", "paragraph", "calc-info");
     paragraphAdder("Disclaimer:", "subtitle", "extra-title");
     paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "extra-info");
-
+    if (detectmob() != true) {
+        let names = ['Attainment', 'Non-attainment'];
+        let colors = ['background:#008000;', 'background:#FF0000;'];
+    
+        legendMaker("Attainment Status", names, colors);
+    }
     openNav();
 
 }

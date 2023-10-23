@@ -5,17 +5,11 @@ function pm25Data(mode, ex) {
         poor: [0, 0, 0, 0, 0],
         percentage_poor: [0, 0, 0, 0, 0],
 
-        tot_miles: 0,
-        poor_mi_perc: 0,
-        tot_poor_mi: 0,
+        miles_tx : 0,
+        miles_nm : 0,
 
-        tx_miles: 0,
-        tx_poor_mi: 0,
-        tx_poor_mi_perc: 0,
-
-        nm_miles: 0,
-        nm_poor_mi: 0,
-        nm_poor_mi_perc: 0,
+        perc_poor_tx : 0,
+        perc_poor_nm : 0,
 
         latestYear: 0
     }

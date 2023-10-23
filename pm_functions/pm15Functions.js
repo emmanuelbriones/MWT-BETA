@@ -281,8 +281,8 @@ function pm15chartLine2(ctx, data) {
     var data = {
         labels: ['2018', '2019', '2020', '2021', '2022'],
         datasets: [{
-                label: data[1].name,
-                data: data[1].graphData,
+                
+                data: data[0].graphData,
                 backgroundColor: "yellow",
                 borderColor: "yellow",
                 fill: false,
