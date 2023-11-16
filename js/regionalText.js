@@ -284,6 +284,9 @@ function pm25R(data) {
     paragraphAdder("How this Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Pavement condition is calculated as per 23 CFR Part § 490.313.  For additional information on how this performance measure was calculated is available in the following link.", "paragraph", "calc-info");
     anchorAdder("23 CFR § 490.313 - Calculation of performance measures for assessing pavements", "./tutorial/Pavement Condition Measures.pdf");
+    
+    paragraphAdder("Disclaimer", "subtitle", "extra-title");
+    paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination. ", "paragraph", "extra-info");
     openNav();
     if (detectmob() != true) {
         //legend elements
@@ -434,17 +437,23 @@ function pm26R(data) {
     chart_pm26(ctx, data);
     headerAdder("Bridge & Culvert Condition", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within the El Paso MPO area, there are " + data.good_count[4] + " bridges (" + data.good[4] + "%) in Good condition, " + data.fair_count[4] + " bridges (" + data.fair[4] + "%) in Fair condition, " + data.poor_count[4] + " bridges (" + data.poor[4] + "%) in Poor condition.", "paragraph", "summary-info");
-    paragraphAdder("Condition data was not available for " + data.tnodatabridges + " bridges within the El Paso MPO area.", "paragraph", "summary-info");
+    paragraphAdder("Within the El Paso MPO area, there are 51% bridges in Good condition, 47%  bridges in Fair condition, & 0.9% bridges in Poor condition.", "paragraph", "summary-info");
+
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("Bridges condition data as of 2018", "paragraph", "analysis-info");
+    paragraphAdder(" 2019-2023", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
-    paragraphAdder("Bridge condition data was provided by TxDOT and NMDOT.", "paragraph", "data-info");
+    anchorAdder(" USDOT National Bridge Inventory (shapefiles) ", "https://geodata.bts.gov/datasets/national-bridge-inventory/about");
+    anchorAdder(" USDOT NBI ASCII files ", "https://www.fhwa.dot.gov/bridge/nbi/ascii.cfm ");
+    paragraphAdder("Last Updated June 15, 2023", "paragraph", "data-title");
+
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("Bridge condition rating is based on the lowest condition rating from the following components: deck, substructure, superstructure or culvert.", "paragraph", "calc-info");
-    paragraphAdder("Following the FHWA guidance, bridges with lowest rating between 7 and 9 are classified as Good, those rated 6 or 5 are classified as Fair and bridges with lowest rating 4 or below are classified as Poor.", "paragraph", "calc-info");
-    paragraphAdder("More information about Bridge Condition Performance can be found at this TxDOT website: ", "paragraph", "calc-info");
-    anchorAdder(1, "https://gis-txdot.opendata.arcgis.com/datasets/83af0d2957ca4c2eb340e4bd04a1046f_0/data?geometry=-134.852%2C24.539%2C-65.287%2C37.659");
+    paragraphAdder("Pavement condition is calculated as per 23 CFR § 490.409. For additional information on how this performance measure was calculated is available in the following link.", "paragraph", "calc-info");
+    paragraphAdder("23 CFR § 490.409 -  Calculation of performance measures for assessing bridge condition.", "paragraph", "calc-info");
+    anchorAdder("https://www.ecfr.gov/current/title-23/section-490.409 ", "paragraph", "calc-info");
+    paragraphAdder("Disclaimer:", "subtitle", "extra-title");
+    paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination.  ", "paragraph", "extra-info");
+    
+    
     openNav();
 }
 function pm22R(data) {

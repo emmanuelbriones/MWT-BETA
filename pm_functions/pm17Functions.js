@@ -11,10 +11,10 @@
     images.push("./icons/greenPin.png");
     images.push("./icons/greenPin.png");
 
-    images.push("./icons/redPin.png");
-    images.push("./icons/redPin.png");
-    images.push("./icons/redPin.png");
-    images.push("./icons/redPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
     images.push("./icons/redPin.png");
 
 
@@ -151,7 +151,8 @@
                         value: '0',
                         icon: images[index]
                     });
-                    if (stationName == pm17Data[0].name || stationName == pm17Data[1].name || stationName == pm17Data[2].name || stationName == pm17Data[3].name || stationName == pm17Data[4].name) {
+                    if (stationName == pm17Data[0].name || stationName == pm17Data[1].name || stationName == pm17Data[2].name || stationName == pm17Data[3].name || stationName == pm17Data[4].name ||
+                        stationName == pm17Data[5].name || stationName == pm17Data[6].name || stationName == pm17Data[7].name) {
                         point.setMap(map);
                         points.push(point);
                     }
@@ -174,6 +175,47 @@
             regionalText(pm17Data);
         }
     });
+
+    //draws boundries
+    function drawOzoneFigure(figureName) {
+        fetch(`./shapeBoundries/pm10.json`).then(function (response) {
+                return response.json();
+        }).then(function (myJson) {
+
+            let active_corr = myJson[figureName];
+            for (let index in active_corr) {
+                let shp = active_corr[index]['shape'];
+                let reader = new jsts.io.WKTReader();
+                let r = reader.read(shp);
+                let to_visualize = [];
+                let coord;
+                let ln = r.getCoordinates();
+                for (let i = 0; i < ln.length; i++) {
+                    coord = {
+                        lat: ln[i]['y'],
+                        lng: ln[i]['x']
+                    };
+                    to_visualize.push(coord);
+                }
+                let line = new google.maps.Polygon({
+                    paths: to_visualize,
+                    strokeColor: 'red',
+                    strokeOpacity: 0,
+                    strokeWeight: 0,
+                    fillColor: 'red',
+                    fillOpacity: 0.3, // 10% opacity
+                    zIndex: 99
+                });    
+                polyToErase.plan.push();
+                polyToErase.exist.push(line);                                    
+                line.setMap(map);
+                polygons.push(line);
+            }
+        });
+    }
+    
+    drawOzoneFigure("PM10");
+    drawOzoneFigure("PM10_2");
 }
 
 function pm17chartLine(ctx, data) {
@@ -222,6 +264,33 @@ function pm17chartLine(ctx, data) {
                 data: data[4].graphData,
                 backgroundColor: "lightgray",
                 borderColor: "lightgray",
+                fill: false,
+                lineTension: 0,
+                radius: 5
+            },
+            {
+                label: data[5].name,
+                data: data[5].graphData,
+                backgroundColor: "red",
+                borderColor: "red",
+                fill: false,
+                lineTension: 0,
+                radius: 5
+            },
+            {
+                label: data[6].name,
+                data: data[6].graphData,
+                backgroundColor: "green",
+                borderColor: "green",
+                fill: false,
+                lineTension: 0,
+                radius: 5
+            },
+            {
+                label: data[7].name,
+                data: data[7].graphData,
+                backgroundColor: "black",
+                borderColor: "black",
                 fill: false,
                 lineTension: 0,
                 radius: 5

@@ -353,32 +353,39 @@ function pm20DynamicText(corridor, data) {
     openNav();
 }
 function pm25DynamicText(corridor, data) {
-    headerAdder("Percentage of pavements in poor condition Corridor", "title");
+    headerAdder("Percentage of pavements in poor condition", "title");
     canvasMaker('chart1/2', 'myChart');
     canvasMaker('chart2/2', 'myChart2');
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myChart2').getContext('2d');
     pm25StackedChart(ctx,data);
     pm25chartLine(ctx2,data);
+    paragraphAdder("\u00B9As of May 31, 2023, latest available shapefiles: 2021 for Texas and 2020 for New Mexico. For year 2021, bar chart figure only shows lane-milage condition for El Paso, Texas.", "paragraph", "legend-info");
+    paragraphAdder("\u00B2Performance Measures for years 2017 and 2018 were calculated based on the IRI threshold only. As per FHWA requirements, starting in 2019, the new metric for assessing this performance measure requires the calculation of an overall performance measure depending the type of pavement that is based on IRI, percent cracking, rutting, and faulting thresholds. See How this Performance Measure was Calculated section for more information.", "paragraph", "legend-info");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("\u00B9As of May 31, 2023, latest available shapefiles: 2021 for Texas and 2020 for New Mexico. For year 2021, bar chart figure only shows lane-milage condition for El Paso, Texas.", "paragraph", "summary-info");
-    paragraphAdder("\u00B2Performance Measures for years 2017 and 2018 were calculated based on the IRI threshold only. As per FHWA requirements, starting in 2019, the new metric for assessing this performance measure requires the calculation of an overall performance measure depending the type of pavement that is based on IRI, percent cracking, rutting, and faulting thresholds. See How this Performance Measure was Calculated section for more information.", "paragraph", "summary-info");
-    if(corridor == "AOI"){
-        paragraphAdder("HPMS reports 2019 pavement condition for " + data.tot_miles.toFixed(1) + " miles within the AOI, out of those, " + data.poor_mi_perc.toFixed(1) + "% are in poor condition. ", "paragraph", "summary-info");
-
+    if (currentType == 'driving') {
+        paragraphAdder("For year 2021, the HPMS reports 1667.8 lane-miles within the El Paso MPO area in Texas, which out of these 2.7% are in poor condition. For year 2020, the HPMS reports 28.7 lane-miles within the El Paso MPO area in New Mexico; out of these 0.0% are in poor condition", "paragraph", "summary-info");
     }
-    else{
-        paragraphAdder("HPMS reports 2019 pavement condition for " + data.tot_miles.toFixed(1) + " miles within the " + corridor + " corridor, out of those, " + data.poor_mi_perc.toFixed(1) + "% are in poor condition. ", "paragraph", "summary-info");
+    else if (currentType == 'freight') {
+        paragraphAdder("For year 2021, the HPMS reports 1594.1 lane-miles within the El Paso MPO area in Texas, which out of these 1.2% are in poor condition. For year 2020, the HPMS reports 27.8 lane-miles within the El Paso MPO area in New Mexico; out of these 0.0% are in poor condition.", "paragraph", "summary-info");
     }
-    
+    else if (currentType == 'transit') {
+        paragraphAdder("For year 2021, the HPMS reports 1310.8 lane-miles within the El Paso MPO area in Texas, which out of these 5.4% are in poor condition. For year 2020, the HPMS reports 55.6 lane-miles within the El Paso MPO area in New Mexico; out of these 0.0% are in poor condition.", "paragraph", "summary-info");
+    }
+    paragraphAdder("Note: As of May 31, 2023, latest available shapefiles: 2021 for Texas and 2020 for New Mexico.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2018-2022", "paragraph", "analysis-info");
+    paragraphAdder("2017-2021", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("Highway Performance Monitoring System (HPMS) Public Release of Geospatial Data in Shapefile Format", "https://www.fhwa.dot.gov/policyinformation/hpms/shapefiles.cfm");
-    paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("Pavement condition was based on International Roughness Index (IRI) as defined by:", "paragraph", "calc-info");
-    anchorAdder("Federal Highway Administration", "https://www.fhwa.dot.gov/policy/2013cpr/chap3.cfm#1");
-    paragraphAdder("Good condition (IRI < 95), fair condition (IRI 95-170), and poor condition (IRI > 170). In this analysis, any sections with IRI = 0 are considered as entries with no data. ", "paragraph", "calc-info");
+    paragraphAdder("Databases obtained from the latest Highway Performance Monitoring System (HPMS) shapefiles publicly available by the FHWA Office of Highway Policy Information hosted at:", "paragraph", "data-info");
+    anchorAdder("https://geo.dot.gov/server/rest/services/Hosted", "https://geo.dot.gov/server/rest/services/Hosted");
+    paragraphAdder("The HPMS is a national level highway information system that includes data on the extent, condition, performance, use and operating characteristics of the nation's highways.", "paragraph", "data-info");
+
+    paragraphAdder("How this Performance Measure was Calculated:", "subtitle", "calc-title");
+    paragraphAdder("Pavement condition is calculated as per 23 CFR Part § 490.313.  For additional information on how this performance measure was calculated is available in the following link.", "paragraph", "calc-info");
+    anchorAdder("23 CFR § 490.313 - Calculation of performance measures for assessing pavements", "./tutorial/Pavement Condition Measures.pdf");
+    
+    paragraphAdder("Disclaimer", "subtitle", "extra-title");
+    paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination. ", "paragraph", "extra-info");
     openNav();
     //legend elements
     names = ['Good Condition', 'Fair Condition', 'Poor Condition'];

@@ -905,7 +905,7 @@ function clearMetadata() {
 
 //this function draws the boundries of El Paso
 function set_boundries() {
-    fetch('./epBoundries.json').then(function (response) {
+    fetch('./shapeBoundries/epBoundries.json').then(function (response) {
         return response.json();
     }).then(function (myJson) {
         let active_corr = myJson["ELPASO"];

@@ -5,9 +5,9 @@ function pm16Data(mode) {
 
     //store all colors for points
     images.push("./icons/redPin.png");
-    images.push("./icons/orangePin.png");
     images.push("./icons/greenPin.png");
-    images.push("./icons/lightbluePin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/redPin.png");
     images.push("./icons/grayPin.png");
     images.push("./icons/greenPin.png");
 
@@ -147,7 +147,8 @@ function pm16Data(mode) {
                         value: '0',
                         icon: images[index]
                     });
-                    if (stationName == pm16Data[0].name || stationName == pm16Data[1].name) {
+                    if (stationName == pm16Data[0].name || stationName == pm16Data[1].name ||
+                        stationName == pm16Data[2].name || stationName == pm16Data[3].name) {
                         point.setMap(map);
                         points.push(point);
                     }
@@ -170,6 +171,40 @@ function pm16Data(mode) {
             regionalText(pm16Data);
         }
     });
+
+    fetch(`./shapeBoundries/CO.json`).then(function (response) {
+        return response.json();
+    }).then(function (myJson) {
+        let active_corr = myJson["CO"];
+        for (let index in active_corr) {
+            let shp = active_corr[index]['shape'];
+            let reader = new jsts.io.WKTReader();
+            let r = reader.read(shp);
+            let to_visualize = [];
+            let coord;
+            let ln = r.getCoordinates();
+            for (let i = 0; i < ln.length; i++) {
+                coord = {
+                    lat: ln[i]['y'],
+                    lng: ln[i]['x']
+                };
+                to_visualize.push(coord);
+            }
+            let line = new google.maps.Polygon({
+                paths: to_visualize,
+                strokeColor: 'red',
+                strokeOpacity: 0.0,
+                strokeWeight: 0,
+                fillColor: 'red',
+                fillOpacity: 0.3, // 10% opacity
+                zIndex: 99
+            });        
+            polyToErase.plan.push();
+            polyToErase.exist.push(line);                                    
+            line.setMap(map);
+            polygons.push(line);
+        }
+    });
 }
 
 
@@ -190,6 +225,24 @@ function pm16chartLine(ctx, data) {
                 data: data[1].graphData,
                 backgroundColor: "pink",
                 borderColor: "pink",
+                fill: false,
+                lineTension: 0,
+                radius: 5
+            },
+            {
+                label: data[2].name,
+                data: data[2].graphData,
+                backgroundColor: "blue",
+                borderColor: "blue",
+                fill: false,
+                lineTension: 0,
+                radius: 5
+            },
+            {
+                label: data[3].name,
+                data: data[3].graphData,
+                backgroundColor: "red",
+                borderColor: "red",
                 fill: false,
                 lineTension: 0,
                 radius: 5

@@ -7,14 +7,12 @@ function pm15Data(mode) {
     images.push("./icons/redPin.png");
     images.push("./icons/greenPin.png");
     images.push("./icons/redPin.png");
-    images.push("./icons/redPin.png");
     images.push("./icons/greenPin.png");
-
     images.push("./icons/greenPin.png");
-    images.push("./icons/redPin.png");
-    images.push("./icons/redPin.png");
-    images.push("./icons/redPin.png");
-    images.push("./icons/redPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
+    images.push("./icons/greenPin.png");
 
 
     let key = 'all_pm15_16_17g';
@@ -30,7 +28,6 @@ function pm15Data(mode) {
     let greathestNum1 = 0;
     let greathestStat1 = '';
     let year1 = 0;
-
     //store graph data
     $.get('mwt_handler.php', example, function (data) {
         for (index in data.shape_arr) {
@@ -58,7 +55,6 @@ function pm15Data(mode) {
                 if (year5 == '0') {
                     year5 = null;
                 }
-
                 pm15Data[index] = {
                     name: stationName,
                     category: category,
@@ -165,7 +161,6 @@ function pm15Data(mode) {
                 }
             });
         }
-
         //menu text
         if (mode == 0) {
             let val = {
@@ -177,6 +172,45 @@ function pm15Data(mode) {
             regionalText(pm15Data);
         }
     });
+
+    //draws boundries
+    function drawOzoneFigure(figureName) {
+        fetch(`./shapeBoundries/ozone.json`).then(function (response) {
+                return response.json();
+        }).then(function (myJson) {
+            let active_corr = myJson[figureName];
+            for (let index in active_corr) {
+                let shp = active_corr[index]['shape'];
+                let reader = new jsts.io.WKTReader();
+                let r = reader.read(shp);
+                let to_visualize = [];
+                let coord;
+                let ln = r.getCoordinates();
+                for (let i = 0; i < ln.length; i++) {
+                    coord = {
+                        lat: ln[i]['y'],
+                        lng: ln[i]['x']
+                    };
+                    to_visualize.push(coord);
+                }
+                let line = new google.maps.Polygon({
+                    paths: to_visualize,
+                    strokeColor: 'red',
+                    strokeOpacity: 0.0,
+                    strokeWeight: 0,
+                    fillColor: 'red',
+                    fillOpacity: 0.3, // 10% opacity
+                    zIndex: 99
+                });  
+                polyToErase.plan.push();
+                polyToErase.exist.push(line);                                    
+                line.setMap(map);
+                polygons.push(line);
+            }
+        });
+    }
+    
+    drawOzoneFigure("OZONE1");
 }
 
 
@@ -185,6 +219,15 @@ function pm15chartLine(ctx, data) {
     var data = {
         labels: ['2016-2018', '2017-2019', '2018-2020', '2019-2021', '2020-2022',],
         datasets: [{
+                label: data[4].name,
+                data: data[4].graphData,
+                backgroundColor: "red",
+                borderColor: "red",
+                fill: false,
+                lineTension: 0,
+                radius: 5
+            },
+            {
                 label: data[5].name,
                 data: data[5].graphData,
                 backgroundColor: "red",
@@ -225,15 +268,6 @@ function pm15chartLine(ctx, data) {
                 data: data[9].graphData,
                 backgroundColor: "gray",
                 borderColor: "gray",
-                fill: false,
-                lineTension: 0,
-                radius: 5
-            },
-            {
-                label: data[10].name,
-                data: data[10].graphData,
-                backgroundColor: "green",
-                borderColor: "green",
                 fill: false,
                 lineTension: 0,
                 radius: 5
@@ -282,6 +316,7 @@ function pm15chartLine2(ctx, data) {
         labels: ['2018', '2019', '2020', '2021', '2022'],
         datasets: [{
                 
+                label: data[0].name,
                 data: data[0].graphData,
                 backgroundColor: "yellow",
                 borderColor: "yellow",
@@ -315,15 +350,6 @@ function pm15chartLine2(ctx, data) {
                 fill: false,
                 lineTension: 0,
                 radius: 5
-            },
-            {
-                label: data[4].name,
-                data: data[4].graphData,
-                backgroundColor: "lightgray",
-                borderColor: "lightgray",
-                fill: false,
-                lineTension: 0,
-                radius: 5
             }
         ]
 
@@ -342,7 +368,7 @@ function pm15chartLine2(ctx, data) {
         responsive: true,
         title: {
             display: true,
-            text: '8-hr Average Emissions (New Mexico'
+            text: '8-hr Average Emissions (New Mexico)'
         },
         legend: {
             display: true,
