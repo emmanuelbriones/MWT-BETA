@@ -4,10 +4,10 @@ function pm16Data(mode) {
     let images = [];
 
     //store all colors for points
-    images.push("./icons/redPin.png");
+    images.push("./icons/grayPin.png");
     images.push("./icons/greenPin.png");
     images.push("./icons/greenPin.png");
-    images.push("./icons/redPin.png");
+    images.push("./icons/grayPin.png");
     images.push("./icons/grayPin.png");
     images.push("./icons/greenPin.png");
 
@@ -15,7 +15,7 @@ function pm16Data(mode) {
     images.push("./icons/greenPin.png");
     images.push("./icons/darkbluePin.png");
     images.push("./icons/lightgreenPin.png");
-    images.push("./icons/lightgrayPin.png");
+    images.push("./icons/greenPin.png");
 
 
     let key = 'all_pm15_16_17g';
@@ -147,8 +147,7 @@ function pm16Data(mode) {
                         value: '0',
                         icon: images[index]
                     });
-                    if (stationName == pm16Data[0].name || stationName == pm16Data[1].name ||
-                        stationName == pm16Data[2].name || stationName == pm16Data[3].name) {
+                    if (pm16Data.some(data => data.name === stationName)) {
                         point.setMap(map);
                         points.push(point);
                     }

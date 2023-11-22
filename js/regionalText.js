@@ -603,10 +603,13 @@ function pm15R(data) {
     paragraphAdder("The Air Quality System (AQS) contains ambient air pollution data collected by air pollution control monitors. Stations with the highest annual readings for each pollutant are:", "paragraph", "summary-info");
     paragraphAdder("Texas: Skyline Park in 2019. " , "paragraph", "summary-info");
     paragraphAdder("New Mexico: Santa Teresa in 2017." , "paragraph", "summary-info");
+    paragraphAdder("Gray markers are not active from year 2020-2022", "paragraph", "summary-info");
+
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("Texas Commission on Environmental Quality website", "https://tceq.maps.arcgis.com/apps/webappviewer/index.html?id=ab6f85198bda483a997a6956a8486539");
+    anchorAdder("EPA Air Quality Design Values", "https://www.epa.gov/air-trends/air-quality-design-values#report");
+    paragraphAdder("Last Updated on May 24,2023.", "paragraph" , "data-info");
 
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Annual readings are reported exactly as they appear at the EPA’s National Air Quality: Status and Trends of Key Air Pollutants website.\n\
@@ -614,12 +617,11 @@ function pm15R(data) {
     The level of the 2015 8-hour ozone NAAQS is 0.070 parts per million (ppm).\n\
     The design values shown here are computed using Federal Reference Method or equivalent data reported to EPA's Air Quality System (AQS) as of May 22, 2023.\n\
     Concentrations flagged by State, Tribal, or Local monitoring agencies as having been affected by an exceptional event (e.g., wildfire, volcanic eruption) and concurred by the associated EPA Regional Office are not included in these calculations.", "paragraph", "calc-info");
-    
-    // Add the note paragraph
-    paragraphAdder("Disclaimer: The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period. ", "paragraph", "calc-info");
+    paragraphAdder("Disclaimer:", "subtitle", "extra-title");
+    paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "extra-info");
     if (detectmob() != true) {
-        let names = ['Attainment', 'Non-attainment'];
-        let colors = ['background:#008000;', 'background:#FF0000;'];
+        let names = ['Attainment', 'Non-attainment', 'Not Active'];
+        let colors = ['background:#008000;', 'background:#FF0000;', 'background:#808080;'];
     
         legendMaker("Attainment Status", names, colors);
     }
@@ -633,20 +635,21 @@ function pm16R(data) {
     headerAdder("Carbon monoxide emissions", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("The level of the 1971 8-hour NAAQS for carbon monoxide is 9 parts per million (ppm) not to be exceeded more than once per year. The design value is evaluated over a two-year period. Specifically, the design value is the higher of each year's annual second maximum, non-overlapping 8-hour average.  The design value listed for each area is the highest among monitors with valid design values.  ", "paragraph", "summary-info");
-   
+    paragraphAdder("Gray markers are not active from year 2020-2022", "paragraph", "summary-info");
+
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     
     anchorAdder(" EPA Air Quality Design Values ", "https://www.epa.gov/air-trends/air-quality-design-values#report");
-    paragraphAdder("Last Updated on May 23,2023", "paragraph" , "data-info");
+    paragraphAdder("Last Updated on May 23,2023.", "paragraph" , "data-info");
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("The design values shown here are computed using Federal Reference Method or equivalent data reported by State, Tribal, and Local monitoring agencies to EPA's Air Quality System (AQS) as of May 2, 2023. Concentrations flagged by State, Tribal, or Local monitoring agencies as having been affected by an exceptional event (e.g., wildfire, volcanic eruption) and concurred by the associated EPA Regional Office are not included in these calculations. ", "paragraph", "calc-info");
     paragraphAdder("Disclaimer:", "subtitle", "extra-title");
     paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "extra-info");
     if (detectmob() != true) {
-        let names = ['Attainment', 'Non-attainment'];
-        let colors = ['background:#008000;', 'background:#FF0000;'];
+        let names = ['Attainment', 'Non-attainment', 'Not Active'];
+        let colors = ['background:#008000;', 'background:#FF0000;', 'background:#808080;'];
     
         legendMaker("Attainment Status", names, colors);
     }
@@ -665,12 +668,13 @@ function pm17R(data) {
     paragraphAdder("Stations with the highest estimated number of exceedances:", "paragraph", "summary-info");
     paragraphAdder("•Texas: El Paso Mimosa in period 2020-2022.", "paragraph", "summary-info");
     paragraphAdder("•New Mexico: 6ZM Desert View in period 2020-2022.", "paragraph", "summary-info");
+    paragraphAdder("Gray markers are not active from year 2020-2022", "paragraph", "summary-info");
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder("2018-2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder(" EPA Air Quality Design Values ", "https://www.epa.gov/air-trends/air-quality-design-values#report");
-    paragraphAdder("Last Updated on May 23,2023", "paragraph" , "data-info");
+    paragraphAdder("Last Updated on May 23,2023.", "paragraph" , "data-info");
 
     paragraphAdder("How the Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("•Annual readings are reported exactly as they appear at the EPA’s National Air Quality: Status and Trends of Key Air Pollutants website.", "paragraph", "calc-info");
@@ -681,8 +685,8 @@ function pm17R(data) {
     paragraphAdder("Disclaimer:", "subtitle", "extra-title");
     paragraphAdder("The information presented in this tool is intended for information use only and does not constitute a regulatory determination by EPA as to whether an area has attained a NAAQS. Not all monitors collected data for all three pollutants, also not all monitors have data for the full 5-year period.", "paragraph", "extra-info");
     if (detectmob() != true) {
-        let names = ['Attainment', 'Non-attainment'];
-        let colors = ['background:#008000;', 'background:#FF0000;'];
+        let names = ['Attainment', 'Non-attainment', 'Not Active'];
+        let colors = ['background:#008000;', 'background:#FF0000;', 'background:#808080;'];
     
         legendMaker("Attainment Status", names, colors);
     }

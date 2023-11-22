@@ -4,17 +4,20 @@
     let images = [];
 
     //store all colors for points
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
 
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
     images.push("./icons/redPin.png");
 
 
@@ -151,8 +154,7 @@
                         value: '0',
                         icon: images[index]
                     });
-                    if (stationName == pm17Data[0].name || stationName == pm17Data[1].name || stationName == pm17Data[2].name || stationName == pm17Data[3].name || stationName == pm17Data[4].name ||
-                        stationName == pm17Data[5].name || stationName == pm17Data[6].name || stationName == pm17Data[7].name) {
+                    if (pm17Data.some(data => data.name === stationName)) {
                         point.setMap(map);
                         points.push(point);
                     }

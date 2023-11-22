@@ -3,16 +3,16 @@ function pm15Data(mode) {
     let images = [];
 
     //store all colors for points
+    images.push("./icons/rediPin.png");
+    images.push("./icons/grayPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/grayPin.png");
     images.push("./icons/greenPin.png");
     images.push("./icons/redPin.png");
-    images.push("./icons/greenPin.png");
     images.push("./icons/redPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
-    images.push("./icons/greenPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
+    images.push("./icons/redPin.png");
 
 
     let key = 'all_pm15_16_17g';
@@ -154,9 +154,10 @@ function pm15Data(mode) {
                         icon: images[index]
 
                     });
-
-                    point.setMap(map);
-                    points.push(point);
+                    if (pm15Data.some(data => data.name === stationName)) {
+                        point.setMap(map);
+                        points.push(point);
+                    }
 
                 }
             });
@@ -221,8 +222,8 @@ function pm15chartLine(ctx, data) {
         datasets: [{
                 label: data[4].name,
                 data: data[4].graphData,
-                backgroundColor: "red",
-                borderColor: "red",
+                backgroundColor: "purple",
+                borderColor: "purple",
                 fill: false,
                 lineTension: 0,
                 radius: 5
