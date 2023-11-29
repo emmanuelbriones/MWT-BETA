@@ -13,7 +13,7 @@ $temporal = 0;
 $shape = array(); 
 
 if($key == "all_pm1" || $key == "all_pm2"){ 
-	$query = "select St_astext(SHAPE) as shape, ra_nonsove,ratio_area, b08301e1 as e1, b08301e3 as e3, ra_publict, ra_walk, ra_bike, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2;";
+	$query = "select St_astext(SHAPE) as shape, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2;";
 }else if($key == "all_pmbridge"){ 
 	$query = "select astext(SHAPE) as shape from pm26 where corridor_key = '$key'";
 }else if($key == "all_pm26"){ 

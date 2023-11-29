@@ -1,0 +1,56 @@
+{
+    "corridors":["Regional","Alameda", "Artcraft Domenici", "Doniphan" , "Dyer", "Eastlake", "Horizon", "McNutt", "Mesa"
+    , "Montana", "Montwood", "Socorro", "Yarbrough", "Zaragoza"],
+    "pm_categories": {
+        "Driving": {
+            "Bridge & culvert condition": null,
+            "Fatalities (2018)": null,
+            "Serious Injuries" : null,
+            "Drive Alone": null,
+            "Crashes on the CMP Network": null,
+            "Ozone": null,
+            "Carbon Monoxide" : null,
+            "Particulate Matter": null,
+            "Automobiles at POEs": null,
+            "Average wait time at POEs": null,
+            "Safety Projects Planned" : null,
+            "Pavements in poor condition": null,
+            "Time Travel Index": null
+        },
+        "Freight": {
+            "Fatalities": null,
+            "Serious Injuries": null,
+            "Trucks at POEs": null,
+            "Average wait time at POEs": null,
+            "Time Travel Index": null,
+            "Pavements in poor condition": null
+        },
+        "Transit": {
+            "Commute by transit": null,
+            "Transit riders": null,
+            "Jobs within ½ mile": null,
+            "Populations within ½ mile": null,
+            "Key Destinations within ½ mile": null
+        },
+        "Walking": {
+            "Commute by walking": null,
+            "Pedestrian fatalities": null,
+            "Pedestrian serious injuries": null,
+            "Northbound border crossing": null,
+            "Average wait time at POEs": null,
+            "Walking trips recorded by Strava": null,
+            "Sidewalks per Mile": null,
+            "Percentage of crashes nearby bus stops": null
+        },
+        "Biking": {
+            "Fatalities": null,
+            "Serious Injuries": null,
+            "Bikeway network buildout": null,
+            "Biking trips recorded by Strava": null,
+            "Key destinations within ½ mile": null,
+            "Crashes nearby bus stops": null,
+            "Jobs within ½ mile": null,
+            "Population within ½ mile": null
+        }
+    }
+}
