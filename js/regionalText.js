@@ -791,13 +791,20 @@ function pm1Text(text, data) {
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder(text, "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2014-2018 ACS 5-Year Estimates", "paragraph", "analysis-info");
+    paragraphAdder("2018-2022 ACS 5-Year Estimates", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2018.html");
     anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("Percent of non-single occupancy vehicle (SOV) commute is calculated as:", "paragraph", "calc-info");
     imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
+    openNav();
+    if (detectmob() != true) {
+        //legend elements
+        names = ['1%-25%', '25%-50%', '50%-75%', '75%-100%'];
+        colors = ['background:#00FF00;', 'background:#FFFF00;', 'background:#FFA500;', 'background:#FF0000'];
+        legendMaker("Percentage of Drive Alone", names, colors);
+    }
     openNav();
 
 }

@@ -38,29 +38,23 @@ function plotPM1(mode, data_to_plot) {
     }
  
     $.get(php_handler, data_for_php, function (data) {
-        let median = 0;
-        //to get median for color coding
-        for (index in data.shape_arr) {
-            if (data.shape_arr[index].pt_nonsove > 0) {
-                sum += parseFloat(data.shape_arr[index].pt_nonsove);
-            }
-        }
-        median = (sum / data.shape_arr.length).toFixed(2); // for color coding
         for (index in data.shape_arr) {
             let temp = wktFormatter(data.shape_arr[index][shape]);
-            let pm_prcnt_n = parseFloat(data.shape_arr[index].pt_nonsove).toFixed(2);
+            let pm_prcnt_n = parseInt(data.shape_arr[index].pt_nonsove, 10);
             let to_visualize = [];
 
             if (mode > 0){
                 for (let i = 0; i < temp.length; i++) {
                     if (pm_prcnt_n == 0) {
                         color = "#9E9E9E"; //gray
-                    } else if (pm_prcnt_n < median) {
-                        color = "#64B5F6"; // light blue
-                    } else if (pm_prcnt_n == median) {
-                        color = "#1565C0"; // blue
-                    } else if (pm_prcnt_n > median) {
-                        color = "#1A237E"; // dark blue
+                    } else if (pm_prcnt_n <= 25) {
+                        color = "#00FF00"; // green
+                    } else if (pm_prcnt_n <= 50) {
+                        color = "#FFFF00"; // yellow
+                    } else if (pm_prcnt_n <= 75) {
+                        color = "#FFA500"; // orange
+                    }else if (pm_prcnt_n <= 100){
+                        color = "#FF0000"; // red
                     }
                     to_visualize.push(temp[i]);
                     polyToErase.plan.push();
@@ -74,7 +68,7 @@ function plotPM1(mode, data_to_plot) {
                     fillColor: color,
                     fillOpacity: 0.60,
                     zIndex: -1,
-                    title: pm_prcnt_n,
+                    title: pm_prcnt_n +  "%",
                 });
                 polyToErase.exist.push(polygon);
                 //   Hover Effect for Google API Polygons
@@ -83,6 +77,44 @@ function plotPM1(mode, data_to_plot) {
                 google.maps.event.addListener(polygon, 'mouseout', function (event) { deleteTooltip(event); });
                 polygon.setMap(map);
                 polygons.push(polygon);
+
+                //draws boundries
+                function drawOzoneFigure(figureName) {
+                    fetch(`./shapeBoundries/pm1.json`).then(function (response) {
+                            return response.json();
+                    }).then(function (myJson) {
+                        let active_corr = myJson[figureName];
+                        for (let index in active_corr) {
+                            let shp = active_corr[index]['shape'];
+                            let reader = new jsts.io.WKTReader();
+                            let r = reader.read(shp);
+                            let to_visualize = [];
+                            let coord;
+                            let ln = r.getCoordinates();
+                            for (let i = 0; i < ln.length; i++) {
+                                coord = {
+                                    lat: ln[i]['y'],
+                                    lng: ln[i]['x']
+                                };
+                                to_visualize.push(coord);
+                            }
+                            let line = new google.maps.Polygon({
+                                paths: to_visualize,
+                                strokeColor: 'gray',
+                                strokeOpacity: 0.75,
+                                strokeWeight: 5,
+                                fillOpacity: 0,
+                                zIndex: 99 // on top of every other shape
+                            });  
+                            polyToErase.plan.push();
+                            polyToErase.exist.push(line);                                    
+                            line.setMap(map);
+                            polygons.push(line);
+                        }
+                    });
+                }
+                
+                drawOzoneFigure("West Side");
             }
         }
     });
