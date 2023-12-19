@@ -96,11 +96,7 @@ function regionalText(data) {
     }
 }
 function pm1R(data) {
-    let pm1RText = data.SOV.toFixed(1) + "% of workers living in the El Paso MPO area reported to drive alone during their commute to work,"
-        + "therefore only " + data.NonSOV.toFixed(1) + "% of workers commute via non-SOV modes, which includes carpooled via car, truck, or van. Workers"
-        + "used Public Transport means such as bus or trolley bus, streetcar or trolley car, subway or elevated railroad, railroad,"
-        + " and ferryboat. Some workers also used a taxicab, motorcycle, bicycle, walking, and other means to go to work or they worked"
-        + " at home.";
+    let pm1RText = "% of workers living in the El Paso MPO area that drive alone during their commute to work.";
     pm1Text(pm1RText, data)
 }
 function pm2R(data) {
@@ -787,16 +783,15 @@ function pm1Text(text, data) {
     canvasMaker('chart1', 'myChart');
     var ctx2pm1 = document.getElementById('myChart').getContext('2d');
     pieChartpm1(ctx2pm1, data);
-    headerAdder("Drive alone", "title");
+    headerAdder("Percent of workers that drive alone in 2020", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder(text, "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2018-2022 ACS 5-Year Estimates", "paragraph", "analysis-info");
+    paragraphAdder("2020", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2018.html");
-    anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
+    anchorAdder("TIGER/Line with Selected Demographic and Economic Data", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.html");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-    paragraphAdder("Percent of non-single occupancy vehicle (SOV) commute is calculated as:", "paragraph", "calc-info");
+    paragraphAdder("Percent of workers that drive alone is calculated as:", "paragraph", "calc-info");
     imageAdder('./img/performance_measures/pm1/pm1Eqn.PNG', 'calc-info');
     openNav();
     if (detectmob() != true) {

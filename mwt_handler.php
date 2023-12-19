@@ -14,6 +14,8 @@ $shape = array();
 
 if($key == "all_pm1" || $key == "all_pm2"){ 
 	$query = "select St_astext(SHAPE) as shape, pt_nonsove, pt_publict, pt_walk, pt_bike from pm_1_2;";
+}else if($key == "pm_1_2_table"){ 
+	$query = "SELECT * FROM pm_1_2_table";
 }else if($key == "all_pmbridge"){ 
 	$query = "select astext(SHAPE) as shape from pm26 where corridor_key = '$key'";
 }else if($key == "all_pm26"){ 

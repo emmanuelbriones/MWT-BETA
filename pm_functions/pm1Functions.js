@@ -77,46 +77,58 @@ function plotPM1(mode, data_to_plot) {
                 google.maps.event.addListener(polygon, 'mouseout', function (event) { deleteTooltip(event); });
                 polygon.setMap(map);
                 polygons.push(polygon);
-
-                //draws boundries
-                function drawOzoneFigure(figureName) {
-                    fetch(`./shapeBoundries/pm1.json`).then(function (response) {
-                            return response.json();
-                    }).then(function (myJson) {
-                        let active_corr = myJson[figureName];
-                        for (let index in active_corr) {
-                            let shp = active_corr[index]['shape'];
-                            let reader = new jsts.io.WKTReader();
-                            let r = reader.read(shp);
-                            let to_visualize = [];
-                            let coord;
-                            let ln = r.getCoordinates();
-                            for (let i = 0; i < ln.length; i++) {
-                                coord = {
-                                    lat: ln[i]['y'],
-                                    lng: ln[i]['x']
-                                };
-                                to_visualize.push(coord);
-                            }
-                            let line = new google.maps.Polygon({
-                                paths: to_visualize,
-                                strokeColor: 'gray',
-                                strokeOpacity: 0.75,
-                                strokeWeight: 5,
-                                fillOpacity: 0,
-                                zIndex: 99 // on top of every other shape
-                            });  
-                            polyToErase.plan.push();
-                            polyToErase.exist.push(line);                                    
-                            line.setMap(map);
-                            polygons.push(line);
-                        }
-                    });
-                }
-                
-                drawOzoneFigure("West Side");
             }
         }
+
+        //draws boundries
+        function drawOzoneFigure(figureName) {
+            fetch(`./shapeBoundries/pm1.json`).then(function (response) {
+                    return response.json();
+            }).then(function (myJson) {
+                let active_corr = myJson[figureName];
+                for (let index in active_corr) {
+                    let shp = active_corr[index]['shape'];
+                    let reader = new jsts.io.WKTReader();
+                    let r = reader.read(shp);
+                    let to_visualize = [];
+                    let coord;
+                    let ln = r.getCoordinates();
+                    for (let i = 0; i < ln.length; i++) {
+                        coord = {
+                            lat: ln[i]['y'],
+                            lng: ln[i]['x']
+                        };
+                        to_visualize.push(coord);
+                    }
+                    let line = new google.maps.Polygon({
+                        paths: to_visualize,
+                        strokeColor: 'black',
+                        strokeOpacity: 0.5,
+                        strokeWeight: 2,
+                        fillOpacity: 0,
+                        zIndex: 99 // on top of every other shape
+                    });  
+                    polyToErase.plan.push();
+                    polyToErase.exist.push(line);                                    
+                    line.setMap(map);
+                    polygons.push(line);
+                }
+            });
+        }
+        
+        drawOzoneFigure("West Side");
+        drawOzoneFigure("Upper Valley");
+        drawOzoneFigure("Downtown");
+        drawOzoneFigure("East Side");
+        drawOzoneFigure("Northeast Central");
+        drawOzoneFigure("Far East");
+        drawOzoneFigure("Hueco Tanks");
+        drawOzoneFigure("Mission Valley");
+        drawOzoneFigure("Fabens");
+        drawOzoneFigure("Anthony,NM");
+        drawOzoneFigure("Santa Teresa");
+        drawOzoneFigure("Sunland Park");
+        drawOzoneFigure("Chaparral, NM");
     });
 }
 function pm1chart(g2, data) {
