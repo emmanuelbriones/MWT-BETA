@@ -67,7 +67,7 @@ function plotPM1(mode, data_to_plot) {
                     strokeWeight: 0.70,
                     fillColor: color,
                     fillOpacity: 0.60,
-                    zIndex: -1,
+                    zIndex: -2,
                     title: pm_prcnt_n +  "%",
                 });
                 polyToErase.exist.push(polygon);
@@ -106,7 +106,7 @@ function plotPM1(mode, data_to_plot) {
                         strokeOpacity: 0.5,
                         strokeWeight: 2,
                         fillOpacity: 0,
-                        zIndex: 99 // on top of every other shape
+                        zIndex: -2 // on top of every other shape
                     });  
                     polyToErase.plan.push();
                     polyToErase.exist.push(line);                                    
@@ -131,95 +131,70 @@ function plotPM1(mode, data_to_plot) {
         drawOzoneFigure("Chaparral, NM");
     });
 }
-function pm1chart(g2, data) {
+function pieChartpm1(ctx) {
+    let php_handler = "mwt_handler.php";
+    let key = 'pm_1_2_table';
+    data_for_php = { key: key };
+    
+    $.get(php_handler, data_for_php, function (data) {
+        const areas = [];
+        const driveAloneValues = [];
 
-    colors = [];
-    colors = [
-        'rgba(33,150,243,1)',
-        'rgba(255,152,0,1)',
-    ];
-    let tot = 100 - (Math.round(data.Sum_nonsov_e));
- 
-    myPieChart = new Chart(g2, {
-        type: 'pie',
-        data: {
-            datasets: [{
-                data: [tot, data.Sum_nonsov_e.toFixed(2)],
-                backgroundColor: colors,
-                label: 'Dataset 1'
-            }],
-            labels: [
-                'Total Jobs in the El Paso MPO region',
-                'Percent of jobs 0.5 mi from existing high-quality rapid transit',
-            ]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                labels: {
-                    fontSize: 13,
-                    boxWidth: 15
-                }
+        for (index in data.shape_arr) {
+            const entry = data.shape_arr[index];
+            areas.push(entry.Areas);
+            driveAloneValues.push(parseFloat(entry.Drive_Alone));
+        }
+        // Define colors for the bars
+        const barColors = 'rgba(33,150,243,1)';
+
+        // Creating the bar chart
+        const myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: areas,
+                datasets: [{
+                    label: 'Drive Alone',
+                    data: driveAloneValues,
+                    backgroundColor: barColors,
+                    borderColor: barColors,
+                    borderWidth: 1
+                }]
             },
-            /* title: {
-                 display: true,
-                 text: 'Title 2'
-             },*/
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem, data) {
-                        return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            options: {
+                responsive: true,
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Areas'
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Drive Alone (%)'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data['datasets'][0]['label'] + ': ' + tooltipItem.yLabel.toFixed(1) + '%';
+                        }
                     }
                 }
             }
-        }
-
+        });
     });
 }
-function pieChartpm1(ctx,data){
-    colors = [];
-    colors = [
-        'rgba(33,150,243,1)',
-        'rgba(255,152,0,1)',
-    ];
-    let tot = 100 - (data.Sum_nonsov_e);
 
-    myPieChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            datasets: [{
-                data: [data.NonSOV.toFixed(1), data.SOV.toFixed(1)],
-                backgroundColor: colors,
-                label: 'Dataset 1'
-            }],
-            labels: [
-                'Carpooled',
-                'Single Occupancy Vehicle',
-            ]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                labels: {
-                    fontSize: 13,
-                    boxWidth: 15
-                }
-            },
-            /* title: {
-                 display: true,
-                 text: 'Title 2'
-             },*/
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem, data) {
-                        return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';
-                    }
-                }
-            }
-        }
-
-    });
-}
 const arrSum = arr => arr.reduce((a,b) => a + b, 0);
 function arrAvg(arr){
     let sum = arrSum(arr);

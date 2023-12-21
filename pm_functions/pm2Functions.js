@@ -30,7 +30,23 @@ function plotPM2(mode, ex) {
         php_handler = "./backend/AOI.php";
         data_for_php = ex;
     }
+    //draw boundries
+    drawOzoneFigure("West Side");
+    drawOzoneFigure("Upper Valley");
+    drawOzoneFigure("Downtown");
+    drawOzoneFigure("East Side");
+    drawOzoneFigure("Northeast Central");
+    drawOzoneFigure("Far East");
+    drawOzoneFigure("Hueco Tanks");
+    drawOzoneFigure("Mission Valley");
+    drawOzoneFigure("Fabens");
+    drawOzoneFigure("Anthony,NM");
+    drawOzoneFigure("Santa Teresa");
+    drawOzoneFigure("Sunland Park");
+    drawOzoneFigure("Chaparral, NM");
+
     $.get(php_handler, data_for_php, function (data) {
+        
         let median = 0;
         //to get median for color coding
         for (index in data.shape_arr) {
@@ -55,22 +71,24 @@ function plotPM2(mode, ex) {
             let to_visualize = [];
             let hooverValue = 0;
             if (currentType == "transit") {
-                hooverValue = parseFloat(data.shape_arr[index].pt_publict).toFixed(2);
+                hooverValue = parseInt(data.shape_arr[index].pt_publict, 10);
             } else if (currentType == "walking") {
-                hooverValue = parseFloat(data.shape_arr[index].pt_walk).toFixed(2);
+                hooverValue = parseInt(data.shape_arr[index].pt_walk, 10);
             } else if (currentType == "biking") {
-                hooverValue = parseFloat(data.shape_arr[index].pt_bike).toFixed(2);
+                hooverValue =  parseInt(data.shape_arr[index].pt_bike, 10);
             }
             if (mode > 0) {
                 for (let i = 0; i < temp.length; i++) {
                     if (hooverValue == 0) {
                         color = "#9E9E9E"; //gray
-                    } else if (hooverValue < median) {
-                        color = "#64B5F6"; // light blue
-                    } else if (hooverValue == median) {
-                        color = "#1565C0"; // blue
-                    } else if (hooverValue > median) {
-                        color = "#1A237E"; // dark blue
+                    } else if (hooverValue <= 25) {
+                        color = "#00FF00"; // green
+                    } else if (hooverValue <= 50) {
+                        color = "#FFFF00"; // yellow
+                    } else if (hooverValue <= 75) {
+                        color = "#FFA500"; // orange
+                    }else if (hooverValue <= 100){
+                        color = "#FF0000"; // red
                     }
                     to_visualize.push(temp[i]);
                     polyToErase.plan.push();
@@ -81,7 +99,7 @@ function plotPM2(mode, ex) {
                     paths: to_visualize,
                     strokeColor: 'black',
                     strokeOpacity: 0.60,
-                    strokeWeight: 0.70,
+                    strokeWeight: 0.80,
                     fillColor: color,
                     fillOpacity: 0.60,
                     zIndex: -1,
@@ -103,6 +121,44 @@ function plotPM2(mode, ex) {
                 polygon.setMap(map);
                 polygons.push(polygon);
             }
+        }
+
+    
+    });
+}
+
+//draws boundries
+function drawOzoneFigure(figureName) {
+    fetch(`./shapeBoundries/pm1.json`).then(function (response) {
+            return response.json();
+    }).then(function (myJson) {
+        let active_corr = myJson[figureName];
+        for (let index in active_corr) {
+            let shp = active_corr[index]['shape'];
+            let reader = new jsts.io.WKTReader();
+            let r = reader.read(shp);
+            let to_visualize = [];
+            let coord;
+            let ln = r.getCoordinates();
+            for (let i = 0; i < ln.length; i++) {
+                coord = {
+                    lat: ln[i]['y'],
+                    lng: ln[i]['x']
+                };
+                to_visualize.push(coord);
+            }
+            let line = new google.maps.Polygon({
+                paths: to_visualize,
+                strokeColor: 'black',
+                strokeOpacity: 0.5,
+                strokeWeight: 2,
+                fillOpacity: 0,
+                zIndex: -2 // on top of every other shape
+            });  
+            polyToErase.plan.push();
+            polyToErase.exist.push(line);                                    
+            line.setMap(map);
+            polygons.push(line);
         }
     });
 }
@@ -213,65 +269,81 @@ function pm2Data(mode, ex) { // gets valuesPm2 for pm2 graph, returns array with
 }
 
 function piechartpm2(ctx, data) {
-    var dataset = [
-        {
-            value: data.Transit.toFixed(1),
-            number: {suffix: "%"},
-            title: { text: "Transit" },
-            type: "indicator",
-            mode: "gauge+number",
-            gauge: {
-                axis: {visible: true, range: [0,5]}, bar: {color: "blue"},
-                steps: [
-                    {range: [0,100], color: "lightgray"}
-                ]
-            },
-            domain: { x: [0.2,0.8], y:[0.5,1] }
-        },
-        {
-            value: data.Biking.toFixed(2),
-            number: {suffix: "%"},
-            title: { text: "Biking" },
-            type: "indicator",
-            mode: "gauge+number",
-            gauge: {
-                axis: {visible: true, range: [0,5]}, bar: {color: "blue"},
-                steps: [
-                    {range: [0,100], color: "lightgray"}
-                ]
-            },
-            domain: { x: [0,0.27], y:[0.1, 0.35] }
-        },
-        {
-            value: data.Walking.toFixed(1),
-            number: {suffix: "%"},
-            title: { text: "Walking" },
-            type: "indicator",
-            mode: "gauge+number",
-            gauge: {
-                axis: {visible: true, range: [0,5]}, bar: {color: "blue"},
-                steps: [
-                    {range: [0,100], color: "lightgray"}
-                ]
-            },
-            domain: { x: [0.35,0.62], y:[0.1, 0.35] }
-        },
-        {
-            value: data.Non_SOV.toFixed(1),
-            number: {suffix: "%"},
-            title: { text: "Other (Non-SOV Driving)", font:{size:16}},
-            type: "indicator",
-            mode: "gauge+number",
-            gauge: {
-                axis: {visible: true, range: [0,40]}, bar: {color: "blue"},
-                steps: [
-                    {range: [0,100], color: "lightgray"}
-                ]
-            },
-            domain: { x: [0.70,0.97], y:[0.1, 0.35] }
+    let php_handler = "mwt_handler.php";
+    let key = 'pm_1_2_table';
+    data_for_php = { key: key };
+    let dataProperty;
+
+    switch (currentType) {
+        case 'transit':
+            dataProperty = 'Transit';
+            break;
+        case 'biking':
+            dataProperty = 'Pedalcycling';
+            break;
+        case 'walking':
+            dataProperty = 'Walking';
+            break;
+        // Add more cases for additional chart types
+        default:
+            console.error(`Unsupported chart type: ${currentType}`);
+            return;
+    }
+
+    $.get(php_handler, data_for_php, function (data) {
+        const areas = [];
+        const driveAloneValues = [];
+        for (index in data.shape_arr) {
+            const entry = data.shape_arr[index];
+            areas.push(entry.Areas);
+            driveAloneValues.push(parseFloat(entry[dataProperty]));
         }
-    ];
-    
-    var layout = { width: 750, height: 600, margin: { t: 0, b: 0 }, grid: {rows:2, columns:3}};
-    Plotly.newPlot('chartG', dataset, layout);
+        // Define colors for the bars
+        const barColors = 'rgba(33,150,243,1)';
+
+        // Creating the bar chart
+        const myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: areas,
+                datasets: [{
+                    label: 'Drive Alone',
+                    data: driveAloneValues,
+                    backgroundColor: barColors,
+                    borderColor: barColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Areas'
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: `${currentType} (%)`
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data['datasets'][0]['label'] + ': ' + tooltipItem.yLabel.toFixed(1) + '%';
+                        }
+                    }
+                }
+            }
+        });
+    });
 }

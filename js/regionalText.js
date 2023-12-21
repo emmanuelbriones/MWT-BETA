@@ -796,8 +796,8 @@ function pm1Text(text, data) {
     openNav();
     if (detectmob() != true) {
         //legend elements
-        names = ['1%-25%', '25%-50%', '50%-75%', '75%-100%'];
-        colors = ['background:#00FF00;', 'background:#FFFF00;', 'background:#FFA500;', 'background:#FF0000'];
+        names = ['0%','1%-25%', '25%-50%', '50%-75%', '75%-100%'];
+        colors = ['background:#9E9E9E;','background:#00FF00;', 'background:#FFFF00;', 'background:#FFA500;', 'background:#FF0000'];
         legendMaker("Percentage of Drive Alone", names, colors);
     }
     openNav();
@@ -807,7 +807,7 @@ function pm1Text(text, data) {
  * Modify and create function.
  */
 function pm2Text(text, data) {
-    canvasMaker('chartG', 'myChart');
+    canvasMaker('chart1', 'myChart'); 
     var ctx2pm1 = document.getElementById('myChart').getContext('2d');
     piechartpm2(ctx2pm1, data);
     if (currentType == "transit") {
@@ -829,13 +829,14 @@ function pm2Text(text, data) {
     paragraphAdder("Means of Transportation: Walked: workers 16 and over (estimate) &#247 Total workers 16 years and over", "paragraph", "calc-info");
     //legend elements
     if (detectmob() != true) {
-        let names = ['No Data', 'Below mean', 'Above Mean'];
-        let colors = ['background:#C0C0C0;', 'background:#00CCFF;', 'background:#0066CC;'];
-
+        names = ['0%','1%-25%', '25%-50%', '50%-75%', '75%-100%'];
+        colors = ['background:#9E9E9E;','background:#00FF00;', 'background:#FFFF00;', 'background:#FFA500;', 'background:#FF0000'];
         legendMaker("Legend", names, colors);
     }
     openNav();
 }
+
+
 function pm3Text() {
 
 }

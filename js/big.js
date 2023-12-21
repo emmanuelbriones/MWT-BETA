@@ -926,9 +926,9 @@ function set_boundries() {
             let line = new google.maps.Polyline({ // it is a POLYLINE
                 path: to_visualize, // polyline has a path, defined by lat & lng
                 // value: data.corridor_data[index]['value'], // iri (attribute for the pavement condition score)
-                strokeColor: 'gray',
+                strokeColor: 'black',
                 strokeOpacity: 0.75,
-                strokeWeight: 5,
+                strokeWeight: 3,
                 zIndex: 99 // on top of every other shape
             });
             line.setMap(map);
