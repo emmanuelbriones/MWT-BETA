@@ -40,7 +40,7 @@ function pm24Data(mode, ex) {
             let to_visualize = [];
             let coord;
             let ln = r.getCoordinates();
-            let miles = parseFloat(data.shape_arr[index].leng_cal);
+            let miles = parseFloat(data.shape_arr[index].miles);
             let tti = 0;
             if (currentType == 'driving' || identifier == 'd') {
                 tti = parseFloat(data.shape_arr[index].tti).toFixed(2);

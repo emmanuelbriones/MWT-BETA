@@ -102,9 +102,9 @@ function plotPM1(mode, data_to_plot) {
                     }
                     let line = new google.maps.Polygon({
                         paths: to_visualize,
-                        strokeColor: 'black',
-                        strokeOpacity: 0.5,
-                        strokeWeight: 2,
+                        strokeColor: '#800000',
+                        strokeOpacity: 0.9,
+                        strokeWeight: 4,
                         fillOpacity: 0,
                         zIndex: -2 // on top of every other shape
                     });  
@@ -145,12 +145,13 @@ function pieChartpm1(ctx) {
             areas.push(entry.Areas);
             driveAloneValues.push(parseFloat(entry.Drive_Alone));
         }
+        
         // Define colors for the bars
         const barColors = 'rgba(33,150,243,1)';
 
-        // Creating the bar chart
-        const myBarChart = new Chart(ctx, {
-            type: 'bar',
+        // Creating the horizontal bar chart
+        const myHorizontalBarChart = new Chart(ctx, {
+            type: 'horizontalBar', // Change the chart type to 'horizontalBar'
             data: {
                 labels: areas,
                 datasets: [{
@@ -170,23 +171,23 @@ function pieChartpm1(ctx) {
                     xAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Areas'
+                            labelString: 'Drive Alone (%)'
+                        },
+                        ticks: {
+                            beginAtZero: true
                         }
                     }],
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Drive Alone (%)'
-                        },
-                        ticks: {
-                            beginAtZero: true
+                            labelString: 'El Paso Districts'
                         }
                     }]
                 },
                 tooltips: {
                     callbacks: {
                         label: function (tooltipItem, data) {
-                            return data['datasets'][0]['label'] + ': ' + tooltipItem.yLabel.toFixed(1) + '%';
+                            return data['datasets'][0]['label'] + ': ' + tooltipItem.xLabel.toFixed(1) + '%';
                         }
                     }
                 }
@@ -194,6 +195,7 @@ function pieChartpm1(ctx) {
         });
     });
 }
+
 
 const arrSum = arr => arr.reduce((a,b) => a + b, 0);
 function arrAvg(arr){

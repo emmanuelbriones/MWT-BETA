@@ -15,17 +15,15 @@
 
 function pm26Data(mode, ex) {
     let pm26Data = {
-        years: [],
+        years: ['2019','2020','2021','2022','2023'],
 
-        good: [0,0,0,0,0],
-        fair: [0,0,0,0,0],
-        poor: [0,0,0,0,0],
-        noData: [0,0,0,0,0],
+        good: [],
+        fair: [],
+        poor: [],
 
        good_count: [0,0,0,0,0],
        fair_count: [0,0,0,0,0],
        poor_count: [0,0,0,0,0],
-       no_data_count: [0,0,0,0,0],
 
        dynamicTot: 0,
        dynamicPoor: 0,
@@ -67,48 +65,21 @@ function pm26Data(mode, ex) {
 
     $.get(php_handler, data_for_php, function (data) {
         let latestYear = 0;
-        for(index in data.shape_arr) {
-            let year_found = parseInt(data.shape_arr[index].year);
-            if(year_found > latestYear) latestYear = year_found;
-        }
-        pm26Data.years.push(latestYear - 4);
-        pm26Data.years.push(latestYear - 3);
-        pm26Data.years.push(latestYear - 2);
-        pm26Data.years.push(latestYear - 1);
-        pm26Data.years.push(latestYear);
-
-        let year_index = -1;
+        let year_found = 2023;
+        let year_index = 0;
+        let region = 'Texas'            
 
         let image = "./img/markers/crash.png";
         let condition = '';
         var lowestRating = 0;
 
         for (index in data.shape_arr) { // Organize information into dictionaries
-            let year_found = parseInt(data.shape_arr[index].year);
-            let deck_cond_ = parseInt(data.shape_arr[index]['deck_cond_']);
-            let superstruc = parseInt(data.shape_arr[index]['superstruc']);
-            let substruc_c = parseInt(data.shape_arr[index]['substruc_c']);
-            let region = data.shape_arr[index]['region'];
             let type = (data.shape_arr[index]['mode']).toLowerCase();
             let typeHolder = currentType;
-            lowestRating = Math.min(deck_cond_, superstruc, substruc_c);
+            // lowestRating = Math.min(deck_cond_, superstruc, substruc_c);
 
-            if (year_found == latestYear - 4) {
-                year_index = 0;
-
-            } else if (year_found == latestYear - 3) {
-                year_index = 1;
-
-            } else if (year_found == latestYear - 2) {
-                year_index = 2;
-
-            } else if (year_found == latestYear - 1) {
-                year_index = 3;
-
-            } else if (year_found == latestYear) {
-                year_index = 4;
-            }
-
+            let overall_cond = data.shape_arr[index]['brdg_cond'];
+                
             if (mode == 0) {
                 let zeroType = "";
                 if (ex == "d") {
@@ -125,23 +96,19 @@ function pm26Data(mode, ex) {
                 //count bridges by region
                 pm26Data.totBridges[year_index]++;
                 // Count Conditions by Region. Used for Graph
-                if (lowestRating >= 7 && lowestRating <= 9) {
+                if (overall_cond == 'G') {
                     condition = 'Good Condition';
                     image = "./img/markers/green.png";
                     pm26Data.good_count[year_index]++;
-                } else if (lowestRating >= 5 && lowestRating <= 6) {
+                } else if (overall_cond == 'F') {
                     condition = 'Fair Condition';
                     image = "./img/markers/yellow.png"
                     pm26Data.fair_count[year_index]++;
-                } else if (lowestRating >= 1 && lowestRating <= 4) { //old was >=0  && <= 4
+                } else if (overall_cond == 'P') { 
                     condition = 'Poor Condition';
                     image = "./img/markers/red.png";
                     pm26Data.totBad[year_index]++;
                     pm26Data.poor_count[year_index]++;
-                } else if (lowestRating == 0) { // old was 999
-                    condition = 'No data';
-                    image = "./img/markers/grey.png";
-                    pm26Data.no_data_count[year_index]++;
                 } else { //null
                     condition = 'No data';
                     image = "./img/markers/grey.png";
@@ -149,58 +116,54 @@ function pm26Data(mode, ex) {
                 }
             }
 
-            let holder = [];
-            if(year_index == 4) {
-                if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
-                    holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
-                    holder = holder[0][0]; // Fixes BLOBs
-                    let to_visualize = {
-                        lat: parseFloat(holder[0].lat),
-                        lng: parseFloat(holder[0].lng)
-                    };
-                    let titleH = condition + ": " + lowestRating;
-                    if (lowestRating == 999) {
-                        titleH = condition;
-                    }
-                    let point = new google.maps.Marker({
-                        position: to_visualize,
-                        title: titleH,
-                        // value: '',
-                        icon: image
-                    });
-                    // draw by 1 type at a time
-                    if (currentType == type) {
-                        point.setMap(map);
-                        points.push(point);
-                    }
 
+            let holder = [];
+            if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
+                // holder.push(wktFormatterPoint(data.shape_arr[index][shape]));
+                // holder = holder[0][0]; // Fixes BLOBs
+                // let to_visualize = {
+                //     lat: parseFloat(holder[0].lat),
+                //     lng: parseFloat(holder[0].lng)
+                // };
+
+                let latLng = data.shape_arr[index];
+                let to_visualize = {
+                    lat: parseFloat(latLng.lat),
+                    lng: parseFloat(latLng.lng)
+                };
+
+                let titleH = condition + ": " + lowestRating;
+                if (lowestRating == 999) {
+                    titleH = condition;
                 }
+                let point = new google.maps.Marker({
+                    position: to_visualize,
+                    title: titleH,
+                    icon: image
+                });
+                // draw by 1 type at a time
+                if (currentType == type) {
+                    point.setMap(map);
+                    points.push(point);
+                }
+
             }
 
         }
+    }).fail(function (error) {
+        pm_error_handler(mode, ex);
+        toggleSpinner('off');
+    });
 
-        // tot counts
-        let totBad = pm26Data.totBad[4];
-        let mpoArea = pm26Data.totBridges[4]
-        let mpo = ((totBad / mpoArea) * 100).toFixed(2);
-
-        // TODO; Here
-        pm26Data.tnodatabridges = pm26Data.no_data_count[4];
-        pm26Data.dynamicTot = mpoArea;
-        pm26Data.dynamicPoor = (((pm26Data.poor_count[4]) / pm26Data.dynamicTot) * 100).toFixed(2);
-
-        for(var i =0; i<=4; i++) {
-            if (pm26Data.good_count[i] != 0) {
-                pm26Data.good[i] = ((pm26Data.good_count[i] / mpoArea) * 100).toFixed(2);
-            }
-            if (pm26Data.fair_count[i] != 0) {
-                pm26Data.fair[i] = ((pm26Data.fair_count[i] / mpoArea) * 100).toFixed(2);
-            }
-            if (pm26Data.poor_count[i] != 0) {
-                pm26Data.poor[i] = ((pm26Data.poor_count[i] / mpoArea) * 100).toFixed(2);
-            }
-            if (pm26Data.no_data_count[i] != 0) {
-                pm26Data.noData[i] = ((pm26Data.no_data_count[i] / mpoArea) * 100).toFixed(2);
+    data_for_php = {
+        key: "pm26_table"
+    };
+    $.get(php_handler, data_for_php, function (data) {
+        for (index in data.shape_arr) {
+            if ((data.shape_arr[index]['Type']).toLowerCase() == currentType){
+                pm26Data.good.push(data.shape_arr[index].Good);
+                pm26Data.fair.push(data.shape_arr[index].Fair);
+                pm26Data.poor.push(data.shape_arr[index].Poor);
             }
         }
 
@@ -230,8 +193,6 @@ function pm26Data(mode, ex) {
         } else if (mode == 4) {
             dynamicCorridorText("AOI", pm26Data); // Send graph data and current corridor to dynamic text for corridors
         } else if(mode == 3){
-            console.log(pm26Data);
-            console.log("BS");
             let data = {
                 pm:'26',
                 type:currentType,
@@ -241,7 +202,6 @@ function pm26Data(mode, ex) {
             }
             benchmarkData.push(data);
         }
-
     }).fail(function (error) {
         pm_error_handler(mode, ex);
         toggleSpinner('off');
@@ -276,14 +236,6 @@ function chart_pm26(g1, data) {
                     data: data.poor,
                     backgroundColor:'rgba(242, 38, 19, 1)',
                     borderColor: 'rgba(242, 38, 19, 1)',
-                    borderWidth: 1,
-                    fill: false
-                },
-                {
-                    label: 'No Data',
-                    data: data.noData,
-                    backgroundColor: 'rgba(149, 165, 166, 1)',
-                    borderColor: 'rgba(149, 165, 166, 1)',
                     borderWidth: 1,
                     fill: false
                 }

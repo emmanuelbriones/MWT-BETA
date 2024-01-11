@@ -96,11 +96,18 @@ function regionalText(data) {
     }
 }
 function pm1R(data) {
-    let pm1RText = "% of workers living in the El Paso MPO area that drive alone during their commute to work.";
+    let pm1RText = "79.8% of workers living in the El Paso MPO area that drive alone during their commute to work.";
     pm1Text(pm1RText, data)
 }
 function pm2R(data) {
-    let text = " During 2014-2018 " + data.Transit.toFixed(1) + "% of workers reported to commute by public transit, " + data.Biking.toFixed(2) + "% of workers bike, " + data.Walking.toFixed(1) + "% of workers living in the El Paso MPO area reported to walk to work, and " + data.Non_SOV.toFixed(1) + "% of workers used other means.";
+    let text = "";
+    if (currentType == 'transit'){
+        text = "During 2020, 1.2% of workers reported to commute by public transit";
+    }else if(currentType == 'walking'){
+        text = "During 2020, 1.4% of workers living in the El Paso MPO area reported to walk to work";
+    }else if(currentType == 'biking'){
+        text = "In 2020, 0.1% of workers in the El Paso MPO area reported biking to work";
+    }
     pm2Text(text, data);
 
 }
@@ -114,9 +121,9 @@ function pm24R(data) {
 
     paragraphAdder("In the El Paso MPO region, the average travel time index is " + data.ttiAvg + ". In " + data.percentGreater.toFixed(2) + "% (" + data.sumGreater.toFixed(2) + " miles) of roadways, the travel time index is 1.5 and greater.", "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2019", "paragraph", "analysis-info");
+    paragraphAdder("2022", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("2019 Congestion Management process assessment tools (COMPAT).  ", "https://compat.tti.tamu.edu/");
+    anchorAdder("2022 Congestion Management process assessment tools (COMPAT).  ", "https://compat.tti.tamu.edu/");
     paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
     paragraphAdder("The travel time index is categorized in the following travel times: 1-1.1, 1.1-1.2, 1.2-1.3, 1.3-1.5, and more than 1.5. This performance measure shows the travel time index for passenger vehicles as well as commercial vehicles in the El Paso MPO region based on data reported in the National Performance Management Research Data Set (NPMRDS). The number of miles are summed per categorization and displayed in the graph.  ", "paragraph", "calc-info");
     if (detectmob() != true) {
@@ -433,7 +440,7 @@ function pm26R(data) {
     chart_pm26(ctx, data);
     headerAdder("Bridge & Culvert Condition", "title");
     paragraphAdder("Summary:", "subtitle", "summary-title");
-    paragraphAdder("Within the El Paso MPO area, there are 51% bridges in Good condition, 47%  bridges in Fair condition, & 0.9% bridges in Poor condition.", "paragraph", "summary-info");
+    paragraphAdder("Within the El Paso MPO area in 2023, there are " + data.good[4] + "% bridges in Good condition, "+ data.fair[4] +"%  bridges in Fair condition, & "+ data.poor[4] +"% bridges in Poor condition.", "paragraph", "summary-info");
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
     paragraphAdder(" 2019-2023", "paragraph", "analysis-info");
@@ -820,18 +827,21 @@ function pm2Text(text, data) {
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder(text, "paragraph", "summary-info");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2014-2018 ACS 5-Year Estimates", "paragraph", "analysis-info");
+    paragraphAdder("2020", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
-    anchorAdder("American Community Survey 5-Year Estimates", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.2018.html");
-    anchorAdder("TIGER/Line Shapefiles and TIGER/Line Files", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2018.html");
-    paragraphAdder("Means of Transportation: Bicycle: workers 16 and over (estimate) &#247 Total workers 16 years and over", "paragraph", "calc-info");
-    paragraphAdder("Means of Transportation: Public Transportation (exluding cabs): workers 16 and over &#247 Total workers 16 years and over", "paragraph", "calc-info");
-    paragraphAdder("Means of Transportation: Walked: workers 16 and over (estimate) &#247 Total workers 16 years and over", "paragraph", "calc-info");
+    anchorAdder("TIGER/Line with Selected Demographic and Economic Data", "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-data.html");
+    if (currentType == 'transit'){
+        paragraphAdder("Means of Transportation: Public Transportation (exluding cabs): workers 16 and over &#247 Total workers 16 years and over", "paragraph", "calc-info");
+    }else if(currentType == 'walking'){
+        paragraphAdder("Means of Transportation: Walked: workers 16 and over (estimate) &#247 Total workers 16 years and over", "paragraph", "calc-info");
+    }else if(currentType == 'biking'){
+        paragraphAdder("Means of Transportation: Bicycle: workers 16 and over (estimate) &#247 Total workers 16 years and over", "paragraph", "calc-info");
+    }
     //legend elements
     if (detectmob() != true) {
         names = ['0%','1%-25%', '25%-50%', '50%-75%', '75%-100%'];
         colors = ['background:#9E9E9E;','background:#00FF00;', 'background:#FFFF00;', 'background:#FFA500;', 'background:#FF0000'];
-        legendMaker("Legend", names, colors);
+        legendMaker("Percentage of commute by "+currentType, names, colors);
     }
     openNav();
 }

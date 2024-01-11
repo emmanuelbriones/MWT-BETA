@@ -149,9 +149,9 @@ function drawOzoneFigure(figureName) {
             }
             let line = new google.maps.Polygon({
                 paths: to_visualize,
-                strokeColor: 'black',
-                strokeOpacity: 0.5,
-                strokeWeight: 2,
+                strokeColor: '#800000',
+                strokeOpacity: 0.8,
+                strokeWeight: 6,
                 fillOpacity: 0,
                 zIndex: -2 // on top of every other shape
             });  
@@ -298,12 +298,13 @@ function piechartpm2(ctx, data) {
             areas.push(entry.Areas);
             driveAloneValues.push(parseFloat(entry[dataProperty]));
         }
+        
         // Define colors for the bars
         const barColors = 'rgba(33,150,243,1)';
 
-        // Creating the bar chart
-        const myBarChart = new Chart(ctx, {
-            type: 'bar',
+        // Creating the horizontal bar chart
+        const myHorizontalBarChart = new Chart(ctx, {
+            type: 'horizontalBar', // Change the chart type to 'horizontalBar'
             data: {
                 labels: areas,
                 datasets: [{
@@ -323,23 +324,23 @@ function piechartpm2(ctx, data) {
                     xAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Areas'
+                            labelString: `${currentType} (%)`
+                        },
+                        ticks: {
+                            beginAtZero: true
                         }
                     }],
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: `${currentType} (%)`
-                        },
-                        ticks: {
-                            beginAtZero: true
+                            labelString: 'El Paso Districts'
                         }
                     }]
                 },
                 tooltips: {
                     callbacks: {
                         label: function (tooltipItem, data) {
-                            return data['datasets'][0]['label'] + ': ' + tooltipItem.yLabel.toFixed(1) + '%';
+                            return data['datasets'][0]['label'] + ': ' + tooltipItem.xLabel.toFixed(1) + '%';
                         }
                     }
                 }
@@ -347,3 +348,4 @@ function piechartpm2(ctx, data) {
         });
     });
 }
+

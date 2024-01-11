@@ -18,8 +18,10 @@ if($key == "all_pm1" || $key == "all_pm2"){
 	$query = "SELECT * FROM pm_1_2_table";
 }else if($key == "all_pmbridge"){ 
 	$query = "select astext(SHAPE) as shape from pm26 where corridor_key = '$key'";
+}else if($key == "pm26_table"){ 
+		$query = "SELECT * FROM pm26_table";
 }else if($key == "all_pm26"){ 
-	$query = "select mode,deck_cond_,superstruc,substruc_c,region, ST_astext(SHAPE) as shape, year from pm26";
+    $query = "select mode, lat, lng, brdg_cond from pm26";
 }else if($key == "all_pm3"){
 	$query = "select avg_riders,route_1,St_astext(SHAPE) as shape, f2015, f2016, f2017, f2018, f2019 from pm3"; // temporal note: find an elegant way to generalize this
 }else if($key == "all_pm4"){
@@ -76,7 +78,7 @@ else if($key == "pm22_lines"){
 
 }
 else if($key == "all_pm24"){ 
-	$query = "select leng_cal,miles,tti,trktti,st_astext(SHAPE) as shape from pm24";
+	$query = "select miles,tti,trktti,st_astext(SHAPE) as shape from pm24";
 }else if($key == "all_pm25"){
 	$query = "select type,state_code,year_recor,iri, miles, PAV_RATING, st_astext(SHAPE) as shape from pm25";
 }else if($key == "pm25_data"){
