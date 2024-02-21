@@ -130,7 +130,7 @@ function pm24R(data) {
         //legend elements
         names = ['0', '1-1.1', '1.11-1.2', '1.21-1.3', '1.31-1.5', '1.51 >'];
         colors = ['background:#9E9E9E;', 'background:#03A9F4;', 'background:#CDDC39;', 'background:#FFEB3B;', 'background:#FFAB40;', 'background:#d50000'];
-        legendMaker("Legend", names, colors);
+        legendMaker("Travel Time Index", names, colors);
     }
     openNav();
 }
@@ -149,27 +149,27 @@ function pm18R(data) {
 
     if (currentType == 'driving') {
         headerAdder("Number of Fatalities - Driving", "title");
-        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountDK + " of those crashes* resulted in fatalities. A total of " + data.dtot + " fatalities resulted from these crashes*.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2019 - 2023), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountDK + " of those crashes* resulted in fatalities. A total of " + data.dtot + " fatalities resulted from these crashes*.", "paragraph", "summary-info");
         paragraphAdder("* Excluding crashes involving truck vehicles, pedestrians and pedalcyclists", "paragraph", "summary-info");
     }
     else if (currentType == 'freight') {
         headerAdder("Number of Fatalities - Freight", "title");
-        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. A total of " + data.ftot + " fatalities resulted from these crashes.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2019 - 2023), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountFK + " of those crashes resulted in fatalities involving Commercial Vehicles. A total of " + data.ftot + " fatalities resulted from these crashes.", "paragraph", "summary-info");
     }
     else if (currentType == 'walking') {
         headerAdder("Number of Fatalities - Walking", "title");
-        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountWK + " of those crashes resulted in fatalities involving pedestrians. " + data.wtot + " pedestrians were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2019 - 2023), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountWK + " of those crashes resulted in fatalities involving pedestrians. " + data.wtot + " pedestrians were killed.", "paragraph", "summary-info");
     }
     else if (currentType == 'biking') {
         headerAdder("Number of Fatalities - Biking", "title");
-        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountBK + " of those crashes resulted in fatalities involving bicyclists. " + data.btot + " bicyclists were killed.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2019 - 2023), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountBK + " of those crashes resulted in fatalities involving bicyclists. " + data.btot + " bicyclists were killed.", "paragraph", "summary-info");
     }
 
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2018 - 2022", "paragraph", "analysis-info");
+    paragraphAdder("2019 - 2023", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
-    paragraphAdder("Note: Data not yet reported by NMDOT for year 2022", "paragraph", "data-info");
+    paragraphAdder("Note: Data not yet reported by NMDOT for year 2023", "paragraph", "data-info");
     paragraphAdder("Performance Measure Description:", "subtitle", "calc-title");
 
     if (currentType == 'driving') {
@@ -210,29 +210,29 @@ function pm19R(data) {
 
     if (currentType == 'driving') {
         headerAdder("Number Serious Injuries - Driving", "title");
-        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountDK + " of those crashes* resulted in serious injuries. A total of " + data.dtot + " persons sustained serious injuries resulting from these crashes*.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2019-2023), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountDK + " of those crashes* resulted in serious injuries. A total of " + data.dtot + " persons sustained serious injuries resulting from these crashes*.", "paragraph", "summary-info");
         paragraphAdder("* Excluding crashes involving truck vehicles, pedestrians and pedalcyclists", "paragraph", "summary-info");
     }
     else if (currentType == 'freight') {
         headerAdder("Number Serious Injuries - Freight", "title");
-        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountFK + " of those crashes resulted in serious injuries involving Commercial Vehicles. A total of " + data.ftot + " persons sustained serious injuries in resulting from these crashes.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2019-2023), a total of " + commafy(data.crashCount) + " motor vehicle crashes occurred in the El Paso MPO region and " + data.crashCountFK + " of those crashes resulted in serious injuries involving Commercial Vehicles. A total of " + data.ftot + " persons sustained serious injuries in resulting from these crashes.", "paragraph", "summary-info");
     }
     else if (currentType == 'walking') {
         headerAdder("Number Serious Injuries- Walking", "title");
-        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountWK + " of those crashes resulted in serious injuries involving pedestrians. " + data.wtot + " pedestrians were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2019-2023), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountWK + " of those crashes resulted in serious injuries involving pedestrians. " + data.wtot + " pedestrians were seriously injured.", "paragraph", "summary-info");
     }
     else if (currentType == 'biking') {
         headerAdder("Number Serious Injuries - Biking", "title");
-        paragraphAdder("During a 5-year period (2018-2022), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountBK + " of those crashes resulted in serious injuries involving bicyclists. " + data.btot + " bicyclits were seriously injured.", "paragraph", "summary-info");
+        paragraphAdder("During a 5-year period (2019-2023), a total of " + commafy(data.crashCount) + " crashes occurred in the El Paso MPO region and " + data.crashCountBK + " of those crashes resulted in serious injuries involving bicyclists. " + data.btot + " bicyclits were seriously injured.", "paragraph", "summary-info");
     }
 
     pm19chartLine(ctx, data);
     paragraphAdder("Summary:", "subtitle", "summary-title");
     paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-    paragraphAdder("2018 - 2022", "paragraph", "analysis-info");
+    paragraphAdder("2019 - 2023", "paragraph", "analysis-info");
     paragraphAdder("Data Source:", "subtitle", "data-title");
     paragraphAdder("Crash data provided by TxDOT and NMDOT.", "paragraph", "data-info");
-    paragraphAdder("Note: Data not yet reported by NMDOT for year 2022", "paragraph", "data-info");
+    paragraphAdder("Note: Data not yet reported by NMDOT for year 2023", "paragraph", "data-info");
     paragraphAdder("Performance Measure Description:", "subtitle", "calc-title");
 
     if (currentType == 'driving') {
@@ -326,31 +326,31 @@ function pm4R(data) {
 
         headerAdder("Biking trips recorded by Strava", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
-        paragraphAdder("In 2018, a total of " + commafy(data.dataB) + " bike trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
+        paragraphAdder("In 2023, a total of " + commafy(data.dataB) + " bike trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
         paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-        paragraphAdder("2018 data licensed by Strava.", "paragraph", "analysis-info");
+        paragraphAdder("2023 data licensed by Strava.", "paragraph", "analysis-info");
         paragraphAdder("Data Source:", "subtitle", "data-title");
         paragraphAdder("Strava Metro data provided via a sublicense from the Texas Department of Transportation.", "paragraph", "data-info");
         paragraphAdder("How Performancep Measure was Calculated:", "subtitle", "calc-title");
-        paragraphAdder("This performance measure reflects the total number of bike trips on the street regardless of the direction (column TACTCNT) recorded by Strava in 2018. Trips recorded on Interstate 10 were removed from this dataset, since I-10 is a limited access facility. The legend shows the data in a geometric interval, which provides the best viewing distribution.", "paragraph", "calc-info");
-        names = ['5 - 30', '30 - 479', '479 - 6,460'];
+        paragraphAdder("This performance measure reflects the total number of bike trips on the street regardless of the direction (column TACTCNT) recorded by Strava in 2023. Trips recorded on Interstate 10 were removed from this dataset, since I-10 is a limited access facility. The legend shows the data in a geometric interval, which provides the best viewing distribution.", "paragraph", "calc-info");
+        names = ['5-100',  '101-500', '501-1000', '>1000'];
 
     }
     else if (currentType == 'walking') {
         headerAdder("Walking trips recorded by Strava", "title");
         paragraphAdder("Summary:", "subtitle", "summary-title");
-        paragraphAdder("In 2017, a total of " + commafy(data.dataW) + " walk trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
+        paragraphAdder("In 2023, a total of " + commafy(data.dataW) + " walk trips were recorded by Strava in the El Paso MPO region. ", "paragraph", "summary-info");
         paragraphAdder("Analysis Period:", "subtitle", "analysis-title");
-        paragraphAdder("2017 data from Strava Metro.", "paragraph", "analysis-info");
+        paragraphAdder("2023 data from Strava Metro.", "paragraph", "analysis-info");
         paragraphAdder("Data Source:", "subtitle", "data-title");
-        paragraphAdder("Strava Metro (2017) provided via a sublicense from the Texas Department of Transportation.", "paragraph", "data-info");
+        paragraphAdder("Strava Metro (2023) provided via a sublicense from the Texas Department of Transportation.", "paragraph", "data-info");
         paragraphAdder("How Performance Measure was Calculated:", "subtitle", "calc-title");
-        paragraphAdder("This performance measure reflects the total number of walk trips on the street regardless of the direction (column TACTCNT) recorded by Strava in 2017. Trips recorded on the Interstate 10 were removed from this dataset, since I-10 is a limited access facility. The legend shows the data in a geometric interval, which provides the best viewing distribution.", "paragraph", "calc-info");
-        names = ['5.00 - 15', '16 - 129', '130 - 1,305'];
+        paragraphAdder("This performance measure reflects the total number of walk trips on the street regardless of the direction (column TACTCNT) recorded by Strava in 2023. Trips recorded on the Interstate 10 were removed from this dataset, since I-10 is a limited access facility. The legend shows the data in a geometric interval, which provides the best viewing distribution.", "paragraph", "calc-info");
+        names = ['1-25','25-100',  '101-500', '501-1000', '1001-5000', '5000>'];
     }
     if (detectmob() != true) {
-        let colors = ['background:#f44336;', 'background:#64DD17;', 'background:#9C27B0', 'background:#e53935;'];
-        legendMaker("Trips", names, colors);
+    let colors = ['background:#9E9E9E;','background:#00FF00;', 'background:#FFFF00;', 'background:#FFA500', 'background:#FF0000;', 'background:#800080;'];
+    legendMaker("Trips", names, colors);
     }
     openNav();
 }

@@ -84,7 +84,7 @@ function pm18Data(mode, ex) {
     $.get(php_handler, data_for_php, function (data) {
         let latestYear = 0;
 
-        //get latest year
+//get latest year
         for (index in data.shape_arr) {
             let year = data.shape_arr[index].crash_year;
             if (latestYear < year) {
@@ -99,6 +99,7 @@ function pm18Data(mode, ex) {
         let crashCountB = 0;
 
         pm18data.latestYear = latestYear;
+        let prev_crash_id = 0;
         for (index in data.shape_arr) {
             let holder = [];
             let type = data.shape_arr[index]['type'];
@@ -109,7 +110,15 @@ function pm18Data(mode, ex) {
             let classC = parseInt(data.shape_arr[index]['classC']);
             let classO = parseInt(data.shape_arr[index]['classO']);
             let ogrID = parseInt(data.shape_arr[index]['OGR_FID']);
+            let crash_id = parseInt(data.shape_arr[index]['crashID']);
             let state = data.shape_arr[index]['state'];
+            
+            if (crash_id == prev_crash_id){
+                continue;
+            }else{
+                prev_crash_id = crash_id
+            }
+            console.log(crash_id);
 
             if (mode == 1 || mode == 2 || mode == 4) { // mode 1 and 2 allows us to draw points 
 
@@ -280,7 +289,7 @@ function pm18Data(mode, ex) {
             let data = {
                 pm: '18',
                 type: currentType,
-                title: "Fatalities 2013 - 2017",
+                title: "Fatalities 2019 - 2023",
                 corridor: corr,
                 value: pm18data.dtot
             }
@@ -343,7 +352,7 @@ function pm18chartLine(ctx, data) {
         },
         {
             label: pm18_graphTitle + " NM",
-            data: pm18_graphValuesNM,
+            data: pm18_graphValuesNM.slice(0, -1),
             //data: [data.tot13, data.tot14, data.tot15, data.tot16, data.tot17],
             backgroundColor: "orange",
             borderColor: "grey",

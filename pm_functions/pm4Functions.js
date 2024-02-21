@@ -10,6 +10,9 @@
 function pm4Data(mode, data_in) {
     let count = 0; // PM4 Data
     let color = '#03A9F4';
+    let opacity = .50;
+    let stroke = 4;
+    let layer = 99;
     let caller = "mwt_handler.php";
     let shape = "shape";
     let key = 'all_pm4';
@@ -52,7 +55,7 @@ function pm4Data(mode, data_in) {
             let coord; // will be an object to push coordinates to populate the map
             let ln = r.getCoordinates(); // parses the shape into lat & lng
 
-
+        
             //PMS Data
 
             let pm4tct = data.shape_arr[index].tactcnt; // works for both walking and Biking
@@ -60,7 +63,7 @@ function pm4Data(mode, data_in) {
 
             if (type == "walking") {
                 pm4data.dataW += parseInt(data.shape_arr[index].tactcnt); // count if total miles
-            } else if (type == "bike") {
+            } else if (type == "biking") {
                 pm4data.dataB += parseInt(data.shape_arr[index].tactcnt); // count if total miles
             }
 
@@ -70,71 +73,103 @@ function pm4Data(mode, data_in) {
                         lat: ln[i]['x'],
                         lng: ln[i]['y']
                     }; // this is how lat & lng is interpreted by the tool
-                    to_visualize.push(coord); // pushing the interpretation to our to_visualize array
+                   to_visualize.push(coord); // pushing the interpretation to our to_visualize array
                 }
                 // filter colors 
-                if (currentType == "walking") {
-                    if (pm4tct > 4 && pm4tct < 16) {
-                        color = '#f44336';
-                    } else if (pm4tct > 15 && pm4tct < 130) {
-                        color = '#64DD17';
-                    } else if (pm4tct > 129 && pm4tct < 1306) {
-                        color = '#9C27B0';
-                    }
-                    let line = new google.maps.Polyline({ // it is a POLYLINE
-                        path: to_visualize, // polyline has a path, defined by lat & lng 
-                        strokeColor: color,
-                        strokeOpacity: .50,
-                        strokeWeight: 4,
-                        zIndex: 99 // on top of every other shape
-                    });
-                    // Hover Effect for Google API Polygons
-                    google.maps.event.addListener(line, 'mouseover', function (event) {
-                        injectTooltip(event, pm4tct);
-                    });
-                    google.maps.event.addListener(line, 'mousemove', function (event) {
-                        moveTooltip(event);
-                    });
-                    google.maps.event.addListener(line, 'mouseout', function (event) {
-                        deleteTooltip(event);
-                    });
 
-                    line.setMap(map);
-                    polylines.push(line);
-                } else if (currentType == "biking") {
-                    if (pm4tct > 4 && pm4tct < 31) {
-                        color = '#f44336';
-                    } else if (pm4tct > 31 && pm4tct < 481) {
-                        color = '#64DD17';
-                    } else if (pm4tct > 480 && pm4tct < 8461) {
-                        color = '#9C27B0';
-                    }
-
-                    let line = new google.maps.Polyline({ // it is a POLYLINE
-                        path: to_visualize, // polyline has a path, defined by lat & lng 
-                        strokeColor: color,
-                        strokeOpacity: .50,
-                        strokeWeight: 4,
-                        zIndex: 99 // on top of every other shape
-                    });
-                    // Hover Effect for Google API Polygons
-                    google.maps.event.addListener(line, 'mouseover', function (event) {
-                        injectTooltip(event, pm4tct);
-                    });
-                    google.maps.event.addListener(line, 'mousemove', function (event) {
-                        moveTooltip(event);
-                    });
-                    google.maps.event.addListener(line, 'mouseout', function (event) {
-                        deleteTooltip(event);
-                    });
-
-                    line.setMap(map);
-                    polylines.push(line);
+            if (currentType == "walking") {
+                if (pm4tct > 1 && pm4tct < 25) {
+                    color = '#9E9E9E';
+                    opacity = .3;
+                    stroke = 3;
+                    layer = 94;
+                } else if (pm4tct > 25 && pm4tct < 101) {
+                    color = '#00FF00';
+                    opacity = .3;
+                    stroke = 3;
+                    layer = 95;
+                } else if (pm4tct > 100 && pm4tct < 501) {
+                    color = '#FFFF00';
+                    opacity = .35;
+                    stroke = 3.5;
+                    layer = 96;
+                } else if (pm4tct > 500 && pm4tct < 1001) {
+                    color = '#FFA500';
+                    opacity = .35;
+                    stroke = 3.5;
+                    layer = 97;
+                } else if (pm4tct > 1000 && pm4tct < 5001 ){
+                    color = '#FF0000';
+                    opacity = .35;
+                    stroke = 3.5;
+                    layer = 98;
+                } else if (pm4tct > 5001 ){
+                    color = '#800080';
+                    opacity = .35;
+                    stroke = 3.5;
+                    layer = 99;
                 }
+          
+                let line = new google.maps.Polyline({ // it is a POLYLINE
+                    path: to_visualize, // polyline has a path, defined by lat & lng 
+                    strokeColor: color,
+                    strokeOpacity: opacity,
+                    strokeWeight: stroke,
+                    zIndex: layer 
+                });
+                    // Hover Effect for Google API Polygons
+                    google.maps.event.addListener(line, 'mouseover', function (event) {
+                        injectTooltip(event, pm4tct);
+                    });
+                    google.maps.event.addListener(line, 'mousemove', function (event) {
+                        moveTooltip(event);
+                    });
+                    google.maps.event.addListener(line, 'mouseout', function (event) {
+                        deleteTooltip(event);
+                    });
+
+                    line.setMap(map);
+                    polylines.push(line);
+            } else if (currentType == "biking") {
+                    if (pm4tct > 1 && pm4tct < 25) {
+                        color = '#9E9E9E';
+                    } else if (pm4tct > 25 && pm4tct < 101) {
+                        color = '#00FF00';
+                    } else if (pm4tct > 100 && pm4tct < 501) {
+                        color = '#FFFF00';
+                    } else if (pm4tct > 500 && pm4tct < 1001) {
+                        color = '#FFA500';
+                    } else if (pm4tct > 1000 && pm4tct < 5001 ){
+                        color = '#FF0000';
+                    } else if (pm4tct > 5001 ){
+                        color = '#800080';
+                    }
+
+                    let line = new google.maps.Polyline({ // it is a POLYLINE
+                        path: to_visualize, // polyline has a path, defined by lat & lng 
+                        strokeColor: color,
+                        strokeOpacity: .50,
+                        strokeWeight: 4,
+                        zIndex: 99 // on top of every other shape
+                });
+                // Hover Effect for Google API Polygons
+                google.maps.event.addListener(line, 'mouseover', function (event) {
+                    injectTooltip(event, pm4tct);
+                });
+                google.maps.event.addListener(line, 'mousemove', function (event) {
+                    moveTooltip(event);
+                });
+                google.maps.event.addListener(line, 'mouseout', function (event) {
+                    deleteTooltip(event);
+                });
+
+                line.setMap(map);
+                polylines.push(line);
+}
             }
 
         }
-
+       
         if (mode == 0) {
             let walkingValue = {
                 name: "pm4WText",
